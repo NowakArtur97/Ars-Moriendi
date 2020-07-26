@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private InputMaster controls;
 
     private Rigidbody2D myRigidbody2D;
-    private Collider2D myCollider2D;
+    private Collider2D myBoxCollider2D;
 
     private void Awake()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        myCollider2D = GetComponent<Collider2D>();
+        myBoxCollider2D = GetComponent<Collider2D>();
         controls = new InputMaster();
     }
 
@@ -46,15 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Vector2 topLeftPoint = transform.position;
-        topLeftPoint.x -= myCollider2D.bounds.extents.x;
-        topLeftPoint.y += myCollider2D.bounds.extents.y;
+        float extraHeight = 1f;
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, myBoxCollider2D.bounds.size, 0f, Vector2.down, extraHeight, ground);
 
-        Vector2 bottomRightPoint = transform.position;
-        bottomRightPoint.x += myCollider2D.bounds.extents.x;
-        bottomRightPoint.y -= myCollider2D.bounds.extents.y;
-
-        return Physics2D.OverlapArea(topLeftPoint, bottomRightPoint, ground);
+        //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
+        //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
+        return raycastHit2D.collider != null;
     }
 
     private void OnEnable()
