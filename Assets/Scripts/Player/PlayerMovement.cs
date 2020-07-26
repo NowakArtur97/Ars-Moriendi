@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private Transform airJumpParticleEffect;
 
     private int airJumpCount;
-    private int airJumpCountMax = 2;
+    private readonly int airJumpCountMax = 2;
 
     private InputMaster controls;
 
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody2D.velocity = Vector2.zero;
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            Instantiate(airJumpParticleEffect, transform.position, Quaternion.identity);
         }
     }
 

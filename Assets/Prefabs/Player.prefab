@@ -132,6 +132,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 256
+  airJumpParticleEffect: {fileID: 4729669505803284099, guid: 4d2292bdc9b96af44a36d64f0db5ec40,
+    type: 3}
 --- !u!50 &1233275229
 Rigidbody2D:
   serializedVersion: 4
