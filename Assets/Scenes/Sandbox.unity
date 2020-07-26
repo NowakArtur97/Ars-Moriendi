@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 243150909}
   - component: {fileID: 243150908}
   - component: {fileID: 243150907}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,6 +317,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1233275228, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.01942724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233275228, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.791948
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233275228, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.09388126
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233275228, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.43804884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233275230, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: runSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1233275230, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
+      propertyPath: jumpSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5476649753576037553, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}
       propertyPath: m_Name
