@@ -28,6 +28,13 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Jump.performed += ctx => Jump(ctx);
     }
 
+    public void TouchedJumpOrb()
+    {
+        myRigidbody2D.velocity = Vector2.zero;
+        myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+        airJumpCount = 0;
+    }
+
     private void Update()
     {
         if (IsGrounded())
