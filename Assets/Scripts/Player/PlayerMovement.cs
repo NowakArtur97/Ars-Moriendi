@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask groundLayer;
 
     private InputMaster controls;
 
@@ -47,11 +47,11 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         float extraHeight = 1f;
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, myBoxCollider2D.bounds.size, 0f, Vector2.down, extraHeight, ground);
+        Collider2D raycastHit2D = Physics2D.OverlapBox(myBoxCollider2D.bounds.center, myBoxCollider2D.bounds.size, 0f, groundLayer.value);
 
-        //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
-        //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
-        return raycastHit2D.collider != null;
+        Color rayColor = raycastHit2D != null ? Color.green : Color.red;
+        Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
+        return raycastHit2D != null;
     }
 
     private void OnEnable()
