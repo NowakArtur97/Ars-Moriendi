@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private LayerMask ground;
 
-    private bool canDoubleJump;
+    private int airJumpCount;
+    private int airJumpCountMax = 2;
 
     private InputMaster controls;
 
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded())
         {
-            canDoubleJump = true;
+            airJumpCount = 0;
         }
 
         Move();
@@ -51,12 +51,10 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
-        else if (canDoubleJump)
+        else if (airJumpCountMax >= ++airJumpCount)
         {
             myRigidbody2D.velocity = Vector2.zero;
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
-
-            canDoubleJump = false;
         }
     }
 
