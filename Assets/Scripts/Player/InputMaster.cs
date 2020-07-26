@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/InputMaster.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/InputMaster.inputactions'
 
 using System;
 using System.Collections;
@@ -106,7 +106,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a671f172-31c5-42a9-a551-75fbc5a91ff5"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press,MultiTap(tapDelay=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Jump"",

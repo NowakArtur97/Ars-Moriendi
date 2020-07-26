@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private LayerMask ground;
+
+    private bool canDoubleJump;
 
     private InputMaster controls;
 
@@ -20,11 +24,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        controls.Player.Jump.performed += _ => Jump();
+        controls.Player.Jump.performed += ctx => Jump(ctx);
     }
 
     private void Update()
     {
+        if (IsGrounded())
+        {
+            canDoubleJump = true;
+        }
+
         Move();
     }
 
@@ -36,11 +45,18 @@ public class PlayerMovement : MonoBehaviour
         transform.position = currentPosition;
     }
 
-    private void Jump()
+    private void Jump(CallbackContext context)
     {
         if (IsGrounded())
         {
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+        }
+        else if (canDoubleJump)
+        {
+            myRigidbody2D.velocity = Vector2.zero;
+            myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+
+            canDoubleJump = false;
         }
     }
 
