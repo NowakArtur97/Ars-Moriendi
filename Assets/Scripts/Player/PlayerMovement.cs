@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float runSpeed = 5f;
-    [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private LayerMask ground;
     [SerializeField] private Transform airJumpParticleEffect;
+    [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float jumpSpeed = 100f;
+    [SerializeField] private float dashSpeed = 10f;
+    private DashDirection dashDirection;
 
+    private float defaultGravityScale;
     private int airJumpCount;
     private readonly int airJumpCountMax = 2;
 
@@ -15,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D myRigidbody2D;
     private Collider2D myBoxCollider2D;
+
+    private enum DashDirection
+    {
+        LEFT, RIGHT
+    }
 
     private void Awake()
     {
@@ -25,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        controls.Player.Jump.performed += ctx => Jump(ctx);
+        defaultGravityScale = myRigidbody2D.gravityScale;
+        controls.Player.Jump.performed += _ => Jump();
+        controls.Player.Dash.performed += _ => Dash();
     }
 
     public void TouchedJumpOrb()
@@ -48,12 +59,13 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         float movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
+        SetDashDirection(movementInput);
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
     }
 
-    private void Jump(CallbackContext context)
+    private void Jump()
     {
         if (IsGrounded())
         {
@@ -65,6 +77,21 @@ public class PlayerMovement : MonoBehaviour
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
             Instantiate(airJumpParticleEffect, transform.position, Quaternion.identity);
         }
+    }
+
+    private void Dash()
+    {
+        Vector2 directionVector = dashDirection == DashDirection.LEFT ? Vector2.left : Vector2.right;
+        myRigidbody2D.gravityScale = 0;
+        myRigidbody2D.velocity = directionVector * dashSpeed;
+        myRigidbody2D.gravityScale = defaultGravityScale;
+    }
+
+    private void SetDashDirection(float movementInput)
+    {
+        if (movementInput == 0) { return; }
+
+        dashDirection = movementInput == 1 ? DashDirection.RIGHT : DashDirection.LEFT;
     }
 
     private bool IsGrounded()

@@ -127,13 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f58564047929f44e9d2898face0eb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 6
-  jumpSpeed: 10
   ground:
     serializedVersion: 2
     m_Bits: 256
   airJumpParticleEffect: {fileID: 4729669505803284099, guid: 4d2292bdc9b96af44a36d64f0db5ec40,
     type: 3}
+  runSpeed: 6
+  jumpSpeed: 10
+  dashSpeed: 10
 --- !u!50 &1233275229
 Rigidbody2D:
   serializedVersion: 4
