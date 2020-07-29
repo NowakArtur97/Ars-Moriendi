@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 10f;
     private DashDirection dashDirection;
 
+    private bool isFacingRight = true;
     private float defaultGravityScale;
     private int airJumpCount;
     private readonly int airJumpCountMax = 2;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D myRigidbody2D;
     private Collider2D myBoxCollider2D;
+    private SpriteRenderer mySpriteRenderer;
 
     private enum DashDirection
     {
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myBoxCollider2D = GetComponent<Collider2D>();
+        mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         controls = new InputMaster();
     }
 
@@ -46,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         airJumpCount = 0;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsGrounded())
         {
@@ -63,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
+        CheckDirection(movementInput);
     }
 
     private void Jump()
@@ -94,6 +99,20 @@ public class PlayerMovement : MonoBehaviour
         dashDirection = movementInput == 1 ? DashDirection.RIGHT : DashDirection.LEFT;
     }
 
+    private void CheckDirection(float movementInput)
+    {
+        if (HasTurnedAround(movementInput))
+        {
+            FlipSprite();
+        }
+    }
+
+    private void FlipSprite()
+    {
+        mySpriteRenderer.transform.Rotate(Vector3.up * -180);
+        isFacingRight = !isFacingRight;
+    }
+
     private bool IsGrounded()
     {
         float extraHeight = 0.1f;
@@ -102,6 +121,11 @@ public class PlayerMovement : MonoBehaviour
         //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
         return raycastHit2D.collider != null;
+    }
+
+    private bool HasTurnedAround(float movementInput)
+    {
+        return (isFacingRight && movementInput < 0) || (!isFacingRight && movementInput > 0);
     }
 
     private void OnEnable()
