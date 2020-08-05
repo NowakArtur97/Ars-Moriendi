@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 423d040c33ae01d4eb707a99e13f32c0
+guid: fd9ca56ff06524347b964d5fb86e4cef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5618128449905806037
-    second: AssassinIdle _0
+      213: 978942612559604503
+    second: PlayerIdle_0
   - first:
-      213: -2168074218611295844
-    second: AssassinIdle _1
+      213: 3499389992042037492
+    second: PlayerIdle_1
   - first:
-      213: 4637817429213822998
-    second: AssassinIdle _2
+      213: 6272215952258405886
+    second: PlayerIdle_2
   - first:
-      213: -6160620729823546478
-    second: AssassinIdle _3
+      213: 5525604288434156929
+    second: PlayerIdle_3
+  - first:
+      213: -9128658973605758887
+    second: PlayerIdle_4
+  - first:
+      213: 6624957032425983090
+    second: PlayerIdle_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,7 +117,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AssassinIdle _0
+      name: PlayerIdle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71bab159e17e59d00800000000000000
+      internalID: 978942612559604503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerIdle_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0093e38a4509030800000000000000
+      internalID: 3499389992042037492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerIdle_2
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2539d0e0f56802b0800000000000000
-      internalID: -5618128449905806037
+      spriteID: ef596ec4d236b0750800000000000000
+      internalID: 6272215952258405886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AssassinIdle _1
+      name: PlayerIdle_3
       rect:
         serializedVersion: 2
         x: 32
@@ -146,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99bdf03cf379e1e0800000000000000
-      internalID: -2168074218611295844
+      spriteID: 1853e7d03d3eeac40800000000000000
+      internalID: 5525604288434156929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AssassinIdle _2
+      name: PlayerIdle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -167,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 610c7613166dc5040800000000000000
-      internalID: 4637817429213822998
+      spriteID: 958fb8a770d705180800000000000000
+      internalID: -9128658973605758887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AssassinIdle _3
+      name: PlayerIdle_5
       rect:
         serializedVersion: 2
         x: 32
@@ -188,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 293b5fa2614118aa0800000000000000
-      internalID: -6160620729823546478
+      spriteID: 27c0af9025390fb50800000000000000
+      internalID: 6624957032425983090
       vertices: []
       indices: 
       edges: []
