@@ -116,7 +116,8 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         float extraHeight = 0.1f;
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, myBoxCollider2D.bounds.size, 0f, Vector2.down, extraHeight, ground);
+        Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x / 2, myBoxCollider2D.bounds.size.y);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeight, ground);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
