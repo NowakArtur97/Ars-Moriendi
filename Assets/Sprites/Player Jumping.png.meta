@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: fd9ca56ff06524347b964d5fb86e4cef
+guid: 884f7639d2172c347b1d1660f57f6756
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 978942612559604503
-    second: PlayerIdle_0
+      213: 2183291146068203970
+    second: Demon Mage Jumping_0
   - first:
-      213: 3499389992042037492
-    second: PlayerIdle_1
+      213: 6232683938492144065
+    second: Demon Mage Jumping_1
   - first:
-      213: 6272215952258405886
-    second: PlayerIdle_2
+      213: 5566442460442301812
+    second: Demon Mage Jumping_2
   - first:
-      213: 5525604288434156929
-    second: PlayerIdle_3
+      213: 6681963163250880085
+    second: Demon Mage Jumping_3
   - first:
-      213: -9128658973605758887
-    second: PlayerIdle_4
+      213: -6897217655719471378
+    second: Demon Mage Jumping_4
   - first:
-      213: 6624957032425983090
-    second: PlayerIdle_5
+      213: -7708477329939622494
+    second: Demon Mage Jumping_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerIdle_0
+      name: Demon Mage Jumping_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71bab159e17e59d00800000000000000
-      internalID: 978942612559604503
+      spriteID: 2c996a2dabb9c4e10800000000000000
+      internalID: 2183291146068203970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle_1
+      name: Demon Mage Jumping_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f0093e38a4509030800000000000000
-      internalID: 3499389992042037492
+      spriteID: 1c95b171501fe7650800000000000000
+      internalID: 6232683938492144065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle_2
+      name: Demon Mage Jumping_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef596ec4d236b0750800000000000000
-      internalID: 6272215952258405886
+      spriteID: 475905dece9ff3d40800000000000000
+      internalID: 5566442460442301812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle_3
+      name: Demon Mage Jumping_3
       rect:
         serializedVersion: 2
         x: 32
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1853e7d03d3eeac40800000000000000
-      internalID: 5525604288434156929
+      spriteID: 55e60db281a1bbc50800000000000000
+      internalID: 6681963163250880085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle_4
+      name: Demon Mage Jumping_4
       rect:
         serializedVersion: 2
         x: 0
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 958fb8a770d705180800000000000000
-      internalID: -9128658973605758887
+      spriteID: ee6d94cc5192840a0800000000000000
+      internalID: -6897217655719471378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdle_5
+      name: Demon Mage Jumping_5
       rect:
         serializedVersion: 2
         x: 32
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27c0af9025390fb50800000000000000
-      internalID: 6624957032425983090
+      spriteID: 2a51ccda5bcf50590800000000000000
+      internalID: -7708477329939622494
       vertices: []
       indices: 
       edges: []

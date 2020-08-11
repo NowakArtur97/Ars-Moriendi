@@ -3193,7 +3193,7 @@ PrefabInstance:
     - target: {fileID: 276771579, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: bcffe5ed0d16bd14f90f68dd05101bbd, type: 2}
+      objectReference: {fileID: 9100000, guid: 7da9377712b6e8446aecce03c777ed99, type: 2}
     - target: {fileID: 1233275228, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
       propertyPath: m_Offset.x
       value: -0.03310585
@@ -3216,6 +3216,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 517ce954f38c0e94cbd4eb2a6037b3f1,
         type: 3}
+    - target: {fileID: 4903212946385348972, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5476649753576037553, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}
       propertyPath: m_Name
