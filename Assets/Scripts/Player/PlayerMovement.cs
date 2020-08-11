@@ -16,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
     private int airJumpCount;
     private readonly int airJumpCountMax = 2;
 
+    private bool isGrounded = true;
+
     private InputMaster controls;
 
     private Rigidbody2D myRigidbody2D;
     private Collider2D myBoxCollider2D;
+    private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
 
     private enum DashDirection
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myBoxCollider2D = GetComponent<Collider2D>();
+        myAnimator = GetComponentInChildren<Animator>();
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         controls = new InputMaster();
@@ -55,9 +59,22 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             airJumpCount = 0;
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
         }
 
         Move();
+        UpdateAnimations();
+    }
+
+    private void UpdateAnimations()
+    {
+        myAnimator.SetBool("isGrounded", isGrounded);
+        myAnimator.SetFloat("yVelocity", myRigidbody2D.velocity.y);
+
     }
 
     private void Move()
