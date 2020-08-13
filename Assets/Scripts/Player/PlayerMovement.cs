@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded = true;
     private bool isWalking = false;
+    private float movementInput;
 
     private InputMaster controls;
 
@@ -61,14 +62,13 @@ public class PlayerMovement : MonoBehaviour
         {
             airJumpCount = 0;
 
-            if ()
-            {
-                isGrounded = true;
-            }
+            isWalking = movementInput != 0;
+            isGrounded = true;
         }
         else
         {
             isGrounded = false;
+            isWalking = false;
         }
 
         Move();
@@ -78,19 +78,22 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAnimations()
     {
         myAnimator.SetBool("isGrounded", isGrounded);
+        myAnimator.SetBool("isWalking", isWalking);
         myAnimator.SetFloat("yVelocity", myRigidbody2D.velocity.y);
 
     }
 
     private void Move()
     {
-        float movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
+        movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
+
+        if (movementInput == 0) { return; }
+
         SetDashDirection(movementInput);
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
         CheckDirection(movementInput);
-        isWalking = true;
     }
 
     private void Jump()
@@ -117,8 +120,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetDashDirection(float movementInput)
     {
-        if (movementInput == 0) { return; }
-
         dashDirection = movementInput == 1 ? DashDirection.RIGHT : DashDirection.LEFT;
     }
 
