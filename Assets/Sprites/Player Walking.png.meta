@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 884f7639d2172c347b1d1660f57f6756
+guid: c56d5d1b1d70a8742be1f13a218b564d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 443247040236845684
-    second: Player Jumping_0
+      213: -3664162494846504755
+    second: Player Walking_0
   - first:
-      213: -1605852003768132399
-    second: Player Jumping_1
+      213: -9175317620029055432
+    second: Player Walking_1
   - first:
-      213: -3821064204818157890
-    second: Player Jumping_2
+      213: 6021878478135626376
+    second: Player Walking_2
   - first:
-      213: -706465324406162915
-    second: Player Jumping_3
+      213: -3494579433688671638
+    second: Player Walking_3
   - first:
-      213: -4609684483336451519
-    second: Player Jumping_4
+      213: 7450432814704030612
+    second: Player Walking_4
   - first:
-      213: 5117835620367938352
-    second: Player Jumping_5
+      213: -4034057469288550932
+    second: Player Walking_5
+  - first:
+      213: 8610135092601500517
+    second: Player Walking_6
+  - first:
+      213: 3258566889520154371
+    second: Player Walking_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Jumping_0
+      name: Player Walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47a7f0da5dab62600800000000000000
-      internalID: 443247040236845684
+      spriteID: dc07d5fdf97462dc0800000000000000
+      internalID: -3664162494846504755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Jumping_1
+      name: Player Walking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +158,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dc1d895c1ed6b9e0800000000000000
-      internalID: -1605852003768132399
+      spriteID: 83e19cccc39baa080800000000000000
+      internalID: -9175317620029055432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Jumping_2
+      name: Player Walking_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a08d11292029350800000000000000
+      internalID: 6021878478135626376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Walking_3
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebe6adfb95ad8fac0800000000000000
-      internalID: -3821064204818157890
+      spriteID: a6ad9972582c08fc0800000000000000
+      internalID: -3494579433688671638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Jumping_3
+      name: Player Walking_4
       rect:
         serializedVersion: 2
         x: 32
@@ -194,14 +221,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1ab3acc7812236f0800000000000000
-      internalID: -706465324406162915
+      spriteID: 493f85fbb21456760800000000000000
+      internalID: 7450432814704030612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Jumping_4
+      name: Player Walking_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced6b83ea162408c0800000000000000
+      internalID: -4034057469288550932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player Walking_6
       rect:
         serializedVersion: 2
         x: 0
@@ -215,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14ac914b26c1700c0800000000000000
-      internalID: -4609684483336451519
+      spriteID: 56333ae8f385d7770800000000000000
+      internalID: 8610135092601500517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Jumping_5
+      name: Player Walking_7
       rect:
         serializedVersion: 2
         x: 32
@@ -236,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0333fda9164360740800000000000000
-      internalID: 5117835620367938352
+      spriteID: 307c2b64251c83d20800000000000000
+      internalID: 3258566889520154371
       vertices: []
       indices: 
       edges: []

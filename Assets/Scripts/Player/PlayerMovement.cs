@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly int airJumpCountMax = 2;
 
     private bool isGrounded = true;
+    private bool isWalking = false;
 
     private InputMaster controls;
 
@@ -59,7 +60,11 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             airJumpCount = 0;
-            isGrounded = true;
+
+            if ()
+            {
+                isGrounded = true;
+            }
         }
         else
         {
@@ -85,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
         CheckDirection(movementInput);
+        isWalking = true;
     }
 
     private void Jump()
