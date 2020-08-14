@@ -61,9 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             airJumpCount = 0;
-
             isWalking = movementInput != 0;
-            Debug.Log(isWalking);
             isGrounded = true;
         }
         else
