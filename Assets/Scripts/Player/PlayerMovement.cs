@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsWallSliding())
             {
+                airJumpCount = 0;
                 isWallSliding = true;
             }
             else
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         myAnimator.SetBool("isGrounded", isGrounded);
         myAnimator.SetBool("isWalking", isWalking);
         myAnimator.SetFloat("yVelocity", myRigidbody2D.velocity.y);
-        //myAnimator.SetBool("isWallSliding", isWallSliding);
+        myAnimator.SetBool("isWallSliding", isWallSliding);
     }
 
     private void Move()
@@ -179,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeightGroundCheck), rayColor);
+
         return raycastHit2D.collider != null;
     }
 
