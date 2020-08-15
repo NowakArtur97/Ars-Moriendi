@@ -3,6 +3,10 @@
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask ground;
+    [SerializeField] private float extraHeightGroundCheck = 0.1f;
+    [SerializeField] private float extraHeightWallCheck = 0.3f;
+
+
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 100f;
@@ -54,9 +58,14 @@ public class PlayerMovement : MonoBehaviour
         airJumpCount = 0;
     }
 
+    private void Update()
+    {
+        UpdateAnimations();
+    }
+
     private void FixedUpdate()
     {
-        if (IsGrounded())
+        if (IsTouchingGround())
         {
             airJumpCount = 0;
             isWalking = movementInput != 0;
@@ -69,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Move();
-        UpdateAnimations();
+        IsWallSliding();
     }
 
     private void UpdateAnimations()
@@ -95,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (IsGrounded())
+        if (IsTouchingGround())
         {
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
@@ -109,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (IsGrounded()) { return; }
+        if (IsTouchingGround()) { return; }
 
         Vector2 directionVector = dashDirection == DashDirection.LEFT ? Vector2.left : Vector2.right;
         myRigidbody2D.gravityScale = 0;
@@ -136,14 +145,28 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-    private bool IsGrounded()
+    private bool IsTouchingGround()
     {
-        float extraHeight = 0.1f;
+        extraHeightGroundCheck = 0.1f;
         Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x / 2, myBoxCollider2D.bounds.size.y);
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeight, ground);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeightGroundCheck, ground);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
-        //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeight), rayColor);
+        //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeightGroundCheck), rayColor);
+        return raycastHit2D.collider != null;
+    }
+
+    private bool IsWallSliding()
+    {
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+
+        extraHeightWallCheck = 0.3f;
+        Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extraHeightWallCheck, ground);
+
+        //Color rayColor = raycastHit2D.collider != null ? Color.blue : Color.yellow;
+        //Debug.DrawRay(myBoxCollider2D.bounds.center, direction * (myBoxCollider2D.bounds.extents.x + extraHeightWallCheck), rayColor);
+
         return raycastHit2D.collider != null;
     }
 
