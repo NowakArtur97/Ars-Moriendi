@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -6,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
     [SerializeField] private float extraHeightWallCheck = 0.3f;
 
-
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float wallSlideSpeed = 1f;
     private DashDirection dashDirection;
 
     private bool isFacingRight = true;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded = true;
     private bool isWalking = false;
+    private bool isWallSliding = false;
     private float movementInput;
 
     private InputMaster controls;
@@ -65,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CheckMovement();
+
+        Move();
+        SlideWall();
+    }
+
+    private void CheckMovement()
+    {
         if (IsTouchingGround())
         {
             airJumpCount = 0;
@@ -73,12 +83,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (IsWallSliding())
+            {
+                isWallSliding = true;
+            }
+            else
+            {
+                isWallSliding = false;
+            }
             isGrounded = false;
             isWalking = false;
         }
-
-        Move();
-        IsWallSliding();
     }
 
     private void UpdateAnimations()
@@ -86,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         myAnimator.SetBool("isGrounded", isGrounded);
         myAnimator.SetBool("isWalking", isWalking);
         myAnimator.SetFloat("yVelocity", myRigidbody2D.velocity.y);
-
+        //myAnimator.SetBool("isWallSliding", isWallSliding);
     }
 
     private void Move()
@@ -104,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (IsTouchingGround())
+        if (isGrounded)
         {
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
@@ -113,6 +128,17 @@ public class PlayerMovement : MonoBehaviour
             myRigidbody2D.velocity = Vector2.zero;
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
             Instantiate(airJumpParticleEffect, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void SlideWall()
+    {
+        if (isWallSliding)
+        {
+            if (myRigidbody2D.velocity.y < -wallSlideSpeed)
+            {
+                myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, -wallSlideSpeed);
+            }
         }
     }
 
@@ -156,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit2D.collider != null;
     }
 
-    private bool IsWallSliding()
+    private bool IsTouchingWall()
     {
         Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
 
@@ -168,6 +194,11 @@ public class PlayerMovement : MonoBehaviour
         //Debug.DrawRay(myBoxCollider2D.bounds.center, direction * (myBoxCollider2D.bounds.extents.x + extraHeightWallCheck), rayColor);
 
         return raycastHit2D.collider != null;
+    }
+
+    private bool IsWallSliding()
+    {
+        return IsTouchingWall() && !isGrounded && myRigidbody2D.velocity.y < 0;
     }
 
     private bool HasTurnedAround(float movementInput)
