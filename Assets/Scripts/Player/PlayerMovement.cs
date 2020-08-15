@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -111,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
+        if (IsGrounded()) { return; }
+
         Vector2 directionVector = dashDirection == DashDirection.LEFT ? Vector2.left : Vector2.right;
         myRigidbody2D.gravityScale = 0;
         myRigidbody2D.velocity = directionVector * dashSpeed;
