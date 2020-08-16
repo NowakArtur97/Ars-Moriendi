@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask ground;
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
-    [SerializeField] private float extraHeightWallCheck = 0.3f;
+    [SerializeField] private float extraHeightWallCheck = 0.2f;
 
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 5f;
@@ -75,6 +75,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
+
+        if (IsWallSliding())
+        {
+            airJumpCount = 0;
+            isWallSliding = true;
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+
         if (IsTouchingGround())
         {
             airJumpCount = 0;
@@ -83,15 +94,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (IsWallSliding())
-            {
-                airJumpCount = 0;
-                isWallSliding = true;
-            }
-            else
-            {
-                isWallSliding = false;
-            }
             isGrounded = false;
             isWalking = false;
         }
@@ -189,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
 
         extraHeightWallCheck = 0.3f;
-        Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y);
+        Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y / 2);
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extraHeightWallCheck, ground);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.blue : Color.yellow;
