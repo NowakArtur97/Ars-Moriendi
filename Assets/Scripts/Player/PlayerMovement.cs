@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float wallSlideSpeed = 1f;
-    private DashDirection dashDirection;
 
+    private float facingDirection = 1;
     private bool isFacingRight = true;
     private float defaultGravityScale;
     private int airJumpCount;
@@ -30,11 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D myBoxCollider2D;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
-
-    private enum DashDirection
-    {
-        LEFT, RIGHT
-    }
 
     private void Awake()
     {
@@ -109,11 +104,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        if (isWallSliding) { return; }
+
         movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
 
         if (movementInput == 0) { return; }
 
-        SetDashDirection(movementInput);
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
@@ -149,15 +145,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsTouchingGround()) { return; }
 
-        Vector2 directionVector = dashDirection == DashDirection.LEFT ? Vector2.left : Vector2.right;
         myRigidbody2D.gravityScale = 0;
-        myRigidbody2D.velocity = directionVector * dashSpeed;
+        myRigidbody2D.velocity = new Vector2(facingDirection * dashSpeed, myRigidbody2D.velocity.y);
         myRigidbody2D.gravityScale = defaultGravityScale;
-    }
-
-    private void SetDashDirection(float movementInput)
-    {
-        dashDirection = movementInput == 1 ? DashDirection.RIGHT : DashDirection.LEFT;
     }
 
     private void CheckDirection(float movementInput)
@@ -172,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
     {
         mySpriteRenderer.transform.Rotate(Vector3.up * -180);
         isFacingRight = !isFacingRight;
+        facingDirection *= -1;
     }
 
     private bool IsTouchingGround()
