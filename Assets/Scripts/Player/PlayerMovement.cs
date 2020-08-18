@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         defaultGravityScale = myRigidbody2D.gravityScale;
-        controls.Player.Jump.performed += _ => Jump();
+        controls.Player.Jump.performed += _ => JumpHandler();
         controls.Player.Dash.performed += _ => Dash();
 
         wallJumpDirection.Normalize();
@@ -119,23 +119,38 @@ public class PlayerMovement : MonoBehaviour
         CheckDirection();
     }
 
-    private void Jump()
+    private void JumpHandler()
     {
         if (isGrounded)
         {
-            myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            NormalJump();
         }
         else if (isWallSliding)
         {
-            isWallSliding = false;
-            myRigidbody2D.AddForce(new Vector2(wallJumpForce * wallJumpDirection.x * -facingDirection, wallJumpForce * wallJumpDirection.y), ForceMode2D.Impulse);
+            WallJump();
         }
-        else if (!isGrounded && !isWallSliding && airJumpCountMax >= ++airJumpCount)
+        else if (airJumpCountMax >= ++airJumpCount)
         {
-            myRigidbody2D.velocity = Vector2.zero;
-            myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
-            Instantiate(airJumpParticleEffect, transform.position, Quaternion.identity);
+            AirJump();
         }
+    }
+
+    private void NormalJump()
+    {
+        myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+    }
+
+    private void WallJump()
+    {
+        isWallSliding = false;
+        myRigidbody2D.AddForce(new Vector2(wallJumpForce * wallJumpDirection.x * -facingDirection, wallJumpForce * wallJumpDirection.y), ForceMode2D.Impulse);
+    }
+
+    private void AirJump()
+    {
+        myRigidbody2D.velocity = Vector2.zero;
+        myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+        Instantiate(airJumpParticleEffect, transform.position, Quaternion.identity);
     }
 
     private void SlideWall()
