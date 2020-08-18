@@ -5,13 +5,16 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask ground;
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
-    [SerializeField] private float extraHeightWallCheck = 0.2f;
+    [SerializeField] private float extrWidthtWallCheck = 0.3f;
 
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpSpeed = 100f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float wallSlideSpeed = 1f;
+
+    [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
+    [SerializeField] private float wallJumpForce = 20;
 
     private float facingDirection = 1;
     private bool isFacingRight = true;
@@ -46,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         defaultGravityScale = myRigidbody2D.gravityScale;
         controls.Player.Jump.performed += _ => Jump();
         controls.Player.Dash.performed += _ => Dash();
+
+        wallJumpDirection.Normalize();
     }
 
     public void TouchedJumpOrb()
@@ -104,8 +109,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (isWallSliding) { return; }
-
         movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
 
         if (movementInput == 0) { return; }
@@ -113,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
         transform.position = currentPosition;
-        CheckDirection(movementInput);
+        CheckDirection();
     }
 
     private void Jump()
@@ -122,7 +125,12 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
         }
-        else if (airJumpCountMax >= ++airJumpCount)
+        else if (isWallSliding)
+        {
+            isWallSliding = false;
+            myRigidbody2D.AddForce(new Vector2(wallJumpForce * wallJumpDirection.x * -facingDirection, wallJumpForce * wallJumpDirection.y), ForceMode2D.Impulse);
+        }
+        else if (!isGrounded && !isWallSliding && airJumpCountMax >= ++airJumpCount)
         {
             myRigidbody2D.velocity = Vector2.zero;
             myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
@@ -150,9 +158,9 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody2D.gravityScale = defaultGravityScale;
     }
 
-    private void CheckDirection(float movementInput)
+    private void CheckDirection()
     {
-        if (HasTurnedAround(movementInput))
+        if (HasTurnedAround())
         {
             FlipSprite();
         }
@@ -167,7 +175,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsTouchingGround()
     {
-        extraHeightGroundCheck = 0.1f;
         Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x / 2, myBoxCollider2D.bounds.size.y);
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeightGroundCheck, ground);
 
@@ -181,9 +188,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
 
-        extraHeightWallCheck = 0.3f;
         Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y / 2);
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extraHeightWallCheck, ground);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extrWidthtWallCheck, ground);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.blue : Color.yellow;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, direction * (myBoxCollider2D.bounds.extents.x + extraHeightWallCheck), rayColor);
@@ -196,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
         return IsTouchingWall() && !isGrounded && myRigidbody2D.velocity.y < 0;
     }
 
-    private bool HasTurnedAround(float movementInput)
+    private bool HasTurnedAround()
     {
         return (isFacingRight && movementInput < 0) || (!isFacingRight && movementInput > 0);
     }
