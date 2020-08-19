@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private float defaultGravityScale;
     private int airJumpCount;
-    private readonly int airJumpCountMax = 2;
+    private readonly int airJumpCountMax = 0;
 
     private bool isGrounded = true;
     private bool isWalking = false;
@@ -97,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
         {
             NormalJump();
         }
+        else if (isAttemptingToJump && isWallSliding && prematureJumpAttemptTimer > 0)
+        {
+            WallJump();
+        }
     }
 
     private void CheckWallMovement()
@@ -155,9 +159,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 NormalJump();
             }
-            else if (isWallSliding)
+            else if (isWallSliding && !isAttemptingToJump)
             {
                 WallJump();
+                FlipSprite();
             }
             else if (airJumpCountMax >= ++airJumpCount)
             {
@@ -181,8 +186,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        isWallSliding = false;
         myRigidbody2D.AddForce(new Vector2(wallJumpForce * wallJumpDirection.x * -facingDirection, wallJumpForce * wallJumpDirection.y), ForceMode2D.Impulse);
+
+        isWallSliding = false;
+        isAttemptingToJump = false;
+        prematureJumpAttemptTimer = 0;
     }
 
     private void AirJump()
