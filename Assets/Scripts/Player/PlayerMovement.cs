@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
             prematureJumpAttemptTimer -= Time.deltaTime;
         }
 
-        if (isAttemptingToJump && isGrounded)
+        if (isAttemptingToJump && isGrounded && prematureJumpAttemptTimer > 0)
         {
             NormalJump();
         }
