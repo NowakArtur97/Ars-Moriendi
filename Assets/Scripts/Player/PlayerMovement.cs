@@ -8,13 +8,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float extrWidthtWallCheck = 0.3f;
 
     [SerializeField] private Transform airJumpParticleEffect;
-    [SerializeField] private float runSpeed = 5f;
-    [SerializeField] private float jumpSpeed = 100f;
+    [SerializeField] private float runSpeed = 9f;
+    [SerializeField] private float jumpSpeed = 17f;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float wallSlideSpeed = 1f;
 
     [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
     [SerializeField] private float wallJumpForce = 20;
+
+    [SerializeField] private float prematureJumpAttemptDefaultTimer = 0.15f;
+    private float prematureJumpAttemptTimer = 0;
+    private bool isAttemptingToJump;
 
     private float facingDirection = 1;
     private bool isFacingRight = true;
@@ -75,7 +79,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
+        CheckPrematureJump();
 
+        CheckWallMovement();
+
+        CheckGroundMovement();
+    }
+
+    private void CheckPrematureJump()
+    {
+        if (isAttemptingToJump)
+        {
+            prematureJumpAttemptTimer -= Time.deltaTime;
+        }
+
+        if (isAttemptingToJump && isGrounded)
+        {
+            NormalJump();
+        }
+    }
+
+    private void CheckWallMovement()
+    {
         if (IsWallSliding())
         {
             airJumpCount = 0;
@@ -85,7 +110,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = false;
         }
+    }
 
+    private void CheckGroundMovement()
+    {
         if (IsTouchingGround())
         {
             airJumpCount = 0;
@@ -121,23 +149,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void JumpHandler()
     {
-        if (isGrounded)
+        if (prematureJumpAttemptTimer <= 0)
         {
-            NormalJump();
-        }
-        else if (isWallSliding)
-        {
-            WallJump();
-        }
-        else if (airJumpCountMax >= ++airJumpCount)
-        {
-            AirJump();
+            if (isGrounded)
+            {
+                NormalJump();
+            }
+            else if (isWallSliding)
+            {
+                WallJump();
+            }
+            else if (airJumpCountMax >= ++airJumpCount)
+            {
+                AirJump();
+            }
+            else if (airJumpCountMax < ++airJumpCount)
+            {
+                isAttemptingToJump = true;
+                prematureJumpAttemptTimer = prematureJumpAttemptDefaultTimer;
+            }
         }
     }
 
     private void NormalJump()
     {
         myRigidbody2D.AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+
+        isAttemptingToJump = false;
+        prematureJumpAttemptTimer = 0;
     }
 
     private void WallJump()

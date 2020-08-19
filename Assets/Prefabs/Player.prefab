@@ -141,10 +141,9 @@ MonoBehaviour:
   jumpSpeed: 17
   dashSpeed: 10
   wallSlideSpeed: 1
-  wallHopDirection: {x: 0.5, y: 0.5}
   wallJumpDirection: {x: 1, y: 2}
-  wallHopForce: 7
   wallJumpForce: 20
+  prematureJumpAttemptDefaultTimer: 0.15
 --- !u!50 &1233275229
 Rigidbody2D:
   serializedVersion: 4

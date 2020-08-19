@@ -3294,8 +3294,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1233275230, guid: 1876eecf1e6a53648bbb5af1a624bb4b, type: 3}
-      propertyPath: wallHopDirection.x
-      value: 0.5
+      propertyPath: prematureJumpAttemptDefaultTimer
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5476649753576037553, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}
