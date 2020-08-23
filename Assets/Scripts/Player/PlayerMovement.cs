@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = true;
     private bool isWalking = false;
     private bool isWallSliding = false;
-    private bool isTouchingLedge = false;
+    private bool isLedgeClimbing = false;
+    private bool isLedgeClimbingActive = false;
+    private Vector2 positionBeforeClimbing;
     private float movementInput;
 
     private InputMaster controls;
@@ -67,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isTouchingLedge);
         UpdateAnimations();
     }
 
@@ -137,13 +137,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckLedgeMovement()
     {
-        if (IsTouchingLedge())
+        if (IsTouchingLedge() && !isLedgeClimbingActive)
         {
-            isTouchingLedge = true;
+            positionBeforeClimbing = transform.position;
+
+            isLedgeClimbing = true;
+            isWallSliding = false;
+            isLedgeClimbingActive = true;
+
+            myAnimator.SetBool("isLedgeClimbing", isLedgeClimbing);
         }
         else
         {
-            isTouchingLedge = false;
+            isLedgeClimbing = false;
         }
     }
 
@@ -207,6 +213,15 @@ public class PlayerMovement : MonoBehaviour
         isWallSliding = false;
         isAttemptingToJump = false;
         prematureJumpAttemptTimer = 0;
+    }
+
+    private void FinishClimbEdge()
+    {
+        Vector2 newPosition = positionBeforeClimbing + new Vector2(facingDirection, 1);
+        transform.position = newPosition;
+        isLedgeClimbingActive = false;
+        isLedgeClimbing = false;
+        myAnimator.SetBool("isLedgeClimbing", isLedgeClimbing);
     }
 
     private void AirJump()
@@ -293,8 +308,6 @@ public class PlayerMovement : MonoBehaviour
 
         Color rayColor = raycastHitWall2D.collider != null ? Color.yellow : Color.green;
         Color rayColor2 = raycastHitEmpty2D.collider == null ? Color.blue : Color.red;
-
-
         Debug.DrawRay(lowerRaycastVector, direction * (myBoxCollider2D.bounds.extents.x + extrWidthtWallCheck), rayColor);
         Debug.DrawRay(higherRaycastVector, direction * (myBoxCollider2D.bounds.extents.x + extrWidthtWallCheck), rayColor2);
 
