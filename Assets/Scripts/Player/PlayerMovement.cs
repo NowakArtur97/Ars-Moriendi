@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = true;
     private bool isWalking = false;
     private bool isWallSliding = false;
+    private bool isTouchingLedge = false;
     private float movementInput;
 
     private InputMaster controls;
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(isTouchingLedge);
         UpdateAnimations();
     }
 
@@ -84,6 +86,23 @@ public class PlayerMovement : MonoBehaviour
         CheckWallMovement();
 
         CheckGroundMovement();
+
+        CheckLedgeMovement();
+    }
+
+    private void CheckGroundMovement()
+    {
+        if (IsTouchingGround())
+        {
+            airJumpCount = 0;
+            isWalking = movementInput != 0;
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+            isWalking = false;
+        }
     }
 
     private void CheckPrematureJump()
@@ -116,18 +135,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void CheckGroundMovement()
+    private void CheckLedgeMovement()
     {
-        if (IsTouchingGround())
+        if (IsTouchingLedge())
         {
-            airJumpCount = 0;
-            isWalking = movementInput != 0;
-            isGrounded = true;
+            isTouchingLedge = true;
         }
         else
         {
-            isGrounded = false;
-            isWalking = false;
+            isTouchingLedge = false;
         }
     }
 
@@ -262,6 +278,27 @@ public class PlayerMovement : MonoBehaviour
     private bool IsWallSliding()
     {
         return IsTouchingWall() && !isGrounded && myRigidbody2D.velocity.y < 0;
+    }
+
+    private bool IsTouchingLedge()
+    {
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+        Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y / 2);
+
+        Vector2 lowerRaycastVector = myBoxCollider2D.bounds.center;
+        RaycastHit2D raycastHitWall2D = Physics2D.BoxCast(lowerRaycastVector, raycastSize, 0f, direction, extrWidthtWallCheck, ground);
+
+        Vector2 higherRaycastVector = new Vector2(myBoxCollider2D.bounds.center.x, transform.position.y + myBoxCollider2D.bounds.extents.y);
+        RaycastHit2D raycastHitEmpty2D = Physics2D.BoxCast(higherRaycastVector, raycastSize, 0f, direction, extrWidthtWallCheck, ground);
+
+        Color rayColor = raycastHitWall2D.collider != null ? Color.yellow : Color.green;
+        Color rayColor2 = raycastHitEmpty2D.collider == null ? Color.blue : Color.red;
+
+
+        Debug.DrawRay(lowerRaycastVector, direction * (myBoxCollider2D.bounds.extents.x + extrWidthtWallCheck), rayColor);
+        Debug.DrawRay(higherRaycastVector, direction * (myBoxCollider2D.bounds.extents.x + extrWidthtWallCheck), rayColor2);
+
+        return raycastHitWall2D.collider != null && raycastHitEmpty2D.collider == null;
     }
 
     private bool HasTurnedAround()
