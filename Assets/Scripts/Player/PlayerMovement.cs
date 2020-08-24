@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask ground;
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
-    [SerializeField] private float extrWidthtWallCheck = 0.3f;
+    [SerializeField] private float extrWidthtWallCheck = 0.2f;
 
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 9f;
@@ -30,8 +30,17 @@ public class PlayerMovement : MonoBehaviour
     private bool isWallSliding = false;
     private bool isTouchingLedge = false;
     private bool isLedgeClimbingActive = false;
-    private Vector2 positionBeforeClimbing;
     private float movementInput;
+
+    private Vector2 positionBeforeClimbing;
+
+    private Vector2 ledgePositionBottom;
+    private Vector2 ledgePosition1;
+    private Vector2 ledgePosition2;
+    [SerializeField] private float ledgeClimbXOffset1 = 0f;
+    [SerializeField] private float ledgeClimbXOffset2 = 0f;
+    [SerializeField] private float ledgeClimbYOffset1 = 0f;
+    [SerializeField] private float ledgeClimbYOffset2 = 0f;
 
     private InputMaster controls;
 
@@ -139,16 +148,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsTouchingLedge() && !isLedgeClimbingActive)
         {
-            positionBeforeClimbing = transform.position;
-
-            myRigidbody2D.velocity = Vector3.zero;
-            myRigidbody2D.gravityScale = 0;
-
-            isTouchingLedge = true;
-            isWallSliding = false;
-            isLedgeClimbingActive = true;
-
-            myAnimator.SetBool("isLedgeClimbing", isTouchingLedge);
+            ClimbLedge();
         }
         else
         {
@@ -218,10 +218,48 @@ public class PlayerMovement : MonoBehaviour
         prematureJumpAttemptTimer = 0;
     }
 
+    private void ClimbLedge()
+    {
+        positionBeforeClimbing = transform.position;
+
+        if (isFacingRight)
+        {
+            ledgePosition1 = new Vector2(
+                Mathf.Floor(positionBeforeClimbing.x + extrWidthtWallCheck) - ledgeClimbXOffset1,
+                Mathf.Floor(positionBeforeClimbing.y) + ledgeClimbYOffset1);
+
+            ledgePosition2 = new Vector2(
+                Mathf.Floor(positionBeforeClimbing.x + extrWidthtWallCheck) + ledgeClimbXOffset2,
+                Mathf.Floor(positionBeforeClimbing.y) + ledgeClimbYOffset2);
+        }
+        else
+        {
+            ledgePosition1 = new Vector2(
+                Mathf.Ceil(positionBeforeClimbing.x - extrWidthtWallCheck) + ledgeClimbXOffset1,
+                Mathf.Floor(positionBeforeClimbing.y) + ledgeClimbYOffset1);
+
+            ledgePosition2 = new Vector2(
+                Mathf.Ceil(positionBeforeClimbing.x - extrWidthtWallCheck) - ledgeClimbXOffset2,
+                Mathf.Floor(positionBeforeClimbing.y) + ledgeClimbYOffset2);
+        }
+
+        transform.position = ledgePosition1;
+
+        myRigidbody2D.velocity = Vector3.zero;
+        myRigidbody2D.gravityScale = 0;
+
+        isTouchingLedge = true;
+        isWallSliding = false;
+        isLedgeClimbingActive = true;
+
+        myAnimator.SetBool("isLedgeClimbing", isTouchingLedge);
+    }
+
     private void FinishClimbEdge()
     {
-        Vector2 newPosition = positionBeforeClimbing + new Vector2(facingDirection, 1);
-        transform.position = newPosition;
+        //Vector2 newPosition = positionBeforeClimbing + new Vector2(facingDirection, 1);
+        //transform.position = newPosition;
+        transform.position = ledgePosition2;
 
         myRigidbody2D.gravityScale = defaultGravityScale;
 
@@ -312,14 +350,16 @@ public class PlayerMovement : MonoBehaviour
         Vector2 higherRaycastVector = new Vector2(myBoxCollider2D.bounds.center.x, transform.position.y + myBoxCollider2D.bounds.extents.y);
         RaycastHit2D raycastHitEmpty2D = Physics2D.Raycast(higherRaycastVector, direction, myBoxCollider2D.bounds.extents.y + extrWidthtWallCheck, ground);
 
+        if (raycastHitWall2D.collider != null)
+        {
+            ledgePositionBottom = raycastHitWall2D.collider.transform.position;
+        }
+
         Color rayColor = raycastHitWall2D.collider != null ? Color.yellow : Color.green;
         Color rayColor2 = raycastHitEmpty2D.collider == null ? Color.blue : Color.red;
 
         Debug.DrawRay(lowerRaycastVector, direction, rayColor);
         Debug.DrawRay(higherRaycastVector, direction, rayColor2);
-
-        Debug.Log("raycastHitWall2D: " + (raycastHitWall2D.collider != null ? raycastHitWall2D.collider.name : ""));
-        Debug.Log("raycastHitEmpty2D: " + (raycastHitEmpty2D.collider != null ? raycastHitEmpty2D.collider.name : ""));
 
         return raycastHitWall2D.collider != null && raycastHitEmpty2D.collider == null;
     }
