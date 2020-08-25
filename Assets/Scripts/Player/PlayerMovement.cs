@@ -32,15 +32,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isLedgeClimbingActive = false;
     private float movementInput;
 
-    private Vector2 positionBeforeClimbing;
-
-    private Vector2 ledgePositionBottom;
-    private Vector2 ledgePosition1;
-    private Vector2 ledgePosition2;
     [SerializeField] private float ledgeClimbXOffset1 = 0f;
     [SerializeField] private float ledgeClimbXOffset2 = 0f;
     [SerializeField] private float ledgeClimbYOffset1 = 0f;
     [SerializeField] private float ledgeClimbYOffset2 = 0f;
+
+    private Vector2 positionBeforeClimbing;
+    private Vector2 ledgePositionBottom;
+    private Vector2 ledgePosition1;
+    private Vector2 ledgePosition2;
 
     private InputMaster controls;
 
@@ -150,10 +150,6 @@ public class PlayerMovement : MonoBehaviour
         {
             ClimbLedge();
         }
-        else
-        {
-            isTouchingLedge = false;
-        }
     }
 
     private void UpdateAnimations()
@@ -221,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
     private void ClimbLedge()
     {
         positionBeforeClimbing = transform.position;
+        controls.Disable();
 
         if (isFacingRight)
         {
@@ -244,7 +241,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.position = ledgePosition1;
-
         myRigidbody2D.velocity = Vector3.zero;
         myRigidbody2D.gravityScale = 0;
 
@@ -257,11 +253,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FinishClimbEdge()
     {
-        //Vector2 newPosition = positionBeforeClimbing + new Vector2(facingDirection, 1);
-        //transform.position = newPosition;
-        transform.position = ledgePosition2;
-
         myRigidbody2D.gravityScale = defaultGravityScale;
+        transform.position = ledgePosition2;
+        controls.Enable();
 
         isLedgeClimbingActive = false;
         isTouchingLedge = false;

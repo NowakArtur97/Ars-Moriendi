@@ -144,8 +144,8 @@ MonoBehaviour:
   wallJumpDirection: {x: 1, y: 2}
   wallJumpForce: 20
   prematureJumpAttemptDefaultTimer: 0.15
-  ledgeClimbXOffset1: -0.5
-  ledgeClimbXOffset2: 1.2
+  ledgeClimbXOffset1: -0.9
+  ledgeClimbXOffset2: 1.25
   ledgeClimbYOffset1: 0
   ledgeClimbYOffset2: 2.2
 --- !u!50 &1233275229
@@ -182,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.061465025, y: 0.0072159767}
+  m_Offset: {x: -0.024739027, y: 0.013608456}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -193,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7424388, y: 1.6101751}
+  m_Size: {x: 0.6849685, y: 1.5988035}
   m_EdgeRadius: 0
 --- !u!95 &276771579
 Animator:
