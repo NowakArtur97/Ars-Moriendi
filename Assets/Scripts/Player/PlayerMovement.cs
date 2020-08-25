@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private int airJumpCount;
     private readonly int airJumpCountMax = 0;
 
+    private bool canMove = true;
     private bool isGrounded = true;
     private bool isWalking = false;
     private bool isWallSliding = false;
@@ -90,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
+        if (!canMove) { return; }
+
         CheckPrematureJump();
 
         CheckWallMovement();
@@ -164,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
 
-        if (movementInput == 0) { return; }
+        if (movementInput == 0 || !canMove) { return; }
 
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
@@ -216,8 +219,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbLedge()
     {
+        canMove = false;
+
         positionBeforeClimbing = transform.position;
-        controls.Disable();
 
         if (isFacingRight)
         {
@@ -255,8 +259,8 @@ public class PlayerMovement : MonoBehaviour
     {
         myRigidbody2D.gravityScale = defaultGravityScale;
         transform.position = ledgePosition2;
-        controls.Enable();
 
+        canMove = true;
         isLedgeClimbingActive = false;
         isTouchingLedge = false;
 
