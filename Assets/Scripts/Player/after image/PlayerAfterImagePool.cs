@@ -5,12 +5,12 @@ public class PlayerAfterImagePool : MonoBehaviour
 {
     [SerializeField] private GameObject playerAfterImagePrefab;
 
-    public static PlayerAfterImagePool instance { get; private set; }
-    private Queue<GameObject> activeObjects = new Queue<GameObject>();
+    public static PlayerAfterImagePool Instance { get; private set; }
+    private Queue<GameObject> availableObjects = new Queue<GameObject>();
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         GrowPool();
     }
 
@@ -28,17 +28,17 @@ public class PlayerAfterImagePool : MonoBehaviour
     {
         instance.SetActive(false);
 
-        activeObjects.Enqueue(instance);
+        availableObjects.Enqueue(instance);
     }
 
     public GameObject GetFromPool()
     {
-        if (activeObjects.Count == 0)
+        if (availableObjects.Count == 0)
         {
             GrowPool();
         }
 
-        GameObject instance = activeObjects.Dequeue();
+        GameObject instance = availableObjects.Dequeue();
         instance.SetActive(true);
 
         return instance;

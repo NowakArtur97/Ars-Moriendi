@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "18d39912-18f6-4578-9b4c-87dad5694d48",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard and mouse",

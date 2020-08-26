@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/movement/InputMaster.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/Movement/InputMaster.inputactions'
 
 using System;
 using System.Collections;
@@ -124,7 +124,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""18d39912-18f6-4578-9b4c-87dad5694d48"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",

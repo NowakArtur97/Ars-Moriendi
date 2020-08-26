@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 9f;
     [SerializeField] private float jumpSpeed = 17f;
-    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float wallSlideSpeed = 1f;
 
     [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
@@ -287,7 +287,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (IsTouchingGround()) { return; }
+        //if (IsTouchingGround()) { return; }
+
+        PlayerAfterImagePool.Instance.GetFromPool();
 
         myRigidbody2D.gravityScale = 0;
         myRigidbody2D.velocity = new Vector2(facingDirection * dashSpeed, myRigidbody2D.velocity.y);

@@ -139,7 +139,7 @@ MonoBehaviour:
     type: 3}
   runSpeed: 9
   jumpSpeed: 17
-  dashSpeed: 10
+  dashSpeed: 15
   wallSlideSpeed: 1
   wallJumpDirection: {x: 1, y: 2}
   wallJumpForce: 20

@@ -27,7 +27,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
         mySpriteRenderer.sprite = playerSpriteRenderer.sprite;
 
         curentAlpha = defaultAlpha;
-        fadingTimer = Time.deltaTime;
+        fadingTimer = Time.time;
     }
 
     private void Update()
@@ -36,9 +36,10 @@ public class PlayerAfterImageSprite : MonoBehaviour
         spriteColor = new Color(1, 1, 1, curentAlpha);
         mySpriteRenderer.color = spriteColor;
 
-        if (fadingTimer + activeTime > Time.deltaTime)
+        if (fadingTimer + activeTime <= Time.time)
         {
-
+            Debug.Log("DESTROY");
+            PlayerAfterImagePool.Instance.AddToPool(gameObject);
         }
     }
 }
