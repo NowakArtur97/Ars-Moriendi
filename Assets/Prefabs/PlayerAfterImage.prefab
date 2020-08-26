@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cef35c132ebfee49b64ce1db328aa98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeTime: 0.1
+  activeTime: 0.3
   defaultAlpha: 0.8
-  alphaMultiplier: 0.85
+  alphaMultiplier: 0.95
+  playerSprite: {fileID: -3821064204818157890, guid: 884f7639d2172c347b1d1660f57f6756,
+    type: 3}
 --- !u!212 &-2549900571627374131
 SpriteRenderer:
   m_ObjectHideFlags: 0

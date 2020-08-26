@@ -141,8 +141,8 @@ MonoBehaviour:
   jumpSpeed: 17
   wallSlideSpeed: 1
   dashTime: 0.2
-  dashSpeed: 50
-  distanceBetweenAfterImages: 0.1
+  dashSpeed: 40
+  distanceBetweenAfterImages: 0.2
   dashCooldown: 2.5
   wallJumpDirection: {x: 1, y: 2}
   wallJumpForce: 20

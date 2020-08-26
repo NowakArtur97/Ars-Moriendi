@@ -9,7 +9,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
     [SerializeField] private float alphaMultiplier = 0.85f;
 
     private Transform playerPosition;
-    private SpriteRenderer playerSpriteRenderer;
+    [SerializeField] private Sprite playerSprite;
 
     private Color spriteColor;
     private SpriteRenderer mySpriteRenderer;
@@ -17,14 +17,12 @@ public class PlayerAfterImageSprite : MonoBehaviour
     private void OnEnable()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        playerPosition = player.transform;
-        playerSpriteRenderer = player.GetComponentInChildren<SpriteRenderer>();
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
 
         transform.position = playerPosition.position;
         transform.rotation = playerPosition.rotation;
 
-        mySpriteRenderer.sprite = playerSpriteRenderer.sprite;
+        mySpriteRenderer.sprite = playerSprite;
 
         curentAlpha = defaultAlpha;
         fadingTimer = Time.time;
@@ -32,8 +30,8 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
     private void Update()
     {
-        curentAlpha *= alphaMultiplier * Time.deltaTime;
-        spriteColor = new Color(1, 1, 1, curentAlpha);
+        curentAlpha *= alphaMultiplier;
+        spriteColor = new Color(1f, 1f, 1f, curentAlpha);
         mySpriteRenderer.color = spriteColor;
 
         if ((fadingTimer + activeTime) <= Time.time)
