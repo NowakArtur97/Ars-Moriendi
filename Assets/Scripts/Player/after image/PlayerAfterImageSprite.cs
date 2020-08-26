@@ -32,13 +32,12 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
     private void Update()
     {
-        curentAlpha *= alphaMultiplier;
+        curentAlpha *= alphaMultiplier * Time.deltaTime;
         spriteColor = new Color(1, 1, 1, curentAlpha);
         mySpriteRenderer.color = spriteColor;
 
-        if (fadingTimer + activeTime <= Time.time)
+        if ((fadingTimer + activeTime) <= Time.time)
         {
-            Debug.Log("DESTROY");
             PlayerAfterImagePool.Instance.AddToPool(gameObject);
         }
     }

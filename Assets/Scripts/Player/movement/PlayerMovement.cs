@@ -9,8 +9,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform airJumpParticleEffect;
     [SerializeField] private float runSpeed = 9f;
     [SerializeField] private float jumpSpeed = 17f;
-    [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float wallSlideSpeed = 1f;
+    [SerializeField] private float dashTime = 0.2f;
+    [SerializeField] private float dashSpeed = 50f;
+    [SerializeField] private float distanceBetweenAfterImages = 0.1f;
+    [SerializeField] private float dashCooldown = 2.5f;
 
     [SerializeField] private Vector2 wallJumpDirection = new Vector2(1, 2);
     [SerializeField] private float wallJumpForce = 20;
@@ -31,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isWallSliding = false;
     private bool isTouchingLedge = false;
     private bool isLedgeClimbingActive = false;
+    private bool isDashing = false;
+
+    private float dashTimeLeft;
+    private float lastDashXPosition;
+    private float lastDashActivatedTime = -100f;
+
     private float movementInput;
 
     [SerializeField] private float ledgeClimbXOffset1 = 0f;
@@ -64,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         defaultGravityScale = myRigidbody2D.gravityScale;
         controls.Player.Jump.performed += _ => JumpHandler();
-        controls.Player.Dash.performed += _ => Dash();
+        controls.Player.Dash.performed += _ => AttemptToDash();
 
         wallJumpDirection.Normalize();
     }
@@ -91,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckMovement()
     {
+        CheckDashMovement();
+
         if (!canMove) { return; }
 
         CheckPrematureJump();
@@ -152,6 +163,14 @@ public class PlayerMovement : MonoBehaviour
         if (IsTouchingLedge() && !isLedgeClimbingActive)
         {
             ClimbLedge();
+        }
+    }
+
+    private void CheckDashMovement()
+    {
+        if (isDashing)
+        {
+            Dash();
         }
     }
 
@@ -285,15 +304,46 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void AttemptToDash()
+    {
+        if (isDashing || isGrounded) { return; }
+
+        if (Time.time >= (lastDashActivatedTime + dashCooldown))
+        {
+            isDashing = true;
+            dashTimeLeft = dashTime;
+            lastDashActivatedTime = Time.time;
+
+            PlayerAfterImagePool.Instance.GetFromPool();
+
+            lastDashXPosition = transform.position.x;
+        }
+    }
+
     private void Dash()
     {
-        //if (IsTouchingGround()) { return; }
+        if (dashTimeLeft > 0)
+        {
+            canMove = false;
 
-        PlayerAfterImagePool.Instance.GetFromPool();
+            myRigidbody2D.gravityScale = 0;
+            myRigidbody2D.velocity = new Vector2(facingDirection * dashSpeed, 0);
+            myRigidbody2D.gravityScale = defaultGravityScale;
 
-        myRigidbody2D.gravityScale = 0;
-        myRigidbody2D.velocity = new Vector2(facingDirection * dashSpeed, myRigidbody2D.velocity.y);
-        myRigidbody2D.gravityScale = defaultGravityScale;
+            dashTimeLeft -= Time.deltaTime;
+
+            if (Mathf.Abs(transform.position.x - lastDashXPosition) > distanceBetweenAfterImages)
+            {
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastDashXPosition = transform.position.x;
+            }
+        }
+
+        if (dashTimeLeft <= 0 || isTouchingLedge || isWallSliding)
+        {
+            isDashing = false;
+            canMove = true;
+        }
     }
 
     private void CheckDirection()
