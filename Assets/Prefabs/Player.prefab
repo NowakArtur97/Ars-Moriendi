@@ -144,9 +144,9 @@ MonoBehaviour:
   wallJumpDirection: {x: 1, y: 2}
   wallJumpForce: 20
   prematureJumpAttemptDefaultTimer: 0.15
-  ledgeClimbXOffset1: -0.9
-  ledgeClimbXOffset2: 1.25
-  ledgeClimbYOffset1: 0
+  ledgeClimbXOffset1: -1.02
+  ledgeClimbXOffset2: 1.4
+  ledgeClimbYOffset1: -0.25
   ledgeClimbYOffset2: 2.2
 --- !u!50 &1233275229
 Rigidbody2D:
