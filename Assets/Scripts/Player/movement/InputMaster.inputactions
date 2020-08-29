@@ -28,6 +28,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack Primary",
+                    "type": "Button",
+                    "id": "774e32d3-9475-407b-9dac-8ce232e43f34",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Attack Secondary",
+                    "type": "Button",
+                    "id": "320c7a1a-f72e-470a-8557-b1f2ab960958",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -116,6 +132,28 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c4c76f4-c5d5-4ebf-b475-07ee2c812665",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Attack Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b010d2a-7156-431b-84d5-51581b93da9d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Attack Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -41,6 +41,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack Primary"",
+                    ""type"": ""Button"",
+                    ""id"": ""774e32d3-9475-407b-9dac-8ce232e43f34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack Secondary"",
+                    ""type"": ""Button"",
+                    ""id"": ""320c7a1a-f72e-470a-8557-b1f2ab960958"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -131,6 +147,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c4c76f4-c5d5-4ebf-b475-07ee2c812665"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Attack Primary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b010d2a-7156-431b-84d5-51581b93da9d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Attack Secondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -159,6 +197,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_HorizontalMovement = m_Player.FindAction("Horizontal Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_AttackPrimary = m_Player.FindAction("Attack Primary", throwIfNotFound: true);
+        m_Player_AttackSecondary = m_Player.FindAction("Attack Secondary", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -211,6 +251,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_HorizontalMovement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_AttackPrimary;
+    private readonly InputAction m_Player_AttackSecondary;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -218,6 +260,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @HorizontalMovement => m_Wrapper.m_Player_HorizontalMovement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @AttackPrimary => m_Wrapper.m_Player_AttackPrimary;
+        public InputAction @AttackSecondary => m_Wrapper.m_Player_AttackSecondary;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -236,6 +280,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @AttackPrimary.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackPrimary;
+                @AttackPrimary.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackPrimary;
+                @AttackPrimary.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackPrimary;
+                @AttackSecondary.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackSecondary;
+                @AttackSecondary.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackSecondary;
+                @AttackSecondary.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttackSecondary;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +299,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @AttackPrimary.started += instance.OnAttackPrimary;
+                @AttackPrimary.performed += instance.OnAttackPrimary;
+                @AttackPrimary.canceled += instance.OnAttackPrimary;
+                @AttackSecondary.started += instance.OnAttackSecondary;
+                @AttackSecondary.performed += instance.OnAttackSecondary;
+                @AttackSecondary.canceled += instance.OnAttackSecondary;
             }
         }
     }
@@ -267,5 +323,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnAttackPrimary(InputAction.CallbackContext context);
+        void OnAttackSecondary(InputAction.CallbackContext context);
     }
 }
