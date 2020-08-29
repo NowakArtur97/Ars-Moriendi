@@ -2,7 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
     [SerializeField] private float extrWidthtWallCheck = 0.2f;
 
@@ -58,6 +58,16 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D myBoxCollider2D;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
     private void Awake()
     {
@@ -364,7 +374,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsTouchingGround()
     {
         Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x / 2, myBoxCollider2D.bounds.size.y);
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeightGroundCheck, ground);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, Vector2.down, extraHeightGroundCheck, whatIsGround);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.green : Color.red;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, Vector2.down * (myBoxCollider2D.bounds.extents.y + extraHeightGroundCheck), rayColor);
@@ -377,7 +387,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
 
         Vector2 raycastSize = new Vector2(myBoxCollider2D.bounds.size.x, myBoxCollider2D.bounds.size.y / 2);
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extrWidthtWallCheck, ground);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(myBoxCollider2D.bounds.center, raycastSize, 0f, direction, extrWidthtWallCheck, whatIsGround);
 
         //Color rayColor = raycastHit2D.collider != null ? Color.blue : Color.yellow;
         //Debug.DrawRay(myBoxCollider2D.bounds.center, direction * (myBoxCollider2D.bounds.extents.x + extraHeightWallCheck), rayColor);
@@ -395,10 +405,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
 
         Vector2 lowerRaycastVector = myBoxCollider2D.bounds.center;
-        RaycastHit2D raycastHitWall2D = Physics2D.Raycast(lowerRaycastVector, direction, myBoxCollider2D.bounds.extents.y + extrWidthtWallCheck, ground);
+        RaycastHit2D raycastHitWall2D = Physics2D.Raycast(lowerRaycastVector, direction, myBoxCollider2D.bounds.extents.y + extrWidthtWallCheck, whatIsGround);
 
         Vector2 higherRaycastVector = new Vector2(myBoxCollider2D.bounds.center.x, transform.position.y + myBoxCollider2D.bounds.extents.y);
-        RaycastHit2D raycastHitEmpty2D = Physics2D.Raycast(higherRaycastVector, direction, myBoxCollider2D.bounds.extents.y + extrWidthtWallCheck, ground);
+        RaycastHit2D raycastHitEmpty2D = Physics2D.Raycast(higherRaycastVector, direction, myBoxCollider2D.bounds.extents.y + extrWidthtWallCheck, whatIsGround);
 
         if (raycastHitWall2D.collider != null)
         {
@@ -417,15 +427,5 @@ public class PlayerMovement : MonoBehaviour
     private bool HasTurnedAround()
     {
         return (isFacingRight && movementInput < 0) || (!isFacingRight && movementInput > 0);
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
     }
 }
