@@ -1,16 +1,20 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] private bool canAttack = true;
-    private bool isAttacking = false;
+    [SerializeField] private bool combatEnabled = true;
+    private bool isAttacking = false, isFirstAttack = false, attack1 = false;
     [SerializeField] private float attackRadius = 5f;
     [SerializeField] private float attackDamage = 5f;
 
+    [SerializeField] private float prematureAttackAttemptDefaultTimer = 0.15f;
+    private float prematureAttackAttemptTimer = Mathf.NegativeInfinity;
+    private bool isAttemptingToAttack;
+
     [SerializeField] private Transform attackHitBoxPosition;
     [SerializeField] private LayerMask whatIsDamagable;
-
 
     private InputMaster controls;
 
@@ -36,6 +40,8 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Start()
     {
+        myAnimator.SetBool("canAttack", combatEnabled);
+
         controls.Player.AttackPrimary.performed += _ => AttemptToAttack();
     }
 
@@ -46,9 +52,17 @@ public class PlayerCombatController : MonoBehaviour
 
     private void AttemptToAttack()
     {
-        if (canAttack)
+        if (combatEnabled)
         {
-            isAttacking = true;
+            if (isAttacking)
+            {
+                isAttemptingToAttack = true;
+                prematureAttackAttemptTimer = prematureAttackAttemptDefaultTimer;
+            }
+            else
+            {
+                isAttacking = true;
+            }
         }
     }
 
@@ -56,11 +70,30 @@ public class PlayerCombatController : MonoBehaviour
     {
         if (isAttacking)
         {
-            myAnimator.SetBool("isAttacking", isAttacking);
+            Attack();
         }
     }
 
-    private void CheckAttackHitBox()
+    private void Attack()
+    {
+        isFirstAttack = !isFirstAttack;
+        attack1 = true;
+
+        myAnimator.SetBool("isAttacking", isAttacking);
+        myAnimator.SetBool("firstAttack", isFirstAttack);
+        myAnimator.SetBool("attack1", attack1);
+    }
+
+    private void FinishAttack()
+    {
+        isAttacking = false;
+        attack1 = false;
+
+        myAnimator.SetBool("isAttacking", isAttacking);
+        myAnimator.SetBool("attack1", attack1);
+    }
+
+    private void CheckAttackHitBoxEvent()
     {
         Collider2D[] detectedObjectsToAttack = Physics2D.OverlapCircleAll(attackHitBoxPosition.position, attackRadius, whatIsDamagable);
 
@@ -71,11 +104,15 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-    private void FinishAttack()
+    private void FinishAttackEvent()
     {
-        isAttacking = false;
+        FinishAttack();
 
-        myAnimator.SetBool("isAttacking", isAttacking);
+        if (isAttemptingToAttack && prematureAttackAttemptTimer > 0)
+        {
+            isAttemptingToAttack = false;
+            Attack();
+        }
     }
 
     private void OnDrawGizmos()

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private int airJumpCount;
     private readonly int airJumpCountMax = 0;
 
-    private bool canMove = true;
+    [SerializeField] private bool movementEnabled = true;
     private bool isGrounded = true;
     private bool isWalking = false;
     private bool isWallSliding = false;
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckDashMovement();
 
-        if (!canMove) { return; }
+        if (!movementEnabled) { return; }
 
         CheckPrematureJump();
 
@@ -196,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
 
-        if (movementInput == 0 || !canMove) { return; }
+        if (movementInput == 0 || !movementEnabled) { return; }
 
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbLedge()
     {
-        canMove = false;
+        movementEnabled = false;
 
         positionBeforeClimbing = transform.position;
 
@@ -289,7 +289,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody2D.gravityScale = defaultGravityScale;
         transform.position = ledgePosition2;
 
-        canMove = true;
+        movementEnabled = true;
         isLedgeClimbingActive = false;
         isTouchingLedge = false;
 
@@ -334,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashTimeLeft > 0)
         {
-            canMove = false;
+            movementEnabled = false;
 
             myRigidbody2D.gravityScale = 0;
             myRigidbody2D.velocity = new Vector2(facingDirection * dashSpeed, 0);
@@ -352,7 +352,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashTimeLeft <= 0 || isTouchingLedge || isWallSliding)
         {
             isDashing = false;
-            canMove = true;
+            movementEnabled = true;
         }
     }
 
