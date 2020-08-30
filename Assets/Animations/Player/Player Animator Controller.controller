@@ -118,10 +118,10 @@ AnimatorStateTransition:
     m_ConditionEvent: canAttack
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: attack1
+    m_ConditionEvent: isFirstAttack
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isFirstAttack
+    m_ConditionEvent: attack1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6472220369720661750}

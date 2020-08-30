@@ -1,16 +1,15 @@
 ﻿
-using System;
 using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
     [SerializeField] private bool combatEnabled = true;
-    private bool isAttacking = false, isFirstAttack = false, attack1 = false;
-    [SerializeField] private float attackRadius = 5f;
+    private bool isAttacking, isFirstAttack, attack1;
+    [SerializeField] private float attackRadius = 0.8f;
     [SerializeField] private float attackDamage = 5f;
 
     [SerializeField] private float prematureAttackAttemptDefaultTimer = 0.15f;
-    private float prematureAttackAttemptTimer = Mathf.NegativeInfinity;
+    private float prematureAttackAttemptTimer = 0;
     private bool isAttemptingToAttack;
 
     [SerializeField] private Transform attackHitBoxPosition;
@@ -80,13 +79,14 @@ public class PlayerCombatController : MonoBehaviour
         attack1 = true;
 
         myAnimator.SetBool("isAttacking", isAttacking);
-        myAnimator.SetBool("firstAttack", isFirstAttack);
+        myAnimator.SetBool("isFirstAttack", isFirstAttack);
         myAnimator.SetBool("attack1", attack1);
+
+        isAttacking = false;
     }
 
     private void FinishAttack()
     {
-        isAttacking = false;
         attack1 = false;
 
         myAnimator.SetBool("isAttacking", isAttacking);
