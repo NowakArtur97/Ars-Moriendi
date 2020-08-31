@@ -6216,8 +6216,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &771732627
-CircleCollider2D:
+--- !u!70 &771732627
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6229,9 +6229,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0048811436, y: 0.13875318}
-  serializedVersion: 2
-  m_Radius: 0.60643697
+  m_Offset: {x: 0.006031513, y: 0.13537955}
+  m_Size: {x: 1.1071577, y: 1.2809892}
+  m_Direction: 0
 --- !u!50 &771732628
 Rigidbody2D:
   serializedVersion: 4
@@ -6886,6 +6886,12 @@ MonoBehaviour:
   maxHealth: 10
   knockBackXForce: 3
   knockBackYForce: 0
+  deadTopXForce: 1.5
+  deadTopYForce: 1.5
+  deadBottomXForce: 1
+  deadBottomYForce: 1
+  deadShieldXForce: 2.5
+  deadShieldYForce: 2.5
 --- !u!1 &1695871744
 GameObject:
   m_ObjectHideFlags: 0

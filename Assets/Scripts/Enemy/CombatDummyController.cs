@@ -9,6 +9,13 @@ public class CombatDummyController : MonoBehaviour
     [SerializeField] private float knockBackXForce = 3f;
     [SerializeField] private float knockBackYForce = 0f;
 
+    [SerializeField] private float deadTopXForce = 2f;
+    [SerializeField] private float deadTopYForce = 2f;
+    [SerializeField] private float deadBottomXForce = 1f;
+    [SerializeField] private float deadBottomYForce = 1f;
+    [SerializeField] private float deadShieldXForce = 2.5f;
+    [SerializeField] private float deadShieldYForce = 2.5f;
+
     private float playerFacingDirection;
     private PlayerMovementController playerMovementController;
 
@@ -59,8 +66,7 @@ public class CombatDummyController : MonoBehaviour
         {
             Die();
         }
-        else
-        if (isKnockBackEnabled)
+        else if (isKnockBackEnabled)
         {
             SetAnimation();
             KnockBack();
@@ -83,13 +89,17 @@ public class CombatDummyController : MonoBehaviour
 
     private void Die()
     {
+        aliveGO.SetActive(false);
+        deadTopGO.SetActive(true);
+        deadBottomGO.SetActive(true);
+        deadShieldGO.SetActive(true);
+
         deadTopGO.transform.position = aliveGO.transform.position;
         deadBottomGO.transform.position = aliveGO.transform.position;
         deadShieldGO.transform.position = aliveGO.transform.position;
 
-        aliveGO.SetActive(false);
-        deadTopGO.SetActive(false);
-        deadBottomGO.SetActive(false);
-        deadShieldGO.SetActive(false);
+        deadTopRigidBody2D.AddForce(new Vector2(deadTopXForce * playerFacingDirection, deadTopYForce), ForceMode2D.Impulse);
+        deadBottomRigidBody2D.AddForce(new Vector2(deadBottomXForce * playerFacingDirection, deadBottomYForce), ForceMode2D.Impulse);
+        deadShieldRigidBody2D.AddForce(new Vector2(deadShieldXForce * playerFacingDirection, deadShieldYForce), ForceMode2D.Impulse);
     }
 }
