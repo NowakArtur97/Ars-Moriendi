@@ -16,7 +16,7 @@ TagManager:
   - Ground
   - Effects
   - Player
-  - Damagable
+  - Enemy
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2685092377
+    locked: 0
+  - name: Enemy
+    uniqueID: 4032463215
     locked: 0
