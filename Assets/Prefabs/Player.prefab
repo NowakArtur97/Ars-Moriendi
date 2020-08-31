@@ -180,8 +180,8 @@ MonoBehaviour:
   wallJumpForce: 20
   prematureJumpAttemptDefaultTimer: 0.15
   movementEnabled: 1
-  ledgeClimbXOffset1: -1.02
-  ledgeClimbXOffset2: 1.4
+  ledgeClimbXOffset1: -1
+  ledgeClimbXOffset2: 1.3
   ledgeClimbYOffset1: -0.25
   ledgeClimbYOffset2: 2.2
 --- !u!114 &6261817184321097268

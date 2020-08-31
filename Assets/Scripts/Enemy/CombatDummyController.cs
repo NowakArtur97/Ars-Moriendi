@@ -16,6 +16,8 @@ public class CombatDummyController : MonoBehaviour
     [SerializeField] private float deadShieldXForce = 2.5f;
     [SerializeField] private float deadShieldYForce = 2.5f;
 
+    [SerializeField] private GameObject damagePartcileEffect;
+
     private float playerFacingDirection;
     private PlayerMovementController playerMovementController;
 
@@ -53,11 +55,6 @@ public class CombatDummyController : MonoBehaviour
         aliveAnimator = aliveGO.GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-
-    }
-
     private void Damage(float damageReceived)
     {
         healthLeft -= damageReceived;
@@ -70,7 +67,13 @@ public class CombatDummyController : MonoBehaviour
         {
             SetAnimation();
             KnockBack();
+            InstantiateParticleEffect();
         }
+    }
+
+    private void InstantiateParticleEffect()
+    {
+        Instantiate(damagePartcileEffect, aliveGO.transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f)));
     }
 
     private void SetAnimation()
