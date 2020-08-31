@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Ground
   - Effects
   - Player
-  - Enemy
-  - 
+  - Damagable
+  - Dead
   - 
   - 
   - 
@@ -47,9 +48,12 @@ TagManager:
   - name: Platforms
     uniqueID: 3445606609
     locked: 0
+  - name: Damagable
+    uniqueID: 826966015
+    locked: 0
+  - name: Dead
+    uniqueID: 2429159363
+    locked: 0
   - name: Player
     uniqueID: 2685092377
-    locked: 0
-  - name: Enemy
-    uniqueID: 4032463215
     locked: 0
