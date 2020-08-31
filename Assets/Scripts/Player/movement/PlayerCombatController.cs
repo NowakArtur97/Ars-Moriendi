@@ -99,8 +99,7 @@ public class PlayerCombatController : MonoBehaviour
 
         foreach (Collider2D objectToAttack in detectedObjectsToAttack)
         {
-            Debug.Log(objectToAttack.name);
-            //objectToAttack.transform.SendMessage("Damage", attackDamage);
+            objectToAttack.transform.parent.SendMessage("Damage", attackDamage);
         }
     }
 

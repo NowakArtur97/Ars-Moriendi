@@ -30,7 +30,7 @@ public class JumpOrb : MonoBehaviour
     {
         if (isActive && collision.gameObject.tag.Equals("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMovement>().TouchedJumpOrb();
+            collision.gameObject.GetComponent<PlayerMovementController>().TouchedJumpOrb();
 
             DectivateOrb();
         }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float extraHeightGroundCheck = 0.1f;
@@ -427,5 +427,10 @@ public class PlayerMovement : MonoBehaviour
     private bool HasTurnedAround()
     {
         return (isFacingRight && movementInput < 0) || (!isFacingRight && movementInput > 0);
+    }
+
+    public float GetFacingDirection()
+    {
+        return facingDirection;
     }
 }
