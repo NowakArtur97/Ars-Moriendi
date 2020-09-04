@@ -1,12 +1,45 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BasicEnemyController : MonoBehaviour
 {
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private float wallCheckDistance;
+    [SerializeField] private LayerMask whatIsGround;
+
+    [SerializeField] private float movementSpeed;
+    private Vector2 movement;
+
     private State currentState;
+
+    private bool groundDetected, wallDetected;
+
+    private float facingDirection = 1;
+
+    private GameObject aliveGO;
+    private Rigidbody2D aliveRigidbody2D;
+    private Animator aliveAnimator;
+    private SpriteRenderer aliveSpriteRenderer;
 
     private enum State
     {
         Moving, Knockback, Dead
+    }
+
+    private void Awake()
+    {
+        aliveGO = transform.Find("Boar Alive").gameObject;
+        aliveAnimator = aliveGO.GetComponent<Animator>();
+        aliveRigidbody2D = aliveGO.GetComponent<Rigidbody2D>();
+        aliveSpriteRenderer = aliveGO.GetComponent<SpriteRenderer>();
+
+    }
+
+    private void Start()
+    {
+        currentState = State.Moving;
     }
 
     private void Update()
@@ -33,7 +66,16 @@ public class BasicEnemyController : MonoBehaviour
 
     private void UpdateMovingState()
     {
+        CheckPosition();
 
+        if (ShouldFlip())
+        {
+            //Flip();
+        }
+        //else
+        //{
+        //    Move();
+        //}
     }
 
     private void ExitMovingState()
@@ -106,6 +148,23 @@ public class BasicEnemyController : MonoBehaviour
         }
 
         currentState = newState;
+    }
+
+    private void CheckPosition()
+    {
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - wallCheckDistance, wallCheck.position.y));
+    }
+
+    private bool ShouldFlip()
+    {
+        return !groundDetected || wallDetected;
     }
     #endregion
 }
