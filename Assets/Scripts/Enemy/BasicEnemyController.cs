@@ -70,7 +70,7 @@ public class BasicEnemyController : MonoBehaviour
 
         if (ShouldFlip())
         {
-            //Flip();
+            Flip();
         }
         //else
         //{
@@ -160,6 +160,12 @@ public class BasicEnemyController : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - wallCheckDistance, wallCheck.position.y));
+    }
+
+    private void Flip()
+    {
+        aliveSpriteRenderer.transform.Rotate(Vector3.up * -180);
+        facingDirection *= -1;
     }
 
     private bool ShouldFlip()
