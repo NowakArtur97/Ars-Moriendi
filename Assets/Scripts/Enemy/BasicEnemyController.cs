@@ -72,10 +72,10 @@ public class BasicEnemyController : MonoBehaviour
         {
             Flip();
         }
-        //else
-        //{
-        //    Move();
-        //}
+        else
+        {
+            Move();
+        }
     }
 
     private void ExitMovingState()
@@ -148,6 +148,12 @@ public class BasicEnemyController : MonoBehaviour
         }
 
         currentState = newState;
+    }
+
+    private void Move()
+    {
+        movement.Set(facingDirection * movementSpeed, aliveRigidbody2D.velocity.y);
+        aliveRigidbody2D.velocity = movement;
     }
 
     private void CheckPosition()
