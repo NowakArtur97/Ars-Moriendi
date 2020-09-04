@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static PlayerCombatController;
 
 public class BasicEnemyController : MonoBehaviour
 {
@@ -9,10 +10,18 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
 
+    private State currentState = State.Moving;
+
     [SerializeField] private float movementSpeed;
     private Vector2 movement;
 
-    private State currentState;
+    [SerializeField] private float maxHealth = 50f;
+    private float healthLeft;
+
+    [SerializeField] private float knockbackDuration;
+    [SerializeField] private Vector2 knockbackSpeed;
+    private float knockbackStartTime;
+    private int damageDirection;
 
     private bool groundDetected, wallDetected;
 
@@ -35,11 +44,8 @@ public class BasicEnemyController : MonoBehaviour
         aliveRigidbody2D = aliveGO.GetComponent<Rigidbody2D>();
         aliveSpriteRenderer = aliveGO.GetComponent<SpriteRenderer>();
 
-    }
+        healthLeft = maxHealth;
 
-    private void Start()
-    {
-        currentState = State.Moving;
     }
 
     private void Update()
@@ -87,24 +93,31 @@ public class BasicEnemyController : MonoBehaviour
     #region Knockback State
     private void EnterKnockbackState()
     {
+        aliveAnimator.SetBool("isDamaged", true);
 
+        knockbackStartTime = Time.time;
+        movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        aliveRigidbody2D.velocity = movement;
     }
 
     private void UpdateKnockbackState()
     {
-
+        if (Time.time > knockbackStartTime + knockbackDuration)
+        {
+            ChangeState(State.Moving);
+        }
     }
 
     private void ExitKnockbackState()
     {
-
+        aliveAnimator.SetBool("isDamaged", false);
     }
     #endregion
 
     #region Dead State
     private void EnterDeadState()
     {
-
+        aliveAnimator.SetBool("isDead", true);
     }
 
     private void UpdateDeadState()
@@ -154,6 +167,21 @@ public class BasicEnemyController : MonoBehaviour
     {
         movement.Set(facingDirection * movementSpeed, aliveRigidbody2D.velocity.y);
         aliveRigidbody2D.velocity = movement;
+    }
+
+    private void Damage(DamageDetails damageDetails)
+    {
+        healthLeft -= damageDetails.damage;
+        damageDirection = damageDetails.direction > aliveGO.transform.position.x ? -1 : 1;
+
+        if (healthLeft <= 0.1f)
+        {
+            ChangeState(State.Dead);
+        }
+        else
+        {
+            ChangeState(State.Knockback);
+        }
     }
 
     private void CheckPosition()

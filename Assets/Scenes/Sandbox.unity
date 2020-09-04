@@ -356,6 +356,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   movementSpeed: 3
+  maxHealth: 50
+  knockbackDuration: 5
+  knockbackSpeed: {x: 1, y: 1}
 --- !u!1 &608755274
 GameObject:
   m_ObjectHideFlags: 0

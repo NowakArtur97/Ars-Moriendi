@@ -20,6 +20,18 @@ public class PlayerCombatController : MonoBehaviour
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
 
+    public struct DamageDetails
+    {
+        public float damage;
+        public float direction;
+
+        public DamageDetails(float damage, float direction) : this()
+        {
+            this.damage = damage;
+            this.direction = direction;
+        }
+    }
+
     private void OnEnable()
     {
         controls.Enable();
@@ -99,7 +111,7 @@ public class PlayerCombatController : MonoBehaviour
 
         foreach (Collider2D objectToAttack in detectedObjectsToAttack)
         {
-            objectToAttack.transform.parent.SendMessage("Damage", attackDamage);
+            objectToAttack.transform.parent.SendMessage("Damage", new DamageDetails(attackDamage, transform.position.x));
         }
     }
 
