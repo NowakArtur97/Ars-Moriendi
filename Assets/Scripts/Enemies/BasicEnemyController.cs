@@ -4,6 +4,7 @@ using static PlayerCombatController;
 
 public class BasicEnemyController : MonoBehaviour
 {
+    [Header("Position Check")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private Transform wallCheck;
@@ -12,12 +13,19 @@ public class BasicEnemyController : MonoBehaviour
 
     private State currentState = State.Moving;
 
+    [Header("Movement")]
+    [Range(0, 10)]
     [SerializeField] private float movementSpeed;
     private Vector2 movement;
 
+    [Header("Health/Death")]
+    [Range(0, 300)]
     [SerializeField] private float maxHealth = 50f;
     private float healthLeft;
+    [SerializeField] private GameObject deathBloodPartcileEffect;
 
+    [Header("Knockback")]
+    [Range(0, 10)]
     [SerializeField] private float knockbackDuration;
     [SerializeField] private Vector2 knockbackSpeed;
     private float knockbackStartTime;
@@ -45,7 +53,6 @@ public class BasicEnemyController : MonoBehaviour
         aliveSpriteRenderer = aliveGO.GetComponent<SpriteRenderer>();
 
         healthLeft = maxHealth;
-
     }
 
     private void Update()
