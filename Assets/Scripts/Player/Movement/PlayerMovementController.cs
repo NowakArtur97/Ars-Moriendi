@@ -324,7 +324,7 @@ public class PlayerMovementController : MonoBehaviour
             dashTimeLeft = dashTime;
             lastDashActivatedTime = Time.time;
 
-            ObjectPool.Instance.GetFromPool();
+            ObjectPoolManager.Instance.GetFromPool(ObjectPoolType.AFTER_IMAGE);
 
             lastDashXPosition = transform.position.x;
         }
@@ -344,7 +344,7 @@ public class PlayerMovementController : MonoBehaviour
 
             if (Mathf.Abs(transform.position.x - lastDashXPosition) > distanceBetweenAfterImages)
             {
-                ObjectPool.Instance.GetFromPool();
+                ObjectPoolManager.Instance.GetFromPool(ObjectPoolType.AFTER_IMAGE);
                 lastDashXPosition = transform.position.x;
             }
         }
