@@ -36,7 +36,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
         if ((fadingTimer + activeTime) <= Time.time)
         {
-            PlayerAfterImagePool.Instance.AddToPool(gameObject);
+            ObjectPool.Instance.AddToPool(gameObject);
         }
     }
 }

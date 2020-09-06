@@ -1,24 +1,34 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAfterImagePool : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject playerAfterImagePrefab;
+    [Header("Properties")]
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private int poolDefaultSize = 10;
+    [SerializeField] private bool canGrow = true;
 
-    public static PlayerAfterImagePool Instance { get; private set; }
+    public static ObjectPool Instance { get; private set; }
     private Queue<GameObject> availableObjects = new Queue<GameObject>();
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         GrowPool();
     }
 
     private void GrowPool()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < poolDefaultSize; i++)
         {
-            GameObject instanceToAdd = Instantiate(playerAfterImagePrefab, transform);
+            GameObject instanceToAdd = Instantiate(prefab, transform);
 
             AddToPool(instanceToAdd);
         }
@@ -33,7 +43,7 @@ public class PlayerAfterImagePool : MonoBehaviour
 
     public GameObject GetFromPool()
     {
-        if (availableObjects.Count == 0)
+        if (canGrow && availableObjects.Count == 0)
         {
             GrowPool();
         }
