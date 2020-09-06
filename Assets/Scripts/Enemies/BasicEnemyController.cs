@@ -22,7 +22,6 @@ public class BasicEnemyController : MonoBehaviour
     [Range(0, 300)]
     [SerializeField] private float maxHealth = 50f;
     private float healthLeft;
-    [SerializeField] private GameObject deathBloodPartcileEffect;
 
     [Header("Knockback")]
     [Range(0, 10)]
@@ -101,6 +100,7 @@ public class BasicEnemyController : MonoBehaviour
     private void EnterKnockbackState()
     {
         aliveAnimator.SetBool("isDamaged", true);
+        ObjectPoolManager.Instance.GetFromPool(ObjectPoolType.BLOOD_PARTICLE_EFFECT);
 
         knockbackStartTime = Time.time;
         movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);

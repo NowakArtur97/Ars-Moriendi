@@ -157,6 +157,12 @@ MonoBehaviour:
     prefab: {fileID: 4454265535875698088, guid: bc212528db10d7d4c8b7f715f0f6c7e3,
       type: 3}
     container: {fileID: 1320469772}
+  - type: 1
+    poolSize: 10
+    canGrow: 1
+    prefab: {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345,
+      type: 3}
+    container: {fileID: 1131758076}
 --- !u!4 &301974370
 Transform:
   m_ObjectHideFlags: 0
@@ -253,7 +259,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &322887036
 Animator:
   serializedVersion: 3
@@ -407,8 +413,6 @@ MonoBehaviour:
     m_Bits: 256
   movementSpeed: 3
   maxHealth: 50
-  deathBloodPartcileEffect: {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345,
-    type: 3}
   knockbackDuration: 1
   knockbackSpeed: {x: 1, y: 1}
 --- !u!1 &608755274
@@ -6715,6 +6719,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1320469773}
+  - {fileID: 1131758077}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6810,6 +6815,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5476649754775721450}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1131758076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1131758077}
+  m_Layer: 0
+  m_Name: Blod Particle Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1131758077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131758076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 866579102}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252539031
 GameObject:
   m_ObjectHideFlags: 3
@@ -7292,7 +7327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516280383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.165462, y: 12.00539, z: -8.515625}
+  m_LocalPosition: {x: 18.305462, y: 11.965389, z: -8.515625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 917927150}
@@ -7471,7 +7506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695871744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.925327, y: 13.623513, z: -9.129883}
+  m_LocalPosition: {x: 17.065327, y: 13.583513, z: -9.129883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 608755275}
@@ -7828,7 +7863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005034678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.165462, y: 12.00539, z: -8.515625}
+  m_LocalPosition: {x: 18.305462, y: 11.965389, z: -8.515625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1252539032}
@@ -8007,12 +8042,12 @@ PrefabInstance:
     - target: {fileID: 5476649753576037559, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.21
+      value: 18.35
       objectReference: {fileID: 0}
     - target: {fileID: 5476649753576037559, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.99
+      value: 13.95
       objectReference: {fileID: 0}
     - target: {fileID: 5476649753576037559, guid: 1876eecf1e6a53648bbb5af1a624bb4b,
         type: 3}

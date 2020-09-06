@@ -2,6 +2,7 @@
 
 public class PlayerAfterImageSprite : MonoBehaviour
 {
+    [Header("After Image Sprite Properties")]
     [SerializeField] private float activeTime = 0.1f;
     private float fadingTimer;
     [SerializeField] private float defaultAlpha = 0.8f;

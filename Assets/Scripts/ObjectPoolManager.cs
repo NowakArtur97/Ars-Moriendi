@@ -4,12 +4,14 @@ using UnityEngine;
 
 public enum ObjectPoolType
 {
-    AFTER_IMAGE
+    AFTER_IMAGE,
+    BLOOD_PARTICLE_EFFECT
 }
 
 [Serializable]
 public class ObjectPoolInfo
 {
+    [Header("Object Pool Info")]
     public ObjectPoolType type;
     public int poolSize = 10;
     public bool canGrow = true;
@@ -23,8 +25,8 @@ public class ObjectPoolManager : MonoBehaviour
 {
     public static ObjectPoolManager Instance { get; private set; }
 
-    [SerializeField]
-    private List<ObjectPoolInfo> allPools;
+    [Header("Object Pools")]
+    [SerializeField] private List<ObjectPoolInfo> allPools;
 
     private void Awake()
     {
