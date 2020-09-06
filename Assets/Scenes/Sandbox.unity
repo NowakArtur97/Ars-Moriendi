@@ -8015,7 +8015,7 @@ PrefabInstance:
     - target: {fileID: 8458520276622596871, guid: 1d7a17fea4e36f9429953a51c90de7b2,
         type: 3}
       propertyPath: m_Name
-      value: PlayerAfterImagePool
+      value: Player After Image Pool
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d7a17fea4e36f9429953a51c90de7b2, type: 3}

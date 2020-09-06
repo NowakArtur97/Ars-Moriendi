@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8458520276622596869}
   - component: {fileID: 8458520276622596868}
   m_Layer: 0
-  m_Name: PlayerAfterImagePool
+  m_Name: Player After Image Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
