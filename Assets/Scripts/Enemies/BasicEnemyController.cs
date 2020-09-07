@@ -10,6 +10,7 @@ public class BasicEnemyController : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsPlayer;
 
     private State currentState = State.Moving;
 
@@ -30,6 +31,17 @@ public class BasicEnemyController : MonoBehaviour
     private float knockbackStartTime;
     private int damageDirection;
 
+    [Header("Touch Damage")]
+    [Range(0, 10)]
+    [SerializeField] private float touchDamage = 10f;
+    [SerializeField] private float touchDamageCooldown;
+    [SerializeField] private float touchDamageWidth;
+    [SerializeField] private float touchDamageHeight;
+    [SerializeField] private Transform touchDamageCheck;
+    private float lastTouchDamageTime;
+    private Vector2 touchDamageBottomLeft;
+    private Vector2 touchDamageUpperRight;
+
     private bool groundDetected, wallDetected;
 
     private float facingDirection = 1;
@@ -38,6 +50,8 @@ public class BasicEnemyController : MonoBehaviour
     private Rigidbody2D aliveRigidbody2D;
     private Animator aliveAnimator;
     private SpriteRenderer aliveSpriteRenderer;
+
+    private PlayerMovementController playerMovement;
 
     private enum State
     {
@@ -52,6 +66,11 @@ public class BasicEnemyController : MonoBehaviour
         aliveSpriteRenderer = aliveGO.GetComponent<SpriteRenderer>();
 
         healthLeft = maxHealth;
+    }
+
+    private void Start()
+    {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovementController>();
     }
 
     private void Update()
@@ -79,6 +98,7 @@ public class BasicEnemyController : MonoBehaviour
     private void UpdateMovingState()
     {
         CheckPosition();
+        CheckTouchDamage();
 
         if (ShouldFlip())
         {
@@ -191,6 +211,24 @@ public class BasicEnemyController : MonoBehaviour
         }
     }
 
+    private void CheckTouchDamage()
+    {
+        if (!playerMovement.GetDashStatus() && Time.time > lastTouchDamageTime + touchDamageCooldown)
+        {
+            touchDamageBottomLeft.Set(touchDamageCheck.position.x - touchDamageWidth / 2, touchDamageCheck.position.y - touchDamageHeight / 2);
+            touchDamageUpperRight.Set(touchDamageCheck.position.x + touchDamageWidth / 2, touchDamageCheck.position.y + touchDamageHeight / 2);
+
+            Collider2D hit = Physics2D.OverlapArea(touchDamageBottomLeft, touchDamageUpperRight, whatIsPlayer);
+
+            if (hit != null)
+            {
+                lastTouchDamageTime = Time.time;
+
+                hit.SendMessage("Damage", new DamageDetails(touchDamage, transform.position.x));
+            }
+        }
+    }
+
     private void CheckPosition()
     {
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -201,6 +239,16 @@ public class BasicEnemyController : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - wallCheckDistance, wallCheck.position.y));
+
+        Vector2 bottomLeftTouchDamage = new Vector2(touchDamageCheck.position.x - touchDamageWidth / 2, touchDamageCheck.position.y - touchDamageHeight / 2);
+        Vector2 bottomRightTouchDamage = new Vector2(touchDamageCheck.position.x + touchDamageWidth / 2, touchDamageCheck.position.y - touchDamageHeight / 2);
+        Vector2 topLeftTouchDamage = new Vector2(touchDamageCheck.position.x - touchDamageWidth / 2, touchDamageCheck.position.y + touchDamageHeight / 2);
+        Vector2 topRightTouchDamage = new Vector2(touchDamageCheck.position.x + touchDamageWidth / 2, touchDamageCheck.position.y + touchDamageHeight / 2);
+
+        Gizmos.DrawLine(bottomLeftTouchDamage, bottomRightTouchDamage);
+        Gizmos.DrawLine(bottomRightTouchDamage, topRightTouchDamage);
+        Gizmos.DrawLine(topRightTouchDamage, topLeftTouchDamage);
+        Gizmos.DrawLine(topLeftTouchDamage, bottomLeftTouchDamage);
     }
 
     private void Flip()

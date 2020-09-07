@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static PlayerCombatController;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class PlayerMovementController : MonoBehaviour
     private float dashTimeLeft;
     private float lastDashXPosition;
     private float lastDashActivatedTime = -100f;
+
+    [SerializeField] private float knockbackDuration = 0.2f;
+    [SerializeField] private Vector2 knockbackSpeed;
+    private float knockbackStartTime;
+    private int knockbackDirection;
+    private bool isKnockbacked;
 
     private float movementInput;
 
@@ -121,11 +128,13 @@ public class PlayerMovementController : MonoBehaviour
         CheckGroundMovement();
 
         CheckLedgeMovement();
+
+        CheckKnockback();
     }
 
     private void CheckGroundMovement()
     {
-        if (IsTouchingGround())
+        if (IsTouchingGround() && !isKnockbacked)
         {
             airJumpCount = 0;
             isWalking = movementInput != 0;
@@ -140,6 +149,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void CheckPrematureJump()
     {
+        if (isKnockbacked)
+        {
+            return;
+        }
+
         if (isAttemptingToJump)
         {
             prematureJumpAttemptTimer -= Time.deltaTime;
@@ -194,9 +208,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Move()
     {
+        if (!movementEnabled || isKnockbacked) { return; }
+
         movementInput = controls.Player.HorizontalMovement.ReadValue<float>();
 
-        if (movementInput == 0 || !movementEnabled) { return; }
+        if (movementInput == 0) { return; }
 
         Vector3 currentPosition = transform.position;
         currentPosition.x += movementInput * runSpeed * Time.deltaTime;
@@ -356,6 +372,29 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    #region Damage Received
+
+    public void Knockback(DamageDetails damageDetails)
+    {
+        knockbackDirection = damageDetails.direction > transform.position.x ? -1 : 1;
+
+        isKnockbacked = true;
+        knockbackStartTime = Time.time;
+        myRigidbody2D.velocity = new Vector2(knockbackSpeed.x * knockbackDirection, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if (Time.time >= knockbackStartTime + knockbackDuration && isKnockbacked)
+        {
+            isKnockbacked = false;
+
+            myRigidbody2D.velocity = new Vector2(0, myRigidbody2D.velocity.y);
+        }
+    }
+
+    #endregion
+
     private void CheckDirection()
     {
         if (HasTurnedAround())
@@ -432,5 +471,10 @@ public class PlayerMovementController : MonoBehaviour
     public float GetFacingDirection()
     {
         return facingDirection;
+    }
+
+    public bool GetDashStatus()
+    {
+        return isDashing;
     }
 }

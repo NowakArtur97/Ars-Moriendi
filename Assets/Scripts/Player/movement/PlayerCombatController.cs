@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
+    [Header("Player Combat Details")]
     [SerializeField] private bool combatEnabled = true;
     private bool isAttacking, isFirstAttack, attack1;
     [SerializeField] private float attackRadius = 0.8f;
@@ -16,8 +17,11 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private LayerMask whatIsDamagable;
 
     private InputMaster controls;
+    private PlayerMovementController playerMovement;
+    private PlayerStats playerStats;
 
     private Animator myAnimator;
+    private Rigidbody2D myRigidbody2D;
     private SpriteRenderer mySpriteRenderer;
 
     public struct DamageDetails
@@ -46,6 +50,9 @@ public class PlayerCombatController : MonoBehaviour
     {
         myAnimator = GetComponentInChildren<Animator>();
 
+        playerMovement = GetComponent<PlayerMovementController>();
+        playerStats = GetComponent<PlayerStats>();
+
         controls = new InputMaster();
     }
 
@@ -60,6 +67,8 @@ public class PlayerCombatController : MonoBehaviour
     {
         CheckAttack();
     }
+
+    #region Combat
 
     private void AttemptToAttack()
     {
@@ -126,8 +135,21 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
+    private void Damage(DamageDetails damageDetails)
+    {
+        playerStats.DealDamage(damageDetails.damage);
+
+        playerMovement.Knockback(damageDetails);
+    }
+
+    #endregion
+
+    #region other
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackHitBoxPosition.position, attackRadius);
     }
+
+    #endregion
 }

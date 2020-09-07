@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cd33af882bfa24dabc9b3784a5e2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: {x: 1.5, y: -0.5}
+  positionOffset: {x: 0.75, y: -0.5}
 --- !u!198 &2101618006556181809
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -2,8 +2,7 @@
 
 public class DeathParticleEffect : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 positionOffset = new Vector2(1.5f, -0.5f);
+    [SerializeField] private Vector2 positionOffset = new Vector2(1.5f, -0.5f);
 
     private ParticleSystem bloodPrticleEffect;
 
@@ -14,13 +13,16 @@ public class DeathParticleEffect : MonoBehaviour
     private void OnEnable()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+
         playerPosition = player.transform;
         facingDirection = player.GetComponent<PlayerMovementController>().GetFacingDirection();
 
         bloodPrticleEffect = gameObject.GetComponent<ParticleSystem>();
 
-        Vector2 position = new Vector2(playerPosition.position.x + positionOffset.x * facingDirection,
+        Vector2 position = new Vector2(
+            playerPosition.position.x + positionOffset.x * facingDirection,
             playerPosition.position.y + positionOffset.y);
+
         transform.position = position;
 
         bloodPrticleEffect.Clear();

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxHealth = 100f;
     private float healthLeft;
 
     private void Start()
@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
         healthLeft = maxHealth;
     }
 
-    public void DecreaseHealth(float damageReceived)
+    public void DealDamage(float damageReceived)
     {
         healthLeft -= damageReceived;
 
