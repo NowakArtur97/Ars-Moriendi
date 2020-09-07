@@ -5,7 +5,8 @@ using UnityEngine;
 public enum ObjectPoolType
 {
     AFTER_IMAGE,
-    BLOOD_PARTICLE_EFFECT
+    BLOOD_PARTICLE_EFFECT,
+    MEAT_CHUNK_EFFECT
 }
 
 [Serializable]

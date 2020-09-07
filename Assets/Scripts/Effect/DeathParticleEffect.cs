@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BloodParticleEffect : MonoBehaviour
+public class DeathParticleEffect : MonoBehaviour
 {
     [SerializeField]
     private Vector2 positionOffset = new Vector2(1.5f, -0.5f);
