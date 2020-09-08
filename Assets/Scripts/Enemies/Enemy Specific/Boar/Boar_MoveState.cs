@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Boar_MoveState : MoveState
+﻿public class Boar_MoveState : MoveState
 {
     private Boar boar;
 
@@ -24,10 +20,20 @@ public class Boar_MoveState : MoveState
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (ShouldFlip())
+        {
+            finiteStateMachine.ChangeState(boar.idleState);
+        }
     }
 
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+    }
+
+    private bool ShouldFlip()
+    {
+        return !isDetectingLedge || isDetectingWall;
     }
 }

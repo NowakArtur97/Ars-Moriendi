@@ -2,6 +2,9 @@
 {
     protected D_MoveState stateData;
 
+    protected bool isDetectingWall;
+    protected bool isDetectingLedge;
+
     public MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
@@ -13,6 +16,9 @@
         base.Enter();
 
         entity.SetVelocity(stateData.movementSpeed);
+
+        isDetectingWall = entity.CheckWall();
+        isDetectingLedge = entity.CheckLedge();
     }
 
     public override void Exit()
@@ -28,5 +34,8 @@
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        isDetectingWall = entity.CheckWall();
+        isDetectingLedge = entity.CheckLedge();
     }
 }

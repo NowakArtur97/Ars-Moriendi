@@ -2,14 +2,19 @@
 
 public class Boar : Entity
 {
-    [SerializeField] private D_MoveState stateData;
+    public Boar_IdleState idleState;
+    public Boar_MoveState moveState;
 
-    public Boar_MoveState moveState { get; private set; }
+    [SerializeField] private D_IdleState idleStateData;
+    [SerializeField] private D_MoveState moveStateData;
 
     protected override void Start()
     {
         base.Start();
 
-        moveState = new Boar_MoveState(finiteStateMachine, this, "move", stateData, this);
+        idleState = new Boar_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
+        moveState = new Boar_MoveState(finiteStateMachine, this, "move", moveStateData, this);
+
+        finiteStateMachine.Initialize(moveState);
     }
 }
