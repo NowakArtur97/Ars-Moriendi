@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IdleState : State
 {
@@ -50,7 +49,7 @@ public class IdleState : State
         base.PhysicsUpdateFunction();
     }
 
-    public void SetAfterIdle(bool flipAfterIdle)
+    public void SetFlipAfterIdle(bool flipAfterIdle)
     {
         this.flipAfterIdle = flipAfterIdle;
     }

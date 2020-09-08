@@ -24,6 +24,8 @@ public class Entity : MonoBehaviour
         myAnimator = aliveGameObject.GetComponent<Animator>();
 
         finiteStateMachine = new FiniteStateMachine();
+
+        facingDirection = 1;
     }
 
     protected virtual void Update()

@@ -23,6 +23,7 @@
 
         if (ShouldFlip())
         {
+            boar.idleState.SetFlipAfterIdle(true);
             finiteStateMachine.ChangeState(boar.idleState);
         }
     }

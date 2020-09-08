@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Boar_IdleState : IdleState
+﻿public class Boar_IdleState : IdleState
 {
     private Boar boar;
 
@@ -8,6 +6,11 @@ public class Boar_IdleState : IdleState
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         this.boar = boar;
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
     }
 
     public override void Exit()
@@ -18,6 +21,11 @@ public class Boar_IdleState : IdleState
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (isIdleTimeOver)
+        {
+            finiteStateMachine.ChangeState(boar.moveState);
+        }
     }
 
     public override void PhysicsUpdateFunction()
