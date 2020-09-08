@@ -21,7 +21,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        entity.SetVelocity(0);
+        entity.SetVelocity(0.0f);
         isIdleTimeOver = false;
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         SetRandomIdleTime();

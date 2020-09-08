@@ -15,6 +15,8 @@
     {
         base.Enter();
 
+        entity.SetVelocity(0.0f);
+
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }

@@ -77,7 +77,5 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - entityData.wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawLine(ledgeCheck.position, new Vector2(ledgeCheck.position.x, ledgeCheck.position.y - entityData.ledgeCheckDistance));
-        Gizmos.DrawLine(playerCheck.position, new Vector2(playerCheck.position.x - entityData.minAgroDistance, playerCheck.position.y));
-        Gizmos.DrawLine(playerCheck.position, new Vector2(playerCheck.position.x - entityData.maxAgroDistance, playerCheck.position.y));
     }
 }
