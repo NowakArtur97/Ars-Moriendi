@@ -21,6 +21,12 @@
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (!isPlayerInMaxAgroRange)
+        {
+            boar.idleState.SetFlipAfterIdle(false);
+            finiteStateMachine.ChangeState(boar.idleState);
+        }
     }
 
     public override void PhysicsUpdateFunction()

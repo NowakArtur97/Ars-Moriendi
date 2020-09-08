@@ -22,7 +22,11 @@
     {
         base.LogicUpdateFunction();
 
-        if (isIdleTimeOver)
+        if (isPlayerInMinAgroRange)
+        {
+            finiteStateMachine.ChangeState(boar.playerDetectedState);
+        }
+        else if (isIdleTimeOver)
         {
             finiteStateMachine.ChangeState(boar.moveState);
         }

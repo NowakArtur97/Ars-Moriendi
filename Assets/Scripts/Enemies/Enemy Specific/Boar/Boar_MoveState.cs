@@ -21,7 +21,11 @@
     {
         base.LogicUpdateFunction();
 
-        if (ShouldFlip())
+        if (isPlayerInMinAgroRange)
+        {
+            finiteStateMachine.ChangeState(boar.playerDetectedState);
+        }
+        else if (ShouldFlip())
         {
             boar.idleState.SetFlipAfterIdle(true);
             finiteStateMachine.ChangeState(boar.idleState);
