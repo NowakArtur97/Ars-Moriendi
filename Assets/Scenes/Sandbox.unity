@@ -121,36 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &172166278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 172166279}
-  m_Layer: 11
-  m_Name: Touch Damage Check
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &172166279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172166278}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.373, y: -0.213, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 322887033}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322887032
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +154,7 @@ Transform:
   m_Children:
   - {fileID: 352906539}
   - {fileID: 765138927}
-  - {fileID: 172166279}
+  - {fileID: 800722783}
   m_Father: {fileID: 594304492}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -381,9 +351,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallCheck: {fileID: 765138927}
   ledgeCheck: {fileID: 352906539}
+  playerCheck: {fileID: 800722783}
   entityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
   idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
   moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
+  playerDetectedStateData: {fileID: 11400000, guid: e3d06e9c0d9a7f447b0042885ea4160d,
+    type: 2}
 --- !u!1 &608755274
 GameObject:
   m_ObjectHideFlags: 0
@@ -6519,7 +6492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 765138927}
   m_Layer: 11
-  m_Name: WallCheck
+  m_Name: Wall Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6660,6 +6633,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!1 &800722782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800722783}
+  m_Layer: 11
+  m_Name: Player Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800722783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800722782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.028, y: -0.197, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 322887033}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &855380510
 GameObject:
   m_ObjectHideFlags: 0
