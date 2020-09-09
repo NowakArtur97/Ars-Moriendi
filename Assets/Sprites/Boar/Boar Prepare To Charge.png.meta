@@ -1,0 +1,320 @@
+fileFormatVersion: 2
+guid: bdf2d463da40c2d4ebdf60cf8bfb8b86
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6753271357123930794
+    second: Boar Prepare To Charge_0
+  - first:
+      213: -6079173428854079047
+    second: Boar Prepare To Charge_1
+  - first:
+      213: 2619842883144669287
+    second: Boar Prepare To Charge_2
+  - first:
+      213: -2650886682063044415
+    second: Boar Prepare To Charge_3
+  - first:
+      213: -8021589569478970262
+    second: Boar Prepare To Charge_4
+  - first:
+      213: 939615530016258943
+    second: Boar Prepare To Charge_5
+  - first:
+      213: 5769141318921043939
+    second: Boar Prepare To Charge_6
+  - first:
+      213: 14450250713482955
+    second: Boar Prepare To Charge_7
+  - first:
+      213: -7482076452259964822
+    second: Boar Prepare To Charge_8
+  - first:
+      213: -6522398955455530538
+    second: Boar Prepare To Charge_9
+  - first:
+      213: -3404454432867359116
+    second: Boar Prepare To Charge_10
+  - first:
+      213: 2833974078259791567
+    second: Boar Prepare To Charge_11
+  - first:
+      213: 851238992397910587
+    second: Boar Prepare To Charge_12
+  - first:
+      213: 1964848216272151252
+    second: Boar Prepare To Charge_13
+  - first:
+      213: 2232253220794369688
+    second: Boar Prepare To Charge_14
+  - first:
+      213: -8857556624330444788
+    second: Boar Prepare To Charge_15
+  - first:
+      213: -5728271177460392937
+    second: Boar Prepare To Charge_16
+  - first:
+      213: 840317148852490350
+    second: Boar Prepare To Charge_17
+  - first:
+      213: 6289048550168363753
+    second: Boar Prepare To Charge_18
+  - first:
+      213: -806636032918358198
+    second: Boar Prepare To Charge_19
+  - first:
+      213: -8136398223856057697
+    second: Boar Prepare To Charge_20
+  - first:
+      213: -5127225720696834665
+    second: Boar Prepare To Charge_21
+  - first:
+      213: -8999848049756361443
+    second: Boar Prepare To Charge_22
+  - first:
+      213: -5274282006731861179
+    second: Boar Prepare To Charge_23
+  - first:
+      213: 811795278226690669
+    second: Boar Prepare To Charge_24
+  - first:
+      213: -535103538850314138
+    second: Boar Prepare To Charge_25
+  - first:
+      213: 4858987009737023673
+    second: Boar Prepare To Charge_26
+  - first:
+      213: -1960986155433875558
+    second: Boar Prepare To Charge_27
+  - first:
+      213: -6504848157950340966
+    second: Boar Prepare To Charge_28
+  - first:
+      213: 7651515790201906035
+    second: Boar Prepare To Charge_29
+  - first:
+      213: -7193615693602308987
+    second: Boar Prepare To Charge_30
+  - first:
+      213: -7330900933757379074
+    second: Boar Prepare To Charge_31
+  - first:
+      213: 3277653525757940378
+    second: Boar Prepare To Charge_32
+  - first:
+      213: 1941405166736491278
+    second: Boar Prepare To Charge_33
+  - first:
+      213: 5898197543349932268
+    second: Boar Prepare To Charge_34
+  - first:
+      213: 8135620492368109314
+    second: Boar Prepare To Charge_35
+  - first:
+      213: -4277452557673621024
+    second: Boar Prepare To Charge_36
+  - first:
+      213: 4963804116001799401
+    second: Boar Prepare To Charge_37
+  - first:
+      213: 1444285816172356720
+    second: Boar Prepare To Charge_38
+  - first:
+      213: 2453320005051008625
+    second: Boar Prepare To Charge_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boar Prepare To Charge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaa2139d48078bd50800000000000000
+      internalID: 6753271357123930794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boar Prepare To Charge_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1c82da9ff62aba0800000000000000
+      internalID: -6079173428854079047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boar Prepare To Charge_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7685c21c83d8b5420800000000000000
+      internalID: 2619842883144669287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boar Prepare To Charge_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c081df8b98263bd0800000000000000
+      internalID: -2650886682063044415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
