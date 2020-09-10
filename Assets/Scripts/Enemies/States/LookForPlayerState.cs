@@ -72,6 +72,8 @@ public class LookForPlayerState : State
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        DoChecks();
     }
 
     public override void DoChecks()
