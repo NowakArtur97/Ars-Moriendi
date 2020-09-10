@@ -12,6 +12,7 @@ public class Boar : Entity
     public Boar_MoveState moveState;
     public Boar_PlayerDetectedState playerDetectedState;
     public Boar_ChargeState chargeState;
+    public Boar_LookForPlayerState lookForPlayerState;
 
     protected override void Start()
     {
@@ -21,7 +22,7 @@ public class Boar : Entity
         moveState = new Boar_MoveState(finiteStateMachine, this, "move", moveStateData, this);
         playerDetectedState = new Boar_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
         chargeState = new Boar_ChargeState(finiteStateMachine, this, "charge", chargeStateData, this);
-        chargeState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
+        lookForPlayerState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
 
         finiteStateMachine.Initialize(moveState);
     }
