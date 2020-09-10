@@ -22,13 +22,15 @@
     {
         base.LogicUpdateFunction();
 
-        //if (isPlayerInMinAgroRange && shouldPerformShortRangeAction)
-        //{
-        //    // TODO: ATTACK
-        //    //finiteStateMachine.ChangeState(boar.attackState);
-        //}
-        //else 
-        if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
+        if (!isPlayerInMaxAgroRange)
+        {
+            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+        }
+        else if (isPlayerInMinAgroRange && shouldPerformShortRangeAction)
+        {
+            //finiteStateMachine.ChangeState(boar.attackState);
+        }
+        else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
         {
             finiteStateMachine.ChangeState(boar.chargeState);
         }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Boar_LookForPlayerState : LookForPlayerState
+﻿public class Boar_LookForPlayerState : LookForPlayerState
 {
     private Boar boar;
 
@@ -25,6 +21,15 @@ public class Boar_LookForPlayerState : LookForPlayerState
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
+        {
+            finiteStateMachine.ChangeState(boar.playerDetectedState);
+        }
+        else if (areAllTurnsTimeDone)
+        {
+            finiteStateMachine.ChangeState(boar.moveState);
+        }
     }
 
     public override void PhysicsUpdateFunction()
