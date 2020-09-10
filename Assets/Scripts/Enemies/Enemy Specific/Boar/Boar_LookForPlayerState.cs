@@ -1,8 +1,12 @@
-﻿public class Boar_ChargeState : ChargeState
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Boar_LookForPlayerState : LookForPlayerState
 {
     private Boar boar;
 
-    public Boar_ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData, Boar boar)
+    public Boar_LookForPlayerState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_LookForPlayerState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         this.boar = boar;
@@ -21,12 +25,6 @@
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
-
-        if (!isDetectingLedge || isDetectingWall)
-        {
-            // TODO: LOOK FOR PLAYER STATE
-            finiteStateMachine.ChangeState(boar.idleState);
-        }
     }
 
     public override void PhysicsUpdateFunction()

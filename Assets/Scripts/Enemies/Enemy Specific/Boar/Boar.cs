@@ -6,6 +6,7 @@ public class Boar : Entity
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
     [SerializeField] private D_ChargeState chargeStateData;
+    [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
 
     public Boar_IdleState idleState;
     public Boar_MoveState moveState;
@@ -20,6 +21,7 @@ public class Boar : Entity
         moveState = new Boar_MoveState(finiteStateMachine, this, "move", moveStateData, this);
         playerDetectedState = new Boar_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
         chargeState = new Boar_ChargeState(finiteStateMachine, this, "charge", chargeStateData, this);
+        chargeState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
 
         finiteStateMachine.Initialize(moveState);
     }
