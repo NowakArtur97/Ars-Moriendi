@@ -17,8 +17,7 @@
 
         entity.SetVelocity(0.0f);
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        DoChecks();
     }
 
     public override void Exit()
@@ -34,6 +33,13 @@
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        DoChecks();
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
 
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();

@@ -37,6 +37,11 @@
         base.PhysicsUpdateFunction();
     }
 
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
+
     private bool ShouldFlip()
     {
         return !isDetectingLedge || isDetectingWall;

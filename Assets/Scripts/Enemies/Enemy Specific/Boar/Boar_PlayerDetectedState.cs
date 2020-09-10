@@ -33,4 +33,10 @@
     {
         base.PhysicsUpdateFunction();
     }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
+
 }

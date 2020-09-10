@@ -19,9 +19,7 @@
 
         entity.SetVelocity(stateData.movementSpeed);
 
-        isDetectingWall = entity.CheckWall();
-        isDetectingLedge = entity.CheckLedge();
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        DoChecks();
     }
 
     public override void Exit()
@@ -37,6 +35,13 @@
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        DoChecks();
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
 
         isDetectingWall = entity.CheckWall();
         isDetectingLedge = entity.CheckLedge();
