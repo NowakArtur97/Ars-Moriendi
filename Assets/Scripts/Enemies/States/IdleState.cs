@@ -8,6 +8,7 @@ public class IdleState : State
     protected bool isIdleTimeOver;
 
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
 
     protected float idleTime;
 
@@ -70,5 +71,6 @@ public class IdleState : State
         base.DoChecks();
 
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }
 }

@@ -1,9 +1,14 @@
-﻿public class PlayerDetectedState : State
+﻿using UnityEngine;
+
+public class PlayerDetectedState : State
 {
     protected D_PlayerDetectedState stateData;
 
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
+
+    protected bool shouldPerformLongRangeAction;
+    protected bool shouldPerformShortRangeAction;
 
     public PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
@@ -17,6 +22,9 @@
 
         entity.SetVelocity(0.0f);
 
+        shouldPerformShortRangeAction = false;
+        shouldPerformLongRangeAction = false;
+
         DoChecks();
     }
 
@@ -28,6 +36,16 @@
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (Time.time >= startTime + stateData.timeForShortRangeAction)
+        {
+            shouldPerformShortRangeAction = true;
+        }
+
+        if (Time.time >= startTime + stateData.timeForLongRangeAction)
+        {
+            shouldPerformLongRangeAction = true;
+        }
     }
 
     public override void PhysicsUpdateFunction()

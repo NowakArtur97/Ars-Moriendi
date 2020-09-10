@@ -6,6 +6,7 @@
     protected bool isDetectingLedge;
 
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
 
     public MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
@@ -46,5 +47,6 @@
         isDetectingWall = entity.CheckWall();
         isDetectingLedge = entity.CheckLedge();
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }
 }

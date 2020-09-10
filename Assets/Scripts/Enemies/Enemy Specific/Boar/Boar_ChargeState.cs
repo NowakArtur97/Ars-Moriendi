@@ -1,8 +1,8 @@
-﻿public class Boar_IdleState : IdleState
+﻿public class Boar_ChargeState : ChargeState
 {
     private Boar boar;
 
-    public Boar_IdleState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_IdleState stateData, Boar boar)
+    public Boar_ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         this.boar = boar;
@@ -21,15 +21,6 @@
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
-
-        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
-        {
-            finiteStateMachine.ChangeState(boar.playerDetectedState);
-        }
-        else if (isIdleTimeOver)
-        {
-            finiteStateMachine.ChangeState(boar.moveState);
-        }
     }
 
     public override void PhysicsUpdateFunction()

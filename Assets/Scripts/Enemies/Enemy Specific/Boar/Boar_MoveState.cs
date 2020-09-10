@@ -21,7 +21,7 @@
     {
         base.LogicUpdateFunction();
 
-        if (isPlayerInMinAgroRange)
+        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
             finiteStateMachine.ChangeState(boar.playerDetectedState);
         }
