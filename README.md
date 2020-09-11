@@ -40,7 +40,7 @@ Project is: in progess
 
 ## Screenshots
 
-![ToDo List](./Screenshots/Boar State Machine.jpg)
+![Example Finite State Machine](./Screenshots/boar_finite_state_machine.png.jpg)
 
 Exemplary Finite State Machine
 
