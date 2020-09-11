@@ -40,7 +40,7 @@ Project is: in progess
 
 ## Screenshots
 
-![Example Finite State Machine](./Screenshots/boar_finite_state_machine.png.jpg)
+![Example Finite State Machine](./Screenshots/boar_finite_state_machine.png)
 
 Exemplary Finite State Machine
 

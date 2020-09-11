@@ -5,6 +5,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected Transform ledgeCheck;
     [SerializeField] protected Transform playerCheck;
+    [SerializeField] protected Transform playerJumpedOverCheck;
 
     public D_Entity entityData;
 
@@ -66,6 +67,11 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
 
+    public virtual bool CheckIfPlayerJumpedOver()
+    {
+        return Physics2D.Raycast(playerJumpedOverCheck.position, Vector2.up, entityData.maxPlayerJumpedOverDistance, entityData.whatIsPlayer);
+    }
+
     public void Flip()
     {
         facingDirection *= -1;
@@ -77,5 +83,7 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - entityData.wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawLine(ledgeCheck.position, new Vector2(ledgeCheck.position.x, ledgeCheck.position.y - entityData.ledgeCheckDistance));
+        Gizmos.DrawLine(playerJumpedOverCheck.position, new Vector2(playerJumpedOverCheck.position.x,
+            playerJumpedOverCheck.position.y - entityData.maxPlayerJumpedOverDistance));
     }
 }

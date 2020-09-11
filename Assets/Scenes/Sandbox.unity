@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &291381419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291381420}
+  m_Layer: 11
+  m_Name: Player Jumped Over Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &291381420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291381419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.111, y: 2.134, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 322887033}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322887032
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +185,7 @@ Transform:
   - {fileID: 352906539}
   - {fileID: 765138927}
   - {fileID: 800722783}
+  - {fileID: 291381420}
   m_Father: {fileID: 594304492}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,6 +383,7 @@ MonoBehaviour:
   wallCheck: {fileID: 765138927}
   ledgeCheck: {fileID: 352906539}
   playerCheck: {fileID: 800722783}
+  playerJumpedOverCheck: {fileID: 291381420}
   entityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
   idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
   moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
@@ -359,6 +391,8 @@ MonoBehaviour:
     type: 2}
   chargeStateData: {fileID: 11400000, guid: 81bd4f550b3d20a4590f953f3d28402c, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 59cc02ca96f8f4049b004c5de9b138da,
+    type: 2}
+  playerJumpedOverStateDate: {fileID: 11400000, guid: 4a8ec485acefaa245bd9d3c8fadae5c5,
     type: 2}
 --- !u!1 &608755274
 GameObject:
