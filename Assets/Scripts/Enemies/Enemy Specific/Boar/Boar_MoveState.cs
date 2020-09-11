@@ -25,7 +25,7 @@
         {
             finiteStateMachine.ChangeState(boar.playerDetectedState);
         }
-        else if (ShouldFlip())
+        else if (!isDetectingLedge || isDetectingWall)
         {
             boar.idleState.SetFlipAfterIdle(true);
             finiteStateMachine.ChangeState(boar.idleState);
@@ -40,10 +40,5 @@
     public override void DoChecks()
     {
         base.DoChecks();
-    }
-
-    private bool ShouldFlip()
-    {
-        return !isDetectingLedge || isDetectingWall;
     }
 }

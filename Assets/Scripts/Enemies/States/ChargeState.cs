@@ -4,6 +4,7 @@
 
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
+    protected bool isDetectingPlayerAbove;
 
     protected bool isPlayerInMinAgroRange;
 
@@ -46,5 +47,6 @@
         isDetectingWall = entity.CheckWall();
         isDetectingLedge = entity.CheckLedge();
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isDetectingPlayerAbove = entity.CheckIfPlayerJumpedOver();
     }
 }

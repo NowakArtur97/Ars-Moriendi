@@ -22,9 +22,13 @@
     {
         base.LogicUpdateFunction();
 
-        if (HasLostSightOfPlayer())
+        if (HasDetectedObstacle())
         {
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
+        }
+        else if (isDetectingPlayerAbove)
+        {
+            finiteStateMachine.ChangeState(boar.slowDownState);
         }
         else if (isPlayerInMinAgroRange)
         {
@@ -42,7 +46,7 @@
         base.DoChecks();
     }
 
-    private bool HasLostSightOfPlayer()
+    private bool HasDetectedObstacle()
     {
         return !isDetectingLedge || isDetectingWall;
     }

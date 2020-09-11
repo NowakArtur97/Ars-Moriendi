@@ -7,14 +7,14 @@ public class Boar : Entity
     [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
     [SerializeField] private D_ChargeState chargeStateData;
     [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
-    [SerializeField] private D_PlayerJumpedOverState playerJumpedOverStateDate;
+    [SerializeField] private D_SlowDownState slowDownStateData;
 
     public Boar_IdleState idleState;
     public Boar_MoveState moveState;
     public Boar_PlayerDetectedState playerDetectedState;
     public Boar_ChargeState chargeState;
     public Boar_LookForPlayerState lookForPlayerState;
-    public Boar_PlayerJumpedOverState playerJumpedOverState;
+    public Boar_SlowDownState slowDownState;
 
     protected override void Start()
     {
@@ -25,7 +25,7 @@ public class Boar : Entity
         playerDetectedState = new Boar_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
         chargeState = new Boar_ChargeState(finiteStateMachine, this, "charge", chargeStateData, this);
         lookForPlayerState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
-        playerJumpedOverState = new Boar_PlayerJumpedOverState(finiteStateMachine, this, "playerJumpedOver", playerJumpedOverStateDate, this);
+        slowDownState = new Boar_SlowDownState(finiteStateMachine, this, "slowDown", slowDownStateData, this);
 
         finiteStateMachine.Initialize(moveState);
     }

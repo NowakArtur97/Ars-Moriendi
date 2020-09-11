@@ -45,6 +45,8 @@ public class Entity : MonoBehaviour
         velocityWorkSpace.Set(velocity * facingDirection, myRigidbody2D.velocity.y);
 
         myRigidbody2D.velocity = velocityWorkSpace;
+
+        Debug.Log(myRigidbody2D.velocity.x);
     }
 
     public virtual bool CheckWall()
@@ -84,6 +86,6 @@ public class Entity : MonoBehaviour
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - entityData.wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawLine(ledgeCheck.position, new Vector2(ledgeCheck.position.x, ledgeCheck.position.y - entityData.ledgeCheckDistance));
         Gizmos.DrawLine(playerJumpedOverCheck.position, new Vector2(playerJumpedOverCheck.position.x,
-            playerJumpedOverCheck.position.y - entityData.maxPlayerJumpedOverDistance));
+            playerJumpedOverCheck.position.y + entityData.maxPlayerJumpedOverDistance));
     }
 }
