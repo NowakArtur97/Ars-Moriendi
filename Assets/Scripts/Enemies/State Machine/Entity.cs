@@ -45,8 +45,6 @@ public class Entity : MonoBehaviour
         velocityWorkSpace.Set(velocity * facingDirection, myRigidbody2D.velocity.y);
 
         myRigidbody2D.velocity = velocityWorkSpace;
-
-        Debug.Log(myRigidbody2D.velocity.x);
     }
 
     public virtual bool CheckWall()
