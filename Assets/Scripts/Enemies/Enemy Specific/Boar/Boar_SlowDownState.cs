@@ -29,6 +29,7 @@
         }
         else if (hasStopped && isMinSlideTimeOver)
         {
+            boar.lookForPlayerState.SetShouldTurnImmediately(true);
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
         }
     }

@@ -34,6 +34,8 @@
         {
             finiteStateMachine.ChangeState(boar.playerDetectedState);
         }
+
+        // TODO: Add attack state
     }
 
     public override void PhysicsUpdateFunction()

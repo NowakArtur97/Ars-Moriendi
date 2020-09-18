@@ -28,6 +28,7 @@
         }
         else if (isPlayerInMinAgroRange && shouldPerformShortRangeAction)
         {
+            // TODO: Add attack state
             //finiteStateMachine.ChangeState(boar.attackState);
         }
         else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
