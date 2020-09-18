@@ -160,6 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 322887033}
+  - component: {fileID: 322887038}
   - component: {fileID: 322887037}
   - component: {fileID: 322887036}
   - component: {fileID: 322887035}
@@ -186,6 +187,7 @@ Transform:
   - {fileID: 765138927}
   - {fileID: 800722783}
   - {fileID: 291381420}
+  - {fileID: 1644224282}
   m_Father: {fileID: 594304492}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,6 +308,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &322887038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322887032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dfd7590a8b06b4c810cbbe52642e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352906538
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +407,9 @@ MonoBehaviour:
   lookForPlayerStateData: {fileID: 11400000, guid: 59cc02ca96f8f4049b004c5de9b138da,
     type: 2}
   slowDownStateData: {fileID: 11400000, guid: 4a8ec485acefaa245bd9d3c8fadae5c5, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 20a5492f2e2e2bb419ba725046ad1fb1,
+    type: 2}
+  meleeAttackPosition: {fileID: 1644224282}
 --- !u!1 &608755274
 GameObject:
   m_ObjectHideFlags: 0
@@ -7346,6 +7363,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 917927150}
+--- !u!1 &1644224281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644224282}
+  m_Layer: 11
+  m_Name: Melee Attack Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644224282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644224281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.765, y: -0.197, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 322887033}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1672962625
 GameObject:
   m_ObjectHideFlags: 0

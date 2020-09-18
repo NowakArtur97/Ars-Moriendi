@@ -92,11 +92,15 @@ public class Entity : MonoBehaviour
         aliveGameObject.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x - entityData.wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawLine(ledgeCheck.position, new Vector2(ledgeCheck.position.x, ledgeCheck.position.y - entityData.ledgeCheckDistance));
         Gizmos.DrawLine(playerJumpedOverCheck.position, new Vector2(playerJumpedOverCheck.position.x,
             playerJumpedOverCheck.position.y + entityData.maxPlayerJumpedOverDistance));
+
+        Gizmos.DrawWireSphere((playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance)), 0.2f);
+        Gizmos.DrawWireSphere((playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance)), 0.2f);
+        Gizmos.DrawWireSphere((playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance)), 0.2f);
     }
 }

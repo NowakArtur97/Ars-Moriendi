@@ -9,19 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e2cc0b10f9b0f4bbe5cc25cefb67d0, type: 3}
-  m_Name: Boar_BaseData
+  m_Script: {fileID: 11500000, guid: 9b1c320d59dca9a4898ec4c6ae0877ae, type: 3}
+  m_Name: Boar_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
-  minAgroDistance: 1
-  maxAgroDistance: 7.5
-  closeRangeActionDistance: 1
-  longRangeActionDistance: 4
-  maxPlayerJumpedOverDistance: 6
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
+  attackRadius: 0.5
+  attackDamage: 10
+  attackMovementSpeed: 5
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024

@@ -1,4 +1,6 @@
-﻿public class Boar_ChargeState : ChargeState
+﻿using UnityEngine;
+
+public class Boar_ChargeState : ChargeState
 {
     private Boar boar;
 
@@ -11,6 +13,8 @@
     public override void Enter()
     {
         base.Enter();
+
+        DoChecks();
     }
 
     public override void Exit()

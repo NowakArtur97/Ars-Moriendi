@@ -53,6 +53,8 @@ public class BasicEnemyController : MonoBehaviour
 
     private PlayerMovementController playerMovement;
 
+    private AttackDetails attackDetails;
+
     private enum State
     {
         Moving, Knockback, Dead
@@ -220,11 +222,14 @@ public class BasicEnemyController : MonoBehaviour
 
             Collider2D hit = Physics2D.OverlapArea(touchDamageBottomLeft, touchDamageUpperRight, whatIsPlayer);
 
+            attackDetails.position = transform.position;
+            attackDetails.damageAmmount = 0;
+
             if (hit != null)
             {
                 lastTouchDamageTime = Time.time;
 
-                hit.SendMessage("Damage", new AttackDetails(transform.position, touchDamage));
+                hit.SendMessage("Damage", attackDetails);
             }
         }
     }

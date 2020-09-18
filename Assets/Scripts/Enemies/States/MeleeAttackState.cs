@@ -16,7 +16,8 @@ public class MeleeAttackState : AttackState
     {
         base.Enter();
 
-        attackDetails = new AttackDetails(entity.aliveGameObject.transform.position, stateData.attackDamage);
+        attackDetails.position = entity.aliveGameObject.transform.position;
+        attackDetails.damageAmmount = stateData.attackDamage;
 
         entity.SetVelocity(stateData.attackMovementSpeed);
 

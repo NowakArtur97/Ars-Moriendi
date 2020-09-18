@@ -24,6 +24,8 @@ public class PlayerCombatController : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private SpriteRenderer mySpriteRenderer;
 
+    private AttackDetails attackDetails;
+
     private void OnEnable()
     {
         controls.Enable();
@@ -106,9 +108,12 @@ public class PlayerCombatController : MonoBehaviour
     {
         Collider2D[] detectedObjectsToAttack = Physics2D.OverlapCircleAll(attackHitBoxPosition.position, attackRadius, whatIsDamagable);
 
+        attackDetails.position = transform.position;
+        attackDetails.damageAmmount = attackDamage;
+
         foreach (Collider2D objectToAttack in detectedObjectsToAttack)
         {
-            objectToAttack.transform.parent.SendMessage("Damage", new AttackDetails(transform.position, attackDamage));
+            objectToAttack.transform.parent.SendMessage("Damage", attackDetails);
         }
     }
 

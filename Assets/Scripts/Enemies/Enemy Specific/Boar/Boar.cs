@@ -2,6 +2,7 @@
 
 public class Boar : Entity
 {
+    [Header("States Data")]
     [SerializeField] private D_IdleState idleStateData;
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
@@ -10,6 +11,7 @@ public class Boar : Entity
     [SerializeField] private D_SlowDownState slowDownStateData;
     [SerializeField] private D_MeleeAttackState meleeAttackStateData;
 
+    [Header("Attack Positions")]
     [SerializeField] private Transform meleeAttackPosition;
 
     public Boar_IdleState idleState;
@@ -33,5 +35,12 @@ public class Boar : Entity
         meleeAttackState = new Boar_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
         finiteStateMachine.Initialize(moveState);
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+
+        Gizmos.DrawSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
 }
