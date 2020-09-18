@@ -374,9 +374,9 @@ public class PlayerMovementController : MonoBehaviour
 
     #region Damage Received
 
-    public void Knockback(DamageDetails damageDetails)
+    public void Knockback(AttackDetails attackDetails)
     {
-        knockbackDirection = damageDetails.direction > transform.position.x ? -1 : 1;
+        knockbackDirection = attackDetails.position.x > transform.position.x ? -1 : 1;
 
         isKnockbacked = true;
         knockbackStartTime = Time.time;

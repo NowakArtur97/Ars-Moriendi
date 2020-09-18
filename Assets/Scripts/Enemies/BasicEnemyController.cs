@@ -196,10 +196,10 @@ public class BasicEnemyController : MonoBehaviour
         aliveRigidbody2D.velocity = movement;
     }
 
-    private void Damage(DamageDetails damageDetails)
+    private void Damage(AttackDetails attackDetails)
     {
-        healthLeft -= damageDetails.damage;
-        damageDirection = damageDetails.direction > aliveGO.transform.position.x ? -1 : 1;
+        healthLeft -= attackDetails.damageAmmount;
+        damageDirection = attackDetails.position.x > aliveGO.transform.position.x ? -1 : 1;
 
         if (healthLeft <= 0.1f)
         {
@@ -224,7 +224,7 @@ public class BasicEnemyController : MonoBehaviour
             {
                 lastTouchDamageTime = Time.time;
 
-                hit.SendMessage("Damage", new DamageDetails(touchDamage, transform.position.x));
+                hit.SendMessage("Damage", new AttackDetails(transform.position, touchDamage));
             }
         }
     }
