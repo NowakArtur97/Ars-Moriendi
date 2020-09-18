@@ -22,7 +22,11 @@
     {
         base.LogicUpdateFunction();
 
-        if (HasDetectedObstacle())
+        if (shouldPerformCloseRangeAction)
+        {
+            finiteStateMachine.ChangeState(boar.meleeAttackState);
+        }
+        else if (HasDetectedObstacle())
         {
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
         }
@@ -34,8 +38,6 @@
         {
             finiteStateMachine.ChangeState(boar.playerDetectedState);
         }
-
-        // TODO: Add attack state
     }
 
     public override void PhysicsUpdateFunction()

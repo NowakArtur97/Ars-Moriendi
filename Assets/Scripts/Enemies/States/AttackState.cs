@@ -6,6 +6,9 @@ public class AttackState : State
 
     protected bool isAnimationFinished = false;
 
+    protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
+
     public AttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition) :
         base(finiteStateMachine, entity, animationBoolName)
     {
@@ -21,6 +24,8 @@ public class AttackState : State
         isAnimationFinished = false;
 
         entity.SetVelocity(0.0f);
+
+        DoChecks();
     }
 
     public override void Exit()
@@ -41,6 +46,9 @@ public class AttackState : State
     public override void DoChecks()
     {
         base.DoChecks();
+
+        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }
 
     public virtual void TriggerAttack()

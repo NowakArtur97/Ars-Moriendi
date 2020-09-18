@@ -28,8 +28,7 @@
         }
         else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
         {
-            // TODO: Add attack state
-            //finiteStateMachine.ChangeState(boar.attackState);
+            finiteStateMachine.ChangeState(boar.meleeAttackState);
         }
         else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
         {

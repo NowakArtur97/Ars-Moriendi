@@ -17,6 +17,8 @@ public class MeleeAttackState : AttackState
         base.Enter();
 
         attackDetails = new AttackDetails(entity.aliveGameObject.transform.position, stateData.attackDamage);
+
+        DoChecks();
     }
 
     public override void Exit()
@@ -32,6 +34,8 @@ public class MeleeAttackState : AttackState
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        DoChecks();
     }
 
     public override void DoChecks()

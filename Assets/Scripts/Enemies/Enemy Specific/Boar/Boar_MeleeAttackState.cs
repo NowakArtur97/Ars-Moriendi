@@ -13,6 +13,8 @@ public class Boar_MeleeAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+
+        DoChecks();
     }
 
     public override void Exit()
@@ -23,11 +25,25 @@ public class Boar_MeleeAttackState : MeleeAttackState
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (isAnimationFinished)
+        {
+            if (isPlayerInMinAgroRange)
+            {
+                finiteStateMachine.ChangeState(boar.playerDetectedState);
+            }
+            else
+            {
+                finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            }
+        }
     }
 
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
+
+        DoChecks();
     }
 
     public override void DoChecks()
