@@ -4,6 +4,8 @@ public class AttackState : State
 {
     protected Transform attackPosition;
 
+    protected bool isAnimationFinished = false;
+
     public AttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition) :
         base(finiteStateMachine, entity, animationBoolName)
     {
@@ -13,6 +15,8 @@ public class AttackState : State
     public override void Enter()
     {
         base.Enter();
+
+        isAnimationFinished = false;
     }
 
     public override void Exit()
@@ -33,5 +37,15 @@ public class AttackState : State
     public override void DoChecks()
     {
         base.DoChecks();
+    }
+
+    public virtual void TriggerAttack()
+    {
+
+    }
+
+    public virtual void FinishAttack()
+    {
+        isAnimationFinished = true;
     }
 }
