@@ -26,7 +26,7 @@
         {
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
         }
-        else if (isPlayerInMinAgroRange && shouldPerformShortRangeAction)
+        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
         {
             // TODO: Add attack state
             //finiteStateMachine.ChangeState(boar.attackState);

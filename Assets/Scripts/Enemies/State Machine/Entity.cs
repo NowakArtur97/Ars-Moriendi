@@ -67,6 +67,16 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
 
+    public virtual bool CheckIfPlayerInCloseRangeAction()
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    }
+
+    public virtual bool CheckIfPlayerInLongRangeAction()
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGameObject.transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+    }
+
     public virtual bool CheckIfPlayerJumpedOver()
     {
         return Physics2D.Raycast(playerJumpedOverCheck.position, Vector2.up, entityData.maxPlayerJumpedOverDistance, entityData.whatIsPlayer);

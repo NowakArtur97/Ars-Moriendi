@@ -8,6 +8,9 @@
 
     protected bool isPlayerInMinAgroRange;
 
+    protected bool shouldPerformCloseRangeAction;
+    protected bool shouldPerformLongRangeAction;
+
     public ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
@@ -48,5 +51,8 @@
         isDetectingLedge = entity.CheckLedge();
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         isDetectingPlayerAbove = entity.CheckIfPlayerJumpedOver();
+
+        shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
+        shouldPerformLongRangeAction = entity.CheckIfPlayerInLongRangeAction();
     }
 }
