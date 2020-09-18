@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public D_Entity entityData;
 
     public FiniteStateMachine finiteStateMachine;
+    public AnimationToStateMachine animationToStateMachine { get; private set; }
 
     public Rigidbody2D myRigidbody2D { get; private set; }
     public Animator myAnimator { get; private set; }
@@ -24,6 +25,8 @@ public class Entity : MonoBehaviour
         aliveGameObject = transform.Find("Alive").gameObject;
         myRigidbody2D = aliveGameObject.GetComponent<Rigidbody2D>();
         myAnimator = aliveGameObject.GetComponent<Animator>();
+
+        animationToStateMachine = aliveGameObject.GetComponent<AnimationToStateMachine>();
 
         finiteStateMachine = new FiniteStateMachine();
 

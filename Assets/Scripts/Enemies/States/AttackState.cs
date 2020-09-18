@@ -16,7 +16,11 @@ public class AttackState : State
     {
         base.Enter();
 
+        entity.animationToStateMachine.attackState = this;
+
         isAnimationFinished = false;
+
+        entity.SetVelocity(0.0f);
     }
 
     public override void Exit()
