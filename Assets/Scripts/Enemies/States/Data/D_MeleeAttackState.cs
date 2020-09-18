@@ -7,5 +7,7 @@ public class D_MeleeAttackState : ScriptableObject
 
     public float attackDamage = 10f;
 
+    public float attackMovementSpeed = 0.0f;
+
     public LayerMask whatIsPlayer;
 }
