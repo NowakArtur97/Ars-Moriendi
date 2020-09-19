@@ -14,6 +14,8 @@ public class D_Entity : ScriptableObject
 
     public float maxPlayerJumpedOverDistance = 1.0f;
 
+    public float maxHealth = 30.0f;
+
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }

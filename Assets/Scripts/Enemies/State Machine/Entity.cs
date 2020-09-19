@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour
     public GameObject aliveGameObject { get; private set; }
 
     public float facingDirection { get; private set; }
+    public float currentHealth { get; private set; }
 
     private Vector2 velocityWorkSpace;
 
@@ -31,6 +32,7 @@ public class Entity : MonoBehaviour
         finiteStateMachine = new FiniteStateMachine();
 
         facingDirection = 1;
+        currentHealth = entityData.maxHealth;
     }
 
     protected virtual void Update()
@@ -41,6 +43,11 @@ public class Entity : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         finiteStateMachine.currentState.PhysicsUpdateFunction();
+    }
+
+    public virtual void Damage(AttackDetails attackDetails)
+    {
+
     }
 
     public virtual void SetVelocity(float velocity)
