@@ -22,6 +22,9 @@ MonoBehaviour:
   maxPlayerJumpedOverDistance: 6
   maxHealth: 50
   damageHopSpeed: 3
+  hitPartciles:
+  - {fileID: 7193024407518473852, guid: 74284e4a531ad274abaefa184d956d00, type: 3}
+  - {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345, type: 3}
   stunResistance: 3
   stunRecorveryTime: 2
   whatIsGround:

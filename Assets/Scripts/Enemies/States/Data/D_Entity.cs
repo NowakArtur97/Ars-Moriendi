@@ -18,6 +18,7 @@ public class D_Entity : ScriptableObject
     public float maxHealth = 30.0f;
 
     public float damageHopSpeed = 9.0f;
+    public GameObject[] hitPartciles;
 
     public float stunResistance = 3.0f;
     public float stunRecorveryTime = 2.0f;

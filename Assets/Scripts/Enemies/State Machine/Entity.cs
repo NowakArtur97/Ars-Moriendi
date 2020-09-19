@@ -2,6 +2,7 @@
 
 public class Entity : MonoBehaviour
 {
+    [Header("Checks")]
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected Transform ledgeCheck;
     [SerializeField] protected Transform playerCheck;
@@ -19,6 +20,8 @@ public class Entity : MonoBehaviour
 
     public float facingDirection { get; private set; }
     private float currentHealth;
+
+    protected bool isDead;
 
     private float currentStunResistance;
     private float lastDamageTime;
@@ -83,9 +86,19 @@ public class Entity : MonoBehaviour
 
         lastDamageDirection = attackDetails.position.x > aliveGameObject.transform.position.x ? -1 : 1;
 
+        foreach (GameObject hitPartcile in entityData.hitPartciles)
+        {
+            Instantiate(hitPartcile, aliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
+        }
+
         if (currentStunResistance <= 0)
         {
             isStunned = true;
+        }
+
+        if (currentHealth <= 0)
+        {
+            isDead = true;
         }
     }
 

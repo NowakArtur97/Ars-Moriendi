@@ -412,6 +412,7 @@ MonoBehaviour:
   meleeAttackStateData: {fileID: 11400000, guid: 20a5492f2e2e2bb419ba725046ad1fb1,
     type: 2}
   stunStateData: {fileID: 11400000, guid: 1345b677c87bcce47b26c630b6f03b72, type: 2}
+  deadStateData: {fileID: 11400000, guid: 1816cd32433db414cbb6cabf6e4a4e64, type: 2}
   meleeAttackPosition: {fileID: 1644224282}
 --- !u!1 &608755274
 GameObject:
