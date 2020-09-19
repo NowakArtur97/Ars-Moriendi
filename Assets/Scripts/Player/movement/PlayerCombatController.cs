@@ -8,6 +8,7 @@ public class PlayerCombatController : MonoBehaviour
     private bool isAttacking, isFirstAttack, attack1;
     [SerializeField] private float attackRadius = 0.8f;
     [SerializeField] private float attackDamage = 5f;
+    [SerializeField] private float stunDamageAmount = 1f;
 
     [SerializeField] private float prematureAttackAttemptDefaultTimer = 0.15f;
     private float prematureAttackAttemptTimer = 0;
@@ -110,6 +111,7 @@ public class PlayerCombatController : MonoBehaviour
 
         attackDetails.position = transform.position;
         attackDetails.damageAmmount = attackDamage;
+        attackDetails.stunDamageAmount = stunDamageAmount;
 
         foreach (Collider2D objectToAttack in detectedObjectsToAttack)
         {

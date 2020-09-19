@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour
     private float lastDamageTime;
     public int lastDamageDirection { get; private set; }
 
-    protected bool isStunnded;
+    protected bool isStunned;
 
     private Vector2 velocityWorkSpace;
 
@@ -68,7 +68,7 @@ public class Entity : MonoBehaviour
 
     public virtual void ResetStunResistance()
     {
-        isStunnded = false;
+        isStunned = false;
         currentStunResistance = entityData.stunResistance;
     }
 
@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour
 
         if (currentStunResistance <= 0)
         {
-            isStunnded = true;
+            isStunned = true;
         }
     }
 

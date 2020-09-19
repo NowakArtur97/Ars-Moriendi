@@ -44,7 +44,7 @@ public class Boar : Entity
     {
         base.Damage(attackDetails);
 
-        if (isStunnded && finiteStateMachine.currentState != stunState)
+        if (isStunned && finiteStateMachine.currentState != stunState)
         {
             finiteStateMachine.ChangeState(stunState);
         }

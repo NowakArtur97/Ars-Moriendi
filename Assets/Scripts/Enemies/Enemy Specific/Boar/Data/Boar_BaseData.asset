@@ -20,8 +20,10 @@ MonoBehaviour:
   closeRangeActionDistance: 1
   longRangeActionDistance: 4
   maxPlayerJumpedOverDistance: 6
-  maxHealth: 30
+  maxHealth: 50
   damageHopSpeed: 3
+  stunResistance: 3
+  stunRecorveryTime: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

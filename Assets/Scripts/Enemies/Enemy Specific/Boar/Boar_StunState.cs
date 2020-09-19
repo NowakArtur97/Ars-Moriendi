@@ -30,13 +30,13 @@
             }
             else if (isPlayerInMinAgroRange)
             {
-                finiteStateMachine.ChangeState(boar.meleeAttackState);
+                finiteStateMachine.ChangeState(boar.chargeState);
             }
-        }
-        else
-        {
-            boar.lookForPlayerState.SetShouldTurnImmediately(true);
-            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            else
+            {
+                boar.lookForPlayerState.SetShouldTurnImmediately(true);
+                finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            }
         }
     }
 
