@@ -15,7 +15,6 @@ public class DeathParticleEffect : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         playerPosition = player.transform;
-        facingDirection = player.GetComponent<PlayerMovementController>().GetFacingDirection();
 
         bloodPrticleEffect = gameObject.GetComponent<ParticleSystem>();
 

@@ -468,11 +468,6 @@ public class PlayerMovementController : MonoBehaviour
         return (isFacingRight && movementInput < 0) || (!isFacingRight && movementInput > 0);
     }
 
-    public float GetFacingDirection()
-    {
-        return facingDirection;
-    }
-
     public bool GetDashStatus()
     {
         return isDashing;

@@ -55,9 +55,9 @@ public class CombatDummyController : MonoBehaviour
         aliveAnimator = aliveGO.GetComponent<Animator>();
     }
 
-    private void Damage(float damageReceived)
+    private void Damage(AttackDetails attackDetails)
     {
-        healthLeft -= damageReceived;
+        healthLeft -= attackDetails.damageAmmount;
 
         if (healthLeft <= 0)
         {
@@ -65,7 +65,7 @@ public class CombatDummyController : MonoBehaviour
         }
         else if (isKnockBackEnabled)
         {
-            SetAnimation();
+            SetAnimation(attackDetails.position.x);
             KnockBack();
             InstantiateParticleEffect();
         }
@@ -76,9 +76,9 @@ public class CombatDummyController : MonoBehaviour
         Instantiate(damagePartcileEffect, aliveGO.transform.position, Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f)));
     }
 
-    private void SetAnimation()
+    private void SetAnimation(float xPosition)
     {
-        playerFacingDirection = playerMovementController.GetFacingDirection();
+        playerFacingDirection = xPosition > aliveGO.transform.position.x ? -1 : 1;
         bool isPlayerOnTheLeft = playerFacingDirection == 1;
 
         aliveAnimator.SetBool("isPlayerOnTheLeft", isPlayerOnTheLeft);
