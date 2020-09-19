@@ -15,4 +15,4 @@ MonoBehaviour:
   stunTime: 3
   stunKnockbackTime: 0.2
   stunKnockbackSpeed: 2
-  stunKnockbackAngle: {x: 1, y: 2}
+  stunKnockbackAngle: {x: 3, y: 4}

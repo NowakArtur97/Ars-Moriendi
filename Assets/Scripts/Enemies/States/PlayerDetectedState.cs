@@ -4,6 +4,9 @@ public class PlayerDetectedState : State
 {
     protected D_PlayerDetectedState stateData;
 
+    protected bool isDetectingWall;
+    protected bool isDetectingLedge;
+
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
 
@@ -54,6 +57,9 @@ public class PlayerDetectedState : State
     public override void DoChecks()
     {
         base.DoChecks();
+
+        isDetectingWall = entity.CheckWall();
+        isDetectingLedge = entity.CheckLedge();
 
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();

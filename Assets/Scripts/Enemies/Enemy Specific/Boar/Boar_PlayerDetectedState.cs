@@ -22,7 +22,12 @@
     {
         base.LogicUpdateFunction();
 
-        if (!isPlayerInMaxAgroRange)
+        if (!isDetectingLedge || isDetectingWall)
+        {
+            entity.Flip();
+            finiteStateMachine.ChangeState(boar.moveState);
+        }
+        else if (!isPlayerInMaxAgroRange)
         {
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
         }
