@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b60715f38dcd93942adf2ad19d9b4304, type: 3}
-  m_Name: Boar_SlowDownState
+  m_Script: {fileID: 11500000, guid: fa1bbc2ee2e57f643b5520fe2734c952, type: 3}
+  m_Name: Boar_StunStateData
   m_EditorClassIdentifier: 
-  decelerationSpeed: 0.1
-  minSlideTime: 0.75
+  stunTime: 3
+  stunKnockbackTime: 0.2
+  stunKnockbackSpeed: 20
+  stunKnockbackAngle: {x: 1, y: 2}

@@ -10,17 +10,19 @@ public class Boar : Entity
     [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
     [SerializeField] private D_SlowDownState slowDownStateData;
     [SerializeField] private D_MeleeAttackState meleeAttackStateData;
+    [SerializeField] private D_StunState stunStateData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform meleeAttackPosition;
 
-    public Boar_IdleState idleState;
-    public Boar_MoveState moveState;
-    public Boar_PlayerDetectedState playerDetectedState;
-    public Boar_ChargeState chargeState;
-    public Boar_LookForPlayerState lookForPlayerState;
-    public Boar_SlowDownState slowDownState;
-    public Boar_MeleeAttackState meleeAttackState;
+    public Boar_IdleState idleState { get; private set; }
+    public Boar_MoveState moveState { get; private set; }
+    public Boar_PlayerDetectedState playerDetectedState { get; private set; }
+    public Boar_ChargeState chargeState { get; private set; }
+    public Boar_LookForPlayerState lookForPlayerState { get; private set; }
+    public Boar_SlowDownState slowDownState { get; private set; }
+    public Boar_MeleeAttackState meleeAttackState { get; private set; }
+    public Boar_StunState stunState { get; private set; }
 
     protected override void Start()
     {
@@ -33,8 +35,19 @@ public class Boar : Entity
         lookForPlayerState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
         slowDownState = new Boar_SlowDownState(finiteStateMachine, this, "slowDown", slowDownStateData, this);
         meleeAttackState = new Boar_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        stunState = new Boar_StunState(finiteStateMachine, this, "stun", stunStateData, this);
 
         finiteStateMachine.Initialize(moveState);
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+
+        if (isStunnded && finiteStateMachine.currentState != stunState)
+        {
+            finiteStateMachine.ChangeState(stunState);
+        }
     }
 
     protected override void OnDrawGizmos()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Melee Attack State Data", menuName = "Data/State Data/Melee Attack State")]
+[CreateAssetMenu(fileName = "New Stun State Data", menuName = "Data/State Data/Stun State")]
 public class D_StunState : ScriptableObject
 {
     public float stunTime = 3.0f;

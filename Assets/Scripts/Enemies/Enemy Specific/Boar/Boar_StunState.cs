@@ -21,6 +21,23 @@
     public override void LogicUpdateFunction()
     {
         base.LogicUpdateFunction();
+
+        if (isStunTimeOver)
+        {
+            if (shouldPerformCloseRangeAction)
+            {
+                finiteStateMachine.ChangeState(boar.meleeAttackState);
+            }
+            else if (isPlayerInMinAgroRange)
+            {
+                finiteStateMachine.ChangeState(boar.meleeAttackState);
+            }
+        }
+        else
+        {
+            boar.lookForPlayerState.SetShouldTurnImmediately(true);
+            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+        }
     }
 
     public override void PhysicsUpdateFunction()
