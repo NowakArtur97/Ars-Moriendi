@@ -17,7 +17,9 @@ public class Entity : MonoBehaviour
     public GameObject aliveGameObject { get; private set; }
 
     public float facingDirection { get; private set; }
-    public float currentHealth { get; private set; }
+    private float currentHealth;
+
+    private int lastDamageDirection;
 
     private Vector2 velocityWorkSpace;
 
@@ -45,9 +47,20 @@ public class Entity : MonoBehaviour
         finiteStateMachine.currentState.PhysicsUpdateFunction();
     }
 
+    public virtual void DamageHop(float velocity)
+    {
+        velocityWorkSpace.Set(myRigidbody2D.velocity.x, velocity);
+
+        myRigidbody2D.velocity = velocityWorkSpace;
+    }
+
     public virtual void Damage(AttackDetails attackDetails)
     {
+        currentHealth -= attackDetails.damageAmmount;
 
+        DamageHop(entityData.damageHopSpeed);
+
+        lastDamageDirection = attackDetails.position.x > aliveGameObject.transform.position.x ? -1 : 1;
     }
 
     public virtual void SetVelocity(float velocity)

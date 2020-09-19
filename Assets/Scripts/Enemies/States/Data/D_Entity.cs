@@ -16,6 +16,8 @@ public class D_Entity : ScriptableObject
 
     public float maxHealth = 30.0f;
 
+    public float damageHopSpeed = 9.0f;
+
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }
