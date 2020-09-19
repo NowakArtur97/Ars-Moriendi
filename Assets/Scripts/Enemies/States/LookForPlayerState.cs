@@ -25,8 +25,6 @@ public class LookForPlayerState : State
     {
         base.Enter();
 
-        DoChecks();
-
         entity.SetVelocity(0.0f);
 
         areAllTurnsDone = false;
@@ -72,8 +70,6 @@ public class LookForPlayerState : State
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public override void DoChecks()

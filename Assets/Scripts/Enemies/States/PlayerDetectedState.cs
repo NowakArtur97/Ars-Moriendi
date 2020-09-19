@@ -24,8 +24,6 @@ public class PlayerDetectedState : State
 
         shouldPerformCloseRangeAction = false;
         shouldPerformLongRangeAction = false;
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -51,8 +49,6 @@ public class PlayerDetectedState : State
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public override void DoChecks()

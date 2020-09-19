@@ -21,8 +21,6 @@
     {
         base.Enter();
 
-        DoChecks();
-
         entity.SetVelocity(stateData.chargeSpeed);
     }
 
@@ -39,8 +37,6 @@
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public override void DoChecks()

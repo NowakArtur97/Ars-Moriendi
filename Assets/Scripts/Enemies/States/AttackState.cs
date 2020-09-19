@@ -24,8 +24,6 @@ public class AttackState : State
         isAnimationFinished = false;
 
         entity.SetVelocity(0.0f);
-
-        DoChecks();
     }
 
     public override void Exit()

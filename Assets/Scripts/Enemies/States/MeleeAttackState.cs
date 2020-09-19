@@ -20,8 +20,6 @@ public class MeleeAttackState : AttackState
         attackDetails.damageAmmount = stateData.attackDamage;
 
         entity.SetVelocity(stateData.attackMovementSpeed);
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -37,8 +35,6 @@ public class MeleeAttackState : AttackState
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public override void DoChecks()

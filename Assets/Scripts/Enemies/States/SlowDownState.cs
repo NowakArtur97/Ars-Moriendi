@@ -26,8 +26,6 @@ public class SlowDownState : State
         isMinSlideTimeOver = false;
         hasStopped = false;
         currentVelocity = entity.myRigidbody2D.velocity.x;
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -53,8 +51,6 @@ public class SlowDownState : State
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
 
         if (!hasStopped)
         {

@@ -11,8 +11,6 @@
     public override void Enter()
     {
         base.Enter();
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -28,8 +26,6 @@
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public override void DoChecks()

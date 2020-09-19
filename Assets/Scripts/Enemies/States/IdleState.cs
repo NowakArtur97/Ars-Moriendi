@@ -25,8 +25,6 @@ public class IdleState : State
         entity.SetVelocity(0.0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -52,8 +50,6 @@ public class IdleState : State
     public override void PhysicsUpdateFunction()
     {
         base.PhysicsUpdateFunction();
-
-        DoChecks();
     }
 
     public void SetFlipAfterIdle(bool flipAfterIdle)
