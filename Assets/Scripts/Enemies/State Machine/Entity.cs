@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform ledgeCheck;
     [SerializeField] protected Transform playerCheck;
     [SerializeField] protected Transform playerJumpedOverCheck;
+    [SerializeField] protected Transform groundCheck;
 
     public D_Entity entityData;
 
@@ -19,7 +20,11 @@ public class Entity : MonoBehaviour
     public float facingDirection { get; private set; }
     private float currentHealth;
 
-    private int lastDamageDirection;
+    private float currentStunResistance;
+    private float lastDamageTime;
+    public int lastDamageDirection { get; private set; }
+
+    protected bool isStunnded;
 
     private Vector2 velocityWorkSpace;
 
@@ -35,11 +40,18 @@ public class Entity : MonoBehaviour
 
         facingDirection = 1;
         currentHealth = entityData.maxHealth;
+
+        currentStunResistance = entityData.stunResistance;
     }
 
     protected virtual void Update()
     {
         finiteStateMachine.currentState.LogicUpdateFunction();
+
+        if (Time.time >= lastDamageTime + entityData.stunRecorveryTime)
+        {
+            ResetStunResistance();
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -54,18 +66,41 @@ public class Entity : MonoBehaviour
         myRigidbody2D.velocity = velocityWorkSpace;
     }
 
+    public virtual void ResetStunResistance()
+    {
+        isStunnded = false;
+        currentStunResistance = entityData.stunResistance;
+    }
+
     public virtual void Damage(AttackDetails attackDetails)
     {
         currentHealth -= attackDetails.damageAmmount;
+        currentStunResistance -= attackDetails.stunDamageAmount;
+
+        lastDamageTime = Time.time;
 
         DamageHop(entityData.damageHopSpeed);
 
         lastDamageDirection = attackDetails.position.x > aliveGameObject.transform.position.x ? -1 : 1;
+
+        if (currentStunResistance <= 0)
+        {
+            isStunnded = true;
+        }
     }
 
     public virtual void SetVelocity(float velocity)
     {
         velocityWorkSpace.Set(velocity * facingDirection, myRigidbody2D.velocity.y);
+
+        myRigidbody2D.velocity = velocityWorkSpace;
+    }
+
+    public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+
+        velocityWorkSpace.Set(angle.x * velocity * facingDirection, angle.y * velocity);
 
         myRigidbody2D.velocity = velocityWorkSpace;
     }
@@ -78,6 +113,11 @@ public class Entity : MonoBehaviour
     public virtual bool CheckLedge()
     {
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
+    }
+
+    public virtual bool CheckGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, entityData.groundCheckRadius, entityData.whatIsGround);
     }
 
     public virtual bool CheckIfPlayerInMinAgro()
