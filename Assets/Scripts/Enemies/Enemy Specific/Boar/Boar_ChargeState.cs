@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Boar_ChargeState : ChargeState
+﻿public class Boar_ChargeState : ChargeState
 {
     private Boar boar;
 

@@ -24,11 +24,11 @@
 
         if (isStunTimeOver)
         {
-            if (shouldPerformCloseRangeAction)
+            if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
             {
                 finiteStateMachine.ChangeState(boar.meleeAttackState);
             }
-            else if (isPlayerInMinAgroRange)
+            else if (isPlayerInMaxAgroRange)
             {
                 finiteStateMachine.ChangeState(boar.chargeState);
             }

@@ -11,6 +11,7 @@ public class StunState : State
 
     protected bool shouldPerformCloseRangeAction;
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
 
     public StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
@@ -68,5 +69,6 @@ public class StunState : State
 
         shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
         isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = entity.CheckIfPlayerInLongRangeAction();
     }
 }
