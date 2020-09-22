@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1c320d59dca9a4898ec4c6ae0877ae, type: 3}
   m_Name: Boar_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  attackRadius: 0.5
+  attackRadius: 0.25
   attackDamage: 10
   attackMovementSpeed: 5
   whatIsPlayer:
