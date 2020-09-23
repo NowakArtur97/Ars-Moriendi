@@ -21,4 +21,9 @@ public class GoblinArcher : Entity
         idleState = new GoblinArcher_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
         moveState = new GoblinArcher_MoveState(finiteStateMachine, this, "move", moveStateData, this);
     }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+    }
 }
