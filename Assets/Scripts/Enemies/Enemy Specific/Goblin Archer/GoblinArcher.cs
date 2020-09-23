@@ -12,18 +12,15 @@ public class GoblinArcher : Entity
     protected override void Start()
     {
         base.Start();
+
+        idleState = new GoblinArcher_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
+        moveState = new GoblinArcher_MoveState(finiteStateMachine, this, "move", moveStateData, this);
+
+        finiteStateMachine.Initialize(moveState);
     }
 
     public override void Damage(AttackDetails attackDetails)
     {
         base.Damage(attackDetails);
-
-        idleState = new GoblinArcher_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
-        moveState = new GoblinArcher_MoveState(finiteStateMachine, this, "move", moveStateData, this);
-    }
-
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
     }
 }
