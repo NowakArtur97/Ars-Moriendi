@@ -6634,6 +6634,8 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
   idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
   moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
+  playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
+    type: 2}
 --- !u!4 &845845458
 Transform:
   m_ObjectHideFlags: 0

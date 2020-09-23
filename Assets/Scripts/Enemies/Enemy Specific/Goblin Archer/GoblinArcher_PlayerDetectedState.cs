@@ -32,17 +32,13 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
             finiteStateMachine.ChangeState(goblinArcher.moveState);
         }
         // TODO: SETUP STATES
-        //else if (!isPlayerInMaxAgroRange)
-        //{
-        //    finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
-        //}
+        else if (!isPlayerInMaxAgroRange)
+        {
+            finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+        }
         //else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
         //{
         //    finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
-        //}
-        //else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
-        //{
-        //    finiteStateMachine.ChangeState(goblinArcher.chargeState);
         //}
     }
 
