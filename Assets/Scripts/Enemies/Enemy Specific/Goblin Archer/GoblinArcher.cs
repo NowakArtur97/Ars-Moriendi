@@ -8,7 +8,7 @@ public class GoblinArcher : Entity
     [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
     [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
     [SerializeField] private D_MeleeAttackState meleeAttackStateData;
-    //[SerializeField] private D_StunState stunStateData;
+    [SerializeField] private D_StunState stunStateData;
     //[SerializeField] private D_DeadState deadStateData;
 
     [Header("Attack Positions")]
@@ -19,7 +19,7 @@ public class GoblinArcher : Entity
     public GoblinArcher_PlayerDetectedState playerDetectedState { get; private set; }
     public GoblinArcher_LookForPlayerState lookForPlayerState { get; private set; }
     public GoblinArcher_MeleeAttackState meleeAttackState { get; private set; }
-    //public GoblinArcher_StunState stunState { get; private set; }
+    public GoblinArcher_StunState stunState { get; private set; }
     //public GoblinArcher_DeadState deadState { get; private set; }
 
     protected override void Start()
@@ -31,7 +31,7 @@ public class GoblinArcher : Entity
         playerDetectedState = new GoblinArcher_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
         lookForPlayerState = new GoblinArcher_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
         meleeAttackState = new GoblinArcher_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        //stunState = new GoblinArcher_StunState(finiteStateMachine, this, "stun", stunStateData, this);
+        stunState = new GoblinArcher_StunState(finiteStateMachine, this, "stun", stunStateData, this);
         //deadState = new GoblinArcher_DeadState(finiteStateMachine, this, "dead", deadStateData, this);
 
         finiteStateMachine.Initialize(moveState);
@@ -40,6 +40,16 @@ public class GoblinArcher : Entity
     public override void Damage(AttackDetails attackDetails)
     {
         base.Damage(attackDetails);
+
+        if (isDead)
+        {
+            //TODO: DEAD
+            //finiteStateMachine.ChangeState(deadState);
+        }
+        else if (isStunned && finiteStateMachine.currentState != stunState)
+        {
+            finiteStateMachine.ChangeState(stunState);
+        }
     }
 
     protected override void OnDrawGizmos()

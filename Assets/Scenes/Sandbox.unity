@@ -6640,6 +6640,7 @@ MonoBehaviour:
     type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: 8f5df6e977b1712469e660d34311f4e5,
     type: 2}
+  stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   meleeAttackPosition: {fileID: 1117002209}
 --- !u!4 &845845458
 Transform:
