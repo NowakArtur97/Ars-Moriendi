@@ -24,8 +24,7 @@
 
         if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
-            // TODO: Player detected state
-            //finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+            finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
         }
         else if (isIdleTimeOver)
         {
