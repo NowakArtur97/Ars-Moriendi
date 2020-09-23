@@ -4,7 +4,7 @@ public class AttackState : State
 {
     protected Transform attackPosition;
 
-    protected bool isAnimationFinished = false;
+    protected bool isAnimationFinished;
 
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;

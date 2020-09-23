@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
+﻿public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
 {
     private GoblinArcher goblinArcher;
 
@@ -31,15 +27,14 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
             entity.Flip();
             finiteStateMachine.ChangeState(goblinArcher.moveState);
         }
-        // TODO: SETUP STATES
         else if (!isPlayerInMaxAgroRange)
         {
             finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
         }
-        //else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
-        //{
-        //    finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
-        //}
+        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
+        {
+            finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+        }
     }
 
     public override void PhysicsUpdateFunction()

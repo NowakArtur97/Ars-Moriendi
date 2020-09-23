@@ -6636,6 +6636,11 @@ MonoBehaviour:
   moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
     type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: f643f742c85310344b5134073d9d0470,
+    type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 8f5df6e977b1712469e660d34311f4e5,
+    type: 2}
+  meleeAttackPosition: {fileID: 1117002209}
 --- !u!4 &845845458
 Transform:
   m_ObjectHideFlags: 0
@@ -6860,7 +6865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117002208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.48, y: -0.181, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1553699894}
@@ -7459,6 +7464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1553699894}
+  - component: {fileID: 1553699899}
   - component: {fileID: 1553699898}
   - component: {fileID: 1553699897}
   - component: {fileID: 1553699896}
@@ -7607,6 +7613,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1553699899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553699893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dfd7590a8b06b4c810cbbe52642e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1644224281
 GameObject:
   m_ObjectHideFlags: 0

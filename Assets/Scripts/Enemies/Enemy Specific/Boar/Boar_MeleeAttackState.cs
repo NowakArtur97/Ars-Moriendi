@@ -13,8 +13,6 @@ public class Boar_MeleeAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
-
-        DoChecks();
     }
 
     public override void Exit()
@@ -29,7 +27,7 @@ public class Boar_MeleeAttackState : MeleeAttackState
         if (isPlayerInMinAgroRange)
         {
             FinishAttack();
-            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            finiteStateMachine.ChangeState(boar.playerDetectedState);
         }
         else if (!isPlayerInMaxAgroRange)
         {
