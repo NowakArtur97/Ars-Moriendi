@@ -10,6 +10,7 @@ public class GoblinArcher : Entity
     [SerializeField] private D_MeleeAttackState meleeAttackStateData;
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
+    [SerializeField] private D_DodgeState dodgeStateData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform meleeAttackPosition;
@@ -21,6 +22,7 @@ public class GoblinArcher : Entity
     public GoblinArcher_MeleeAttackState meleeAttackState { get; private set; }
     public GoblinArcher_StunState stunState { get; private set; }
     public GoblinArcher_DeadState deadState { get; private set; }
+    public GoblinArcher_DodgeState dodgeState { get; private set; }
 
     protected override void Start()
     {
@@ -33,6 +35,7 @@ public class GoblinArcher : Entity
         meleeAttackState = new GoblinArcher_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         stunState = new GoblinArcher_StunState(finiteStateMachine, this, "stun", stunStateData, this);
         deadState = new GoblinArcher_DeadState(finiteStateMachine, this, "dead", deadStateData, this);
+        dodgeState = new GoblinArcher_DodgeState(finiteStateMachine, this, "dodge", dodgeStateData, this);
 
         finiteStateMachine.Initialize(moveState);
     }
