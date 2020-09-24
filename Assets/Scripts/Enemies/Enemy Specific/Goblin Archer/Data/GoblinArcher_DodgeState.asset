@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6475d1bbe1e968418c2ed9c645e3075, type: 3}
   m_Name: GoblinArcher_DodgeState
   m_EditorClassIdentifier: 
-  dodgeSpeed: 9
-  dodgeAngle: {x: 4, y: 3}
-  dodgeTime: 0.2
+  dodgeSpeed: 13
+  dodgeAngle: {x: 1, y: 0.2}
+  dodgeTime: 0.5
   dodgeCooldwon: 2

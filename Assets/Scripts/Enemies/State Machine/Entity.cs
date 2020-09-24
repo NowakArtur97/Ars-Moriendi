@@ -55,6 +55,8 @@ public class Entity : MonoBehaviour
         {
             ResetStunResistance();
         }
+
+        myAnimator.SetFloat("yVelocity", myRigidbody2D.velocity.y);
     }
 
     protected virtual void FixedUpdate()
@@ -113,7 +115,7 @@ public class Entity : MonoBehaviour
     {
         angle.Normalize();
 
-        velocityWorkSpace.Set(angle.x * velocity * facingDirection, angle.y * velocity);
+        velocityWorkSpace.Set(angle.x * velocity * direction, angle.y * velocity);
 
         myRigidbody2D.velocity = velocityWorkSpace;
     }

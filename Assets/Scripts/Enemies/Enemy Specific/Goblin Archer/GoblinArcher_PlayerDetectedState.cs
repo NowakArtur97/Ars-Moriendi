@@ -24,7 +24,7 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (shouldPerformCloseRangeAction)
+        if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
         {
             if (Time.time >= goblinArcher.dodgeState.startTime + goblinArcher.dodgeStateData.dodgeCooldwon)
             {
@@ -34,10 +34,6 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
             {
                 finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
-        }
-        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
-        {
-            finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {

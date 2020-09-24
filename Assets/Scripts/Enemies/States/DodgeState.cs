@@ -5,6 +5,7 @@ public class DodgeState : State
     protected D_DodgeState stateData;
 
     protected bool shouldPerformCloseRangeAction;
+    protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
 
     protected bool isDodgeTimeOver;
@@ -21,11 +22,7 @@ public class DodgeState : State
     {
         base.Enter();
 
-        shouldPerformCloseRangeAction = false;
-        isPlayerInMaxAgroRange = false;
-
         isDodgeTimeOver = false;
-        isGrounded = false;
 
         entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, -entity.facingDirection);
     }
@@ -54,6 +51,7 @@ public class DodgeState : State
     {
         base.DoChecks();
 
+        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
         isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
 
         shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();

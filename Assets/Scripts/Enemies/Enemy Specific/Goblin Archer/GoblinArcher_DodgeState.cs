@@ -24,13 +24,17 @@
 
         if (isDodgeTimeOver)
         {
-            if (isPlayerInMaxAgroRange && shouldPerformCloseRangeAction)
+            if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
             {
                 finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
             else if (!isPlayerInMaxAgroRange)
             {
                 finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+            }
+            else if (isPlayerInMaxAgroRange)
+            {
+                finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
             }
             //else if ()
             //{
