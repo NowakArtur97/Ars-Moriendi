@@ -55,6 +55,15 @@ public class Boar : Entity
         {
             finiteStateMachine.ChangeState(stunState);
         }
+        else if (CheckIfPlayerInCloseRangeAction())
+        {
+            finiteStateMachine.ChangeState(meleeAttackState);
+        }
+        else
+        {
+            lookForPlayerState.SetShouldTurnImmediately(true);
+            finiteStateMachine.ChangeState(lookForPlayerState);
+        }
     }
 
     protected override void OnDrawGizmos()

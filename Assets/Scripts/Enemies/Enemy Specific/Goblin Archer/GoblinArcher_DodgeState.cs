@@ -28,6 +28,10 @@
             {
                 finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
+            else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
+            {
+                finiteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+            }
             else if (!isPlayerInMaxAgroRange)
             {
                 finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
@@ -36,10 +40,6 @@
             {
                 finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
             }
-            //else if ()
-            //{
-            //    //TODO: range attack state
-            //}
         }
     }
 

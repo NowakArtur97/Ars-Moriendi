@@ -56,6 +56,19 @@ public class GoblinArcher : Entity
         {
             finiteStateMachine.ChangeState(stunState);
         }
+        else if (CheckIfPlayerInCloseRangeAction())
+        {
+            finiteStateMachine.ChangeState(meleeAttackState);
+        }
+        else if (CheckIfPlayerInLongRangeAction())
+        {
+            finiteStateMachine.ChangeState(rangedAttackState);
+        }
+        else
+        {
+            lookForPlayerState.SetShouldTurnImmediately(true);
+            finiteStateMachine.ChangeState(lookForPlayerState);
+        }
     }
 
     protected override void OnDrawGizmos()

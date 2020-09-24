@@ -35,6 +35,10 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
                 finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
         }
+        else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
+        {
+            finiteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+        }
         else if (!isDetectingLedge || isDetectingWall)
         {
             entity.Flip();
