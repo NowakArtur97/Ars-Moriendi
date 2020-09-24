@@ -6,7 +6,7 @@ public class State
     protected Entity entity;
     protected string animationBoolName;
 
-    protected float startTime;
+    public float startTime { get; private set; }
 
     public State(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName)
     {

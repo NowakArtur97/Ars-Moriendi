@@ -1,4 +1,6 @@
-﻿public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
+﻿using UnityEngine;
+
+public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
 {
     private GoblinArcher goblinArcher;
 
@@ -22,7 +24,22 @@
     {
         base.LogicUpdate();
 
-        if (!isDetectingLedge || isDetectingWall)
+        if (shouldPerformCloseRangeAction)
+        {
+            if (Time.time >= goblinArcher.dodgeState.startTime + goblinArcher.dodgeStateData.dodgeCooldwon)
+            {
+                finiteStateMachine.ChangeState(goblinArcher.dodgeState);
+            }
+            else
+            {
+                finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+            }
+        }
+        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
+        {
+            finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+        }
+        else if (!isDetectingLedge || isDetectingWall)
         {
             entity.Flip();
             finiteStateMachine.ChangeState(goblinArcher.moveState);
@@ -30,10 +47,6 @@
         else if (!isPlayerInMaxAgroRange)
         {
             finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
-        }
-        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
-        {
-            finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
         }
     }
 

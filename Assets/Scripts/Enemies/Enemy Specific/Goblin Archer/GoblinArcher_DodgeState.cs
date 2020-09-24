@@ -21,6 +21,22 @@
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (isDodgeTimeOver)
+        {
+            if (isPlayerInMaxAgroRange && shouldPerformCloseRangeAction)
+            {
+                finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+            }
+            else if (!isPlayerInMaxAgroRange)
+            {
+                finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+            }
+            //else if ()
+            //{
+            //    //TODO: range attack state
+            //}
+        }
     }
 
     public override void PhysicsUpdate()
