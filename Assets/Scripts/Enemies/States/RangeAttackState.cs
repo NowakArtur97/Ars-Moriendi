@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public class RangeAttackState : AttackState
+public class RangedAttackState : AttackState
 {
-    protected D_RangeAttackState stateData;
+    protected D_RangedAttackState stateData;
 
-    public RangeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_RangeAttackState stateData)
+    protected GameObject projectile;
+    protected Projectile projectileScript;
+
+    public RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData)
         : base(finiteStateMachine, entity, animationBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -38,6 +41,10 @@ public class RangeAttackState : AttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+
+        projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+        projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);
     }
 
     public override void FinishAttack()

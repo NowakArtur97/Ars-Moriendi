@@ -11,9 +11,11 @@ public class GoblinArcher : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
     [SerializeField] public D_DodgeState dodgeStateData;
+    [SerializeField] public D_RangedAttackState rangedAttackStateData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] private Transform rangedAttackPosition;
 
     public GoblinArcher_IdleState idleState { get; private set; }
     public GoblinArcher_MoveState moveState { get; private set; }
@@ -23,6 +25,7 @@ public class GoblinArcher : Entity
     public GoblinArcher_StunState stunState { get; private set; }
     public GoblinArcher_DeadState deadState { get; private set; }
     public GoblinArcher_DodgeState dodgeState { get; private set; }
+    public GoblinArcher_RangedAttackState rangedAttackState { get; private set; }
 
     protected override void Start()
     {
@@ -36,6 +39,7 @@ public class GoblinArcher : Entity
         stunState = new GoblinArcher_StunState(finiteStateMachine, this, "stun", stunStateData, this);
         deadState = new GoblinArcher_DeadState(finiteStateMachine, this, "dead", deadStateData, this);
         dodgeState = new GoblinArcher_DodgeState(finiteStateMachine, this, "dodge", dodgeStateData, this);
+        rangedAttackState = new GoblinArcher_RangedAttackState(finiteStateMachine, this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
 
         finiteStateMachine.Initialize(moveState);
     }
