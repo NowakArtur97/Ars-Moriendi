@@ -29,11 +29,11 @@ public class State
         entity.myAnimator.SetBool(animationBoolName, false);
     }
 
-    public virtual void LogicUpdateFunction()
+    public virtual void LogicUpdate()
     {
     }
 
-    public virtual void PhysicsUpdateFunction()
+    public virtual void PhysicsUpdate()
     {
         DoChecks();
     }

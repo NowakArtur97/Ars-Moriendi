@@ -39,9 +39,9 @@ public class StunState : State
         entity.ResetStunResistance();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
 
         if (Time.time >= startTime + stateData.stunTime)
         {
@@ -56,9 +56,9 @@ public class StunState : State
         }
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
     }
 
     public override void DoChecks()

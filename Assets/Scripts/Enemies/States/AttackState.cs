@@ -31,14 +31,14 @@ public class AttackState : State
         base.Exit();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
     }
 
     public override void DoChecks()

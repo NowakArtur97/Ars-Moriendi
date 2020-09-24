@@ -20,9 +20,9 @@ public class Boar_MeleeAttackState : MeleeAttackState
         base.Exit();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
 
         if (isPlayerInMinAgroRange)
         {
@@ -35,9 +35,9 @@ public class Boar_MeleeAttackState : MeleeAttackState
         }
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
 
         DoChecks();
     }

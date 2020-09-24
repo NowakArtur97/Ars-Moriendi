@@ -20,9 +20,9 @@ public class GoblinArcher_MeleeAttackState : MeleeAttackState
         base.Exit();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
 
         if (isAnimationFinished)
         {
@@ -37,9 +37,9 @@ public class GoblinArcher_MeleeAttackState : MeleeAttackState
         }
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
 
         DoChecks();
     }

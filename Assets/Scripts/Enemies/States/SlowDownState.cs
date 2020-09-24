@@ -33,9 +33,9 @@ public class SlowDownState : State
         base.Exit();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
 
         if (Time.time >= startTime + stateData.minSlideTime)
         {
@@ -48,9 +48,9 @@ public class SlowDownState : State
         }
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
 
         if (!hasStopped)
         {

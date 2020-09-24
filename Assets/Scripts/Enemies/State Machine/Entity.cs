@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        finiteStateMachine.currentState.LogicUpdateFunction();
+        finiteStateMachine.currentState.LogicUpdate();
 
         if (Time.time >= lastDamageTime + entityData.stunRecorveryTime)
         {
@@ -59,7 +59,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        finiteStateMachine.currentState.PhysicsUpdateFunction();
+        finiteStateMachine.currentState.PhysicsUpdate();
     }
 
     public virtual void DamageHop(float velocity)
@@ -109,7 +109,7 @@ public class Entity : MonoBehaviour
         myRigidbody2D.velocity = velocityWorkSpace;
     }
 
-    public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
+    public virtual void SetVelocity(float velocity, Vector2 angle, float direction)
     {
         angle.Normalize();
 

@@ -18,9 +18,9 @@
         base.Exit();
     }
 
-    public override void LogicUpdateFunction()
+    public override void LogicUpdate()
     {
-        base.LogicUpdateFunction();
+        base.LogicUpdate();
 
         if (!isDetectingLedge || isDetectingWall)
         {
@@ -34,9 +34,9 @@
         }
     }
 
-    public override void PhysicsUpdateFunction()
+    public override void PhysicsUpdate()
     {
-        base.PhysicsUpdateFunction();
+        base.PhysicsUpdate();
     }
 
     public override void DoChecks()
