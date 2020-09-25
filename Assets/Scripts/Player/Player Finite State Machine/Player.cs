@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerFiniteStateMachine playerFiniteStateMachine { get; private set; }
+
+    private void Awake()
     {
-        
+        playerFiniteStateMachine = new PlayerFiniteStateMachine();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        //TODO: setup playerFiniteStateMachine
+    }
+
+    private void Update()
+    {
+        playerFiniteStateMachine.CurrentState.LogicUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        playerFiniteStateMachine.CurrentState.PhysicsUpdate();
     }
 }

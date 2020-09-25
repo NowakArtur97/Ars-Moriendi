@@ -1,4 +1,4 @@
-﻿public class PlayerStateMachine
+﻿public class PlayerFiniteStateMachine
 {
     public PlayerState CurrentState { get; private set; }
 
