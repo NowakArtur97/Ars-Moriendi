@@ -18,13 +18,21 @@ public class PlayerState
         this.animationBoolName = animationBoolName;
     }
 
-    public virtual void Enter() { }
+    public virtual void Enter()
+    {
+        DoChecks();
+
+        startTime = Time.time;
+    }
 
     public virtual void Exit() { }
 
     public virtual void LogicUpdate() { }
 
-    public virtual void PhysicsUpdate() { }
+    public virtual void PhysicsUpdate()
+    {
+        DoChecks();
+    }
 
     public virtual void DoChecks() { }
 }
