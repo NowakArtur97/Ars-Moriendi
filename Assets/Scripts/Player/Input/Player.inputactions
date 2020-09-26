@@ -28,7 +28,7 @@
                     "id": "13516213-0469-4ab4-8c4d-6a382bc2d86b",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
                     "action": "Movement",
                     "isComposite": false,
