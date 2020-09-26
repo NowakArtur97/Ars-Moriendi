@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
         PlayerIdleState = new PlayerIdleState(this, playerFiniteStateMachine, _playerData, "idle");
         PlayerMoveState = new PlayerMoveState(this, playerFiniteStateMachine, _playerData, "move");
+
+        playerFiniteStateMachine.Initialize(PlayerIdleState);
     }
 
     private void Update()
