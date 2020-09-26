@@ -2,11 +2,13 @@
 
 public class Player : MonoBehaviour
 {
+
     [SerializeField]
     private D_PlayerData _playerData;
 
     private Vector2 _workspace;
     public Vector2 CurrentVelocity { get; private set; }
+    public int FacingDirection { get; private set; }
 
     public PlayerFiniteStateMachine PlayerFiniteStateMachine { get; private set; }
 
@@ -31,6 +33,8 @@ public class Player : MonoBehaviour
         MyRigidbody = GetComponent<Rigidbody2D>();
         PlayerInputHandler = GetComponent<PlayerInputHandler>();
 
+        FacingDirection = 1;
+
         PlayerFiniteStateMachine.Initialize(PlayerIdleState);
     }
 
@@ -51,5 +55,19 @@ public class Player : MonoBehaviour
         _workspace.Set(velocity, CurrentVelocity.y);
         MyRigidbody.velocity = _workspace;
         CurrentVelocity = _workspace;
+    }
+
+    private void Flip()
+    {
+        FacingDirection *= -1;
+        transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    public void CheckIfShouldFlip(int xInput)
+    {
+        if (xInput != 0 && xInput != FacingDirection)
+        {
+            Flip();
+        }
     }
 }

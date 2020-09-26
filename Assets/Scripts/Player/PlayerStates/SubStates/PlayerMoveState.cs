@@ -18,6 +18,7 @@
     {
         base.LogicUpdate();
 
+        Player.CheckIfShouldFlip(XInput);
         Player.SetVelocityX(PlayerData.movementVelocity * XInput);
 
         if (XInput == 0)
