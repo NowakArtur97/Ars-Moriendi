@@ -2,7 +2,7 @@
 
 public class PlayerState
 {
-    private D_PlayerData _playerData;
+    public D_PlayerData PlayerData { get; private set; }
     protected Player Player;
     protected PlayerFiniteStateMachine PlayerFiniteStateMachine;
 
@@ -10,11 +10,11 @@ public class PlayerState
 
     private string animationBoolName;
 
-    public PlayerState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData _playerData, string animationBoolName)
+    public PlayerState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName)
     {
         this.Player = player;
         this.PlayerFiniteStateMachine = PlayerFiniteStateMachine;
-        this._playerData = _playerData;
+        this.PlayerData = PlayerData;
         this.animationBoolName = animationBoolName;
     }
 

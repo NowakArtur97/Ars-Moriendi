@@ -7,6 +7,8 @@
     public override void Enter()
     {
         base.Enter();
+
+        Player.SetVelocityX(0.0f);
     }
 
     public override void Exit()

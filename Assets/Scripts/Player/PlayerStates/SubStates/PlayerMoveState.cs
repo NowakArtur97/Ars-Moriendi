@@ -18,6 +18,8 @@
     {
         base.LogicUpdate();
 
+        Player.SetVelocityX(PlayerData.movementVelocity * Input.x);
+
         if (Input.x == 0.0)
         {
             PlayerFiniteStateMachine.ChangeState(Player.PlayerIdleState);
