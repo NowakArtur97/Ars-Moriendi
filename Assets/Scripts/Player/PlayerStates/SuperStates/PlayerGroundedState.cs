@@ -2,7 +2,7 @@
 
 public class PlayerGroundedState : PlayerState
 {
-    protected Vector2 Input;
+    protected int XInput;
 
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
@@ -22,7 +22,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        Input = Player.PlayerInputHandler.MovementInput;
+        XInput = Player.PlayerInputHandler.NormalizedInputX;
     }
 
     public override void PhysicsUpdate()
