@@ -2,7 +2,15 @@
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private D_PlayerData _playerData;
+
     public PlayerFiniteStateMachine playerFiniteStateMachine { get; private set; }
+
+    public PlayerIdleState PlayerIdleState { get; private set; }
+    public PlayerMoveState PlayerMoveState { get; private set; }
+
+    public Animator MyAnmator;
 
     private void Awake()
     {
@@ -11,7 +19,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //TODO: setup playerFiniteStateMachine
+        MyAnmator = GetComponent<Animator>();
+
+        PlayerIdleState = new PlayerIdleState(this, playerFiniteStateMachine, _playerData, "idle");
+        PlayerMoveState = new PlayerMoveState(this, playerFiniteStateMachine, _playerData, "move");
     }
 
     private void Update()

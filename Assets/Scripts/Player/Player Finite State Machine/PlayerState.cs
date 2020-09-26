@@ -22,10 +22,15 @@ public class PlayerState
     {
         DoChecks();
 
+        player.MyAnmator.SetBool(animationBoolName, true);
+
         startTime = Time.time;
     }
 
-    public virtual void Exit() { }
+    public virtual void Exit()
+    {
+        player.MyAnmator.SetBool(animationBoolName, true);
+    }
 
     public virtual void LogicUpdate() { }
 
