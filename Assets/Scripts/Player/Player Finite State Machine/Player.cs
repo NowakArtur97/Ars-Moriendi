@@ -9,6 +9,13 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Check Transforms
+
+    [SerializeField]
+    private Transform _groundCheck;
+
+    #endregion
+
     #region Other Variables
 
     private Vector2 _workspace;
@@ -84,9 +91,17 @@ public class Player : MonoBehaviour
         CurrentVelocity = _workspace;
     }
 
+    public void SetVelocityY(float velocity)
+    {
+        _workspace.Set(CurrentVelocity.x, velocity);
+        MyRigidbody.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
     #endregion
 
     #region Check Functions
+
+    public bool CheckIfGrounded() => Physics2D.OverlapCircle(_groundCheck.position, _playerData.groundCheckRadius, _playerData.whatIsGround);
 
     public void CheckIfShouldFlip(int xInput)
     {

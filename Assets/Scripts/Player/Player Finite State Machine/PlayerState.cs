@@ -8,30 +8,30 @@ public class PlayerState
 
     protected float startTime;
 
-    private string animationBoolName;
+    private string _animationBoolName;
 
     public PlayerState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName)
     {
         this.Player = player;
         this.PlayerFiniteStateMachine = PlayerFiniteStateMachine;
         this.PlayerData = PlayerData;
-        this.animationBoolName = animationBoolName;
+        this._animationBoolName = animationBoolName;
     }
 
     public virtual void Enter()
     {
         DoChecks();
 
-        Player.MyAnmator.SetBool(animationBoolName, true);
+        Player.MyAnmator.SetBool(_animationBoolName, true);
 
         startTime = Time.time;
 
-        Debug.Log(animationBoolName);
+        Debug.Log(_animationBoolName);
     }
 
     public virtual void Exit()
     {
-        Player.MyAnmator.SetBool(animationBoolName, false);
+        Player.MyAnmator.SetBool(_animationBoolName, false);
     }
 
     public virtual void LogicUpdate() { }
