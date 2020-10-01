@@ -23,7 +23,7 @@
 
         if (XInput == 0)
         {
-            PlayerFiniteStateMachine.ChangeState(Player.PlayerIdleState);
+            PlayerFiniteStateMachine.ChangeState(Player.IdleState);
         }
     }
 

@@ -4,6 +4,8 @@ public class PlayerGroundedState : PlayerState
 {
     protected int XInput;
 
+    private bool JumpInput;
+
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
     }
@@ -22,7 +24,14 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        XInput = Player.PlayerInputHandler.NormalizedInputX;
+        XInput = Player.InputHandler.NormalizedInputX;
+        JumpInput = Player.InputHandler.JumpInput;
+
+        if (JumpInput)
+        {
+            Player.InputHandler.UseJumpInput();
+            PlayerFiniteStateMachine.ChangeState(Player.JumpState);
+        }
     }
 
     public override void PhysicsUpdate()

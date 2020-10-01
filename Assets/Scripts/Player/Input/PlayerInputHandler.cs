@@ -6,6 +6,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 RawMovementInput { get; private set; }
     public int NormalizedInputX { get; private set; }
     public int NormalizedInputY { get; private set; }
+    public bool JumpInput { get; private set; }
 
     public void OnMoveInput(CallbackContext context)
     {
@@ -17,6 +18,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnJumpInput(CallbackContext context)
     {
-
+        if (context.started)
+        {
+            JumpInput = true;
+        }
     }
+
+    public void UseJumpInput() => JumpInput = false;
 }

@@ -19,10 +19,13 @@ public class Player : MonoBehaviour
 
     #region State Variables
 
-    public PlayerFiniteStateMachine PlayerFiniteStateMachine { get; private set; }
+    public PlayerFiniteStateMachine FiniteStateMachine { get; private set; }
 
-    public PlayerIdleState PlayerIdleState { get; private set; }
-    public PlayerMoveState PlayerMoveState { get; private set; }
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerMoveState MoveState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
 
     #endregion
 
@@ -30,7 +33,7 @@ public class Player : MonoBehaviour
 
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
-    public PlayerInputHandler PlayerInputHandler { get; private set; }
+    public PlayerInputHandler InputHandler { get; private set; }
 
     #endregion
 
@@ -38,33 +41,36 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        PlayerFiniteStateMachine = new PlayerFiniteStateMachine();
+        FiniteStateMachine = new PlayerFiniteStateMachine();
 
-        PlayerIdleState = new PlayerIdleState(this, PlayerFiniteStateMachine, _playerData, "idle");
-        PlayerMoveState = new PlayerMoveState(this, PlayerFiniteStateMachine, _playerData, "move");
+        IdleState = new PlayerIdleState(this, FiniteStateMachine, _playerData, "idle");
+        MoveState = new PlayerMoveState(this, FiniteStateMachine, _playerData, "move");
+        LandState = new PlayerLandState(this, FiniteStateMachine, _playerData, "land");
+        JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
+        InAirState = new PlayerInAirState(this, FiniteStateMachine, _playerData, "inAir");
     }
 
     private void Start()
     {
         MyAnmator = GetComponent<Animator>();
         MyRigidbody = GetComponent<Rigidbody2D>();
-        PlayerInputHandler = GetComponent<PlayerInputHandler>();
+        InputHandler = GetComponent<PlayerInputHandler>();
 
         FacingDirection = 1;
 
-        PlayerFiniteStateMachine.Initialize(PlayerIdleState);
+        FiniteStateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
         CurrentVelocity = MyRigidbody.velocity;
 
-        PlayerFiniteStateMachine.CurrentState.LogicUpdate();
+        FiniteStateMachine.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        PlayerFiniteStateMachine.CurrentState.PhysicsUpdate();
+        FiniteStateMachine.CurrentState.PhysicsUpdate();
     }
 
     #endregion
