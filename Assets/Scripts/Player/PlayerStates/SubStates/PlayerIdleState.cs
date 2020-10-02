@@ -22,7 +22,7 @@
 
         if (XInput != 0)
         {
-            PlayerFiniteStateMachine.ChangeState(Player.MoveState);
+            FiniteStateMachine.ChangeState(Player.MoveState);
         }
     }
 

@@ -4,18 +4,20 @@ public class PlayerState
 {
     public D_PlayerData PlayerData { get; private set; }
     protected Player Player;
-    protected PlayerFiniteStateMachine PlayerFiniteStateMachine;
+    protected PlayerFiniteStateMachine FiniteStateMachine;
 
-    protected float startTime;
+    protected float StartTime;
+
+    protected bool IsAnimationFinished;
 
     private string _animationBoolName;
 
-    public PlayerState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName)
+    public PlayerState(Player Player, PlayerFiniteStateMachine FiniteStateMachine, D_PlayerData PlayerData, string _animationBoolName)
     {
-        this.Player = player;
-        this.PlayerFiniteStateMachine = PlayerFiniteStateMachine;
+        this.Player = Player;
+        this.FiniteStateMachine = FiniteStateMachine;
         this.PlayerData = PlayerData;
-        this._animationBoolName = animationBoolName;
+        this._animationBoolName = _animationBoolName;
     }
 
     public virtual void Enter()
@@ -24,9 +26,11 @@ public class PlayerState
 
         Player.MyAnmator.SetBool(_animationBoolName, true);
 
-        startTime = Time.time;
+        StartTime = Time.time;
 
         Debug.Log(_animationBoolName);
+
+        IsAnimationFinished = false;
     }
 
     public virtual void Exit()
@@ -42,4 +46,8 @@ public class PlayerState
     }
 
     public virtual void DoChecks() { }
+
+    public virtual void AnimationTrigger() { }
+
+    public virtual void AnimationFinishedTrigger() => IsAnimationFinished = true;
 }

@@ -1,4 +1,6 @@
-﻿public class PlayerInAirState : PlayerState
+﻿using UnityEngine;
+
+public class PlayerInAirState : PlayerState
 {
     private int _xInput;
 
@@ -26,12 +28,15 @@
 
         if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
         {
-            PlayerFiniteStateMachine.ChangeState(Player.LandState);
+            FiniteStateMachine.ChangeState(Player.LandState);
         }
         else
         {
             Player.CheckIfShouldFlip(_xInput);
             Player.SetVelocityX(PlayerData.movementVelocity * _xInput);
+
+            Player.MyAnmator.SetFloat("yVelocity", Player.CurrentVelocity.y);
+            Player.MyAnmator.SetFloat("xVelocity", Mathf.Abs(Player.CurrentVelocity.x));
         }
     }
 

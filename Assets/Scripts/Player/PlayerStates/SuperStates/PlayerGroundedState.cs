@@ -30,7 +30,7 @@ public class PlayerGroundedState : PlayerState
         if (_jumpInput)
         {
             Player.InputHandler.UseJumpInput();
-            PlayerFiniteStateMachine.ChangeState(Player.JumpState);
+            FiniteStateMachine.ChangeState(Player.JumpState);
         }
     }
 

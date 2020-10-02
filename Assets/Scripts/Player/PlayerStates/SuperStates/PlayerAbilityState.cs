@@ -28,11 +28,11 @@
         {
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
-                PlayerFiniteStateMachine.ChangeState(Player.IdleState);
+                FiniteStateMachine.ChangeState(Player.IdleState);
             }
             else
             {
-                PlayerFiniteStateMachine.ChangeState(Player.InAirState);
+                FiniteStateMachine.ChangeState(Player.InAirState);
             }
         }
     }

@@ -115,6 +115,10 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
+    private void AnimationTrigger() => FiniteStateMachine.CurrentState.AnimationTrigger();
+
+    private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
+
     private void Flip()
     {
         FacingDirection *= -1;
