@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormalizedInputX { get; private set; }
     public int NormalizedInputY { get; private set; }
     public bool JumpInput { get; private set; }
+    public bool JumpInputStop { get; private set; }
 
     private void Update()
     {
@@ -31,7 +32,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             JumpInput = true;
+            JumpInputStop = false;
             _jumpInputStartTime = Time.time;
+        }
+
+        if (context.canceled)
+        {
+            JumpInputStop = true;
         }
     }
 

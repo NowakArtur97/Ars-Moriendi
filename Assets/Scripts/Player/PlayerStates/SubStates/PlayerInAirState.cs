@@ -4,8 +4,10 @@ public class PlayerInAirState : PlayerState
 {
     private int _xInput;
     private bool _jumpInput;
+    private bool _jumpInputStop;
 
     private bool _isGrounded;
+    private bool _isJumping;
 
     private bool _coyoteTime;
 
@@ -31,6 +33,9 @@ public class PlayerInAirState : PlayerState
 
         _xInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
+        _jumpInputStop = Player.InputHandler.JumpInputStop;
+
+        CheckJumpHeightMultiplier();
 
         if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
         {
@@ -62,6 +67,22 @@ public class PlayerInAirState : PlayerState
         _isGrounded = Player.CheckIfGrounded();
     }
 
+    private void CheckJumpHeightMultiplier()
+    {
+        if (_isJumping)
+        {
+            if (_jumpInputStop)
+            {
+                Player.SetVelocityY(Player.CurrentVelocity.y * PlayerData.variableJumpHeightMultiplier);
+                _isJumping = false;
+            }
+            else if (Player.CurrentVelocity.y <= 0)
+            {
+                _isJumping = false;
+            }
+        }
+    }
+
     private void CheckCoyoteTime()
     {
         if (_coyoteTime && Time.time >= StartTime + PlayerData.coyoteTime)
@@ -72,4 +93,6 @@ public class PlayerInAirState : PlayerState
     }
 
     public void StartCoyoteTime() => _coyoteTime = true;
+
+    public void SetIsJumping() => _isJumping = true;
 }
