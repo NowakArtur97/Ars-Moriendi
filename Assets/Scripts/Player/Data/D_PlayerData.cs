@@ -10,6 +10,9 @@ public class D_PlayerData : ScriptableObject
     public float jumpVelocity = 15.0f;
     public int amountOfJumps = 1;
 
+    [Header("Jump State")]
+    public float coyoteTime = 0.2f;
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public LayerMask whatIsGround;

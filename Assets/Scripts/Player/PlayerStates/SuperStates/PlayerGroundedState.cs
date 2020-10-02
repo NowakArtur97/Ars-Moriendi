@@ -6,6 +6,8 @@ public class PlayerGroundedState : PlayerState
 
     private bool _jumpInput;
 
+    private bool _isGrounded;
+
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
     }
@@ -34,6 +36,11 @@ public class PlayerGroundedState : PlayerState
             Player.InputHandler.UseJumpInput();
             FiniteStateMachine.ChangeState(Player.JumpState);
         }
+        else if (!_isGrounded)
+        {
+            Player.InAirState.StartCoyoteTime();
+            FiniteStateMachine.ChangeState(Player.InAirState);
+        }
     }
 
     public override void PhysicsUpdate()
@@ -44,5 +51,7 @@ public class PlayerGroundedState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        _isGrounded = Player.CheckIfGrounded();
     }
 }

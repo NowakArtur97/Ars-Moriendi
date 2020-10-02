@@ -15,6 +15,7 @@ MonoBehaviour:
   movementVelocity: 10
   jumpVelocity: 15
   amountOfJumps: 2
+  coyoteTime: 0.2
   groundCheckRadius: 0.3
   whatIsGround:
     serializedVersion: 2

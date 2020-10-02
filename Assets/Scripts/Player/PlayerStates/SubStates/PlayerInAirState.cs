@@ -7,6 +7,8 @@ public class PlayerInAirState : PlayerState
 
     private bool _isGrounded;
 
+    private bool _coyoteTime;
+
     public PlayerInAirState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName) : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName)
     {
     }
@@ -24,6 +26,8 @@ public class PlayerInAirState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        CheckCoyoteTime();
 
         _xInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
@@ -57,4 +61,15 @@ public class PlayerInAirState : PlayerState
 
         _isGrounded = Player.CheckIfGrounded();
     }
+
+    private void CheckCoyoteTime()
+    {
+        if (_coyoteTime && Time.time >= StartTime + PlayerData.coyoteTime)
+        {
+            _coyoteTime = false;
+            Player.JumpState.DecreaseAmountOfJumps();
+        }
+    }
+
+    public void StartCoyoteTime() => _coyoteTime = true;
 }
