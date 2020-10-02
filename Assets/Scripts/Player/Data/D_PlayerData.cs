@@ -8,6 +8,7 @@ public class D_PlayerData : ScriptableObject
 
     [Header("Jump State")]
     public float jumpVelocity = 15.0f;
+    public int amountOfJumps = 1;
 
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;

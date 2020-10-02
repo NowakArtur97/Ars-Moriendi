@@ -13,6 +13,8 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        Player.JumpState.ResetAmountOfJumpsLeft();
     }
 
     public override void Exit()
@@ -27,7 +29,7 @@ public class PlayerGroundedState : PlayerState
         XInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
 
-        if (_jumpInput)
+        if (_jumpInput && Player.JumpState.CanJump())
         {
             Player.InputHandler.UseJumpInput();
             FiniteStateMachine.ChangeState(Player.JumpState);

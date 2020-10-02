@@ -3,6 +3,7 @@
 public class PlayerInAirState : PlayerState
 {
     private int _xInput;
+    private bool _jumpInput;
 
     private bool _isGrounded;
 
@@ -25,10 +26,15 @@ public class PlayerInAirState : PlayerState
         base.LogicUpdate();
 
         _xInput = Player.InputHandler.NormalizedInputX;
+        _jumpInput = Player.InputHandler.JumpInput;
 
         if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
         {
             FiniteStateMachine.ChangeState(Player.LandState);
+        }
+        else if (_jumpInput && Player.JumpState.CanJump())
+        {
+            FiniteStateMachine.ChangeState(Player.JumpState);
         }
         else
         {
