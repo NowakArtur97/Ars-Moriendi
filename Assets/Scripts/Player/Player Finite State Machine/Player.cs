@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Transform _groundCheck;
+    private Transform _wallCheck;
 
     #endregion
 
@@ -108,6 +109,8 @@ public class Player : MonoBehaviour
     #region Check Functions
 
     public bool CheckIfGrounded() => Physics2D.OverlapCircle(_groundCheck.position, _playerData.groundCheckRadius, _playerData.whatIsGround);
+
+    public bool CheckIfTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
 
     public void CheckIfShouldFlip(int xInput)
     {

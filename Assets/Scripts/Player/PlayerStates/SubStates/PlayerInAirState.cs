@@ -7,6 +7,7 @@ public class PlayerInAirState : PlayerState
     private bool _jumpInputStop;
 
     private bool _isGrounded;
+    private bool _isTouchingWall;
     private bool _isJumping;
 
     private bool _coyoteTime;
@@ -45,6 +46,10 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.JumpState);
         }
+        else if (_isTouchingWall && _xInput == Player.FacingDirection)
+        {
+            FiniteStateMachine.ChangeState(Player.WallSlideState);
+        }
         else
         {
             Player.CheckIfShouldFlip(_xInput);
@@ -65,6 +70,7 @@ public class PlayerInAirState : PlayerState
         base.DoChecks();
 
         _isGrounded = Player.CheckIfGrounded();
+        _isTouchingWall = Player.CheckIfTouchingWall();
     }
 
     private void CheckJumpHeightMultiplier()
