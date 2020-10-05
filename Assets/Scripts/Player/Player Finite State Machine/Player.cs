@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     public PlayerLandState LandState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
+    public PlayerWallGrabState WallGrabState { get; private set; }
+    public PlayerWallClimbState WallClimbState { get; private set; }
 
     #endregion
 
@@ -55,6 +58,9 @@ public class Player : MonoBehaviour
         LandState = new PlayerLandState(this, FiniteStateMachine, _playerData, "land");
         JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
         InAirState = new PlayerInAirState(this, FiniteStateMachine, _playerData, "inAir");
+        WallSlideState = new PlayerWallSlideState(this, FiniteStateMachine, _playerData, "wallSlide");
+        WallGrabState = new PlayerWallGrabState(this, FiniteStateMachine, _playerData, "wallGrab");
+        WallClimbState = new PlayerWallClimbState(this, FiniteStateMachine, _playerData, "wallClimb");
     }
 
     private void Start()
