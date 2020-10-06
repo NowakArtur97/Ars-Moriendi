@@ -30,11 +30,11 @@ public class PlayerTouchingWallState : PlayerState
         YInput = Player.InputHandler.NormalizedInputY;
         GrabInput = Player.InputHandler.GrabInput;
 
-        if (IsGrounded)
+        if (IsGrounded && !GrabInput)
         {
             FiniteStateMachine.ChangeState(Player.IdleState);
         }
-        else if (!IsTouchingWall || XInput != Player.FacingDirection)
+        else if (!IsTouchingWall || (XInput != Player.FacingDirection && !GrabInput))
         {
             FiniteStateMachine.ChangeState(Player.InAirState);
         }
