@@ -5,8 +5,10 @@ public class PlayerGroundedState : PlayerState
     protected int XInput;
 
     private bool _jumpInput;
+    private bool _grabInput;
 
     private bool _isGrounded;
+    private bool _isTouchingWall;
 
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
@@ -30,6 +32,7 @@ public class PlayerGroundedState : PlayerState
 
         XInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
+        _grabInput = Player.InputHandler.GrabInput;
 
         if (_jumpInput && Player.JumpState.CanJump())
         {
@@ -40,6 +43,10 @@ public class PlayerGroundedState : PlayerState
         {
             Player.InAirState.StartCoyoteTime();
             FiniteStateMachine.ChangeState(Player.InAirState);
+        }
+        else if (_isTouchingWall && _grabInput)
+        {
+            FiniteStateMachine.ChangeState(Player.WallGrabState);
         }
     }
 
@@ -53,5 +60,6 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
 
         _isGrounded = Player.CheckIfGrounded();
+        _isTouchingWall = Player.CheckIfTouchingWall();
     }
 }
