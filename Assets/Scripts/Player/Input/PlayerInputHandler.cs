@@ -24,8 +24,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
-        NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-        NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
+        NormalizedInputX = Mathf.Abs(RawMovementInput.x) > 0.5f ? (int)(RawMovementInput * Vector2.right).normalized.x : 0;
+        NormalizedInputY = Mathf.Abs(RawMovementInput.y) > 0.5f ? (int)(RawMovementInput * Vector2.up).normalized.y : 0;
     }
 
     public void OnJumpInput(CallbackContext context)

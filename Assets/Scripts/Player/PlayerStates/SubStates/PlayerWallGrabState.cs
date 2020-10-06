@@ -27,7 +27,7 @@ public class PlayerWallGrabState : PlayerTouchingWallState
         {
             FiniteStateMachine.ChangeState(Player.WallClimbState);
         }
-        else if (YInput < 0 && !GrabInput)
+        else if (YInput < 0)
         {
             FiniteStateMachine.ChangeState(Player.WallSlideState);
         }

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerTouchingWallState : PlayerState
+﻿public class PlayerTouchingWallState : PlayerState
 {
     protected bool IsGrounded;
     protected bool IsTouchingWall;

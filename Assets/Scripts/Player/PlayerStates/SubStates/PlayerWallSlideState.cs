@@ -9,5 +9,10 @@
         base.LogicUpdate();
 
         Player.SetVelocityY(-PlayerData.wallSlideVelocity);
+
+        if (GrabInput && YInput == 0)
+        {
+            FiniteStateMachine.ChangeState(Player.WallGrabState);
+        }
     }
 }
