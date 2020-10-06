@@ -38,17 +38,17 @@ public class PlayerInAirState : PlayerState
 
         CheckJumpHeightMultiplier();
 
-        if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
+        if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {
-            FiniteStateMachine.ChangeState(Player.LandState);
+            FiniteStateMachine.ChangeState(Player.WallSlideState);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
             FiniteStateMachine.ChangeState(Player.JumpState);
         }
-        else if (_isTouchingWall && _xInput == Player.FacingDirection)
+        else if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
         {
-            FiniteStateMachine.ChangeState(Player.WallSlideState);
+            FiniteStateMachine.ChangeState(Player.LandState);
         }
         else
         {

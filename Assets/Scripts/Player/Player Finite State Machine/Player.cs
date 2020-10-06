@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Transform _groundCheck;
+    [SerializeField]
     private Transform _wallCheck;
 
     #endregion
