@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormalizedInputY { get; private set; }
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
+    public bool GrabInput { get; private set; }
 
     private void Update()
     {
@@ -39,6 +40,18 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             JumpInputStop = true;
+        }
+    }
+
+    public void OnGrabInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            GrabInput = true;
+        }
+        if (context.canceled)
+        {
+            GrabInput = false;
         }
     }
 
