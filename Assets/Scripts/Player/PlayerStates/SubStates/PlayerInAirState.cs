@@ -44,6 +44,10 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.WallSlideState);
         }
+        else if (_jumpInput && _isTouchingWall)
+        {
+            FiniteStateMachine.ChangeState(Player.WallJumpState);
+        }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
             FiniteStateMachine.ChangeState(Player.JumpState);
