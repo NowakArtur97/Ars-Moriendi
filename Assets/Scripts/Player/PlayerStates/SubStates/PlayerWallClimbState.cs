@@ -8,11 +8,14 @@
     {
         base.LogicUpdate();
 
-        Player.SetVelocityY(PlayerData.wallClimbVelocity);
-
-        if (YInput != 1 && !IsExitingState)
+        if (!IsExitingState)
         {
-            FiniteStateMachine.ChangeState(Player.WallGrabState);
+            Player.SetVelocityY(PlayerData.wallClimbVelocity);
+
+            if (YInput != 1)
+            {
+                FiniteStateMachine.ChangeState(Player.WallGrabState);
+            }
         }
     }
 }
