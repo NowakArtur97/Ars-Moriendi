@@ -9,6 +9,7 @@ public class PlayerState
     protected float StartTime;
 
     protected bool IsAnimationFinished;
+    protected bool IsExitingState;
 
     private string _animationBoolName;
 
@@ -31,11 +32,13 @@ public class PlayerState
         Debug.Log(_animationBoolName);
 
         IsAnimationFinished = false;
+        IsExitingState = false;
     }
 
     public virtual void Exit()
     {
         Player.MyAnmator.SetBool(_animationBoolName, false);
+        IsExitingState = false;
     }
 
     public virtual void LogicUpdate() { }

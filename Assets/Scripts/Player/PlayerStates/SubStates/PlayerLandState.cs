@@ -8,13 +8,16 @@
     {
         base.LogicUpdate();
 
-        if (XInput != 0)
+        if (!IsExitingState)
         {
-            FiniteStateMachine.ChangeState(Player.MoveState);
-        }
-        else if (IsAnimationFinished)
-        {
-            FiniteStateMachine.ChangeState(Player.IdleState);
+            if (XInput != 0)
+            {
+                FiniteStateMachine.ChangeState(Player.MoveState);
+            }
+            else if (IsAnimationFinished)
+            {
+                FiniteStateMachine.ChangeState(Player.IdleState);
+            }
         }
     }
 }

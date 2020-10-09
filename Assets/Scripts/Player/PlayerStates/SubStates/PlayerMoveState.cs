@@ -21,7 +21,7 @@
         Player.CheckIfShouldFlip(XInput);
         Player.SetVelocityX(PlayerData.movementVelocity * XInput);
 
-        if (XInput == 0)
+        if (XInput == 0 && !IsExitingState)
         {
             FiniteStateMachine.ChangeState(Player.IdleState);
         }

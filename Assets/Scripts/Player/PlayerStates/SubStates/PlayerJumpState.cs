@@ -13,6 +13,7 @@
 
         Player.SetVelocityY(PlayerData.jumpVelocity);
         Player.InAirState.SetIsJumping();
+        Player.InputHandler.UseJumpInput();
 
         DecreaseAmountOfJumps();
 

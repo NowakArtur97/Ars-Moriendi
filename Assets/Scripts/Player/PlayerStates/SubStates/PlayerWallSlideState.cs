@@ -10,7 +10,7 @@
 
         Player.SetVelocityY(-PlayerData.wallSlideVelocity);
 
-        if (GrabInput && YInput == 0)
+        if (GrabInput && YInput == 0 && !IsExitingState)
         {
             FiniteStateMachine.ChangeState(Player.WallGrabState);
         }

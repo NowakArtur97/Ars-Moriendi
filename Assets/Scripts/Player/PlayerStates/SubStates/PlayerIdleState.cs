@@ -20,7 +20,7 @@
     {
         base.LogicUpdate();
 
-        if (XInput != 0)
+        if (XInput != 0 && !IsExitingState)
         {
             FiniteStateMachine.ChangeState(Player.MoveState);
         }

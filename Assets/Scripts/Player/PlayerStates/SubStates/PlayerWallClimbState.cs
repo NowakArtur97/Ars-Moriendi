@@ -10,7 +10,7 @@
 
         Player.SetVelocityY(PlayerData.wallClimbVelocity);
 
-        if (YInput != 1)
+        if (YInput != 1 && !IsExitingState)
         {
             FiniteStateMachine.ChangeState(Player.WallGrabState);
         }
