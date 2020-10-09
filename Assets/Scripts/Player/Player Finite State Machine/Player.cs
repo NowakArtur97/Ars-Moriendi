@@ -107,6 +107,14 @@ public class Player : MonoBehaviour
         MyRigidbody.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
+
+    public void SetVelocity(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        _workspace.Set(velocity * angle.x * direction, velocity * angle.y);
+        MyRigidbody.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
     #endregion
 
     #region Check Functions
@@ -114,6 +122,8 @@ public class Player : MonoBehaviour
     public bool CheckIfGrounded() => Physics2D.OverlapCircle(_groundCheck.position, _playerData.groundCheckRadius, _playerData.whatIsGround);
 
     public bool CheckIfTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+
+    public bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * -FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
 
     public void CheckIfShouldFlip(int xInput)
     {

@@ -20,6 +20,11 @@ public class D_PlayerData : ScriptableObject
     [Header("Wall Climb State")]
     public float wallClimbVelocity = 3.0f;
 
+    [Header("Wall Jump State")]
+    public float wallJumpVelocity = 20.0f;
+    public float wallJumpTime = 0.4f;
+    public Vector2 wallJumpAngle = new Vector2(1, 2);
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;

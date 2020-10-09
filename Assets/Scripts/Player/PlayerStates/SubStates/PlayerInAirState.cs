@@ -9,6 +9,7 @@ public class PlayerInAirState : PlayerState
 
     private bool _isGrounded;
     private bool _isTouchingWall;
+    private bool _isBackTouchingWall;
     private bool _isJumping;
 
     private bool _coyoteTime;
@@ -44,8 +45,9 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.WallSlideState);
         }
-        else if (_jumpInput && _isTouchingWall)
+        else if (_jumpInput && (_isTouchingWall || _isBackTouchingWall))
         {
+            Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
             FiniteStateMachine.ChangeState(Player.WallJumpState);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
@@ -81,6 +83,7 @@ public class PlayerInAirState : PlayerState
 
         _isGrounded = Player.CheckIfGrounded();
         _isTouchingWall = Player.CheckIfTouchingWall();
+        _isBackTouchingWall = Player.CheckIfBackIsTouchingWall();
     }
 
     private void CheckJumpHeightMultiplier()

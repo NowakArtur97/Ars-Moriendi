@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVelocity: 10
   jumpVelocity: 15
-  amountOfJumps: 2
+  amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   wallSlideVelocity: 3
+  wallClimbVelocity: 3
+  wallJumpVelocity: 20
+  wallJumpTime: 0.4
+  wallJumpAngle: {x: 1, y: 2}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.8
   whatIsGround:
