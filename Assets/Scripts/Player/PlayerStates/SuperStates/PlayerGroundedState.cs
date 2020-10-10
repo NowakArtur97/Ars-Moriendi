@@ -7,6 +7,7 @@
 
     private bool _isGrounded;
     private bool _isTouchingWall;
+    private bool _isTouchingLedge;
 
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
@@ -41,7 +42,7 @@
             Player.InAirState.StartCoyoteTime();
             FiniteStateMachine.ChangeState(Player.InAirState);
         }
-        else if (_isTouchingWall && _grabInput)
+        else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
             FiniteStateMachine.ChangeState(Player.WallGrabState);
         }
@@ -58,5 +59,6 @@
 
         _isGrounded = Player.CheckIfGrounded();
         _isTouchingWall = Player.CheckIfTouchingWall();
+        _isTouchingLedge = Player.CheckIfTouchingLedge();
     }
 }

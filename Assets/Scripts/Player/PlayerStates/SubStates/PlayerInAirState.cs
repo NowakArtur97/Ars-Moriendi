@@ -56,7 +56,7 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.WallSlideState);
         }
-        else if (_isTouchingWall && !_isTouchingLedge)
+        else if (_isTouchingWall && !_isTouchingLedge && !_isGrounded)
         {
             FiniteStateMachine.ChangeState(Player.LedgeClimbState);
         }
@@ -71,7 +71,7 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.JumpState);
         }
-        else if (_isTouchingWall && _grabInput)
+        else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
             FiniteStateMachine.ChangeState(Player.WallGrabState);
         }

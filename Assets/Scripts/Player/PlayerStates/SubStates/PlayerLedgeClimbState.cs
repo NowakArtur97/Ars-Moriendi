@@ -13,6 +13,7 @@ public class PlayerLedgeClimbState : PlayerState
 
     private int _xInput;
     private int _yInput;
+    private bool _jumpInput;
 
     public PlayerLedgeClimbState(Player Player, PlayerFiniteStateMachine FiniteStateMachine, D_PlayerData PlayerData, string _animationBoolName) : base(Player, FiniteStateMachine, PlayerData, _animationBoolName)
     {
@@ -59,6 +60,7 @@ public class PlayerLedgeClimbState : PlayerState
         {
             _xInput = Player.InputHandler.NormalizedInputX;
             _yInput = Player.InputHandler.NormalizedInputY;
+            _jumpInput = Player.InputHandler.JumpInput;
 
             Player.SetVelocityZero();
             Player.transform.position = _startPosition;
@@ -71,6 +73,11 @@ public class PlayerLedgeClimbState : PlayerState
             else if ((_yInput == -1 || _xInput == -Player.FacingDirection) && _isHanging && !_isClimbing)
             {
                 Player.FiniteStateMachine.ChangeState(Player.InAirState);
+            }
+            else if (_jumpInput && !_isClimbing)
+            {
+                Player.WallJumpState.DetermineWallJumpDirection(true);
+                Player.FiniteStateMachine.ChangeState(Player.WallJumpState);
             }
         }
     }
