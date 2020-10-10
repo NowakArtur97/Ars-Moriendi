@@ -20,6 +20,45 @@ TextureImporter:
   - first:
       213: 5832233041410409034
     second: Player Ledge Climb_5
+  - first:
+      213: 6793751556644242405
+    second: Player Ledge Climb_0
+  - first:
+      213: -2776284454638811928
+    second: Player Ledge Climb_1
+  - first:
+      213: -7726997586822899931
+    second: Player Ledge Climb_2
+  - first:
+      213: -4632264982813230571
+    second: Player Ledge Climb_3
+  - first:
+      213: -8981296657923909164
+    second: Player Ledge Climb_4
+  - first:
+      213: -7793588431582933049
+    second: Player Ledge Climb_5
+  - first:
+      213: 2635990605879601289
+    second: Player Ledge Climb_6
+  - first:
+      213: -1500418893639444288
+    second: Player Ledge Climb_7
+  - first:
+      213: 317803675096951609
+    second: Player Ledge Climb_8
+  - first:
+      213: -7658461104253921029
+    second: Player Ledge Climb_9
+  - first:
+      213: 474391478043228002
+    second: Player Ledge Climb_10
+  - first:
+      213: 7764931359460095412
+    second: Player Ledge Climb_11
+  - first:
+      213: 6336012898896852242
+    second: Player Ledge Climb_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,8 +170,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a48588e4aecef30800000000000000
-      internalID: 4606314141909011020
+      spriteID: 5e38902cb01484e50800000000000000
+      internalID: 6793751556644242405
       vertices: []
       indices: 
       edges: []
@@ -152,8 +191,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a54b1e759a448580800000000000000
-      internalID: -8825847363813030492
+      spriteID: 8e480d57ff7a879d0800000000000000
+      internalID: -2776284454638811928
       vertices: []
       indices: 
       edges: []
@@ -173,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eae2e05d4b3b379d0800000000000000
-      internalID: -2777678955907502418
+      spriteID: 527de1952a034c490800000000000000
+      internalID: -7726997586822899931
       vertices: []
       indices: 
       edges: []
@@ -194,8 +233,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f88dcc57455ee740800000000000000
-      internalID: 5183173986138032371
+      spriteID: 51abfe97a83e6bfb0800000000000000
+      internalID: -4632264982813230571
       vertices: []
       indices: 
       edges: []
@@ -215,29 +254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f42d74a96a9e0d0800000000000000
-      internalID: -3392997662686818504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player Ledge Climb_5
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a424098fc0140f050800000000000000
-      internalID: 5832233041410409034
+      spriteID: 4d9da0a46460c5380800000000000000
+      internalID: -8981296657923909164
       vertices: []
       indices: 
       edges: []

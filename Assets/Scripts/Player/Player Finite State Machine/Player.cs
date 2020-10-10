@@ -98,6 +98,12 @@ public class Player : MonoBehaviour
 
     #region Set Functions
 
+    public void SetVelocityZero()
+    {
+        MyRigidbody.velocity = Vector2.zero;
+        CurrentVelocity = Vector2.zero;
+    }
+
     public void SetVelocityX(float velocity)
     {
         _workspace.Set(velocity, CurrentVelocity.y);
@@ -151,6 +157,21 @@ public class Player : MonoBehaviour
     {
         FacingDirection *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    public Vector2 DetermineCornerPosition()
+    {
+        RaycastHit2D xHit = Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+        float xDistance = xHit.distance;
+
+        _workspace.Set(xDistance * FacingDirection, 0);
+        RaycastHit2D yHit = Physics2D.Raycast(_ledgeCheck.position + (Vector3)_workspace, Vector2.down, _ledgeCheck.position.y - _wallCheck.position.y,
+            _playerData.whatIsGround);
+        float yDistance = yHit.distance;
+
+        _workspace.Set(_wallCheck.position.x + xDistance * FacingDirection, _ledgeCheck.position.y - yDistance);
+
+        return _workspace;
     }
 
     #endregion

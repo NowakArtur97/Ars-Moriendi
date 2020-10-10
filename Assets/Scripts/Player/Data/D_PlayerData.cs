@@ -25,6 +25,10 @@ public class D_PlayerData : ScriptableObject
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
+    [Header("Ledge Climb State")]
+    public Vector2 ledgeClimbStartOffset;
+    public Vector2 ledgeClimbStopOffset;
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;
