@@ -4,10 +4,10 @@
 public class D_PlayerData : ScriptableObject
 {
     [Header("Move State")]
-    public float movementVelocity = 10.0f;
+    public float movementVelocity = 10;
 
     [Header("Jump State")]
-    public float jumpVelocity = 15.0f;
+    public float jumpVelocity = 15;
     public int amountOfJumps = 1;
 
     [Header("In Air State")]
@@ -15,13 +15,13 @@ public class D_PlayerData : ScriptableObject
     public float variableJumpHeightMultiplier = 0.5f;
 
     [Header("Wall Slide State")]
-    public float wallSlideVelocity = 3.0f;
+    public float wallSlideVelocity = 3;
 
     [Header("Wall Climb State")]
-    public float wallClimbVelocity = 3.0f;
+    public float wallClimbVelocity = 3;
 
     [Header("Wall Jump State")]
-    public float wallJumpVelocity = 20.0f;
+    public float wallJumpVelocity = 20;
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
@@ -31,6 +31,13 @@ public class D_PlayerData : ScriptableObject
 
     [Header("Dash State")]
     public float dashCooldown = 0.5f;
+    public float maxHoldTime = 1;
+    public float holdTimeScale = 0.25f;
+    public float dashTime = 0.2f;
+    public float dashVelocity = 30;
+    public float dashLinearDrag = 10;
+    public float dashEndMultiplier = 0.2f;
+    public float distanceBetweenAfterImages = 0.4f;
 
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
