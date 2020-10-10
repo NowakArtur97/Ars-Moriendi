@@ -164,12 +164,12 @@ public class Player : MonoBehaviour
         RaycastHit2D xHit = Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
         float xDistance = xHit.distance;
 
-        _workspace.Set(xDistance * FacingDirection, 0);
+        _workspace.Set(xDistance * FacingDirection, 0f);
         RaycastHit2D yHit = Physics2D.Raycast(_ledgeCheck.position + (Vector3)_workspace, Vector2.down, _ledgeCheck.position.y - _wallCheck.position.y,
             _playerData.whatIsGround);
         float yDistance = yHit.distance;
 
-        _workspace.Set(_wallCheck.position.x + xDistance * FacingDirection, _ledgeCheck.position.y - yDistance);
+        _workspace.Set(_wallCheck.position.x + (xDistance * FacingDirection), _ledgeCheck.position.y - yDistance);
 
         return _workspace;
     }
