@@ -23,7 +23,7 @@ MonoBehaviour:
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
   groundCheckRadius: 0.1
-  wallCheckDistance: 0.8
+  wallCheckDistance: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
