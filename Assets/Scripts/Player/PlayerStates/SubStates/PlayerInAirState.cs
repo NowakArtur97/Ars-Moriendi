@@ -9,6 +9,7 @@ public class PlayerInAirState : PlayerState
 
     private bool _isGrounded;
     private bool _isTouchingWall;
+    private bool _isTouchingLedge;
     private bool _prevoiusIsTouchingWall;
     private bool _prevoiusIsBackTouchingWall;
     private bool _isBackTouchingWall;
@@ -55,6 +56,10 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.WallSlideState);
         }
+        else if (_isTouchingWall && !_isTouchingLedge)
+        {
+            FiniteStateMachine.ChangeState(Player.LedgeClimbState);
+        }
         else if (_jumpInput && (_isTouchingWall || _isBackTouchingWall || _wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
@@ -99,6 +104,12 @@ public class PlayerInAirState : PlayerState
         _isGrounded = Player.CheckIfGrounded();
         _isTouchingWall = Player.CheckIfTouchingWall();
         _isBackTouchingWall = Player.CheckIfBackIsTouchingWall();
+        _isTouchingLedge = Player.CheckIfTouchingLedge();
+
+        if (_isTouchingWall && !_isTouchingLedge)
+        {
+            Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
+        }
 
         if (!_wallJumpCoyoteTime && !_isTouchingWall && !_isBackTouchingWall && (_prevoiusIsTouchingWall || _prevoiusIsBackTouchingWall))
         {

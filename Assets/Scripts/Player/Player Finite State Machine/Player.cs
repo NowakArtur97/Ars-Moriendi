@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private Transform _groundCheck;
     [SerializeField]
     private Transform _wallCheck;
+    [SerializeField]
+    private Transform _ledgeCheck;
 
     #endregion
 
@@ -126,6 +128,8 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
 
     public bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * -FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+
+    public bool CheckIfTouchingLedge() => Physics2D.Raycast(_ledgeCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
 
     public void CheckIfShouldFlip(int xInput)
     {
