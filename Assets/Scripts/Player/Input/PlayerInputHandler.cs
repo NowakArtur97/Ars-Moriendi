@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float _inputHoldTime = 0.2f;
 
     private float _jumpInputStartTime;
+    private float _dashInputStartTime;
 
     public Vector2 RawMovementInput { get; private set; }
     public int NormalizedInputX { get; private set; }
@@ -14,10 +15,13 @@ public class PlayerInputHandler : MonoBehaviour
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
     public bool GrabInput { get; private set; }
+    public bool DashInput { get; private set; }
+    public bool DashInputStop { get; private set; }
 
     private void Update()
     {
         CheckJumpInputHoldTime();
+        CheckDashInputHoldTime();
     }
 
     public void OnMoveInput(CallbackContext context)
@@ -55,13 +59,37 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnDashInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            DashInput = true;
+            DashInputStop = false;
+            _dashInputStartTime = Time.time;
+        }
+        if (context.canceled)
+        {
+            DashInputStop = true;
+        }
+    }
+
     public void UseJumpInput() => JumpInput = false;
+
+    public void UseDashInput() => DashInput = false;
 
     public void CheckJumpInputHoldTime()
     {
         if (Time.time >= _jumpInputStartTime + _inputHoldTime)
         {
             JumpInput = false;
+        }
+    }
+
+    public void CheckDashInputHoldTime()
+    {
+        if (Time.time >= _dashInputStartTime + _inputHoldTime)
+        {
+            DashInput = false;
         }
     }
 }
