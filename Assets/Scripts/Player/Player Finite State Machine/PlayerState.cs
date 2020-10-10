@@ -38,7 +38,7 @@ public class PlayerState
     public virtual void Exit()
     {
         Player.MyAnmator.SetBool(_animationBoolName, false);
-        IsExitingState = false;
+        IsExitingState = true;
     }
 
     public virtual void LogicUpdate() { }
