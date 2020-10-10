@@ -4,6 +4,7 @@
 
     private bool _jumpInput;
     private bool _grabInput;
+    private bool _dashInput;
 
     private bool _isGrounded;
     private bool _isTouchingWall;
@@ -18,6 +19,7 @@
         base.Enter();
 
         Player.JumpState.ResetAmountOfJumpsLeft();
+        Player.DashState.ResetCanDash();
     }
 
     public override void Exit()
@@ -32,6 +34,7 @@
         XInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
         _grabInput = Player.InputHandler.GrabInput;
+        _dashInput = Player.InputHandler.DashInput;
 
         if (_jumpInput && Player.JumpState.CanJump())
         {
@@ -45,6 +48,10 @@
         else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
             FiniteStateMachine.ChangeState(Player.WallGrabState);
+        }
+        else if (_dashInput && Player.DashState.CheckIfCanDash())
+        {
+            FiniteStateMachine.ChangeState(Player.DashState);
         }
     }
 

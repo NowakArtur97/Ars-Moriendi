@@ -17,6 +17,8 @@ public class PlayerTouchingWallState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        Player.DashState.ResetCanDash();
     }
 
     public override void Exit()

@@ -29,6 +29,9 @@ public class D_PlayerData : ScriptableObject
     public Vector2 ledgeClimbStartOffset = new Vector2(0.3f, 0.5f);
     public Vector2 ledgeClimbStopOffset;
 
+    [Header("Dash State")]
+    public float dashCooldown = 0.5f;
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;
