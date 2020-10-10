@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputHandler : MonoBehaviour
@@ -6,10 +7,15 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField]
     private float _inputHoldTime = 0.2f;
 
+    private PlayerInput _playerInput;
+    private Camera mainCamera;
+
     private float _jumpInputStartTime;
     private float _dashInputStartTime;
 
     public Vector2 RawMovementInput { get; private set; }
+    public Vector2 RawDashDirectionInput { get; private set; }
+    public Vector2Int DashDirectionInput { get; private set; }
     public int NormalizedInputX { get; private set; }
     public int NormalizedInputY { get; private set; }
     public bool JumpInput { get; private set; }
@@ -17,6 +23,12 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+
+    private void Start()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+        mainCamera = Camera.main;
+    }
 
     private void Update()
     {
@@ -70,6 +82,17 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             DashInputStop = true;
+        }
+    }
+
+    public void OnDashDirectionInput(CallbackContext context)
+    {
+        RawDashDirectionInput = context.ReadValue<Vector2>();
+
+        if (_playerInput.currentControlScheme == "Keyboard and Mouse")
+        {
+            RawDashDirectionInput = mainCamera.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
+            DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
     }
 

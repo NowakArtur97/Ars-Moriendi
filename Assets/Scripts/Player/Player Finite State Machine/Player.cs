@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public Transform DashDirectionIndicator { get; private set; }
 
     #endregion
 
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         MyAnmator = GetComponent<Animator>();
         MyRigidbody = GetComponent<Rigidbody2D>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        DashDirectionIndicator = transform.Find("Dash Direction Indicator");
 
         FacingDirection = 1;
 
@@ -127,6 +129,14 @@ public class Player : MonoBehaviour
         MyRigidbody.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
+
+    public void SetVelocity(float velocity, Vector2 direction)
+    {
+        _workspace = velocity * direction;
+        MyRigidbody.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
+
     #endregion
 
     #region Check Functions

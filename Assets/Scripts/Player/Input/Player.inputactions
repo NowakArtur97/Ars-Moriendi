@@ -138,7 +138,7 @@
                 {
                     "name": "",
                     "id": "8d934d0b-93be-47ea-a37d-e4a26b0eaa0d",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
