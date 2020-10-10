@@ -22,6 +22,8 @@ MonoBehaviour:
   wallJumpVelocity: 20
   wallJumpTime: 0.4
   wallJumpAngle: {x: 1, y: 2}
+  ledgeClimbStartOffset: {x: 0.3, y: 0.9}
+  ledgeClimbStopOffset: {x: 0.4, y: 0.8}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   whatIsGround:

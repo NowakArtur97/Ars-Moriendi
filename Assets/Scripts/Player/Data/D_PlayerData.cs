@@ -26,7 +26,7 @@ public class D_PlayerData : ScriptableObject
     public Vector2 wallJumpAngle = new Vector2(1, 2);
 
     [Header("Ledge Climb State")]
-    public Vector2 ledgeClimbStartOffset;
+    public Vector2 ledgeClimbStartOffset = new Vector2(0.3f, 0.5f);
     public Vector2 ledgeClimbStopOffset;
 
     [Header("Check Variables")]
