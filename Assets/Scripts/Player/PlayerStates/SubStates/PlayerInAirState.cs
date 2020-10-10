@@ -10,7 +10,7 @@ public class PlayerInAirState : PlayerState
     private bool _isGrounded;
     private bool _isTouchingWall;
     private bool _prevoiusIsTouchingWall;
-    private bool _prevoiusIsTouchingWallBack;
+    private bool _prevoiusIsBackTouchingWall;
     private bool _isBackTouchingWall;
     private bool _isJumping;
 
@@ -30,6 +30,11 @@ public class PlayerInAirState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        _prevoiusIsTouchingWall = false;
+        _prevoiusIsBackTouchingWall = false;
+        _isTouchingWall = false;
+        _isBackTouchingWall = false;
     }
 
     public override void LogicUpdate()
@@ -89,13 +94,13 @@ public class PlayerInAirState : PlayerState
         base.DoChecks();
 
         _prevoiusIsTouchingWall = _isTouchingWall;
-        _prevoiusIsTouchingWallBack = _isBackTouchingWall;
+        _prevoiusIsBackTouchingWall = _isBackTouchingWall;
 
         _isGrounded = Player.CheckIfGrounded();
         _isTouchingWall = Player.CheckIfTouchingWall();
         _isBackTouchingWall = Player.CheckIfBackIsTouchingWall();
 
-        if (!_wallJumpCoyoteTime && !_isTouchingWall && !_isBackTouchingWall && (_prevoiusIsTouchingWall || _prevoiusIsTouchingWallBack))
+        if (!_wallJumpCoyoteTime && !_isTouchingWall && !_isBackTouchingWall && (_prevoiusIsTouchingWall || _prevoiusIsBackTouchingWall))
         {
             StartWallJumpCoyoteTime();
         }
