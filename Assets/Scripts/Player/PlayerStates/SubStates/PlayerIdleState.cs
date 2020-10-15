@@ -20,9 +20,16 @@
     {
         base.LogicUpdate();
 
-        if (XInput != 0 && !IsExitingState)
+        if (!IsExitingState)
         {
-            FiniteStateMachine.ChangeState(Player.MoveState);
+            if (XInput != 0)
+            {
+                FiniteStateMachine.ChangeState(Player.MoveState);
+            }
+            else if (CrouchInput)
+            {
+                FiniteStateMachine.ChangeState(Player.CrouchIdleState);
+            }
         }
     }
 

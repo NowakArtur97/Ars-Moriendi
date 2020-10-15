@@ -92,7 +92,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (_playerInput.currentControlScheme == "Keyboard and Mouse")
         {
-            RawDashDirectionInput = mainCamera.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
+            RawDashDirectionInput = mainCamera.ScreenToWorldPoint(RawDashDirectionInput) - transform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
     }

@@ -21,9 +21,16 @@
         Player.CheckIfShouldFlip(XInput);
         Player.SetVelocityX(PlayerData.movementVelocity * XInput);
 
-        if (XInput == 0 && !IsExitingState)
+        if (!IsExitingState)
         {
-            FiniteStateMachine.ChangeState(Player.IdleState);
+            if (XInput == 0)
+            {
+                FiniteStateMachine.ChangeState(Player.IdleState);
+            }
+            else if (CrouchInput)
+            {
+                FiniteStateMachine.ChangeState(Player.CrouchMoveState);
+            }
         }
     }
 

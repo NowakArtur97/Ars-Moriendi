@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
+    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
 
     #endregion
 
@@ -72,6 +74,8 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, FiniteStateMachine, _playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, _playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
+        CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
+        CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
     }
 
     private void Start()
