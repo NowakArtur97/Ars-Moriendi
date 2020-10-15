@@ -6,6 +6,9 @@ public class D_PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 10;
 
+    [Header("Crouch Move State")]
+    public float crouchMovementVelocity = 6;
+
     [Header("Jump State")]
     public float jumpVelocity = 15;
     public int amountOfJumps = 1;

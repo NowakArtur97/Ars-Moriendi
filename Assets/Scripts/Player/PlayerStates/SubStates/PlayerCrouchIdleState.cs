@@ -10,4 +10,21 @@
 
         Player.SetVelocityX(0.0f);
     }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (!IsExitingState)
+        {
+            if (!CrouchInput)
+            {
+                FiniteStateMachine.ChangeState(Player.IdleState);
+            }
+            else if (XInput != 0)
+            {
+                FiniteStateMachine.ChangeState(Player.CrouchMoveState);
+            }
+        }
+    }
 }
