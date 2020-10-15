@@ -23,6 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+    public bool CrouchInput { get; private set; }
 
     private void Start()
     {
@@ -93,6 +94,18 @@ public class PlayerInputHandler : MonoBehaviour
         {
             RawDashDirectionInput = mainCamera.ScreenToWorldPoint((Vector3)RawDashDirectionInput) - transform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+        }
+    }
+
+    public void OnCrouchInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            CrouchInput = true;
+        }
+        if (context.canceled)
+        {
+            CrouchInput = false;
         }
     }
 
