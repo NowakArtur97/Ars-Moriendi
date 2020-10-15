@@ -6,6 +6,7 @@
     private bool _jumpInput;
     private bool _grabInput;
     private bool _dashInput;
+    private bool _primaryAttackInput;
 
     private bool _isGrounded;
     private bool _isTouchingWall;
@@ -37,8 +38,13 @@
         _jumpInput = Player.InputHandler.JumpInput;
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
+        _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
 
-        if (_jumpInput && Player.JumpState.CanJump())
+        if (_primaryAttackInput)
+        {
+            FiniteStateMachine.ChangeState(Player.PrimaryAttackState);
+        }
+        else if (_jumpInput && Player.JumpState.CanJump())
         {
             FiniteStateMachine.ChangeState(Player.JumpState);
         }

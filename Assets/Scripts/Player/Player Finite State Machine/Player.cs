@@ -173,6 +173,11 @@ public class Player : MonoBehaviour
 
     private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
 
+    // TODO: REFACTOR
+    public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
+
+    public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
+
     private void Flip()
     {
         FacingDirection *= -1;
@@ -192,6 +197,11 @@ public class Player : MonoBehaviour
         _workspace.Set(_wallCheck.position.x + (xDistance * FacingDirection), _ledgeCheck.position.y - yDistance);
 
         return _workspace;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(_attackPosition.position, _playerData.attackRadius);
     }
 
     #endregion

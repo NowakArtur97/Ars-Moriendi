@@ -27,10 +27,4 @@ public class PlayerAttackState : PlayerAbilityState
             }
         }
     }
-
-    public virtual void TriggerAttack() { }
-
-    public virtual void FinishAttack()
-    {
-    }
 }

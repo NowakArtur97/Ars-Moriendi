@@ -13,6 +13,8 @@ public class PlayerPrimaryAttackState : PlayerAttackState
     {
         base.Enter();
 
+        Player.InputHandler.UsePrimaryAttackInput();
+
         attackDetails.position = attackPosition.position;
         attackDetails.damageAmmount = PlayerData.attackDamage;
         attackDetails.stunDamageAmount = PlayerData.stunDamageAmount;
@@ -28,6 +30,7 @@ public class PlayerPrimaryAttackState : PlayerAttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
+            Debug.Log(collider.gameObject.name);
             collider.transform.SendMessage("Damage", attackDetails);
         }
     }
