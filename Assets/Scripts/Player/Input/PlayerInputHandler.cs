@@ -24,6 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
     public bool CrouchInput { get; private set; }
+    public bool PrimaryAttackInput { get; private set; }
 
     private void Start()
     {
@@ -109,9 +110,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnPrimaryAttackInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            PrimaryAttackInput = true;
+        }
+    }
+
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
 
     public void CheckJumpInputHoldTime()
     {

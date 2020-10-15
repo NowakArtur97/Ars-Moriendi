@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private Transform _wallCheck;
     [SerializeField]
     private Transform _ledgeCheck;
+    [SerializeField]
+    private Transform _attackPosition;
 
     #endregion
 
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+    public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
 
     #endregion
 
@@ -76,6 +79,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
+        PrimaryAttackState = new PlayerPrimaryAttackState(this, FiniteStateMachine, _playerData, "primaryAttack", _attackPosition);
     }
 
     private void Start()
