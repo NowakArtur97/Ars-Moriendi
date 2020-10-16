@@ -2,7 +2,7 @@
 {
     private int _amountOfJumpsLeft;
 
-    public PlayerJumpState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName) : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName)
+    public PlayerJumpState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
         _amountOfJumpsLeft = PlayerData.amountOfJumps;
     }

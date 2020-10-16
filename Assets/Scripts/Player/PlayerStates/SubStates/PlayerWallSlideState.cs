@@ -1,6 +1,6 @@
 ﻿public class PlayerWallSlideState : PlayerTouchingWallState
 {
-    public PlayerWallSlideState(Player Player, PlayerFiniteStateMachine FiniteStateMachine, D_PlayerData PlayerData, string _animationBoolName) : base(Player, FiniteStateMachine, PlayerData, _animationBoolName)
+    public PlayerWallSlideState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
     }
 

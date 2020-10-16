@@ -15,16 +15,12 @@ public class PlayerAttackState : PlayerAbilityState
         base.Enter();
     }
 
-    public override void LogicUpdate()
+    public override void AnimationFinishedTrigger()
     {
-        base.LogicUpdate();
+        base.AnimationFinishedTrigger();
 
-        if (!IsExitingState)
-        {
-            if (IsAnimationFinished)
-            {
-                IsAbilityDone = true;
-            }
-        }
+        IsAbilityDone = true;
+
+        Player.MyAnmator.SetBool("primaryAttack", false);
     }
 }

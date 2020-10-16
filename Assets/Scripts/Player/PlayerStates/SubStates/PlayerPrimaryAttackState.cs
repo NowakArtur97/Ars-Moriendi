@@ -4,9 +4,9 @@ public class PlayerPrimaryAttackState : PlayerAttackState
 {
     private AttackDetails attackDetails;
 
-    public PlayerPrimaryAttackState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData,
+    public PlayerPrimaryAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition)
-        : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName, attackPosition)
+        : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
     }
 

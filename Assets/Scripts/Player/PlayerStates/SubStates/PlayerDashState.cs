@@ -12,7 +12,8 @@ public class PlayerDashState : PlayerAbilityState
     private Vector2 _dashDirectionInput;
     private Vector2 _lastAfterImagePosition;
 
-    public PlayerDashState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName) : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName)
+    public PlayerDashState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
+        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
     }
 

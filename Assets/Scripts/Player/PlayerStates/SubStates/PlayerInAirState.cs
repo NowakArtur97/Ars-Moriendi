@@ -21,7 +21,7 @@ public class PlayerInAirState : PlayerState
     private bool _wallJumpCoyoteTime;
     private float _startWallJumpCoyoteTime;
 
-    public PlayerInAirState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName) : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName)
+    public PlayerInAirState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
     }
 
