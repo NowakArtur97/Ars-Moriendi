@@ -30,8 +30,7 @@ public class PlayerPrimaryAttackState : PlayerAttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
-            Debug.Log(collider.gameObject.name);
-            collider.transform.SendMessage("Damage", attackDetails);
+            collider.transform.parent.SendMessage("Damage", attackDetails);
         }
     }
 }
