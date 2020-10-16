@@ -5,13 +5,14 @@ public class PlayerPrimaryAttackState : PlayerAttackState
 {
     private AttackDetails _attackDetails;
 
-    private float _lastArrackTime = Mathf.NegativeInfinity;
+    private float _lastArrackTime;
 
     public PlayerPrimaryAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition)
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
         IsAbilityDone = true;
+        _lastArrackTime = Mathf.NegativeInfinity;
     }
 
     public override void Enter()
@@ -21,8 +22,6 @@ public class PlayerPrimaryAttackState : PlayerAttackState
         _attackDetails.position = attackPosition.position;
         _attackDetails.damageAmmount = PlayerData.attackDamage;
         _attackDetails.stunDamageAmount = PlayerData.stunDamageAmount;
-
-        Player.SetVelocityX(PlayerData.attackMovementSpeed);
 
         _lastArrackTime = Time.time;
     }
