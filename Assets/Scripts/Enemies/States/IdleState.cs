@@ -47,9 +47,12 @@ public class IdleState : State
         }
     }
 
-    public override void PhysicsUpdate()
+    public override void DoChecks()
     {
-        base.PhysicsUpdate();
+        base.DoChecks();
+
+        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }
 
     public void SetFlipAfterIdle(bool flipAfterIdle)
@@ -60,13 +63,5 @@ public class IdleState : State
     private void SetRandomIdleTime()
     {
         idleTime = Random.Range(stateData.minimumIdleTime, stateData.maximumIdleTime);
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
     }
 }

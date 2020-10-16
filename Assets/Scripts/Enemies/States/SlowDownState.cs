@@ -28,11 +28,6 @@ public class SlowDownState : State
         currentVelocity = entity.myRigidbody2D.velocity.x;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();

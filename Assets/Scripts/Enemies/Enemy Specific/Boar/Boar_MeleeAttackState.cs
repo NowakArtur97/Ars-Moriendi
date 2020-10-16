@@ -10,16 +10,6 @@ public class Boar_MeleeAttackState : MeleeAttackState
         this.boar = boar;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -33,27 +23,5 @@ public class Boar_MeleeAttackState : MeleeAttackState
         {
             finiteStateMachine.ChangeState(boar.lookForPlayerState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
-        DoChecks();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
-    }
-
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
     }
 }

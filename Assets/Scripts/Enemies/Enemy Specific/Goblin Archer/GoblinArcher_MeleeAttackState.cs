@@ -10,16 +10,6 @@ public class GoblinArcher_MeleeAttackState : MeleeAttackState
         this.goblinArcher = goblinArcher;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -35,27 +25,5 @@ public class GoblinArcher_MeleeAttackState : MeleeAttackState
                 finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
-        DoChecks();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
-    }
-
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
     }
 }

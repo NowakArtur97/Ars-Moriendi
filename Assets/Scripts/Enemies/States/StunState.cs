@@ -56,11 +56,6 @@ public class StunState : State
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
     public override void DoChecks()
     {
         base.DoChecks();

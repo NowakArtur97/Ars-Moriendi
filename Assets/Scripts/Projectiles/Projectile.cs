@@ -61,7 +61,7 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
-                damageHit.transform.SendMessage("Damage", attackDetails);
+                damageHit.transform.parent.SendMessage("Damage", attackDetails);
                 Destroy(gameObject);
             }
 
@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
     {
         this.speed = speed;
         this.travelDistance = travelDistance;
-        this.attackDetails.damageAmmount = damage;
+        attackDetails.damageAmmount = damage;
     }
 
     private void OnDrawGizmos()

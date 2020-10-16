@@ -22,31 +22,6 @@ public class MeleeAttackState : AttackState
         entity.SetVelocity(stateData.attackMovementSpeed);
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
-    }
-
     public override void FinishAttack()
     {
         base.FinishAttack();
@@ -55,6 +30,7 @@ public class MeleeAttackState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
+            Debug.Log(collider.gameObject.name);
             collider.transform.SendMessage("Damage", attackDetails);
         }
     }

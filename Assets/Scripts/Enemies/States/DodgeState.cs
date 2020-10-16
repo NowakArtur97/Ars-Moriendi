@@ -28,11 +28,6 @@ public class DodgeState : State
         entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, -entity.facingDirection);
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -41,11 +36,6 @@ public class DodgeState : State
         {
             isDodgeTimeOver = true;
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     public override void DoChecks()
