@@ -25,11 +25,6 @@ public class PlayerInAirState : PlayerState
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void Exit()
     {
         base.Exit();
@@ -99,11 +94,6 @@ public class PlayerInAirState : PlayerState
             Player.MyAnmator.SetFloat("yVelocity", Player.CurrentVelocity.y);
             Player.MyAnmator.SetFloat("xVelocity", Mathf.Abs(Player.CurrentVelocity.x));
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 
     public override void DoChecks()

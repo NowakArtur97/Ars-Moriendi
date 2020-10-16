@@ -21,11 +21,6 @@ public class PlayerTouchingWallState : PlayerState
         Player.DashState.ResetCanDash();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -54,11 +49,6 @@ public class PlayerTouchingWallState : PlayerState
         }
     }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
     public override void DoChecks()
     {
         base.DoChecks();
@@ -71,15 +61,5 @@ public class PlayerTouchingWallState : PlayerState
         {
             Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
         }
-    }
-
-    public override void AnimationTrigger()
-    {
-        base.AnimationTrigger();
-    }
-
-    public override void AnimationFinishedTrigger()
-    {
-        base.AnimationFinishedTrigger();
     }
 }
