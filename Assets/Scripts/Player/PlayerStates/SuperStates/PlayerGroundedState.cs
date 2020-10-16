@@ -1,4 +1,6 @@
-﻿public class PlayerGroundedState : PlayerState
+﻿using UnityEngine;
+
+public class PlayerGroundedState : PlayerState
 {
     protected int XInput;
     protected bool CrouchInput;
@@ -35,7 +37,7 @@
         _dashInput = Player.InputHandler.DashInput;
         _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
 
-        if (_primaryAttackInput)
+        if (_primaryAttackInput && Player.PrimaryAttackState.CanAttack())
         {
             FiniteStateMachine.ChangeState(Player.PrimaryAttackState);
         }

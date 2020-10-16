@@ -10,16 +10,19 @@ public class PlayerAttackState : PlayerAbilityState
         this.attackPosition = attackPosition;
     }
 
-    public override void Enter()
+    public override void LogicUpdate()
     {
-        base.Enter();
+        base.LogicUpdate();
+
+        if (IsAnimationFinished)
+        {
+            IsAbilityDone = true;
+        }
     }
 
     public override void AnimationFinishedTrigger()
     {
         base.AnimationFinishedTrigger();
-
-        IsAbilityDone = true;
 
         Player.MyAnmator.SetBool("primaryAttack", false);
     }

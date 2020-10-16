@@ -47,6 +47,7 @@ public class D_PlayerData : ScriptableObject
     public float attackDamage = 5f;
     public float stunDamageAmount = 1f;
     public float attackMovementSpeed = 0.0f;
+    public float attackCooldown = 0.3f;
 
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;

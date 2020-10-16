@@ -1,6 +1,6 @@
 ﻿public class PlayerAbilityState : PlayerState
 {
-    protected bool IsAbilityDone;
+    public bool IsAbilityDone { get; protected set; }
 
     private bool _isGrounded;
 
