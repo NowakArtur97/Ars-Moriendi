@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
 
     private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
 
-    // TODO: REFACTOR
+    // TODO: REFACTOR (Attack State instead of Cuttent State)
     public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
 
     public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
