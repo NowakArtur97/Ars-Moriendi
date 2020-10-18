@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerGroundedState : PlayerState
+﻿public class PlayerGroundedState : PlayerState
 {
     protected int XInput;
     protected bool CrouchInput;

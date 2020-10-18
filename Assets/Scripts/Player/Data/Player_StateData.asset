@@ -36,8 +36,7 @@ MonoBehaviour:
   attackRadius: 0.7
   attackDamage: 5
   stunDamageAmount: 1
-  attackMovementSpeed: 0
-  attackCooldown: 0.3
+  attackCooldown: 0.6
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   whatIsGround:

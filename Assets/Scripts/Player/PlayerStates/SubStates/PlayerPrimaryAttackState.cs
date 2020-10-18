@@ -1,18 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerPrimaryAttackState : PlayerAttackState
 {
     private AttackDetails _attackDetails;
 
-    private float _lastArrackTime;
-
     public PlayerPrimaryAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition)
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
-        IsAbilityDone = true;
-        _lastArrackTime = Mathf.NegativeInfinity;
     }
 
     public override void Enter()
@@ -22,8 +17,6 @@ public class PlayerPrimaryAttackState : PlayerAttackState
         _attackDetails.position = attackPosition.position;
         _attackDetails.damageAmmount = PlayerData.attackDamage;
         _attackDetails.stunDamageAmount = PlayerData.stunDamageAmount;
-
-        _lastArrackTime = Time.time;
     }
 
     public override void FinishAttack()
@@ -36,12 +29,5 @@ public class PlayerPrimaryAttackState : PlayerAttackState
         {
             collider.transform.parent.SendMessage("Damage", _attackDetails);
         }
-    }
-
-    public bool CanAttack()
-    {
-        Player.InputHandler.UsePrimaryAttackInput();
-
-        return IsAbilityDone && Time.time >= _lastArrackTime + PlayerData.attackCooldown;
     }
 }

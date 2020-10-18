@@ -116,13 +116,15 @@ public class PlayerInputHandler : MonoBehaviour
         {
             PrimaryAttackInput = true;
         }
+        if (context.canceled)
+        {
+            PrimaryAttackInput = false;
+        }
     }
 
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
-
-    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
 
     public void CheckJumpInputHoldTime()
     {
