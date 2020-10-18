@@ -27,6 +27,8 @@ public class PlayerPrimaryAttackState : PlayerAttackState
         _xInput = Player.InputHandler.NormalizedInputX;
 
         Player.CheckIfShouldFlip(_xInput);
+
+        Player.SetVelocityX(PlayerData.attackVelocity * _xInput);
     }
 
     public override void FinishAttack()
