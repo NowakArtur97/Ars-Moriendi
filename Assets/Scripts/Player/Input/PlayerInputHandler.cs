@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private float _jumpInputStartTime;
     private float _dashInputStartTime;
+    private float _primaryInputStartTime;
 
     public Vector2 RawMovementInput { get; private set; }
     public Vector2 RawDashDirectionInput { get; private set; }
@@ -36,6 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
+        CheckPrimaryAttackInputHoldTime();
     }
 
     public void OnMoveInput(CallbackContext context)
@@ -115,16 +117,15 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             PrimaryAttackInput = true;
-        }
-        if (context.canceled)
-        {
-            PrimaryAttackInput = false;
+            _primaryInputStartTime = Time.time;
         }
     }
 
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
 
     public void CheckJumpInputHoldTime()
     {
@@ -139,6 +140,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= _dashInputStartTime + _inputHoldTime)
         {
             DashInput = false;
+        }
+    }
+
+    public void CheckPrimaryAttackInputHoldTime()
+    {
+        if (Time.time >= _primaryInputStartTime + _inputHoldTime)
+        {
+            PrimaryAttackInput = false;
         }
     }
 }

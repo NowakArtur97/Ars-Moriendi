@@ -15,6 +15,8 @@ public class PlayerPrimaryAttackState : PlayerAttackState
     {
         base.Enter();
 
+        Player.InputHandler.UsePrimaryAttackInput();
+
         _attackDetails.position = attackPosition.position;
         _attackDetails.damageAmmount = PlayerData.attackDamage;
         _attackDetails.stunDamageAmount = PlayerData.stunDamageAmount;

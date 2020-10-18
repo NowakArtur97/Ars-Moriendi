@@ -2,7 +2,8 @@
 {
     private int _amountOfJumpsLeft;
 
-    public PlayerJumpState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerJumpState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
+        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
         _amountOfJumpsLeft = PlayerData.amountOfJumps;
     }
@@ -25,5 +26,4 @@
     public void ResetAmountOfJumpsLeft() => _amountOfJumpsLeft = PlayerData.amountOfJumps;
 
     public void DecreaseAmountOfJumps() => _amountOfJumpsLeft--;
-
 }
