@@ -33,7 +33,7 @@ public class PlayerAttackState : PlayerAbilityState
     {
         base.AnimationFinishedTrigger();
 
-        Player.MyAnmator.SetBool("primaryAttack", false);
+        Player.MyAnmator.SetBool(AnimationBoolName, false);
 
         IsAbilityDone = true;
     }

@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-        PrimaryAttackState = new PlayerPrimaryAttackState(this, FiniteStateMachine, _playerData, "swordAttack02", _attackPosition);
+        PrimaryAttackState = new PlayerPrimaryAttackState(this, FiniteStateMachine, _playerData, "swordAttack01", _attackPosition);
     }
 
     private void Start()

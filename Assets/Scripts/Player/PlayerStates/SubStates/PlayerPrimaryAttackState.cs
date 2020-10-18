@@ -4,15 +4,20 @@ public class PlayerPrimaryAttackState : PlayerAttackState
 {
     private AttackDetails _attackDetails;
     private int _xInput;
+    private bool _firstAttack;
 
     public PlayerPrimaryAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition)
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
+        _firstAttack = true;
     }
 
     public override void Enter()
     {
+        AnimationBoolName = _firstAttack ? "swordAttack01" : "swordAttack02";
+        _firstAttack = !_firstAttack;
+
         base.Enter();
 
         Player.InputHandler.UsePrimaryAttackInput();
