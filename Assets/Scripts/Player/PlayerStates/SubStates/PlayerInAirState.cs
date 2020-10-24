@@ -51,9 +51,9 @@ public class PlayerInAirState : PlayerState
 
         CheckJumpHeightMultiplier();
 
-        if (_primaryAttackInput && Player.PrimaryAttackState.CanAttack())
+        if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.PrimaryAttackState);
+            FiniteStateMachine.ChangeState(Player.SwordAttackState);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {

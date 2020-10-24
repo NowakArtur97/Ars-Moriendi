@@ -2,21 +2,12 @@
 
 public class PlayerAttackState : PlayerAbilityState
 {
-    private float _lastAttackTime;
-
     protected Transform attackPosition;
 
-    public PlayerAttackState(Player player, PlayerFiniteStateMachine PlayerFiniteStateMachine, D_PlayerData PlayerData, string animationBoolName,
-        Transform attackPosition) : base(player, PlayerFiniteStateMachine, PlayerData, animationBoolName)
+    public PlayerAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName,
+        Transform attackPosition) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
         this.attackPosition = attackPosition;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-
-        _lastAttackTime = Time.time;
     }
 
     public override void LogicUpdate()
@@ -33,10 +24,6 @@ public class PlayerAttackState : PlayerAbilityState
     {
         base.AnimationFinishedTrigger();
 
-        Player.MyAnmator.SetBool(AnimationBoolName, false);
-
         IsAbilityDone = true;
     }
-
-    public bool CanAttack() => IsAbilityDone && Time.time >= _lastAttackTime + PlayerData.attackCooldown;
 }

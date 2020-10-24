@@ -27,6 +27,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool CrouchInput { get; private set; }
     public bool PrimaryAttackInput { get; private set; }
 
+    public int PrimaryAttackClickCount { get; private set; }
+
     private void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -118,14 +120,13 @@ public class PlayerInputHandler : MonoBehaviour
         {
             PrimaryAttackInput = true;
             _primaryInputStartTime = Time.time;
+            PrimaryAttackClickCount++;
         }
     }
 
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
-
-    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
 
     public void CheckJumpInputHoldTime()
     {
@@ -148,6 +149,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= _primaryInputStartTime + _inputHoldTime)
         {
             PrimaryAttackInput = false;
+            PrimaryAttackClickCount = 0;
         }
     }
 }

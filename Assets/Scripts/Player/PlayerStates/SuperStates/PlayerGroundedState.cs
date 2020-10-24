@@ -35,9 +35,9 @@
         _dashInput = Player.InputHandler.DashInput;
         _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
 
-        if (_primaryAttackInput && Player.PrimaryAttackState.CanAttack())
+        if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.PrimaryAttackState);
+            FiniteStateMachine.ChangeState(Player.SwordAttackState);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {

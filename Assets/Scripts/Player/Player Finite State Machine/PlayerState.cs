@@ -11,25 +11,25 @@ public class PlayerState
     protected bool IsAnimationFinished;
     protected bool IsExitingState;
 
-    public string AnimationBoolName { get; protected set; }
+    private string _animationBoolName;
 
     public PlayerState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
     {
         Player = player;
         FiniteStateMachine = playerFiniteStateMachine;
         PlayerData = playerData;
-        AnimationBoolName = animationBoolName;
+        _animationBoolName = animationBoolName;
     }
 
     public virtual void Enter()
     {
         DoChecks();
 
-        Player.MyAnmator.SetBool(AnimationBoolName, true);
+        Player.MyAnmator.SetBool(_animationBoolName, true);
 
         StartTime = Time.time;
 
-        Debug.Log(AnimationBoolName);
+        Debug.Log(_animationBoolName);
 
         IsAnimationFinished = false;
         IsExitingState = false;
@@ -37,7 +37,7 @@ public class PlayerState
 
     public virtual void Exit()
     {
-        Player.MyAnmator.SetBool(AnimationBoolName, false);
+        Player.MyAnmator.SetBool(_animationBoolName, false);
         IsExitingState = true;
     }
 

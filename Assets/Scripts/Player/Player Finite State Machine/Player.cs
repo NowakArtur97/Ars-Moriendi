@@ -47,7 +47,10 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerCrouchMoveState CrouchMoveState { get; private set; }
-    public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
+    public PlayerSwordAttackState SwordAttackState { get; private set; }
+    public PlayerSwordAttackState_01 SwordAttackState01 { get; private set; }
+    public PlayerSwordAttackState_02 SwordAttackState02 { get; private set; }
+    public PlayerSwordAttackState_03 SwordAttackState03 { get; private set; }
 
     #endregion
 
@@ -79,7 +82,10 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-        PrimaryAttackState = new PlayerPrimaryAttackState(this, FiniteStateMachine, _playerData, "swordAttack01", _attackPosition);
+        SwordAttackState = new PlayerSwordAttackState(this, FiniteStateMachine, _playerData, "swordAttack01", _attackPosition, 1);
+        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _attackPosition, 1);
+        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _attackPosition, 2);
+        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _attackPosition, 3);
     }
 
     private void Start()
