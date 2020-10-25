@@ -6,7 +6,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private D_PlayerData _playerData;
-
+    [SerializeField]
+    private D_PlayerSwordAttackData _playerSwordAttackData01;
+    [SerializeField]
+    private D_PlayerSwordAttackData _playerSwordAttackData02;
+    [SerializeField]
+    private D_PlayerSwordAttackData _playerSwordAttackData03;
     #endregion
 
     #region Check Transforms
@@ -18,8 +23,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Transform _ledgeCheck;
     [SerializeField]
-    private Transform _attackPosition;
-
+    private Transform _swordAttackPosition01;
+    [SerializeField]
+    private Transform _swordAttackPosition02;
+    [SerializeField]
+    private Transform _swordAttackPosition03;
     #endregion
 
     #region Other Variables
@@ -47,7 +55,6 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerCrouchIdleState CrouchIdleState { get; private set; }
     public PlayerCrouchMoveState CrouchMoveState { get; private set; }
-    public PlayerSwordAttackState SwordAttackState { get; private set; }
     public PlayerSwordAttackState_01 SwordAttackState01 { get; private set; }
     public PlayerSwordAttackState_02 SwordAttackState02 { get; private set; }
     public PlayerSwordAttackState_03 SwordAttackState03 { get; private set; }
@@ -82,10 +89,9 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-        SwordAttackState = new PlayerSwordAttackState(this, FiniteStateMachine, _playerData, "swordAttack0", _attackPosition, 1);
-        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _attackPosition, 1);
-        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _attackPosition, 2);
-        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _attackPosition, 3);
+        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01, _playerSwordAttackData01);
+        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02, _playerSwordAttackData02);
+        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03, _playerSwordAttackData03);
     }
 
     private void Start()
@@ -207,7 +213,9 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(_attackPosition.position, _playerData.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition01.position, _playerSwordAttackData01.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition02.position, _playerSwordAttackData02.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition03.position, _playerSwordAttackData03.attackRadius);
     }
 
     #endregion

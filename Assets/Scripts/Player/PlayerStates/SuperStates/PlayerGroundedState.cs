@@ -40,7 +40,7 @@ public class PlayerGroundedState : PlayerState
 
         if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState);
+            FiniteStateMachine.ChangeState(Player.SwordAttackState01);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {

@@ -42,13 +42,6 @@ public class D_PlayerData : ScriptableObject
     public float dashEndMultiplier = 0.2f;
     public float distanceBetweenAfterImages = 0.4f;
 
-    [Header("Player Primary Attack State")]
-    public float attackRadius = 0.8f;
-    public float attackDamage = 5f;
-    public float stunDamageAmount = 1f;
-    public float attackCooldown = 0.3f;
-    public float attackVelocity = 5;
-
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;

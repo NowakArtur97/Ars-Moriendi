@@ -53,7 +53,7 @@ public class PlayerInAirState : PlayerState
 
         if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState);
+            FiniteStateMachine.ChangeState(Player.SwordAttackState01);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {
