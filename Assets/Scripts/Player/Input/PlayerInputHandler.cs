@@ -122,15 +122,13 @@ public class PlayerInputHandler : MonoBehaviour
             _primaryInputStartTime = Time.time;
             PrimaryAttackClickCount = PrimaryAttackClickCount + 1 > 3 ? 1 : PrimaryAttackClickCount + 1;
         }
-        if (context.canceled)
-        {
-            PrimaryAttackInput = false;
-        }
     }
 
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
 
     public void CheckJumpInputHoldTime()
     {

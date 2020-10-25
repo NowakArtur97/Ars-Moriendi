@@ -2,12 +2,14 @@
 
 public class PlayerSwordAttackState : PlayerAttackState
 {
+    private const string SWORD_ATTACK_ANIMATION_BOOL_NAME = "swordAttack0";
     private int _comboAttackIndex;
 
     private int _attackCount;
     private AttackDetails _attackDetails;
     private int _xInput;
     private bool _isAttacking;
+    private bool _isAttemptingToAttack;
 
     public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition, int comboAttackIndex) : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
@@ -17,7 +19,11 @@ public class PlayerSwordAttackState : PlayerAttackState
 
     public override void Enter()
     {
+        SetAnimationBoolName(SWORD_ATTACK_ANIMATION_BOOL_NAME + _comboAttackIndex);
+
         base.Enter();
+
+        Player.InputHandler.UsePrimaryAttackInput();
 
         _attackDetails.position = attackPosition.position;
         _attackDetails.damageAmmount = PlayerData.attackDamage;
@@ -30,11 +36,12 @@ public class PlayerSwordAttackState : PlayerAttackState
 
         _xInput = Player.InputHandler.NormalizedInputX;
         _attackCount = Player.InputHandler.PrimaryAttackClickCount;
+        _isAttemptingToAttack = Player.InputHandler.PrimaryAttackInput;
 
         Player.CheckIfShouldFlip(_xInput);
         Player.SetVelocityX(PlayerData.attackVelocity * _xInput);
 
-        if (!IsExitingState)
+        if (IsExitingState && _isAttemptingToAttack)
         {
             if (_attackCount == Player.SwordAttackState01._comboAttackIndex)
             {

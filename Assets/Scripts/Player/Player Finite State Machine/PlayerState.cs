@@ -57,4 +57,6 @@ public class PlayerState
     public virtual void TriggerAttack() { }
 
     public virtual void FinishAttack() { }
+
+    public void SetAnimationBoolName(string animationBoolName) => AnimationBoolName = animationBoolName;
 }
