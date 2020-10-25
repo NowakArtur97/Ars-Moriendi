@@ -120,7 +120,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             PrimaryAttackInput = true;
             _primaryInputStartTime = Time.time;
-            PrimaryAttackClickCount++;
+            PrimaryAttackClickCount = PrimaryAttackClickCount + 1 > 3 ? 1 : PrimaryAttackClickCount + 1;
+        }
+        if (context.canceled)
+        {
+            PrimaryAttackInput = false;
         }
     }
 
@@ -148,7 +152,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (Time.time >= _primaryInputStartTime + _inputHoldTime)
         {
-            PrimaryAttackInput = false;
             PrimaryAttackClickCount = 0;
         }
     }

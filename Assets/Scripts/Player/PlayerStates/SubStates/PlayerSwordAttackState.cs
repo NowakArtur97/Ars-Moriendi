@@ -7,6 +7,7 @@ public class PlayerSwordAttackState : PlayerAttackState
     private int _attackCount;
     private AttackDetails _attackDetails;
     private int _xInput;
+    private bool _isAttacking;
 
     public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
         string animationBoolName, Transform attackPosition, int comboAttackIndex) : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
@@ -33,17 +34,20 @@ public class PlayerSwordAttackState : PlayerAttackState
         Player.CheckIfShouldFlip(_xInput);
         Player.SetVelocityX(PlayerData.attackVelocity * _xInput);
 
-        if (_attackCount == Player.SwordAttackState01._comboAttackIndex)
+        if (!IsExitingState)
         {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState01);
-        }
-        else if (_attackCount == Player.SwordAttackState02._comboAttackIndex)
-        {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState02);
-        }
-        else if (_attackCount == Player.SwordAttackState03._comboAttackIndex)
-        {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState03);
+            if (_attackCount == Player.SwordAttackState01._comboAttackIndex)
+            {
+                FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+            }
+            else if (_attackCount == Player.SwordAttackState02._comboAttackIndex)
+            {
+                FiniteStateMachine.ChangeState(Player.SwordAttackState02);
+            }
+            else if (_attackCount == Player.SwordAttackState03._comboAttackIndex)
+            {
+                FiniteStateMachine.ChangeState(Player.SwordAttackState03);
+            }
         }
     }
 
@@ -57,5 +61,12 @@ public class PlayerSwordAttackState : PlayerAttackState
         {
             collider.transform.parent.SendMessage("Damage", _attackDetails);
         }
+    }
+
+    public override void AnimationFinishedTrigger()
+    {
+        Player.MyAnmator.SetBool(AnimationBoolName, false);
+
+        base.AnimationFinishedTrigger();
     }
 }
