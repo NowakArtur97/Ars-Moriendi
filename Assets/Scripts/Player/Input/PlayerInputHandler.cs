@@ -6,6 +6,12 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField]
     private float _inputHoldTime = 0.2f;
+    [SerializeField]
+    private float _inputClickTime = 0.35f;
+    [SerializeField]
+    private int _startClickCount = 1;
+    [SerializeField]
+    private int _maxClickCount = 3;
 
     private PlayerInput _playerInput;
     private Camera mainCamera;
@@ -120,7 +126,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             PrimaryAttackInput = true;
             _primaryInputStartTime = Time.time;
-            PrimaryAttackClickCount = PrimaryAttackClickCount + 1 > 3 ? 1 : PrimaryAttackClickCount + 1;
+            PrimaryAttackClickCount = PrimaryAttackClickCount + 1 > _maxClickCount ? _startClickCount : PrimaryAttackClickCount + 1;
         }
     }
 
@@ -148,7 +154,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void CheckPrimaryAttackInputHoldTime()
     {
-        if (Time.time >= _primaryInputStartTime + _inputHoldTime)
+        if (Time.time >= _primaryInputStartTime + _inputClickTime)
         {
             PrimaryAttackClickCount = 0;
         }

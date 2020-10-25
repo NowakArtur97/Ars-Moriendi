@@ -12,18 +12,11 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
-
         if (IsAnimationFinished)
         {
             IsAbilityDone = true;
         }
-    }
 
-    public override void AnimationFinishedTrigger()
-    {
-        base.AnimationFinishedTrigger();
-
-        IsAbilityDone = true;
+        base.LogicUpdate();
     }
 }
