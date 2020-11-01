@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private Transform damagePosition;
     [SerializeField]
-    private float damageRadious = 0.15f;
+    private float damageRadius = 0.15f;
 
     private AttackDetails attackDetails;
 
@@ -56,8 +56,8 @@ public class Projectile : MonoBehaviour
     {
         if (!hasHitGround)
         {
-            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadious, whatIsPlayer);
-            Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadious, whatIsGround);
+            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
+            Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
 
             if (damageHit)
             {
@@ -89,6 +89,6 @@ public class Projectile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(damagePosition.position, damageRadious);
+        Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
     }
 }
