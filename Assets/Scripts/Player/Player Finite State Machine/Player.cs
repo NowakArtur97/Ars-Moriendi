@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     private D_PlayerSwordAttackData _playerSwordAttackData02;
     [SerializeField]
     private D_PlayerSwordAttackData _playerSwordAttackData03;
-    [SerializeField]
-    private D_PlayerBowFireArrowShotData _playerFireArrowShotData;
     #endregion
 
     #region Check Transforms
@@ -30,8 +28,6 @@ public class Player : MonoBehaviour
     private Transform _swordAttackPosition02;
     [SerializeField]
     private Transform _swordAttackPosition03;
-    [SerializeField]
-    private Transform _fireArrowShotAttackPosition;
     #endregion
 
     #region Other Variables
@@ -62,7 +58,6 @@ public class Player : MonoBehaviour
     public PlayerSwordAttackState_01 SwordAttackState01 { get; private set; }
     public PlayerSwordAttackState_02 SwordAttackState02 { get; private set; }
     public PlayerSwordAttackState_03 SwordAttackState03 { get; private set; }
-    public PlayerBowFireArrowShotState FireArrowShotState { get; private set; }
 
     #endregion
 
@@ -94,12 +89,9 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-
-        // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01, _playerSwordAttackData01);
         SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02, _playerSwordAttackData02);
         SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03, _playerSwordAttackData03);
-        FireArrowShotState = new PlayerBowFireArrowShotState(this, FiniteStateMachine, _playerData, "bowFireShotStart", _fireArrowShotAttackPosition, _playerFireArrowShotData);
     }
 
     private void Start()

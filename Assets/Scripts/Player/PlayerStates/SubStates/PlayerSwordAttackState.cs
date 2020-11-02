@@ -12,8 +12,7 @@ public class PlayerSwordAttackState : PlayerAttackState
     private bool _isAttacking;
     private bool _isAttemptingToAttack;
 
-    public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
-        string animationBoolName, Transform attackPosition, D_PlayerSwordAttackData playerSwordAttackData)
+    public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName, Transform attackPosition, D_PlayerSwordAttackData playerSwordAttackData)
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
         _playerSwordAttackData = playerSwordAttackData;
