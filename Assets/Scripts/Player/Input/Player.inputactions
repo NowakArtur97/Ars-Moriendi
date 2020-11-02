@@ -60,20 +60,25 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Secondary Attack",
+                    "type": "Button",
+                    "id": "cbc9653d-8b75-4777-b515-26ede9b708b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Secondary Attack Direction",
+                    "type": "Value",
+                    "id": "66400289-72a6-4189-8031-b89a9709f089",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "13516213-0469-4ab4-8c4d-6a382bc2d86b",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "StickDeadzone",
-                    "groups": "Gamepad",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "40afd538-8536-445a-bafc-aefa20bdee7a",
@@ -131,12 +136,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ebd5c7af-1883-4cb8-b279-79c75f6a56a7",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "13516213-0469-4ab4-8c4d-6a382bc2d86b",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Gamepad",
-                    "action": "Jump",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,6 +152,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebd5c7af-1883-4cb8-b279-79c75f6a56a7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -197,22 +213,22 @@
                 },
                 {
                     "name": "",
-                    "id": "d4b7e040-eee6-4b39-8b9f-3fa581f510bc",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "488cdac7-b365-4fb2-a32f-048f55f97d82",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Keyboard and Mouse",
                     "action": "Dash Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "488cdac7-b365-4fb2-a32f-048f55f97d82",
-                    "path": "<Mouse>/position",
+                    "id": "d4b7e040-eee6-4b39-8b9f-3fa581f510bc",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard and Mouse",
+                    "groups": "Gamepad",
                     "action": "Dash Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -258,6 +274,50 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Primary Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db2f95ca-a39f-4ba3-a2c5-2b91f803685c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Secondary Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "240046be-2cfc-419c-b092-a0334916f7e3",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Secondary Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8748ede7-69c3-47c2-a614-f607a290b3f7",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Secondary Attack Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55276d4e-e20a-4295-862e-662e142fa11d",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Secondary Attack Direction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
