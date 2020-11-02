@@ -33,7 +33,6 @@ public class BasicEnemyController : MonoBehaviour
 
     [Header("Touch Damage")]
     [Range(0, 10)]
-    [SerializeField] private float touchDamage = 10f;
     [SerializeField] private float touchDamageCooldown;
     [SerializeField] private float touchDamageWidth;
     [SerializeField] private float touchDamageHeight;
