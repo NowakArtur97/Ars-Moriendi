@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Player_BowFireArrowAttackStateData
+  m_EditorClassIdentifier: Assembly-CSharp::D_PlayerBowFireArrowShotData
+  bowShotCooldown: 0.75
+  bowShotMaxHoldTime: 4
+  holdTimeBowShotScale: 0.25
+  bowShotVelocity: 30
+  fireArrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a,
+    type: 3}
+  fireArrowDamage: 10
+  fireArrowSpeed: 12
+  fireArrowTravelDistance: 8

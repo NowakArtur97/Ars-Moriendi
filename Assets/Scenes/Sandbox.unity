@@ -7423,7 +7423,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7491,12 +7491,15 @@ MonoBehaviour:
     type: 2}
   _playerSwordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e,
     type: 2}
+  _playerFireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff,
+    type: 2}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}
   _ledgeCheck: {fileID: 1595342979}
   _swordAttackPosition01: {fileID: 1897342656}
   _swordAttackPosition02: {fileID: 741332328}
   _swordAttackPosition03: {fileID: 1229859906}
+  _fireArrowShotAttackPosition: {fileID: 1312886313}
 --- !u!1 &1086130349
 GameObject:
   m_ObjectHideFlags: 0
@@ -7844,7 +7847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312886313}
   m_Layer: 10
-  m_Name: Bow Attack Position
+  m_Name: Fire Arrow Shot position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7858,7 +7861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312886312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.43, y: 0.156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 935700609}

@@ -583,13 +583,13 @@ AnimatorController:
   m_Name: Player Animator Controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: bowShotFinish
+  - m_Name: bowFireShotFinish
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: bowShotStart
+  - m_Name: bowFireShotStart
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -970,7 +970,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: bowShotStart
+    m_ConditionEvent: bowFireShotStart
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5508434728226211939}
@@ -1004,7 +1004,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: bowShotFinish
+    m_ConditionEvent: bowFireShotFinish
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8921873721602842211}

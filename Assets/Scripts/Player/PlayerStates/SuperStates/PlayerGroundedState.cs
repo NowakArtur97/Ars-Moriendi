@@ -9,6 +9,7 @@ public class PlayerGroundedState : PlayerState
     private bool _grabInput;
     private bool _dashInput;
     private bool _primaryAttackInput;
+    private bool _secondaryAttackInput;
 
     private bool _isGrounded;
     private bool _isTouchingWall;
@@ -37,10 +38,15 @@ public class PlayerGroundedState : PlayerState
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
         _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
+        _secondaryAttackInput = Player.InputHandler.SecondaryAttackInput;
 
         if (_primaryAttackInput)
         {
             FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+        }
+        else if (_secondaryAttackInput)
+        {
+            FiniteStateMachine.ChangeState(Player.FireArrowShotState);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
