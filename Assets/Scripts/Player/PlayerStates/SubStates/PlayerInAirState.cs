@@ -8,6 +8,7 @@ public class PlayerInAirState : PlayerState
     private bool _grabInput;
     private bool _dashInput;
     private bool _primaryAttackInput;
+    private bool _secondaryAttackInput;
 
     private bool _isGrounded;
     private bool _isTouchingWall;
@@ -48,12 +49,17 @@ public class PlayerInAirState : PlayerState
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
         _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
+        _secondaryAttackInput = Player.InputHandler.SecondaryAttackInput;
 
         CheckJumpHeightMultiplier();
 
         if (_primaryAttackInput)
         {
             FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+        }
+        else if (_secondaryAttackInput)
+        {
+            FiniteStateMachine.ChangeState(Player.FireArrowShotState);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {
