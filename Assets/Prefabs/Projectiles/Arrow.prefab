@@ -80,11 +80,11 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsPlayer:
+  whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
   damagePosition: {fileID: 8607524858932722814}
-  damageRadious: 0.12
+  damageRadius: 0.15
 --- !u!212 &8607524859888678369
 SpriteRenderer:
   m_ObjectHideFlags: 0

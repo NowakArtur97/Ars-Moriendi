@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6367200524795567316}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Damage Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7819639310112293984}
   - component: {fileID: 7520343578226872007}
   - component: {fileID: 1932480444684354567}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Fire Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsPlayer:
+  whatIsEnemy:
     serializedVersion: 2
     m_Bits: 2048
   damagePosition: {fileID: 6367200524795567316}

@@ -2,8 +2,7 @@
 
 public class PlayerDashState : PlayerAbilityState
 {
-    public bool CanDash { get; private set; }
-
+    private bool _canDash;
     private float _lastDashTime;
 
     private bool _isHolding;
@@ -21,7 +20,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
 
-        CanDash = false;
+        _canDash = false;
         Player.InputHandler.UseDashInput();
 
         _isHolding = true;
@@ -106,7 +105,7 @@ public class PlayerDashState : PlayerAbilityState
         }
     }
 
-    public bool CheckIfCanDash() => CanDash && Time.time >= _lastDashTime + PlayerData.dashCooldown;
+    public bool CheckIfCanDash() => _canDash && Time.time >= _lastDashTime + PlayerData.dashCooldown;
 
-    public bool ResetCanDash() => CanDash = true;
+    public bool ResetCanDash() => _canDash = true;
 }

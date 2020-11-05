@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d7ae66b3a87c851418a96763af3ab440, type: 3}
   m_Name: Player_BowFireArrowAttackStateData
   m_EditorClassIdentifier: Assembly-CSharp::D_PlayerBowFireArrowShotData
   bowShotCooldown: 0.75
   bowShotMaxHoldTime: 4
   holdTimeBowShotScale: 0.25
   bowShotVelocity: 30
-  fireArrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a,
-    type: 3}
-  fireArrowDamage: 10
-  fireArrowSpeed: 12
-  fireArrowTravelDistance: 8
+  arrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a, type: 3}
+  arrowDamage: 10
+  arrowSpeed: 12
+  arrowTravelDistance: 8

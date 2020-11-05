@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
     [SerializeField]
-    private LayerMask whatIsPlayer;
+    private LayerMask whatIsEnemy;
     [SerializeField]
     private Transform damagePosition;
     [SerializeField]
@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
     {
         if (!hasHitGround)
         {
-            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
+            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsEnemy);
             Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
 
             if (damageHit)
