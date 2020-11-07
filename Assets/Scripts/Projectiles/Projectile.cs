@@ -3,50 +3,51 @@
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private float gravity = 4.0f;
+    private float _gravity = 4.0f;
 
     [SerializeField]
-    private LayerMask whatIsGround;
+    private LayerMask _whatIsGround;
     [SerializeField]
-    private LayerMask whatIsEnemy;
+    private LayerMask _whatIsEnemy;
     [SerializeField]
-    private Transform damagePosition;
+    private Transform _damagePosition;
     [SerializeField]
-    private float damageRadius = 0.15f;
+    private float _damageRadius = 0.15f;
 
     private AttackDetails attackDetails;
 
-    private float speed;
-    private float travelDistance;
-    private float xStartPosition;
+    private Vector2 _speed;
+    private float _angle = 0;
+    private float _travelDistance;
+    private float _xStartPosition;
 
-    private bool isGravityOn;
-    private bool hasHitGround;
+    private bool _isGravityOn;
+    private bool _hasHitGround;
 
-    private Rigidbody2D myRigidbody2D;
+    private Rigidbody2D _myRigidbody2D;
 
     private void Start()
     {
-        myRigidbody2D = GetComponent<Rigidbody2D>();
-        myRigidbody2D.gravityScale = 0.0f;
+        _myRigidbody2D = GetComponent<Rigidbody2D>();
+        _myRigidbody2D.gravityScale = 0.0f;
 
-        myRigidbody2D.velocity = transform.right * speed;
+        _myRigidbody2D.velocity = _speed;
 
-        xStartPosition = transform.position.x;
+        _xStartPosition = transform.position.x;
 
-        isGravityOn = false;
-        hasHitGround = false;
+        _isGravityOn = false;
+        _hasHitGround = false;
     }
 
     private void Update()
     {
-        if (!hasHitGround)
+        if (!_hasHitGround)
         {
             attackDetails.position = transform.position;
 
-            if (isGravityOn)
+            if (_isGravityOn)
             {
-                float angle = Mathf.Atan2(myRigidbody2D.velocity.y, myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
@@ -54,10 +55,10 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!hasHitGround)
+        if (!_hasHitGround)
         {
-            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsEnemy);
-            Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
+            Collider2D damageHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsEnemy);
+            Collider2D groundHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsGround);
 
             if (damageHit)
             {
@@ -67,28 +68,35 @@ public class Projectile : MonoBehaviour
 
             if (groundHit)
             {
-                hasHitGround = true;
-                myRigidbody2D.gravityScale = 0.0f;
-                myRigidbody2D.velocity = Vector2.zero;
+                _hasHitGround = true;
+                _myRigidbody2D.gravityScale = 0.0f;
+                _myRigidbody2D.velocity = Vector2.zero;
             }
 
-            if (Mathf.Abs(xStartPosition - transform.position.x) >= travelDistance && !isGravityOn)
+            if (Mathf.Abs(_xStartPosition - transform.position.x) >= _travelDistance && !_isGravityOn)
             {
-                isGravityOn = true;
-                myRigidbody2D.gravityScale = gravity;
+                _isGravityOn = true;
+                _myRigidbody2D.gravityScale = _gravity;
             }
         }
     }
 
     public void FireProjectile(float speed, float travelDistance, float damage)
     {
-        this.speed = speed;
-        this.travelDistance = travelDistance;
+        _speed = speed * transform.right;
+        _travelDistance = travelDistance;
+        attackDetails.damageAmmount = damage;
+    }
+
+    public void FireProjectile(float speed, float travelDistance, float damage, Vector2 direction)
+    {
+        _speed = speed * direction;
+        _travelDistance = travelDistance;
         attackDetails.damageAmmount = damage;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+        Gizmos.DrawWireSphere(_damagePosition.position, _damageRadius);
     }
 }

@@ -76,15 +76,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264b0cae8db29b240b7de67346b8ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 4
-  whatIsGround:
+  _gravity: 4
+  _whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsEnemy:
+  _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  damagePosition: {fileID: 8607524858932722814}
-  damageRadius: 0.15
+  _damagePosition: {fileID: 8607524858932722814}
+  _damageRadius: 0.15
 --- !u!212 &8607524859888678369
 SpriteRenderer:
   m_ObjectHideFlags: 0

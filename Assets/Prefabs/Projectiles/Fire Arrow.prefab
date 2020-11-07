@@ -77,15 +77,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264b0cae8db29b240b7de67346b8ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 4
-  whatIsGround:
+  _gravity: 4
+  _whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsEnemy:
+  _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 2048
-  damagePosition: {fileID: 6367200524795567316}
-  damageRadius: 0.15
+  _damagePosition: {fileID: 6367200524795567316}
+  _damageRadius: 0.15
 --- !u!95 &7819639310112293984
 Animator:
   serializedVersion: 3
