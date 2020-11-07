@@ -27,6 +27,15 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
             IsAiming = false;
             IsShooting = true;
             Time.timeScale = 1;
+
+            Shot();
         }
+    }
+
+    private void Shot()
+    {
+        GameObject projectile = GameObject.Instantiate(PlayerFireArrowShotData.arrow, attackPosition.position, attackPosition.rotation);
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.FireProjectile(PlayerFireArrowShotData.arrowSpeed, PlayerFireArrowShotData.arrowTravelDistance, PlayerFireArrowShotData.arrowDamage);
     }
 }
