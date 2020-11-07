@@ -5,7 +5,7 @@ public class D_PlayerBowArrowShotData : ScriptableObject
 {
     public float bowShotCooldown = 0.75f;
     public float bowShotMaxHoldTime = 4;
-    public float holdTimeBowShotScale = 0.25f;
+    public float holdTimeAimScale = 0.25f;
     public float bowShotVelocity = 30;
 
     public GameObject arrow;

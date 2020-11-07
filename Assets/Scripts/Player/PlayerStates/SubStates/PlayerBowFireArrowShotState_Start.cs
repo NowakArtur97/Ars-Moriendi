@@ -12,6 +12,9 @@ public class PlayerBowFireArrowShotState_Start : PlayerBowFireArrowShotState
     {
         base.Enter();
 
+        IsAiming = false;
+        IsShooting = false;
+
         Player.SetVelocityX(0.0f);
     }
 
