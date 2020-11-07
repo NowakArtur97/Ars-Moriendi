@@ -3,7 +3,7 @@
 public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 {
     private bool _shotInputStop;
-    private Vector2Int _shotDirectionInput;
+    private Vector2 _shotDirectionInput;
     private Vector2 _shotDirection;
 
     public PlayerBowFireArrowShotState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName, Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition, playerFireArrowShotData)
@@ -22,7 +22,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.LogicUpdate();
 
-        _shotDirectionInput = Player.InputHandler.SecondaryAttackDirectionInput;
+        _shotDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
         _shotInputStop = Player.InputHandler.SecondaryAttackInputStop;
 
         if (_shotInputStop || Time.unscaledTime >= PlayerFireArrowShotData.bowShotMaxHoldTime + StartTime)
