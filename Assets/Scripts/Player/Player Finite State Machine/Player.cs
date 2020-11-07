@@ -62,7 +62,9 @@ public class Player : MonoBehaviour
     public PlayerSwordAttackState_01 SwordAttackState01 { get; private set; }
     public PlayerSwordAttackState_02 SwordAttackState02 { get; private set; }
     public PlayerSwordAttackState_03 SwordAttackState03 { get; private set; }
-    public PlayerBowFireArrowShotState FireArrowShotState { get; private set; }
+    public PlayerBowFireArrowShotState_Start FireArrowShotStateStart { get; private set; }
+    public PlayerBowFireArrowShotState_Aim FireArrowShotStateAim { get; private set; }
+    public PlayerBowFireArrowShotState_Finish FireArrowShotStateFinish { get; private set; }
 
     #endregion
 
@@ -96,10 +98,18 @@ public class Player : MonoBehaviour
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
 
         // TODO: Attack states using unnecessary Player Data
-        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01, _playerSwordAttackData01);
-        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02, _playerSwordAttackData02);
-        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03, _playerSwordAttackData03);
-        FireArrowShotState = new PlayerBowFireArrowShotState(this, FiniteStateMachine, _playerData, "bowFireShotStart", _fireArrowShotAttackPosition, _playerFireArrowShotData);
+        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
+            _playerSwordAttackData01);
+        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02,
+            _playerSwordAttackData02);
+        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03,
+            _playerSwordAttackData03);
+        FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, _playerData, "bowFireShotStart",
+            _fireArrowShotAttackPosition, _playerFireArrowShotData);
+        FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, _playerData, "bowFireShotAim",
+            _fireArrowShotAttackPosition, _playerFireArrowShotData);
+        FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, _playerData, "bowFireShotFinish",
+            _fireArrowShotAttackPosition, _playerFireArrowShotData);
     }
 
     private void Start()

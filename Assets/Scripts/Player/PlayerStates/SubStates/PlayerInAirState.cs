@@ -57,9 +57,9 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.SwordAttackState01);
         }
-        else if (_secondaryAttackInput && Player.FireArrowShotState.CheckIfCanShoot())
+        else if (_secondaryAttackInput)// && Player.FireArrowShotState.CheckIfCanShoot())
         {
-            FiniteStateMachine.ChangeState(Player.FireArrowShotState);
+            FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {
