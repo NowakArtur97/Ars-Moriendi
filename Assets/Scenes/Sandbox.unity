@@ -451,9 +451,9 @@ GameObject:
   m_Component:
   - component: {fileID: 594304492}
   - component: {fileID: 594304493}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boar
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6924,9 +6924,9 @@ GameObject:
   m_Component:
   - component: {fileID: 845845458}
   - component: {fileID: 845845457}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goblin Archer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

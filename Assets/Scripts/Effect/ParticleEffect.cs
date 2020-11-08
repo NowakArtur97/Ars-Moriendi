@@ -2,14 +2,11 @@
 
 public class ParticleEffect : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _particle;
-
     private ParticleSystem _particleEffect;
 
     private void OnEnable()
     {
-        _particleEffect = _particle.GetComponent<ParticleSystem>();
+        _particleEffect = gameObject.GetComponent<ParticleSystem>();
 
         _particleEffect.Clear();
         _particleEffect.time = 0;
