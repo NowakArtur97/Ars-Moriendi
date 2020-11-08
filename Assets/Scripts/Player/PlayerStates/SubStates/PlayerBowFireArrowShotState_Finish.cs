@@ -6,10 +6,23 @@ public class PlayerBowFireArrowShotState_Finish : PlayerBowFireArrowShotState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        CanShot = true;
+        IsAiming = false;
+        IsShooting = false;
+    }
+
     public override void Exit()
     {
         base.Exit();
 
-        SetLastShotTime(Time.time);
+        LastShotTime = Time.time;
+
+        CanShot = true;
+        IsAiming = false;
+        IsShooting = false;
     }
 }

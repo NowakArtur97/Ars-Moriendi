@@ -14,7 +14,10 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.Enter();
 
-        IsAiming(false);
+        CanShot = false;
+        IsAiming = false;
+        IsShooting = false;
+
         Time.timeScale = PlayerFireArrowShotData.holdTimeAimScale;
         StartTime = Time.unscaledTime;
     }
@@ -30,7 +33,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         {
             Time.timeScale = 1;
 
-            IsShooting(true);
+            IsShooting = true;
 
             if (_shotDirectionInput != Vector2.zero)
             {
@@ -40,6 +43,15 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
             Shot();
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        CanShot = false;
+        IsAiming = false;
+        IsShooting = true;
     }
 
     private void Shot()

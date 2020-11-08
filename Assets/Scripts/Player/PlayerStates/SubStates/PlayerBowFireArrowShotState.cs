@@ -2,10 +2,10 @@
 
 public class PlayerBowFireArrowShotState : PlayerAttackState
 {
-    private bool _isAiming;
-    private bool _isShooting;
-    private bool _canShot;
-    private float _lastShotTime;
+    protected bool IsAiming;
+    protected bool IsShooting;
+    protected bool CanShot;
+    protected float LastShotTime;
 
     protected D_PlayerBowArrowShotData PlayerFireArrowShotData;
 
@@ -14,7 +14,7 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
         PlayerFireArrowShotData = playerFireArrowShotData;
-        _canShot = true;
+        CanShot = true;
     }
 
     public override void LogicUpdate()
@@ -23,11 +23,11 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
 
         if (!IsExitingState)
         {
-            if (_isAiming)
+            if (IsAiming)
             {
                 Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateAim);
             }
-            else if (_isShooting)
+            else if (IsShooting)
             {
                 Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateFinish);
             }
@@ -38,18 +38,10 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
     {
         base.Exit();
 
-        _isShooting = false;
-        _isAiming = false;
-        _canShot = true;
+        IsShooting = false;
+        IsAiming = false;
+        CanShot = true;
     }
 
-    public void IsAiming(bool isAiming) => _isAiming = isAiming;
-
-    public void IsShooting(bool isShooting) => _isShooting = isShooting;
-
-    public void SetCanShot(bool canShot) => _canShot = canShot;
-
-    public void SetLastShotTime(float lastShotTime) => _lastShotTime = lastShotTime;
-
-    public bool CheckIfCanShoot() => _canShot && Time.time >= _lastShotTime + PlayerFireArrowShotData.bowShotCooldown;
+    public bool CheckIfCanShoot() => CanShot && Time.time >= LastShotTime + PlayerFireArrowShotData.bowShotCooldown;
 }
