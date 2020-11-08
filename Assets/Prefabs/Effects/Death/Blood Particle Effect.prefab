@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2074700874727950621}
-  - component: {fileID: -8419887284563078611}
   - component: {fileID: 2074700874727950622}
   - component: {fileID: 2074700874727950623}
   m_Layer: 11
-  m_Name: Death Blood Particle Effect
+  m_Name: Blood Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8419887284563078611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074700874727950616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cd33af882bfa24dabc9b3784a5e2d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &2074700874727950622
 ParticleSystem:
   m_ObjectHideFlags: 0

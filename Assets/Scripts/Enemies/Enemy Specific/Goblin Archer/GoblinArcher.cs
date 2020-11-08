@@ -48,6 +48,8 @@ public class GoblinArcher : Entity
     {
         base.Damage(attackDetails);
 
+        GameObject.Instantiate(deadStateData.bloodEffectGO, aliveGameObject.transform.position, deadStateData.bloodEffectGO.transform.rotation);
+
         if (isDead)
         {
             finiteStateMachine.ChangeState(deadState);
