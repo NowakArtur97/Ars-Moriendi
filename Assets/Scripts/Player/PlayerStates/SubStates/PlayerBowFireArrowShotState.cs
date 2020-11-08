@@ -2,8 +2,10 @@
 
 public class PlayerBowFireArrowShotState : PlayerAttackState
 {
-    protected bool IsAiming;
-    protected bool IsShooting;
+    private bool _isAiming;
+    private bool _isShooting;
+    private bool _canShot;
+    private float _lastShotTime;
 
     protected D_PlayerBowArrowShotData PlayerFireArrowShotData;
 
@@ -12,24 +14,42 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
         : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
     {
         PlayerFireArrowShotData = playerFireArrowShotData;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
+        _canShot = true;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (IsAiming)
+        if (!IsExitingState)
         {
-            Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateAim);
-        }
-        else if (IsShooting)
-        {
-            Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateFinish);
+            if (_isAiming)
+            {
+                Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateAim);
+            }
+            else if (_isShooting)
+            {
+                Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateFinish);
+            }
         }
     }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        _isShooting = false;
+        _isAiming = false;
+        _canShot = true;
+    }
+
+    public void IsAiming(bool isAiming) => _isAiming = isAiming;
+
+    public void IsShooting(bool isShooting) => _isShooting = isShooting;
+
+    public void SetCanShot(bool canShot) => _canShot = canShot;
+
+    public void SetLastShotTime(float lastShotTime) => _lastShotTime = lastShotTime;
+
+    public bool CheckIfCanShoot() => _canShot && Time.time >= _lastShotTime + PlayerFireArrowShotData.bowShotCooldown;
 }

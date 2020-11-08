@@ -12,16 +12,13 @@ public class PlayerBowFireArrowShotState_Start : PlayerBowFireArrowShotState
     {
         base.Enter();
 
-        IsAiming = false;
-        IsShooting = false;
-
         Player.SetVelocityX(0.0f);
     }
 
-    public override void AnimationFinishedTrigger()
+    public override void AnimationTrigger()
     {
-        base.AnimationFinishedTrigger();
+        base.AnimationTrigger();
 
-        IsAiming = true;
+        IsAiming(true);
     }
 }

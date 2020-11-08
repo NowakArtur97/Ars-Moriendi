@@ -30,7 +30,6 @@ public class MeleeAttackState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
-            Debug.Log(collider.gameObject.name);
             collider.transform.SendMessage("Damage", attackDetails);
         }
     }

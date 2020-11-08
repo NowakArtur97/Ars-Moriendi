@@ -44,7 +44,7 @@ public class PlayerGroundedState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.SwordAttackState01);
         }
-        else if (_secondaryAttackInput)// && Player.FireArrowShotState.CheckIfCanShoot())
+        else if (_secondaryAttackInput && Player.FireArrowShotStateFinish.CheckIfCanShoot())
         {
             FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);
         }

@@ -14,6 +14,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.Enter();
 
+        IsAiming(false);
         Time.timeScale = PlayerFireArrowShotData.holdTimeAimScale;
         StartTime = Time.unscaledTime;
     }
@@ -27,9 +28,9 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
         if (_shotInputStop || Time.unscaledTime >= PlayerFireArrowShotData.bowShotMaxHoldTime + StartTime)
         {
-            IsAiming = false;
-            IsShooting = true;
             Time.timeScale = 1;
+
+            IsShooting(true);
 
             if (_shotDirectionInput != Vector2.zero)
             {
