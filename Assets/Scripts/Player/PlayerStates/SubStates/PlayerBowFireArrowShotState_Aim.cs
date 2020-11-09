@@ -71,7 +71,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         if (IsShootingInTheOppositeDirection())
         {
-            _shotDirection.x = PlayerFireArrowShotData.minBowShotAngleX;
+            _shotDirection.x = Player.FacingDirection * PlayerFireArrowShotData.minBowShotAngleX;
+            //_shotDirection.x = Player.FacingDirection == 1 ? PlayerFireArrowShotData.minBowShotAngleX : -PlayerFireArrowShotData.minBowShotAngleX;
         }
 
         _shotDirection.y = Mathf.Clamp(_shotDirection.y, PlayerFireArrowShotData.minBowShotAngleY, PlayerFireArrowShotData.maxBowShotAngleY);
@@ -94,7 +95,6 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
     private Vector2 PointToPosition(float time) => (Vector2)attackPosition.position + (_aimDirection * PlayerFireArrowShotData.arrowSpeed * time)
       + 0.5f * Physics2D.gravity * (time * time);
-
 
     private bool IsShootingInTheOppositeDirection() =>
                     (_shotDirection.x < 0 && Mathf.FloorToInt(_shotDirection.x) != Player.FacingDirection)
