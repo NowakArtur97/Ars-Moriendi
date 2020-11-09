@@ -14,4 +14,8 @@ public class D_PlayerBowArrowShotData : ScriptableObject
     public float arrowDamage = 10.0f;
     public float arrowSpeed = 12.0f;
     public float arrowTravelDistance = 8.0f;
+
+    public GameObject aimingPoint;
+    public int numberOfAimingPoints = 50;
+    public float spaceBetweenAimingPoints = 0.025f;
 }

@@ -22,3 +22,7 @@ MonoBehaviour:
   arrowDamage: 10
   arrowSpeed: 20
   arrowTravelDistance: 8
+  aimingPoint: {fileID: 9188411683123435579, guid: 1bf22a59fe695004d82a643e6751a70f,
+    type: 3}
+  numberOfAimingPoints: 50
+  spaceBetweenAimingPoints: 0.025
