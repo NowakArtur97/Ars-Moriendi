@@ -26,22 +26,25 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.LogicUpdate();
 
-        _shotDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
-        _shotInputStop = Player.InputHandler.SecondaryAttackInputStop;
-
-        if (_shotInputStop || Time.unscaledTime >= PlayerFireArrowShotData.bowShotMaxHoldTime + StartTime)
+        if (!IsExitingState)
         {
-            Time.timeScale = 1;
+            _shotDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
+            _shotInputStop = Player.InputHandler.SecondaryAttackInputStop;
 
-            IsShooting = true;
-
-            if (_shotDirectionInput != Vector2.zero)
+            if (_shotInputStop || Time.unscaledTime >= PlayerFireArrowShotData.bowShotMaxHoldTime + StartTime)
             {
-                _shotDirection = _shotDirectionInput;
-                _shotDirection.Normalize();
-            }
+                Time.timeScale = 1;
 
-            Shot();
+                IsShooting = true;
+
+                if (_shotDirectionInput != Vector2.zero)
+                {
+                    _shotDirection = _shotDirectionInput;
+                    _shotDirection.Normalize();
+                }
+
+                Shot();
+            }
         }
     }
 

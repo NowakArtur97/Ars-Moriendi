@@ -4,6 +4,8 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]
     private float _gravity = 4.0f;
+    [SerializeField]
+    private bool _gravityOnFromStart = false;
 
     [SerializeField]
     private LayerMask _whatIsGround;
@@ -25,31 +27,39 @@ public class Projectile : MonoBehaviour
     private bool _hasHitGround;
 
     private Rigidbody2D _myRigidbody2D;
+    private Animator _myAnimator;
 
     private void Start()
     {
         _myRigidbody2D = GetComponent<Rigidbody2D>();
+        _myAnimator = GetComponent<Animator>();
         _myRigidbody2D.gravityScale = 0.0f;
 
         _myRigidbody2D.velocity = _speed;
 
         _xStartPosition = transform.position.x;
 
-        _isGravityOn = false;
+        _isGravityOn = _gravityOnFromStart;
         _hasHitGround = false;
     }
 
     private void Update()
     {
-        if (!_hasHitGround)
-        {
-            attackDetails.position = transform.position;
+        //if (!_hasHitGround)
+        //{
+        //    attackDetails.position = transform.position;
 
-            if (_isGravityOn)
-            {
-                float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
+        //    if (_isGravityOn)
+        //    {
+        //        float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
+        //        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //    }
+        //}
+
+        if (_isGravityOn)
+        {
+            float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
@@ -62,6 +72,7 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
+                attackDetails.position = transform.position;
                 damageHit.transform.parent.SendMessage("Damage", attackDetails);
                 Destroy(gameObject);
             }
@@ -69,15 +80,23 @@ public class Projectile : MonoBehaviour
             if (groundHit)
             {
                 _hasHitGround = true;
-                _myRigidbody2D.gravityScale = 0.0f;
-                _myRigidbody2D.velocity = Vector2.zero;
             }
 
-            if (Mathf.Abs(_xStartPosition - transform.position.x) >= _travelDistance && !_isGravityOn)
+            if (Mathf.Abs(_xStartPosition - transform.position.x) >= _travelDistance)
             {
                 _isGravityOn = true;
                 _myRigidbody2D.gravityScale = _gravity;
             }
+        }
+
+        if (_hasHitGround)
+        {
+            if (_myAnimator != null)
+            {
+                _myAnimator.SetBool("disabled", false);
+            }
+            _myRigidbody2D.velocity = Vector2.zero;
+            _myRigidbody2D.gravityScale = 0.0f;
         }
     }
 
