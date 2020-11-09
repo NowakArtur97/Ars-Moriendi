@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::D_PlayerBowFireArrowShotData
   bowShotCooldown: 0.75
   bowShotMaxHoldTime: 4
-  holdTimeBowShotScale: 0.25
-  bowShotVelocity: 30
+  holdTimeAimScale: 0.25
+  minBowShotAngleX: 0.3
+  minBowShotAngleY: -0.7
+  maxBowShotAngleY: 0.7
   arrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a, type: 3}
   arrowDamage: 10
-  arrowSpeed: 12
+  arrowSpeed: 20
   arrowTravelDistance: 8

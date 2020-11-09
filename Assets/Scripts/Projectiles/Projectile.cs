@@ -5,7 +5,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float _gravity = 4.0f;
     [SerializeField]
-    private bool _gravityOnFromStart = false;
+    private bool _isGravityOnStart = false;
+    [SerializeField]
+    private bool _isGravityScaleOnStart = false;
 
     [SerializeField]
     private LayerMask _whatIsGround;
@@ -33,29 +35,21 @@ public class Projectile : MonoBehaviour
     {
         _myRigidbody2D = GetComponent<Rigidbody2D>();
         _myAnimator = GetComponent<Animator>();
-        _myRigidbody2D.gravityScale = 0.0f;
+        if (!_isGravityScaleOnStart)
+        {
+            _myRigidbody2D.gravityScale = 0.0f;
+        }
 
         _myRigidbody2D.velocity = _speed;
 
         _xStartPosition = transform.position.x;
 
-        _isGravityOn = _gravityOnFromStart;
+        _isGravityOn = _isGravityOnStart;
         _hasHitGround = false;
     }
 
     private void Update()
     {
-        //if (!_hasHitGround)
-        //{
-        //    attackDetails.position = transform.position;
-
-        //    if (_isGravityOn)
-        //    {
-        //        float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
-        //        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //    }
-        //}
-
         if (_isGravityOn)
         {
             float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
