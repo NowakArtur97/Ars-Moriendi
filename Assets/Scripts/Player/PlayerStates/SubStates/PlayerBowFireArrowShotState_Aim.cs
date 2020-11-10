@@ -77,12 +77,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
     private void Shot()
     {
-        if (IsShootingInTheOppositeDirection())
-        {
-            _shotDirection.x = Player.FacingDirection * PlayerFireArrowShotData.minBowShotAngleX;
-        }
-
-        _shotDirection.y = Mathf.Clamp(_shotDirection.y, PlayerFireArrowShotData.minBowShotAngleY, PlayerFireArrowShotData.maxBowShotAngleY);
+        ClampShotDirection();
 
         GameObject projectile = GameObject.Instantiate(PlayerFireArrowShotData.arrow, attackPosition.position, attackPosition.rotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
@@ -92,6 +87,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     private void Aim()
     {
         _shotDirection.Normalize();
+
+        ClampShotDirection();
 
         for (int i = 0; i < _numberOfAimingPoints; i++)
         {
@@ -106,6 +103,16 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     private bool IsShootingInTheOppositeDirection() =>
                     (_shotDirection.x < 0 && Mathf.FloorToInt(_shotDirection.x) != Player.FacingDirection)
                     || (_shotDirection.x > 0 && Mathf.RoundToInt(_shotDirection.x) != Player.FacingDirection);
+
+    private void ClampShotDirection()
+    {
+        if (IsShootingInTheOppositeDirection())
+        {
+            _shotDirection.x = Player.FacingDirection * PlayerFireArrowShotData.minBowShotAngleX;
+        }
+
+        _shotDirection.y = Mathf.Clamp(_shotDirection.y, PlayerFireArrowShotData.minBowShotAngleY, PlayerFireArrowShotData.maxBowShotAngleY);
+    }
 
     private void InitializeAimingPointsArray(Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData)
     {

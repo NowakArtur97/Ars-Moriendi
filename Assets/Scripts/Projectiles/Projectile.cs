@@ -17,7 +17,6 @@ public class Projectile : MonoBehaviour
     private float _damageRadius = 0.15f;
 
     private AttackDetails _attackDetails;
-
     private Vector2 _speed;
     private float _gravityScale;
     private float _angle = 0;
