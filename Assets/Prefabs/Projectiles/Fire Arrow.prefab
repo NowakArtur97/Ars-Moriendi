@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gravity: 4
-  _isGravityOnStart: 0
-  _isGravityScaleOnStart: 1
+  _isGravityOnStart: 1
+  _disableGravityScaleOnStart: 1
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 256

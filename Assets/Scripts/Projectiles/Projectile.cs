@@ -6,8 +6,6 @@ public class Projectile : MonoBehaviour
     private float _gravity = 4.0f;
     [SerializeField]
     private bool _isGravityOnStart = false;
-    [SerializeField]
-    private bool _isGravityScaleOnStart = false;
 
     [SerializeField]
     private LayerMask _whatIsGround;
@@ -18,9 +16,10 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float _damageRadius = 0.15f;
 
-    private AttackDetails attackDetails;
+    private AttackDetails _attackDetails;
 
     private Vector2 _speed;
+    private float _gravityScale;
     private float _angle = 0;
     private float _travelDistance;
     private float _xStartPosition;
@@ -35,11 +34,8 @@ public class Projectile : MonoBehaviour
     {
         _myRigidbody2D = GetComponent<Rigidbody2D>();
         _myAnimator = GetComponent<Animator>();
-        if (!_isGravityScaleOnStart)
-        {
-            _myRigidbody2D.gravityScale = 0.0f;
-        }
 
+        _myRigidbody2D.gravityScale = _gravityScale;
         _myRigidbody2D.velocity = _speed;
 
         _xStartPosition = transform.position.x;
@@ -66,8 +62,8 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
-                attackDetails.position = transform.position;
-                damageHit.transform.parent.SendMessage("Damage", attackDetails);
+                _attackDetails.position = transform.position;
+                damageHit.transform.parent.SendMessage("Damage", _attackDetails);
                 Destroy(gameObject);
             }
 
@@ -87,25 +83,27 @@ public class Projectile : MonoBehaviour
         {
             if (_myAnimator != null)
             {
-                _myAnimator.SetBool("disabled", false);
+                _myAnimator.SetBool("disabled", true);
             }
             _myRigidbody2D.velocity = Vector2.zero;
             _myRigidbody2D.gravityScale = 0.0f;
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage)
+    public void FireProjectile(float speed, float travelDistance, float damage, float gravityScale)
     {
-        _speed = speed * transform.right;
+        _speed = transform.right * speed;
         _travelDistance = travelDistance;
-        attackDetails.damageAmmount = damage;
+        _gravityScale = gravityScale;
+        _attackDetails.damageAmmount = damage;
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage, Vector2 direction)
+    public void FireProjectile(float speed, float travelDistance, float damage, float gravityScale, Vector2 direction)
     {
-        _speed = speed * direction;
+        _speed = direction * speed;
         _travelDistance = travelDistance;
-        attackDetails.damageAmmount = damage;
+        _gravityScale = gravityScale;
+        _attackDetails.damageAmmount = damage;
     }
 
     private void OnDrawGizmos()
