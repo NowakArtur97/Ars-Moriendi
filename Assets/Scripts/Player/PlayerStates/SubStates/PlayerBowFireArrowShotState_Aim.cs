@@ -68,6 +68,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.Exit();
 
+        HideAimingPoints();
+
         CanShot = false;
         IsAiming = false;
         IsShooting = true;
@@ -94,6 +96,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         for (int i = 0; i < _numberOfAimingPoints; i++)
         {
             _points[i].transform.position = PointToPosition(i * _spaceBetweenAimingPoints, _arrowSpeed);
+            _points[i].SetActive(true);
         }
     }
 
@@ -114,6 +117,15 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         for (int i = 0; i < numberOfAimingPoints; i++)
         {
             _points[i] = GameObject.Instantiate(aimingPoint, attackPosition.position, Quaternion.identity);
+            _points[i].SetActive(false);
+        }
+    }
+
+    private void HideAimingPoints()
+    {
+        for (int i = 0; i < _numberOfAimingPoints; i++)
+        {
+            _points[i].SetActive(false);
         }
     }
 }
