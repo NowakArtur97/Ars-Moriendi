@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     public PlayerBowFireArrowShotState_Start FireArrowShotStateStart { get; private set; }
     public PlayerBowFireArrowShotState_Aim FireArrowShotStateAim { get; private set; }
     public PlayerBowFireArrowShotState_Finish FireArrowShotStateFinish { get; private set; }
+    public PlayerMoveOnRopeState MoveOnRopeState { get; private set; }
 
     #endregion
 
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
+        MoveOnRopeState = new PlayerMoveOnRopeState(this, FiniteStateMachine, _playerData, "inAir");
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
