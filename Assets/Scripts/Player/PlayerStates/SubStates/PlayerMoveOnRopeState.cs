@@ -46,7 +46,14 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             if (_ropeInputStop)
             {
                 Player.Crosshair.gameObject.SetActive(false);
-                IsAbilityDone = true;
+                ResetRope();
+
+                // TODO: Exit state
+                //IsAbilityDone = true;
+            }
+            else if (!_ropeAttached && !_ropeInputStop)
+            {
+                AttachRope();
             }
             else if (!_ropeAttached)
             {
@@ -97,7 +104,14 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
     private void ResetRope()
     {
+        Player.RopeJoint.enabled = false;
+        _ropeAttached = false;
+        Player.RopeHingeAnchorSpriteRenderer.enabled = false;
 
+        Player.MyRopeLineRenderer.positionCount = 2;
+        Player.MyRopeLineRenderer.SetPosition(0, _playerPosition);
+        Player.MyRopeLineRenderer.SetPosition(1, _playerPosition);
+        _ropePositions.Clear();
     }
 
     private void SetCrosshairPosition()
