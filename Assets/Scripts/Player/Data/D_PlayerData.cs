@@ -42,6 +42,9 @@ public class D_PlayerData : ScriptableObject
     public float dashEndMultiplier = 0.2f;
     public float distanceBetweenAfterImages = 0.4f;
 
+    [Header("Rope Move State")]
+    public float ropeCrosshairOffset = 3f;
+
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
     public float wallCheckDistance = 0.5f;

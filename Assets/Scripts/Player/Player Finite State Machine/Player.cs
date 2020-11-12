@@ -75,6 +75,12 @@ public class Player : MonoBehaviour
     public Rigidbody2D MyRigidbody { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Transform DashDirectionIndicator { get; private set; }
+    public Transform RopeHingeAnchor { get; private set; }
+    public Rigidbody2D RopeHingeAnchorRigidbody { get; private set; }
+    public SpriteRenderer RopeHingeAnchorSpriteRenderer { get; private set; }
+    public Transform Crosshair { get; private set; }
+    public SpriteRenderer CrosshairSpriteRenderer { get; private set; }
+    public DistanceJoint2D RopeJoint { get; private set; }
 
     #endregion
 
@@ -97,7 +103,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-        MoveOnRopeState = new PlayerMoveOnRopeState(this, FiniteStateMachine, _playerData, "inAir");
+        MoveOnRopeState = new PlayerMoveOnRopeState(this, FiniteStateMachine, _playerData, "idle");
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
@@ -119,7 +125,16 @@ public class Player : MonoBehaviour
         MyAnmator = GetComponent<Animator>();
         MyRigidbody = GetComponent<Rigidbody2D>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        RopeJoint = GetComponent<DistanceJoint2D>();
+
         DashDirectionIndicator = transform.Find("Dash Direction Indicator");
+
+        RopeHingeAnchor = transform.Find("Rope Hinge Anchor");
+        RopeHingeAnchorRigidbody = RopeHingeAnchor.GetComponent<Rigidbody2D>();
+        RopeHingeAnchorSpriteRenderer = RopeHingeAnchor.GetComponent<SpriteRenderer>();
+
+        Crosshair = transform.Find("Crosshair");
+        CrosshairSpriteRenderer = Crosshair.GetComponent<SpriteRenderer>();
 
         FacingDirection = 1;
 
