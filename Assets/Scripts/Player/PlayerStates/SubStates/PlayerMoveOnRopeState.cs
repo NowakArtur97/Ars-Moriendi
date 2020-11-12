@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMoveOnRopeState : PlayerAbilityState
 {
@@ -10,9 +11,11 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
     private Vector2 _playerPosition;
     private Vector3 _crossHairPosition;
     private bool _ropeAttached;
+    private List<Vector2> _ropePositions;
 
     public PlayerMoveOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
+        _ropePositions = new List<Vector2>();
     }
 
     public override void Enter()
@@ -57,6 +60,44 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
         base.Exit();
 
         _ropeAttached = false;
+    }
+
+    private void AttachRope()
+    {
+        if (_ropeAttached)
+        {
+            return;
+        }
+
+        Player.MyRopeLineRenderer.enabled = true;
+
+        RaycastHit2D hit = Physics2D.Raycast(_playerPosition, _aimDirection, PlayerData.ropeMaxCastDistance, PlayerData.whatCanYouAttachTo);
+
+        if (hit.collider != null)
+        {
+            _ropeAttached = true;
+
+            if (!_ropePositions.Contains(hit.point))
+            {
+                Player.MyRigidbody.AddForce(_aimDirection * PlayerData.ropeStartingVelocity);
+
+                _ropePositions.Add(hit.point);
+                Player.RopeJoint.distance = Vector2.Distance(_playerPosition.normalized, hit.point);
+                Player.RopeJoint.enabled = true;
+                Player.RopeHingeAnchorSpriteRenderer.enabled = true;
+            }
+        }
+        else
+        {
+            _ropeAttached = false;
+            Player.RopeJoint.enabled = false;
+            Player.RopeHingeAnchorSpriteRenderer.enabled = false;
+        }
+    }
+
+    private void ResetRope()
+    {
+
     }
 
     private void SetCrosshairPosition()

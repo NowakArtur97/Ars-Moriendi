@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public LineRenderer MyRopeLineRenderer;
     public Transform DashDirectionIndicator { get; private set; }
     public Transform RopeHingeAnchor { get; private set; }
     public Rigidbody2D RopeHingeAnchorRigidbody { get; private set; }
@@ -125,6 +126,7 @@ public class Player : MonoBehaviour
         MyAnmator = GetComponent<Animator>();
         MyRigidbody = GetComponent<Rigidbody2D>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        MyRopeLineRenderer = GetComponent<LineRenderer>();
         RopeJoint = GetComponent<DistanceJoint2D>();
 
         DashDirectionIndicator = transform.Find("Dash Direction Indicator");

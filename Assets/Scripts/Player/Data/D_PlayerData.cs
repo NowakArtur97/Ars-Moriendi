@@ -44,6 +44,9 @@ public class D_PlayerData : ScriptableObject
 
     [Header("Rope Move State")]
     public float ropeCrosshairOffset = 3f;
+    public LayerMask whatCanYouAttachTo;
+    public float ropeMaxCastDistance = 20f;
+    public float ropeStartingVelocity = 10f;
 
     [Header("Check Variables")]
     public float groundCheckRadius = 0.3f;
