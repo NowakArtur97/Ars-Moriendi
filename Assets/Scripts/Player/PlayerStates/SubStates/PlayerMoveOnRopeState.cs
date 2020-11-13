@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerMoveOnRopeState : PlayerAbilityState
 {
@@ -11,6 +12,7 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
     private Vector2 _playerPosition;
     private Vector3 _crossHairPosition;
     private bool _ropeAttached;
+    private bool _distanceSet;
     private List<Vector2> _ropePositions;
 
     public PlayerMoveOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
@@ -23,6 +25,8 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
         base.Enter();
 
         _playerPosition = Player.transform.position;
+
+        ResetRope();
     }
 
     public override void LogicUpdate()
@@ -36,6 +40,8 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             _ropeInputStop = Player.InputHandler.SecondaryAttackInputStop;
             _aimAngle = Mathf.Atan2(_ropeDirectionInput.y, _ropeDirectionInput.x);
 
+            Player.SetVelocityX(PlayerData.movementVelocity * _xInput);
+
             if (_aimAngle < 0f)
             {
                 _aimAngle = Mathf.PI * 2 + _aimAngle;
@@ -46,19 +52,18 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             if (_ropeInputStop)
             {
                 Player.Crosshair.gameObject.SetActive(false);
-                ResetRope();
+                //ResetRope();
+                AttachRope();
 
                 // TODO: Exit state
                 //IsAbilityDone = true;
-            }
-            else if (!_ropeAttached && !_ropeInputStop)
-            {
-                AttachRope();
             }
             else if (!_ropeAttached)
             {
                 SetCrosshairPosition();
             }
+
+            UpdateRopePositions();
         }
     }
 
@@ -102,6 +107,67 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
         }
     }
 
+    private void UpdateRopePositions()
+    {
+        if (!_ropeAttached)
+        {
+            return;
+        }
+
+        // plus one for the Player position
+        Player.MyRopeLineRenderer.positionCount = _ropePositions.Count + 1;
+
+        for (int i = _ropePositions.Count - 1; i >= 0; i--)
+        {
+            if (i != Player.MyRopeLineRenderer.positionCount - 1)
+            {
+                Player.MyRopeLineRenderer.SetPosition(i, _ropePositions[i]);
+
+                if (i == _ropePositions.Count - 1 || _ropePositions.Count == 1)
+                {
+                    Vector2 ropePosition = _ropePositions[_ropePositions.Count - 1];
+
+                    if (_ropePositions.Count == 1)
+                    {
+                        Player.RopeHingeAnchorRigidbody.transform.position = ropePosition;
+
+                        if (!_distanceSet)
+                        {
+                            Player.RopeJoint.distance = Vector2.Distance(_playerPosition, ropePosition);
+                            _distanceSet = true;
+                        }
+                    }
+                    else
+                    {
+                        Player.RopeHingeAnchorRigidbody.transform.position = ropePosition;
+
+                        if (!_distanceSet)
+                        {
+                            Player.RopeJoint.distance = Vector2.Distance(_playerPosition, ropePosition);
+                            _distanceSet = true;
+                        }
+                    }
+                }
+                else if (i - 1 == _ropePositions.IndexOf(_ropePositions.Last()))
+                {
+                    Vector2 ropePosition = _ropePositions.Last();
+
+                    Player.RopeHingeAnchorRigidbody.transform.position = ropePosition;
+
+                    if (!_distanceSet)
+                    {
+                        Player.RopeJoint.distance = Vector2.Distance(_playerPosition, ropePosition);
+                        _distanceSet = true;
+                    }
+                }
+            }
+            else
+            {
+                Player.MyRopeLineRenderer.SetPosition(i, _playerPosition);
+            }
+        }
+    }
+
     private void ResetRope()
     {
         Player.RopeJoint.enabled = false;
@@ -121,8 +187,8 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             Player.Crosshair.gameObject.SetActive(true);
         }
 
-        float x = Player.transform.position.x + PlayerData.ropeCrosshairOffset * Mathf.Cos(_aimAngle);
-        float y = Player.transform.position.y + PlayerData.ropeCrosshairOffset * Mathf.Sin(_aimAngle);
+        float x = _playerPosition.x + PlayerData.ropeCrosshairOffset * Mathf.Cos(_aimAngle);
+        float y = _playerPosition.y + PlayerData.ropeCrosshairOffset * Mathf.Sin(_aimAngle);
 
         _crossHairPosition = new Vector3(x, y, 0);
         Player.Crosshair.position = _crossHairPosition;
