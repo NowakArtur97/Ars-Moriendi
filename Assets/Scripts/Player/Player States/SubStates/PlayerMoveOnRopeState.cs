@@ -12,6 +12,7 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
     private Vector2 _playerPosition;
     private Vector3 _crossHairPosition;
     private bool _ropeAttached;
+    private int _clickCount;
     private bool _distanceSet;
     private List<Vector2> _ropePositions;
 
@@ -26,7 +27,7 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
         _playerPosition = Player.transform.position;
 
-        ResetRope();
+        _clickCount = 0;
     }
 
     public override void LogicUpdate()
@@ -49,30 +50,36 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             _aimDirection = Quaternion.Euler(0, 0, _aimAngle * Mathf.Rad2Deg) * Vector2.right;
             _playerPosition = Player.transform.position;
 
-            if (_ropeAttached)
+            if (_ropeInputStop)
             {
-                UpdateRopePositions();
+                _clickCount++;
             }
-            else if (_ropeInputStop && !_ropeAttached)
-            {
-                AttachRope();
 
-                // TODO: Exit state
-                //IsAbilityDone = true;
-            }
-            else if (!_ropeAttached)
+            if (!_ropeAttached && !_ropeInputStop)
             {
-                ResetRope();
                 SetCrosshairPosition();
             }
+            else if (!_ropeAttached && _clickCount == 1)
+            {
+                Player.InputHandler.UseSecondaryAttackInputStop();
+
+                AttachRope();
+            }
+            else if (_ropeAttached && _clickCount == 1)
+            {
+                Player.CheckIfShouldFlip(_xInput);
+
+                UpdateRopePositions();
+            }
+            else if (_ropeAttached && _clickCount == 2)
+            {
+                Player.InputHandler.UseSecondaryAttackInputStop();
+
+                ResetRope();
+
+                IsAbilityDone = true;
+            }
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        _ropeAttached = false;
     }
 
     private void AttachRope()
@@ -89,8 +96,6 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
             if (!_ropePositions.Contains(hit.point))
             {
-                //Player.MyRigidbody.AddForce(_aimDirection * PlayerData.ropeStartingVelocity);
-
                 _ropePositions.Add(hit.point);
                 Player.RopeJoint.distance = Vector2.Distance(_playerPosition, hit.point);
                 Player.RopeJoint.enabled = true;
@@ -108,8 +113,6 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
     private void UpdateRopePositions()
     {
         // plus one for the Player position
-        _playerPosition = Player.transform.position;
-
         Player.MyRopeLineRenderer.positionCount = _ropePositions.Count + 1;
 
         for (int i = Player.MyRopeLineRenderer.positionCount - 1; i >= 0; i--)

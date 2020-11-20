@@ -169,6 +169,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void UseSecondaryAttackInput() => SecondaryAttackInput = false;
 
+    public void UseSecondaryAttackInputStop() => SecondaryAttackInputStop = false;
+
     public void CheckJumpInputHoldTime()
     {
         if (Time.time >= _jumpInputStartTime + _inputHoldTime)
