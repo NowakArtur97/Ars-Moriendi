@@ -49,10 +49,12 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             _aimDirection = Quaternion.Euler(0, 0, _aimAngle * Mathf.Rad2Deg) * Vector2.right;
             _playerPosition = Player.transform.position;
 
-            if (_ropeInputStop)
+            if (_ropeAttached)
             {
-                Player.Crosshair.gameObject.SetActive(false);
-                //ResetRope();
+                UpdateRopePositions();
+            }
+            else if (_ropeInputStop && !_ropeAttached)
+            {
                 AttachRope();
 
                 // TODO: Exit state
@@ -60,10 +62,9 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             }
             else if (!_ropeAttached)
             {
+                ResetRope();
                 SetCrosshairPosition();
             }
-
-            UpdateRopePositions();
         }
     }
 
@@ -76,12 +77,9 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
     private void AttachRope()
     {
-        if (_ropeAttached)
-        {
-            return;
-        }
-
-        Player.MyRopeLineRenderer.enabled = true;
+        Player.Crosshair.gameObject.SetActive(false);
+        Player.MyRopeLineRenderer.gameObject.SetActive(true);
+        Player.RopeHingeAnchor.gameObject.SetActive(true);
 
         RaycastHit2D hit = Physics2D.Raycast(_playerPosition, _aimDirection, PlayerData.ropeMaxCastDistance, PlayerData.whatCanYouAttachTo);
 
@@ -91,10 +89,10 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
             if (!_ropePositions.Contains(hit.point))
             {
-                Player.MyRigidbody.AddForce(_aimDirection * PlayerData.ropeStartingVelocity);
+                //Player.MyRigidbody.AddForce(_aimDirection * PlayerData.ropeStartingVelocity);
 
                 _ropePositions.Add(hit.point);
-                Player.RopeJoint.distance = Vector2.Distance(_playerPosition.normalized, hit.point);
+                Player.RopeJoint.distance = Vector2.Distance(_playerPosition, hit.point);
                 Player.RopeJoint.enabled = true;
                 Player.RopeHingeAnchorSpriteRenderer.enabled = true;
             }
@@ -109,12 +107,9 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
     private void UpdateRopePositions()
     {
-        if (!_ropeAttached)
-        {
-            return;
-        }
-
         // plus one for the Player position
+        _playerPosition = Player.transform.position;
+
         Player.MyRopeLineRenderer.positionCount = _ropePositions.Count + 1;
 
         for (int i = _ropePositions.Count - 1; i >= 0; i--)
@@ -186,6 +181,8 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
         {
             Player.Crosshair.gameObject.SetActive(true);
         }
+
+        Player.RopeHingeAnchor.gameObject.SetActive(false);
 
         float x = _playerPosition.x + PlayerData.ropeCrosshairOffset * Mathf.Cos(_aimAngle);
         float y = _playerPosition.y + PlayerData.ropeCrosshairOffset * Mathf.Sin(_aimAngle);

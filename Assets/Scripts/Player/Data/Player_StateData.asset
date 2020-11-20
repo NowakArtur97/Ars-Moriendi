@@ -36,7 +36,7 @@ MonoBehaviour:
   ropeCrosshairOffset: 3
   whatCanYouAttachTo:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 256
   ropeMaxCastDistance: 20
   ropeStartingVelocity: 10
   groundCheckRadius: 0.1
