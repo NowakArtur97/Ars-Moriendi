@@ -112,7 +112,7 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
 
         Player.MyRopeLineRenderer.positionCount = _ropePositions.Count + 1;
 
-        for (int i = _ropePositions.Count - 1; i >= 0; i--)
+        for (int i = Player.MyRopeLineRenderer.positionCount - 1; i >= 0; i--)
         {
             if (i != Player.MyRopeLineRenderer.positionCount - 1)
             {
