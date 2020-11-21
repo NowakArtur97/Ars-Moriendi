@@ -59,7 +59,7 @@ public class PlayerInAirState : PlayerState
         }
         else if (_secondaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.MoveOnRopeState);
+            FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {

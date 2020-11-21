@@ -44,9 +44,9 @@ public class PlayerGroundedState : PlayerState
         {
             FiniteStateMachine.ChangeState(Player.SwordAttackState01);
         }
-        else if (_secondaryAttackInput && Player.FireArrowShotStateFinish.CheckIfCanShoot())
+        else if (_secondaryAttackInput) // && Player.FireArrowShotStateFinish.CheckIfCanShoot())
         {
-            FiniteStateMachine.ChangeState(Player.MoveOnRopeState);
+            FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
             // TO DO: Change attack type
             //FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);
         }

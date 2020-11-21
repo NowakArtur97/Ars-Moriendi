@@ -65,7 +65,8 @@ public class Player : MonoBehaviour
     public PlayerBowFireArrowShotState_Start FireArrowShotStateStart { get; private set; }
     public PlayerBowFireArrowShotState_Aim FireArrowShotStateAim { get; private set; }
     public PlayerBowFireArrowShotState_Finish FireArrowShotStateFinish { get; private set; }
-    public PlayerMoveOnRopeState MoveOnRopeState { get; private set; }
+    public PlayerOnRopeState_Aim OnRopeStateAim { get; private set; }
+    public PlayerOnRopeState_Move OnRopeStateMove { get; private set; }
 
     #endregion
 
@@ -93,18 +94,24 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, FiniteStateMachine, _playerData, "idle");
         MoveState = new PlayerMoveState(this, FiniteStateMachine, _playerData, "move");
+
         LandState = new PlayerLandState(this, FiniteStateMachine, _playerData, "land");
         JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
         InAirState = new PlayerInAirState(this, FiniteStateMachine, _playerData, "inAir");
+
         WallSlideState = new PlayerWallSlideState(this, FiniteStateMachine, _playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, FiniteStateMachine, _playerData, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, FiniteStateMachine, _playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, FiniteStateMachine, _playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, _playerData, "ledgeClimbState");
+
         DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
+
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
-        MoveOnRopeState = new PlayerMoveOnRopeState(this, FiniteStateMachine, _playerData, "inAir");
+
+        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, _playerData, "inAir");
+        OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, _playerData, "inAir");
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,

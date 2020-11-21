@@ -41,7 +41,7 @@ public class PlayerMoveOnRopeState : PlayerAbilityState
             _ropeInputStop = Player.InputHandler.SecondaryAttackInputStop;
             _aimAngle = Mathf.Atan2(_ropeDirectionInput.y, _ropeDirectionInput.x);
 
-            Player.SetVelocityX(PlayerData.movementVelocity * _xInput);
+            //Player.SetVelocityX(PlayerData.movementVelocity * _xInput);
 
             if (_aimAngle < 0f)
             {
