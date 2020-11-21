@@ -4,54 +4,47 @@ using UnityEngine;
 
 public class PlayerOnRopeState : PlayerAbilityState
 {
-    private int _xInput;
-    private bool _ropeInputStop;
-    private bool _ropeAttached;
-    private int _clickCount;
-
+    protected bool RopeInput;
+    protected bool RopeInputStop;
+    protected bool IsAiming;
+    protected bool RopeAttached;
+    protected bool IsHoldingRope;
     protected Vector2 PlayerPosition;
+    protected Vector2 AimDirection;
+    protected List<Vector2> RopePositions;
 
     public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
+        RopePositions = new List<Vector2>();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
+        RopeInput = Player.InputHandler.SecondaryAttackInput;
+        RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
+
         if (!IsExitingState)
         {
-            _ropeInputStop = Player.InputHandler.SecondaryAttackInputStop;
-
-            if (!_ropeAttached && !_ropeInputStop)
+            if (!RopeAttached && IsAiming && !IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
             }
-            //else if (!_ropeAttached && _clickCount == 1)
-            //{
-            //    Player.InputHandler.UseSecondaryAttackInputStop();
+            else if (RopeAttached && !IsAiming && !IsHoldingRope)
+            {
+                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAttach);
+            }
+            else if (RopeAttached && !IsAiming && IsHoldingRope)
+            {
+                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateMove);
+            }
+            else if (!RopeAttached && !IsAiming && !IsHoldingRope)
+            {
+                Player.InputHandler.UseSecondaryAttackInputStop();
 
-            //    AttachRope();
-            //}
-            //else if (_ropeAttached && _clickCount == 1)
-            //{
-            //    Player.CheckIfShouldFlip(_xInput);
-
-            //    UpdateRopePositions();
-            //}
-            //else if (_ropeAttached && _clickCount == 2)
-            //{
-            //    Player.InputHandler.UseSecondaryAttackInputStop();
-
-            //    ResetRope();
-
-            //    IsAbilityDone = true;
-            //}
+                IsAbilityDone = true;
+            }
         }
     }
 }

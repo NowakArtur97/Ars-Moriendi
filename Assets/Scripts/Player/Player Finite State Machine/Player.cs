@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     public PlayerBowFireArrowShotState_Aim FireArrowShotStateAim { get; private set; }
     public PlayerBowFireArrowShotState_Finish FireArrowShotStateFinish { get; private set; }
     public PlayerOnRopeState_Aim OnRopeStateAim { get; private set; }
+    public PlayerOnRopeState_Attach OnRopeStateAttach { get; private set; }
     public PlayerOnRopeState_Move OnRopeStateMove { get; private set; }
 
     #endregion
@@ -110,7 +111,8 @@ public class Player : MonoBehaviour
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
 
-        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, _playerData, "inAir");
+        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, _playerData, "idle");
+        OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, _playerData, "inAir");
         OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, _playerData, "inAir");
 
         // TODO: Attack states using unnecessary Player Data
