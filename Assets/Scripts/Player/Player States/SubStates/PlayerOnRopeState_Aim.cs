@@ -32,25 +32,18 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
             if (RopeInputStop)
             {
                 IsAiming = false;
+                IsHoldingRope = true;
 
                 Player.InputHandler.UseSecondaryAttackInputStop();
             }
+            else
+            {
+                _ropeDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
+                _aimAngle = Mathf.Atan2(_ropeDirectionInput.y, _ropeDirectionInput.x);
 
-            PlayerPosition = Player.transform.position;
-            _ropeDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
-            _aimAngle = Mathf.Atan2(_ropeDirectionInput.y, _ropeDirectionInput.x);
-
-            SetCrosshairPosition();
+                SetCrosshairPosition();
+            }
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        RopeAttached = false;
-        IsAiming = false;
-        IsHoldingRope = false;
     }
 
     private void SetCrosshairPosition()

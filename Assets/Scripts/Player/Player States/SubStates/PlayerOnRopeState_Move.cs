@@ -7,6 +7,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 {
     private int _xInput;
     private bool _distanceSet;
+    private bool _ropeInput;
 
     public PlayerOnRopeState_Move(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
@@ -18,9 +19,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         Debug.Log("PlayerOnRopeState_Move");
 
-        RopeAttached = true;
-        IsAiming = false;
-        IsHoldingRope = true;
+        IsHoldingRope = false;
     }
 
     public override void LogicUpdate()
@@ -29,29 +28,28 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         if (!IsExitingState)
         {
-            if (RopeInput)
+            _ropeInput = Player.InputHandler.SecondaryAttackInput;
+
+            if (_ropeInput)
             {
-                IsHoldingRope = false;
                 RopeAttached = false;
 
                 Player.InputHandler.UseSecondaryAttackInput();
             }
+            else
+            {
+                _xInput = Player.InputHandler.NormalizedInputX;
 
-            _xInput = Player.InputHandler.NormalizedInputX;
+                Player.CheckIfShouldFlip(_xInput);
 
-            Player.CheckIfShouldFlip(_xInput);
-
-            UpdateRopePositions();
+                UpdateRopePositions();
+            }
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-
-        RopeAttached = false;
-        IsAiming = false;
-        IsHoldingRope = false;
 
         ResetRope();
     }

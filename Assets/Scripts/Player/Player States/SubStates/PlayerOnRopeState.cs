@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerOnRopeState : PlayerAbilityState
 {
-    protected bool RopeInput;
     protected bool RopeInputStop;
     protected Vector2 PlayerPosition;
-    protected Vector2 AimDirection;
 
     protected static bool IsAiming;
     protected static bool RopeAttached;
     protected static bool IsHoldingRope;
+    protected static Vector2 AimDirection;
     protected static List<Vector2> RopePositions = new List<Vector2>();
 
     public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
@@ -22,23 +21,22 @@ public class PlayerOnRopeState : PlayerAbilityState
     {
         base.LogicUpdate();
 
-        RopeInput = Player.InputHandler.SecondaryAttackInput;
-        RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
+        PlayerPosition = Player.transform.position;
 
         if (!IsExitingState)
         {
-            if (!RopeAttached && !IsAiming && !IsHoldingRope)
+            RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
+
+            if (!RopeAttached && !IsAiming && IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAttach);
             }
-            else if (RopeAttached && !IsAiming && !IsHoldingRope)
+            else if (RopeAttached && !IsAiming && IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateMove);
             }
             else if (!RopeAttached && !IsAiming && !IsHoldingRope)
             {
-                Player.InputHandler.UseSecondaryAttackInputStop();
-
                 IsAbilityDone = true;
             }
         }

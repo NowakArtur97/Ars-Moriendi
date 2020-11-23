@@ -14,22 +14,11 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
 
         Debug.Log("PlayerOnRopeState_Attach");
 
-        Player.InputHandler.UseSecondaryAttackInputStop();
+        PlayerPosition = Player.transform.position;
 
         AttachRope();
 
         RopeAttached = true;
-
-        Player.InputHandler.UseSecondaryAttackInput();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        RopeAttached = true;
-        IsAiming = false;
-        IsHoldingRope = false;
     }
 
     private void AttachRope()
