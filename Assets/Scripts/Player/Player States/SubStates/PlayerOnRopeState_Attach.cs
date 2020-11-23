@@ -16,27 +16,11 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
 
         Player.InputHandler.UseSecondaryAttackInputStop();
 
-        RopeAttached = true;
-        IsAiming = false;
-        IsHoldingRope = true;
-
         AttachRope();
-    }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+        RopeAttached = true;
 
-        if (!IsExitingState)
-        {
-            if (RopeInput)
-            {
-                RopeAttached = true;
-                IsHoldingRope = true;
-
-                Player.InputHandler.UseSecondaryAttackInput();
-            }
-        }
+        Player.InputHandler.UseSecondaryAttackInput();
     }
 
     public override void Exit()
@@ -45,7 +29,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
 
         RopeAttached = true;
         IsAiming = false;
-        IsHoldingRope = true;
+        IsHoldingRope = false;
     }
 
     private void AttachRope()

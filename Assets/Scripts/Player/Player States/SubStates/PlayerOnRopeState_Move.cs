@@ -16,6 +16,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     {
         base.Enter();
 
+        Debug.Log("PlayerOnRopeState_Move");
+
         RopeAttached = true;
         IsAiming = false;
         IsHoldingRope = true;

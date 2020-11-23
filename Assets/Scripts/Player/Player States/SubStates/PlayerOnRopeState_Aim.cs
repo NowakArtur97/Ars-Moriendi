@@ -19,7 +19,7 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         Debug.Log("PlayerOnRopeState_Aim");
 
         RopeAttached = false;
-        IsAiming = false;
+        IsAiming = true;
         IsHoldingRope = false;
     }
 
@@ -31,7 +31,6 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         {
             if (RopeInputStop)
             {
-                RopeAttached = false;
                 IsAiming = false;
 
                 Player.InputHandler.UseSecondaryAttackInputStop();
@@ -49,7 +48,7 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
     {
         base.Exit();
 
-        RopeAttached = true;
+        RopeAttached = false;
         IsAiming = false;
         IsHoldingRope = false;
     }

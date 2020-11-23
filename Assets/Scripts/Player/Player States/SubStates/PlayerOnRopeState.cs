@@ -6,16 +6,16 @@ public class PlayerOnRopeState : PlayerAbilityState
 {
     protected bool RopeInput;
     protected bool RopeInputStop;
-    protected bool IsAiming;
-    protected bool RopeAttached;
-    protected bool IsHoldingRope;
     protected Vector2 PlayerPosition;
     protected Vector2 AimDirection;
-    protected List<Vector2> RopePositions;
+
+    protected static bool IsAiming;
+    protected static bool RopeAttached;
+    protected static bool IsHoldingRope;
+    protected static List<Vector2> RopePositions = new List<Vector2>();
 
     public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
-        RopePositions = new List<Vector2>();
     }
 
     public override void LogicUpdate()
@@ -27,15 +27,11 @@ public class PlayerOnRopeState : PlayerAbilityState
 
         if (!IsExitingState)
         {
-            if (!RopeAttached && IsAiming && !IsHoldingRope)
-            {
-                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
-            }
-            else if (RopeAttached && !IsAiming && !IsHoldingRope)
+            if (!RopeAttached && !IsAiming && !IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAttach);
             }
-            else if (RopeAttached && !IsAiming && IsHoldingRope)
+            else if (RopeAttached && !IsAiming && !IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateMove);
             }
