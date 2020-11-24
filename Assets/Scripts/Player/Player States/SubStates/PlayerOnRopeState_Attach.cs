@@ -32,10 +32,13 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         if (hit.collider != null)
         {
             RopeAttached = true;
+            PlayerPosition = Player.transform.position;
+            AddForceAfterRopeAttaching(hit.point);
 
             if (!RopePositions.Contains(hit.point))
             {
                 RopePositions.Add(hit.point);
+
                 Player.RopeJoint.distance = Vector2.Distance(PlayerPosition, hit.point);
                 Player.RopeJoint.enabled = true;
                 Player.RopeHingeAnchorSpriteRenderer.enabled = true;
@@ -47,5 +50,14 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
             Player.RopeJoint.enabled = false;
             Player.RopeHingeAnchorSpriteRenderer.enabled = false;
         }
+    }
+
+    private void AddForceAfterRopeAttaching(Vector2 hitPoint)
+    {
+        var relativePoint = Player.transform.InverseTransformPoint(hitPoint).x;
+        int forceDirection = relativePoint > 0 ? 1 : -1;
+
+        Vector2 attachedRopeForce = new Vector2(PlayerData.attachedRopeForce.x * forceDirection, PlayerData.attachedRopeForce.y);
+        Player.AddForce(attachedRopeForce, ForceMode2D.Force);
     }
 }

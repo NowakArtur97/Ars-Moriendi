@@ -203,6 +203,11 @@ public class Player : MonoBehaviour
         CurrentVelocity = _workspace;
     }
 
+    public void AddForce(Vector2 force, ForceMode2D mode)
+    {
+        MyRigidbody.AddForce(force, mode);
+    }
+
     #endregion
 
     #region Check Functions

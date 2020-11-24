@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class PlayerOnRopeState_Move : PlayerOnRopeState
 {
     private int _xInput;
     private bool _distanceSet;
-    private bool _ropeInput;
 
     public PlayerOnRopeState_Move(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {
@@ -28,9 +25,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         if (!IsExitingState)
         {
-            _ropeInput = Player.InputHandler.SecondaryAttackInput;
-
-            if (_ropeInput)
+            if (RopeInputStop)
             {
                 RopeAttached = false;
 
@@ -42,6 +37,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
                 Player.CheckIfShouldFlip(_xInput);
 
+                PlayerPosition = Player.transform.position;
+
                 UpdateRopePositions();
             }
         }
@@ -51,7 +48,9 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     {
         base.Exit();
 
-        ResetRope();
+        RopeAttached = false;
+        IsAiming = false;
+        IsHoldingRope = false;
     }
 
     private void UpdateRopePositions()
@@ -110,7 +109,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
         }
     }
 
-    private void ResetRope()
+    public void ResetRope()
     {
         Player.RopeJoint.enabled = false;
         Player.RopeHingeAnchorSpriteRenderer.enabled = false;

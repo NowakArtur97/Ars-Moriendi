@@ -39,6 +39,7 @@ MonoBehaviour:
     m_Bits: 256
   ropeMaxCastDistance: 20
   ropeStartingVelocity: 10
+  attachedRopeForce: {x: 2, y: 5}
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
   whatIsGround:

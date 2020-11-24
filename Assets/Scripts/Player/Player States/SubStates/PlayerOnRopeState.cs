@@ -22,11 +22,10 @@ public class PlayerOnRopeState : PlayerAbilityState
         base.LogicUpdate();
 
         PlayerPosition = Player.transform.position;
+        RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
 
         if (!IsExitingState)
         {
-            RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
-
             if (!RopeAttached && !IsAiming && IsHoldingRope)
             {
                 Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAttach);

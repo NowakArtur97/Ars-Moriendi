@@ -1,4 +1,6 @@
-﻿public class PlayerAbilityState : PlayerState
+﻿using UnityEngine;
+
+public class PlayerAbilityState : PlayerState
 {
     public bool IsAbilityDone { get; protected set; }
 
@@ -23,6 +25,8 @@
 
         if (IsAbilityDone)
         {
+            Debug.Log("IsAbilityDone");
+
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
                 FiniteStateMachine.ChangeState(Player.IdleState);
