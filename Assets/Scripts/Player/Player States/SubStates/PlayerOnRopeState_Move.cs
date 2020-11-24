@@ -29,7 +29,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
             {
                 RopeAttached = false;
 
-                Player.InputHandler.UseSecondaryAttackInput();
+                Player.InputHandler.UseSecondaryAttackInputStop();
             }
             else
             {

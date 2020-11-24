@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerOnRopeState_Attach : PlayerOnRopeState
 {
@@ -45,6 +43,9 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         else
         {
             RopeAttached = false;
+            IsAiming = false;
+            IsHoldingRope = false;
+
             Player.RopeJoint.enabled = false;
             Player.RopeHingeAnchorSpriteRenderer.enabled = false;
         }

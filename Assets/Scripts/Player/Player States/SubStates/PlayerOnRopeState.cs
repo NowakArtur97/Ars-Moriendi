@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerOnRopeState : PlayerAbilityState
@@ -36,6 +35,8 @@ public class PlayerOnRopeState : PlayerAbilityState
             }
             else if (!RopeAttached && !IsAiming && !IsHoldingRope)
             {
+                Player.InputHandler.UseSecondaryAttackInput();
+
                 IsAbilityDone = true;
             }
         }
