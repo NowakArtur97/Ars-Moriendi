@@ -17,8 +17,6 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         PlayerPosition = Player.transform.position;
 
         AttachRope();
-
-        RopeAttached = true;
     }
 
     private void AttachRope()
