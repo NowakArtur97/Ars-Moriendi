@@ -46,8 +46,6 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     {
         base.Exit();
 
-        Player.OnRopeStateMove.ResetRope();
-
         RopeAttached = false;
         IsAiming = false;
         IsHoldingRope = false;
@@ -107,17 +105,5 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 Player.MyRopeLineRenderer.SetPosition(i, PlayerPosition);
             }
         }
-    }
-
-    public void ResetRope()
-    {
-        Player.RopeJoint.enabled = false;
-        Player.RopeHingeAnchorSpriteRenderer.enabled = false;
-
-        Player.MyRopeLineRenderer.positionCount = 2;
-        Player.MyRopeLineRenderer.SetPosition(0, PlayerPosition);
-        Player.MyRopeLineRenderer.SetPosition(1, PlayerPosition);
-
-        RopePositions.Clear();
     }
 }

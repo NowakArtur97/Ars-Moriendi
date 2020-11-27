@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
     public PlayerOnRopeState_Aim OnRopeStateAim { get; private set; }
     public PlayerOnRopeState_Attach OnRopeStateAttach { get; private set; }
     public PlayerOnRopeState_Move OnRopeStateMove { get; private set; }
+    public PlayerOnRopeState_Finish OnRopeStateFinish { get; private set; }
 
     #endregion
 
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour
         OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, _playerData, "idle");
         OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, _playerData, "inAir");
         OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, _playerData, "inAir");
+        OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, _playerData, "inAir");
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
@@ -150,6 +152,8 @@ public class Player : MonoBehaviour
         FacingDirection = 1;
 
         FiniteStateMachine.Initialize(IdleState);
+
+        OnRopeStateFinish.ResetRope();
     }
 
     private void Update()

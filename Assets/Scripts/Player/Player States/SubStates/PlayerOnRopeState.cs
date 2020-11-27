@@ -35,9 +35,7 @@ public class PlayerOnRopeState : PlayerAbilityState
             }
             else if (!RopeAttached && !IsAiming && !IsHoldingRope)
             {
-                Player.InputHandler.UseSecondaryAttackInput();
-
-                IsAbilityDone = true;
+                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateFinish);
             }
         }
     }
