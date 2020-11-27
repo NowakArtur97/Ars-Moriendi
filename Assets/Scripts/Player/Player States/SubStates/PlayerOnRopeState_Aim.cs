@@ -16,8 +16,6 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
 
         Player.OnRopeStateMove.ResetRope();
 
-        Debug.Log("PlayerOnRopeState_Aim");
-
         RopeAttached = false;
         IsAiming = true;
         IsHoldingRope = false;

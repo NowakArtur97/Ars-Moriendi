@@ -10,8 +10,6 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
     {
         base.Enter();
 
-        Debug.Log("PlayerOnRopeState_Attach");
-
         PlayerPosition = Player.transform.position;
 
         AttachRope();

@@ -14,8 +14,6 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     {
         base.Enter();
 
-        Debug.Log("PlayerOnRopeState_Move");
-
         IsHoldingRope = false;
     }
 
@@ -47,6 +45,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     public override void Exit()
     {
         base.Exit();
+
+        Player.OnRopeStateMove.ResetRope();
 
         RopeAttached = false;
         IsAiming = false;
