@@ -13,6 +13,7 @@ public class PlayerOnRopeState : PlayerAbilityState
     protected static bool IsHoldingRope;
     protected static Vector2 AimDirection;
     protected static List<Vector2> RopePositions = new List<Vector2>();
+    protected static Dictionary<Vector2, int> WrapPointsLookup = new Dictionary<Vector2, int>();
 
     public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
     {

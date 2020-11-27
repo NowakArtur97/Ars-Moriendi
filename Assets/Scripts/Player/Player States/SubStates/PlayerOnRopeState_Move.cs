@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerOnRopeState_Move : PlayerOnRopeState
@@ -37,6 +38,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
                 PlayerPosition = Player.transform.position;
 
+                WrapRopeAroundObjects();
                 UpdateRopePositions();
             }
         }
@@ -103,6 +105,37 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
             else
             {
                 Player.MyRopeLineRenderer.SetPosition(i, PlayerPosition);
+            }
+        }
+    }
+
+    private void WrapRopeAroundObjects()
+    {
+        if (RopePositions.Count > 0)
+        {
+            Vector2 lastRopePoint = RopePositions.Last();
+            RaycastHit2D playerToCurrentNextHit = Physics2D.Raycast(PlayerPosition, (lastRopePoint - PlayerPosition).normalized,
+                Vector2.Distance(PlayerPosition, lastRopePoint) - 0.1f, PlayerData.whatCanYouAttachTo);
+
+            if (playerToCurrentNextHit != null)
+            {
+                CompositeCollider2D platformsCollider = playerToCurrentNextHit.collider as CompositeCollider2D;
+
+                if (platformsCollider != null)
+                {
+                    Vector2 closestPointToHit = platformsCollider.bounds.ClosestPoint(playerToCurrentNextHit.point);
+
+                    if (WrapPointsLookup.ContainsKey(closestPointToHit))
+                    {
+                        Player.OnRopeStateFinish.ResetRope();
+                    }
+                    else
+                    {
+                        RopePositions.Add(closestPointToHit);
+                        WrapPointsLookup.Add(closestPointToHit, 0);
+                        _distanceSet = false;
+                    }
+                }
             }
         }
     }
