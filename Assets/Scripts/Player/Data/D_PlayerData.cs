@@ -47,6 +47,7 @@ public class D_PlayerData : ScriptableObject
     public LayerMask whatCanYouAttachTo;
     public float ropeMaxCastDistance = 20f;
     public float ropeStartingVelocity = 10f;
+    public float ropeSwigForce = 6f;
     public Vector2 attachedRopeForce = new Vector2(2, 5);
 
     [Header("Check Variables")]
