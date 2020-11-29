@@ -46,7 +46,6 @@ public class PlayerGroundedState : PlayerState
         }
         else if (_secondaryAttackInput) // && Player.FireArrowShotStateFinish.CheckIfCanShoot())
         {
-            Debug.Log("HELLO");
             FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
             // TO DO: Change attack type
             //FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);

@@ -34,13 +34,19 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
             else
             {
                 _xInput = Player.InputHandler.NormalizedInputX;
-                _yInput = Player.InputHandler.NormalizedInputX;
+                _yInput = Player.InputHandler.NormalizedInputY;
 
                 Player.CheckIfShouldFlip(_xInput);
 
                 PlayerPosition = Player.transform.position;
 
+                if (IsGrounded)
+                {
+                    Player.SetVelocityZero();
+                }
+
                 MoveOnRope();
+                ClimbRope();
                 WrapRopeAroundObjects();
                 UpdateRopePositions();
             }
@@ -145,7 +151,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
     private void MoveOnRope()
     {
-        if (_xInput != 0 && _yInput != 0)
+        if (_xInput != 0 && !IsGrounded)
         {
             Vector2 playerToHookDirection = (_ropeHook - PlayerPosition).normalized;
 
@@ -155,20 +161,32 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
             if (_xInput < 0)
             {
                 perpendicularDirection = new Vector2(-playerToHookDirection.y, playerToHookDirection.x);
-                Vector2 leftPerpendicularPosition = PlayerPosition - perpendicularDirection * -2f;
 
-                Debug.DrawLine(PlayerPosition, leftPerpendicularPosition, Color.green, 0f);
+                //Vector2 leftPerpendicularPosition = PlayerPosition - perpendicularDirection;
+                //Debug.DrawLine(PlayerPosition, leftPerpendicularPosition, Color.green, 0f);
             }
             else
             {
-                perpendicularDirection = new Vector2(playerToHookDirection.y, playerToHookDirection.x);
-                Vector2 rightPerpendicularPosition = PlayerPosition + perpendicularDirection * -2f;
+                perpendicularDirection = new Vector2(playerToHookDirection.y, -playerToHookDirection.x);
 
-                Debug.DrawLine(PlayerPosition, rightPerpendicularPosition, Color.green, 0f);
+                //Vector2 rightPerpendicularPosition = PlayerPosition + perpendicularDirection;
+                //Debug.DrawLine(PlayerPosition, rightPerpendicularPosition, Color.green, 0f);
             }
 
-            Vector2 force = perpendicularDirection * PlayerData.ropeSwigForce;
-            Player.AddForce(force, ForceMode2D.Force);
+            Vector2 swingforce = perpendicularDirection * PlayerData.ropeSwigForce;
+            Player.AddForce(swingforce, ForceMode2D.Force);
+        }
+    }
+
+    private void ClimbRope()
+    {
+        if (_yInput < 0 && Player.RopeJoint.distance < PlayerData.ropeMaxCastDistance)
+        {
+            Player.RopeJoint.distance += Time.deltaTime * PlayerData.ropeClimbingSpeed;
+        }
+        else if (_yInput > 0)
+        {
+            Player.RopeJoint.distance -= Time.deltaTime * PlayerData.ropeClimbingSpeed;
         }
     }
 }

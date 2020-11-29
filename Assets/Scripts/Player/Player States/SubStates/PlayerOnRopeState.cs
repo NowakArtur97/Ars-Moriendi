@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class PlayerOnRopeState : PlayerAbilityState
 {
-    private bool _isGrounded;
-
+    protected bool IsGrounded;
     protected bool RopeInputStop;
     protected Vector2 PlayerPosition;
 
@@ -19,20 +18,18 @@ public class PlayerOnRopeState : PlayerAbilityState
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        SetAnimationBasedOnPosition();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
-        {
-            Player.MyAnmator.SetBool(AnimationBoolName, false);
-            Player.MyAnmator.SetBool("idle", true);
-        }
-        else
-        {
-            Player.MyAnmator.SetBool(AnimationBoolName, false);
-            Player.MyAnmator.SetBool("inAir", true);
-        }
+        SetAnimationBasedOnPosition();
 
         PlayerPosition = Player.transform.position;
         RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
@@ -58,6 +55,20 @@ public class PlayerOnRopeState : PlayerAbilityState
     {
         base.DoChecks();
 
-        _isGrounded = Player.CheckIfGrounded();
+        IsGrounded = Player.CheckIfGrounded();
+    }
+
+    private void SetAnimationBasedOnPosition()
+    {
+        if (IsGrounded)
+        {
+            Player.MyAnmator.SetBool("inAir", false);
+            Player.MyAnmator.SetBool("idle", true);
+        }
+        else
+        {
+            Player.MyAnmator.SetBool("idle", false);
+            Player.MyAnmator.SetBool("inAir", true);
+        }
     }
 }
