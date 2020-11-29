@@ -48,6 +48,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 MoveOnRope();
                 ClimbRope();
                 WrapRopeAroundObjects();
+                UnwrapRope();
                 UpdateRopePositions();
             }
         }
@@ -120,33 +121,81 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
     private void WrapRopeAroundObjects()
     {
-        if (RopePositions.Count > 0)
+        if (RopePositions.Count == 0)
         {
-            Vector2 lastRopePoint = RopePositions.Last();
-            RaycastHit2D playerToCurrentNextHit = Physics2D.Raycast(PlayerPosition, (lastRopePoint - PlayerPosition).normalized,
-                Vector2.Distance(PlayerPosition, lastRopePoint) - 0.1f, PlayerData.whatCanYouAttachTo);
+            return;
+        }
 
-            if (playerToCurrentNextHit)
+        Vector2 lastRopePoint = RopePositions.Last();
+        RaycastHit2D playerToCurrentNextHit = Physics2D.Raycast(PlayerPosition, (lastRopePoint - PlayerPosition).normalized,
+            Vector2.Distance(PlayerPosition, lastRopePoint) - 0.1f, PlayerData.whatCanYouAttachTo);
+
+        if (playerToCurrentNextHit)
+        {
+            CompositeCollider2D platformsCollider = playerToCurrentNextHit.collider as CompositeCollider2D;
+
+            if (platformsCollider != null)
             {
-                CompositeCollider2D platformsCollider = playerToCurrentNextHit.collider as CompositeCollider2D;
+                Vector2 closestPointToHit = platformsCollider.bounds.ClosestPoint(playerToCurrentNextHit.point);
 
-                if (platformsCollider != null)
+                if (WrapPointsLookup.ContainsKey(closestPointToHit))
                 {
-                    Vector2 closestPointToHit = platformsCollider.bounds.ClosestPoint(playerToCurrentNextHit.point);
-
-                    if (WrapPointsLookup.ContainsKey(closestPointToHit))
-                    {
-                        Player.OnRopeStateFinish.ResetRope();
-                    }
-                    else
-                    {
-                        RopePositions.Add(closestPointToHit);
-                        WrapPointsLookup.Add(closestPointToHit, 0);
-                        _distanceSet = false;
-                    }
+                    Player.OnRopeStateFinish.ResetRope();
+                }
+                else
+                {
+                    RopePositions.Add(closestPointToHit);
+                    WrapPointsLookup.Add(closestPointToHit, 0);
+                    _distanceSet = false;
                 }
             }
         }
+    }
+
+    private void UnwrapRope()
+    {
+        if (RopePositions.Count <= 1)
+        {
+            return;
+        }
+
+        int anchorIndex = RopePositions.Count - 2;
+        int hingeIndex = RopePositions.Count - 1;
+        Vector2 anchorPosition = RopePositions[anchorIndex];
+        Vector2 hingePosition = RopePositions[hingeIndex];
+        Vector2 hingeDir = hingePosition - anchorPosition;
+        float hingeAngle = Vector2.Angle(anchorPosition, hingeDir);
+        Vector2 playerDir = PlayerPosition - anchorPosition;
+        float playerAngle = Vector2.Angle(anchorPosition, playerDir);
+
+        int playerPositionIndicator = WrapPointsLookup[hingePosition];
+        int playerPositionIndicatorHelper = playerAngle < hingeAngle ? 1 : -1;
+
+        if (playerPositionIndicator == playerPositionIndicatorHelper)
+        {
+            UnwrapRopePosition(anchorIndex, hingeIndex);
+            return;
+        }
+
+        WrapPointsLookup[hingePosition] = -playerPositionIndicatorHelper;
+    }
+
+    private void UnwrapRopePosition(int anchorIndex, int hingeIndex)
+    {
+        var newAnchorPosition = RopePositions[anchorIndex];
+        WrapPointsLookup.Remove(RopePositions[hingeIndex]);
+        RopePositions.RemoveAt(hingeIndex);
+
+        Player.RopeHingeAnchorRigidbody.transform.position = newAnchorPosition;
+        _distanceSet = false;
+
+        if (_distanceSet)
+        {
+            return;
+        }
+
+        Player.RopeJoint.distance = Vector2.Distance(PlayerPosition, newAnchorPosition);
+        _distanceSet = true;
     }
 
     private void MoveOnRope()
