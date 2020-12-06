@@ -32,6 +32,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
             if (!RopePositions.Contains(hit.point))
             {
                 RopePositions.Add(hit.point);
+                WrapPointsLookup.Add(hit.point, 0);
 
                 Player.RopeJoint.distance = Vector2.Distance(PlayerPosition, hit.point);
                 Player.RopeJoint.enabled = true;

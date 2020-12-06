@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerOnRopeState_Move : PlayerOnRopeState
@@ -50,6 +52,13 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 WrapRopeAroundObjects();
                 UnwrapRope();
                 UpdateRopePositions();
+
+                //foreach (var p in RopePositions)
+                //{
+                //    Debug.Log(p);
+                //}
+                //Debug.Log("");
+
             }
         }
     }
@@ -128,7 +137,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         Vector2 lastRopePoint = RopePositions.Last();
         RaycastHit2D playerToCurrentNextHit = Physics2D.Raycast(PlayerPosition, (lastRopePoint - PlayerPosition).normalized,
-            Vector2.Distance(PlayerPosition, lastRopePoint) - 0.1f, PlayerData.whatCanYouAttachTo);
+            Vector2.Distance(PlayerPosition, lastRopePoint) - 0.01f, PlayerData.whatCanYouAttachTo);
 
         if (playerToCurrentNextHit)
         {
@@ -136,7 +145,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
             if (platformsCollider != null)
             {
-                Vector2 closestPointToHit = platformsCollider.bounds.ClosestPoint(playerToCurrentNextHit.point);
+                Vector2 closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, platformsCollider);
+                //Vector2 closestPointToHit = platformsCollider.bounds.ClosestPoint(playerToCurrentNextHit.point);
 
                 if (WrapPointsLookup.ContainsKey(closestPointToHit))
                 {
@@ -150,6 +160,29 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 }
             }
         }
+    }
+
+    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, CompositeCollider2D platformsCollider)
+    {
+        List<Vector2> verts = new List<Vector2>();
+
+        for (int i = 0; i < platformsCollider.pathCount; i++)
+        {
+            Vector2[] pathVerts = new Vector2[platformsCollider.GetPathPointCount(i)];
+            platformsCollider.GetPath(i, pathVerts);
+            verts.AddRange(pathVerts);
+        }
+        foreach (var p in verts)
+        {
+            Debug.Log(p);
+        }
+
+        var distanceDictionary = verts.ToDictionary<Vector2, float, Vector2>(
+           position => Vector2.Distance(hit.point, platformsCollider.transform.TransformPoint(position)),
+           position => platformsCollider.transform.TransformPoint(position));
+
+        var orderedDictionary = distanceDictionary.OrderBy(e => e.Key);
+        return orderedDictionary.Any() ? orderedDictionary.First().Value : Vector2.zero;
     }
 
     private void UnwrapRope()
@@ -173,11 +206,14 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         if (playerPositionIndicator == playerPositionIndicatorHelper)
         {
+            Debug.Log("UnwrapRopePosition");
             UnwrapRopePosition(anchorIndex, hingeIndex);
-            return;
         }
-
-        WrapPointsLookup[hingePosition] = -playerPositionIndicatorHelper;
+        else
+        {
+            Debug.Log("Change");
+            WrapPointsLookup[hingePosition] = -playerPositionIndicatorHelper;
+        }
     }
 
     private void UnwrapRopePosition(int anchorIndex, int hingeIndex)
@@ -187,12 +223,14 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
         RopePositions.RemoveAt(hingeIndex);
 
         Player.RopeHingeAnchorRigidbody.transform.position = newAnchorPosition;
-        _distanceSet = false;
 
-        if (_distanceSet)
-        {
-            return;
-        }
+        // TODO: To delete
+        //_distanceSet = false;
+
+        //if (_distanceSet)
+        //{
+        //    return;
+        //}
 
         Player.RopeJoint.distance = Vector2.Distance(PlayerPosition, newAnchorPosition);
         _distanceSet = true;
