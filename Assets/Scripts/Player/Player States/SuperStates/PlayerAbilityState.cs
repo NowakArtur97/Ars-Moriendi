@@ -25,8 +25,7 @@ public class PlayerAbilityState : PlayerState
 
         if (IsAbilityDone)
         {
-            // TODO: To delete
-            //Debug.Log("IsAbilityDone");
+            Debug.Log("Ability is done");
 
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {

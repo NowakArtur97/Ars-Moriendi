@@ -29,7 +29,7 @@ public class PlayerState
 
         StartTime = Time.time;
 
-        //Debug.Log(FiniteStateMachine.CurrentState.ToString() + " " + AnimationBoolName);
+        Debug.Log(FiniteStateMachine.CurrentState.ToString() + " " + AnimationBoolName);
 
         IsAnimationFinished = false;
         IsExitingState = false;
