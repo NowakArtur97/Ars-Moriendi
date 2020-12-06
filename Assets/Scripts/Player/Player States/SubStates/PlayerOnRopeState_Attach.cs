@@ -52,7 +52,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
 
     private void AddForceAfterRopeAttaching(Vector2 hitPoint)
     {
-        var relativePoint = Player.transform.InverseTransformPoint(hitPoint).x;
+        float relativePoint = Player.transform.InverseTransformPoint(hitPoint).x;
         int forceDirection = relativePoint > 0 ? 1 : -1;
 
         Vector2 attachedRopeForce = new Vector2(PlayerData.attachedRopeForce.x * forceDirection, PlayerData.attachedRopeForce.y);
