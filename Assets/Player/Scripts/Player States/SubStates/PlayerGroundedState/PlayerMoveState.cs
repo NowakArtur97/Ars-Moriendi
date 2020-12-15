@@ -1,7 +1,11 @@
 ﻿public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    private D_PlayerMoveState _moveStateData;
+
+    public PlayerMoveState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerMoveState moveStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _moveStateData = moveStateData;
     }
 
     public override void LogicUpdate()
@@ -11,7 +15,7 @@
         if (!IsExitingState)
         {
             Player.CheckIfShouldFlip(XInput);
-            Player.SetVelocityX(PlayerData.movementVelocity * XInput);
+            Player.SetVelocityX(_moveStateData.movementVelocity * XInput);
 
             if (XInput == 0)
             {

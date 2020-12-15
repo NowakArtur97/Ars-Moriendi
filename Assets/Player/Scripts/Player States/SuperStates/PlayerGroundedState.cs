@@ -15,8 +15,8 @@ public class PlayerGroundedState : PlayerState
     private bool _isTouchingWall;
     private bool _isTouchingLedge;
 
-    public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
     }
 

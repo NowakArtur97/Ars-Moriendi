@@ -3,9 +3,6 @@
 [CreateAssetMenu(fileName = "New Player State Data", menuName = "Data/State Data/Player State")]
 public class D_PlayerData : ScriptableObject
 {
-    [Header("Move State")]
-    public float movementVelocity = 10;
-
     [Header("Crouch Move State")]
     public float crouchMovementVelocity = 6;
 

@@ -4,8 +4,11 @@ public class Player : MonoBehaviour
 {
     #region Serialized Fields
 
+    [Header("States Data")]
     [SerializeField]
     private D_PlayerData _playerData;
+    [SerializeField]
+    private D_PlayerMoveState _moveStateData;
     [SerializeField]
     private D_PlayerSwordAttackData _playerSwordAttackData01;
     [SerializeField]
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
 
     #region Check Transforms
 
+    [Header("Checks")]
     [SerializeField]
     private Transform _groundCheck;
     [SerializeField]
@@ -95,7 +99,7 @@ public class Player : MonoBehaviour
         FiniteStateMachine = new PlayerFiniteStateMachine();
 
         IdleState = new PlayerIdleState(this, FiniteStateMachine, _playerData, "idle");
-        MoveState = new PlayerMoveState(this, FiniteStateMachine, _playerData, "move");
+        MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);
 
         LandState = new PlayerLandState(this, FiniteStateMachine, _playerData, "land");
         JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
