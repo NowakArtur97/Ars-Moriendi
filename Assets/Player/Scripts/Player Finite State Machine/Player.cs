@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerWallJumpState _wallJumpStateData;
     [SerializeField]
+    private D_PlayerLedgeClimbState _ledgeClimbStateData;
+    [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData01;
     [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData02;
@@ -120,7 +122,7 @@ public class Player : MonoBehaviour
         WallGrabState = new PlayerWallGrabState(this, FiniteStateMachine, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, FiniteStateMachine, "wallClimb", _wallClimbStateData);
         WallJumpState = new PlayerWallJumpState(this, FiniteStateMachine, "inAir", _wallJumpStateData);
-        LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, "ledgeClimbState");
+        LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, "ledgeClimbState", _ledgeClimbStateData);
 
         DashState = new PlayerDashState(this, FiniteStateMachine, "inAir");
 

@@ -2,6 +2,8 @@
 
 public class PlayerLedgeClimbState : PlayerState
 {
+    private D_PlayerLedgeClimbState _ledgeClimbStateData;
+
     private Vector2 _detectedPosition;
     private Vector2 _cornerPosition;
 
@@ -15,9 +17,10 @@ public class PlayerLedgeClimbState : PlayerState
     private int _yInput;
     private bool _jumpInput;
 
-    public PlayerLedgeClimbState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerLedgeClimbState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerLedgeClimbState
+        ledgeClimbStateData) : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _ledgeClimbStateData = ledgeClimbStateData;
     }
 
     public override void Enter()
@@ -28,10 +31,10 @@ public class PlayerLedgeClimbState : PlayerState
         Player.transform.position = _detectedPosition;
 
         _cornerPosition = Player.DetermineCornerPosition();
-        _startPosition.Set(_cornerPosition.x - (Player.FacingDirection * PlayerData.ledgeClimbStartOffset.x),
-            _cornerPosition.y - PlayerData.ledgeClimbStartOffset.y);
-        _stopPosition.Set(_cornerPosition.x + (Player.FacingDirection * PlayerData.ledgeClimbStopOffset.x),
-            _cornerPosition.y + PlayerData.ledgeClimbStopOffset.y);
+        _startPosition.Set(_cornerPosition.x - (Player.FacingDirection * _ledgeClimbStateData.ledgeClimbStartOffset.x),
+            _cornerPosition.y - _ledgeClimbStateData.ledgeClimbStartOffset.y);
+        _stopPosition.Set(_cornerPosition.x + (Player.FacingDirection * _ledgeClimbStateData.ledgeClimbStopOffset.x),
+            _cornerPosition.y + _ledgeClimbStateData.ledgeClimbStopOffset.y);
 
         Player.transform.position = _startPosition;
     }

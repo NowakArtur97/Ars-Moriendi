@@ -6,10 +6,6 @@ public class D_PlayerData : ScriptableObject
     [Header("Crouch Move State")]
     public float crouchMovementVelocity = 6;
 
-    [Header("Ledge Climb State")]
-    public Vector2 ledgeClimbStartOffset = new Vector2(0.3f, 0.5f);
-    public Vector2 ledgeClimbStopOffset;
-
     [Header("Dash State")]
     public float dashCooldown = 0.5f;
     public float maxHoldTime = 1;
