@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerDashState _dashStateData;
     [SerializeField]
+    private D_PlayerCrouchMoveState _crouchMoveStateData;
+    [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData01;
     [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData02;
@@ -129,7 +131,7 @@ public class Player : MonoBehaviour
         DashState = new PlayerDashState(this, FiniteStateMachine, "inAir", _dashStateData);
 
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove");
+        CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove", _crouchMoveStateData);
 
         OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, "idle");
         OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, "inAir");
