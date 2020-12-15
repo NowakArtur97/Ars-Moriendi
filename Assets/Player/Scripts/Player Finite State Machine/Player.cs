@@ -6,8 +6,7 @@ public class Player : MonoBehaviour
 
     [Header("States Data")]
     [SerializeField]
-    // TODO: To remove
-    private D_PlayerData _playerData;
+    private D_PlayerBaseData _playerData;
     [SerializeField]
     private D_PlayerMoveState _moveStateData;
     [SerializeField]

@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3340bee53edfc4745a706dad142b3500, type: 3}
-  m_Name: Player_SwordAttackData02
+  m_Name: Player_SwordAttackData03
   m_EditorClassIdentifier: 
-  attackRadius: 0.7
+  attackRadius: 0.84
   attackDamage: 5
   stunDamageAmount: 1
   attackCooldown: 0.3
   attackVelocity: 5
-  comboAttackIndex: 2
+  comboAttackIndex: 3
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 2048
