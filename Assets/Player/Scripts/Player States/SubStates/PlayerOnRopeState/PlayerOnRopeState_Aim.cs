@@ -58,8 +58,8 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
 
         Player.RopeHingeAnchor.gameObject.SetActive(false);
 
-        float x = PlayerPosition.x + PlayerData.ropeCrosshairOffset * Mathf.Cos(_aimAngle);
-        float y = PlayerPosition.y + PlayerData.ropeCrosshairOffset * Mathf.Sin(_aimAngle);
+        float x = PlayerPosition.x + OnRopeStateData.ropeCrosshairOffset * Mathf.Cos(_aimAngle);
+        float y = PlayerPosition.y + OnRopeStateData.ropeCrosshairOffset * Mathf.Sin(_aimAngle);
 
         _crossHairPosition = new Vector3(x, y, 0);
         Player.Crosshair.position = _crossHairPosition;

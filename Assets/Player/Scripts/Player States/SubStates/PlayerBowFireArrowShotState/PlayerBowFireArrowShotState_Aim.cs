@@ -13,7 +13,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
     private GameObject[] _points;
 
-    public PlayerBowFireArrowShotState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName, Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition, playerFireArrowShotData)
+    public PlayerBowFireArrowShotState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, Transform attackPosition,
+        D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
     {
         InitializeAimingPointsArray(attackPosition, playerFireArrowShotData);
     }

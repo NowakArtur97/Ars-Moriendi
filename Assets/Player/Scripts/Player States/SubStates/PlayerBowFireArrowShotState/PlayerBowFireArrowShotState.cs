@@ -9,9 +9,8 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
 
     protected D_PlayerBowArrowShotData PlayerFireArrowShotData;
 
-    public PlayerBowFireArrowShotState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
-        string animationBoolName, Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
+    public PlayerBowFireArrowShotState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, Transform attackPosition,
+        D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition)
     {
         PlayerFireArrowShotData = playerFireArrowShotData;
         CanShot = true;
