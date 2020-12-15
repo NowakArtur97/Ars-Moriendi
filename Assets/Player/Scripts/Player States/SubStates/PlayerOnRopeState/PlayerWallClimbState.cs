@@ -1,8 +1,11 @@
 ﻿public class PlayerWallClimbState : PlayerTouchingWallState
 {
-    public PlayerWallClimbState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    private D_PlayerWallClimbState _wallClimbStateData;
+
+    public PlayerWallClimbState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerWallClimbState wallClimbStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _wallClimbStateData = wallClimbStateData;
     }
 
     public override void LogicUpdate()
@@ -11,7 +14,7 @@
 
         if (!IsExitingState)
         {
-            Player.SetVelocityY(PlayerData.wallClimbVelocity);
+            Player.SetVelocityY(_wallClimbStateData.wallClimbVelocity);
 
             if (YInput != 1)
             {

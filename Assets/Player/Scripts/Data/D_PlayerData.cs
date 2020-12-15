@@ -6,9 +6,6 @@ public class D_PlayerData : ScriptableObject
     [Header("Crouch Move State")]
     public float crouchMovementVelocity = 6;
 
-    [Header("Wall Climb State")]
-    public float wallClimbVelocity = 3;
-
     [Header("Wall Jump State")]
     public float wallJumpVelocity = 20;
     public float wallJumpTime = 0.4f;
