@@ -6,17 +6,20 @@ public class Player : MonoBehaviour
 
     [Header("States Data")]
     [SerializeField]
+    // TODO: To remove
     private D_PlayerData _playerData;
     [SerializeField]
     private D_PlayerMoveState _moveStateData;
     [SerializeField]
-    private D_PlayerSwordAttackData _playerSwordAttackData01;
+    private D_PlayerJumpState _jumpStateData;
     [SerializeField]
-    private D_PlayerSwordAttackData _playerSwordAttackData02;
+    private D_PlayerSwordAttackData _swordAttackData01;
     [SerializeField]
-    private D_PlayerSwordAttackData _playerSwordAttackData03;
+    private D_PlayerSwordAttackData _swordAttackData02;
     [SerializeField]
-    private D_PlayerBowArrowShotData _playerFireArrowShotData;
+    private D_PlayerSwordAttackData _swordAttackData03;
+    [SerializeField]
+    private D_PlayerBowArrowShotData _fireArrowShotData;
     #endregion
 
     #region Check Transforms
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour
         MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);
 
         LandState = new PlayerLandState(this, FiniteStateMachine, "land");
-        JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
+        JumpState = new PlayerJumpState(this, FiniteStateMachine, "inAir", _jumpStateData);
         InAirState = new PlayerInAirState(this, FiniteStateMachine, _playerData, "inAir");
 
         WallSlideState = new PlayerWallSlideState(this, FiniteStateMachine, _playerData, "wallSlide");
@@ -123,17 +126,17 @@ public class Player : MonoBehaviour
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
-            _playerSwordAttackData01);
+            _swordAttackData01);
         SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02,
-            _playerSwordAttackData02);
+            _swordAttackData02);
         SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03,
-            _playerSwordAttackData03);
+            _swordAttackData03);
         FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, _playerData, "bowFireShotStart",
-            _fireArrowShotAttackPosition, _playerFireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotData);
         FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, _playerData, "bowFireShotAim",
-            _fireArrowShotAttackPosition, _playerFireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotData);
         FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, _playerData, "bowFireShotFinish",
-            _fireArrowShotAttackPosition, _playerFireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotData);
     }
 
     private void Start()
@@ -272,9 +275,9 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(_swordAttackPosition01.position, _playerSwordAttackData01.attackRadius);
-        Gizmos.DrawWireSphere(_swordAttackPosition02.position, _playerSwordAttackData02.attackRadius);
-        Gizmos.DrawWireSphere(_swordAttackPosition03.position, _playerSwordAttackData03.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition01.position, _swordAttackData01.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition02.position, _swordAttackData02.attackRadius);
+        Gizmos.DrawWireSphere(_swordAttackPosition03.position, _swordAttackData03.attackRadius);
     }
 
     #endregion

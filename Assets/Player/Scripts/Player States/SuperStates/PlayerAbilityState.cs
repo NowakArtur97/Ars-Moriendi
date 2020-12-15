@@ -6,8 +6,8 @@ public class PlayerAbilityState : PlayerState
 
     private bool _isGrounded;
 
-    public PlayerAbilityState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerAbilityState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
         IsAbilityDone = true;
     }

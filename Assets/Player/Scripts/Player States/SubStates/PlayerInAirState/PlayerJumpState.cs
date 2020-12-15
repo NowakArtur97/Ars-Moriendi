@@ -1,18 +1,20 @@
 ﻿public class PlayerJumpState : PlayerAbilityState
 {
+    private D_PlayerJumpState _jumpStateData;
     private int _amountOfJumpsLeft;
 
-    public PlayerJumpState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerJumpState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerJumpState jumpStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
-        _amountOfJumpsLeft = PlayerData.amountOfJumps;
+        _jumpStateData = jumpStateData;
+        _amountOfJumpsLeft = _jumpStateData.amountOfJumps;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        Player.SetVelocityY(PlayerData.jumpVelocity);
+        Player.SetVelocityY(_jumpStateData.jumpVelocity);
         Player.InAirState.SetIsJumping();
         Player.InputHandler.UseJumpInput();
 
@@ -23,7 +25,7 @@
 
     public bool CanJump() => _amountOfJumpsLeft > 0;
 
-    public void ResetAmountOfJumpsLeft() => _amountOfJumpsLeft = PlayerData.amountOfJumps;
+    public void ResetAmountOfJumpsLeft() => _amountOfJumpsLeft = _jumpStateData.amountOfJumps;
 
     public void DecreaseAmountOfJumps() => _amountOfJumpsLeft--;
 }

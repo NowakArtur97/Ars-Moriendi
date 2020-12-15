@@ -6,10 +6,6 @@ public class D_PlayerData : ScriptableObject
     [Header("Crouch Move State")]
     public float crouchMovementVelocity = 6;
 
-    [Header("Jump State")]
-    public float jumpVelocity = 15;
-    public int amountOfJumps = 1;
-
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
     public float variableJumpHeightMultiplier = 0.5f;
