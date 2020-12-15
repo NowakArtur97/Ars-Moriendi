@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerInAirState _inAirStateData;
     [SerializeField]
+    private D_PlayerWallSlideState _wallSlideStateData;
+    [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData01;
     [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData02;
@@ -110,34 +112,34 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, FiniteStateMachine, "inAir", _jumpStateData);
         InAirState = new PlayerInAirState(this, FiniteStateMachine, "inAir", _inAirStateData);
 
-        WallSlideState = new PlayerWallSlideState(this, FiniteStateMachine, _playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, FiniteStateMachine, _playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, FiniteStateMachine, _playerData, "wallClimb");
-        WallJumpState = new PlayerWallJumpState(this, FiniteStateMachine, _playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, _playerData, "ledgeClimbState");
+        WallSlideState = new PlayerWallSlideState(this, FiniteStateMachine, "wallSlide", _wallSlideStateData);
+        WallGrabState = new PlayerWallGrabState(this, FiniteStateMachine, "wallGrab");
+        WallClimbState = new PlayerWallClimbState(this, FiniteStateMachine, "wallClimb");
+        WallJumpState = new PlayerWallJumpState(this, FiniteStateMachine, "inAir");
+        LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, "ledgeClimbState");
 
-        DashState = new PlayerDashState(this, FiniteStateMachine, _playerData, "inAir");
+        DashState = new PlayerDashState(this, FiniteStateMachine, "inAir");
 
-        CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, _playerData, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, _playerData, "crouchMove");
+        CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle");
+        CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove");
 
-        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, _playerData, "idle");
-        OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, _playerData, "inAir");
-        OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, _playerData, "inAir");
-        OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, _playerData, "inAir");
+        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, "idle");
+        OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, "inAir");
+        OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, "inAir");
+        OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, "inAir");
 
         // TODO: Attack states using unnecessary Player Data
-        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, _playerData, "swordAttack01", _swordAttackPosition01,
+        SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, "swordAttack01", _swordAttackPosition01,
             _swordAttackData01);
-        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, _playerData, "swordAttack02", _swordAttackPosition02,
+        SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, "swordAttack02", _swordAttackPosition02,
             _swordAttackData02);
-        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, _playerData, "swordAttack03", _swordAttackPosition03,
+        SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, "swordAttack03", _swordAttackPosition03,
             _swordAttackData03);
-        FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, _playerData, "bowFireShotStart",
+        FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, "bowFireShotStart",
             _fireArrowShotAttackPosition, _fireArrowShotData);
-        FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, _playerData, "bowFireShotAim",
+        FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, "bowFireShotAim",
             _fireArrowShotAttackPosition, _fireArrowShotData);
-        FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, _playerData, "bowFireShotFinish",
+        FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, "bowFireShotFinish",
             _fireArrowShotAttackPosition, _fireArrowShotData);
     }
 

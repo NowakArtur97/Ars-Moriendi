@@ -8,7 +8,8 @@
     protected bool GrabInput;
     protected bool JumpInput;
 
-    public PlayerTouchingWallState(Player Player, PlayerFiniteStateMachine FiniteStateMachine, D_PlayerData PlayerData, string _animationBoolName) : base(Player, FiniteStateMachine, PlayerData, _animationBoolName)
+    public PlayerTouchingWallState(Player Player, PlayerFiniteStateMachine FiniteStateMachine, string _animationBoolName)
+        : base(Player, FiniteStateMachine, _animationBoolName)
     {
     }
 
