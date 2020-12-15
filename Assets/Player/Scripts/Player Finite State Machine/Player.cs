@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerCrouchMoveState _crouchMoveStateData;
     [SerializeField]
+    private D_PlayerOnRopeState _onRopeStateData;
+    [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData01;
     [SerializeField]
     private D_PlayerSwordAttackData _swordAttackData02;
@@ -133,10 +135,10 @@ public class Player : MonoBehaviour
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle");
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove", _crouchMoveStateData);
 
-        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, "idle");
-        OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, "inAir");
-        OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, "inAir");
-        OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, "inAir");
+        OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, "idle", _onRopeStateData);
+        OnRopeStateAttach = new PlayerOnRopeState_Attach(this, FiniteStateMachine, "inAir", _onRopeStateData);
+        OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, "inAir", _onRopeStateData);
+        OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, "inAir", _onRopeStateData);
 
         // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, "swordAttack01", _swordAttackPosition01,

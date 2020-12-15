@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,7 +9,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     private bool _distanceSet;
     private Vector2 _ropeHook;
 
-    public PlayerOnRopeState_Move(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerOnRopeState_Move(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
     }
 
@@ -130,7 +130,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         Vector2 lastRopePoint = RopePositions.Last();
         RaycastHit2D playerToCurrentNextHit = Physics2D.Raycast(PlayerPosition, (lastRopePoint - PlayerPosition).normalized,
-            Vector2.Distance(PlayerPosition, lastRopePoint) - 0.01f, PlayerData.whatCanYouAttachTo);
+            Vector2.Distance(PlayerPosition, lastRopePoint) - 0.01f, OnRopeStateData.whatCanYouAttachTo);
 
         if (playerToCurrentNextHit)
         {
@@ -232,20 +232,20 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 //Debug.DrawLine(PlayerPosition, rightPerpendicularPosition, Color.green, 0f);
             }
 
-            Vector2 swingforce = perpendicularDirection * PlayerData.ropeSwigForce;
+            Vector2 swingforce = perpendicularDirection * OnRopeStateData.ropeSwigForce;
             Player.AddForce(swingforce, ForceMode2D.Force);
         }
     }
 
     private void ClimbRope()
     {
-        if (_yInput < 0 && Player.RopeJoint.distance < PlayerData.ropeMaxCastDistance)
+        if (_yInput < 0 && Player.RopeJoint.distance < OnRopeStateData.ropeMaxCastDistance)
         {
-            Player.RopeJoint.distance += Time.deltaTime * PlayerData.ropeClimbingSpeed;
+            Player.RopeJoint.distance += Time.deltaTime * OnRopeStateData.ropeClimbingSpeed;
         }
         else if (_yInput > 0)
         {
-            Player.RopeJoint.distance -= Time.deltaTime * PlayerData.ropeClimbingSpeed;
+            Player.RopeJoint.distance -= Time.deltaTime * OnRopeStateData.ropeClimbingSpeed;
         }
     }
 

@@ -6,7 +6,8 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
     private Vector3 _crossHairPosition;
     private float _aimAngle;
 
-    public PlayerOnRopeState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerOnRopeState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
     }
 

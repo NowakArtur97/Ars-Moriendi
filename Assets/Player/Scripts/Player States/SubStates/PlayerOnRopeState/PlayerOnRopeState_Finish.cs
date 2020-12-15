@@ -1,6 +1,7 @@
 ﻿public class PlayerOnRopeState_Finish : PlayerOnRopeState
 {
-    public PlayerOnRopeState_Finish(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerOnRopeState_Finish(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
     }
 

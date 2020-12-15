@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerOnRopeState : PlayerAbilityState
 {
+    protected D_PlayerOnRopeState OnRopeStateData;
+
     protected bool IsGrounded;
     protected bool RopeInputStop;
     protected Vector2 PlayerPosition;
@@ -14,8 +16,10 @@ public class PlayerOnRopeState : PlayerAbilityState
     protected static List<Vector2> RopePositions = new List<Vector2>();
     protected static Dictionary<Vector2, int> WrapPointsLookup = new Dictionary<Vector2, int>();
 
-    public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        OnRopeStateData = onRopeStateData;
     }
 
     public override void Enter()
