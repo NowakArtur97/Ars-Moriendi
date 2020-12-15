@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e2cc0b10f9b0f4bbe5cc25cefb67d0, type: 3}
+  m_Name: GoblinArcher_BaseData
+  m_EditorClassIdentifier: 
+  wallCheckDistance: 0.2
+  ledgeCheckDistance: 1.5
+  groundCheckRadius: 1
+  minAgroDistance: 0.78
+  maxAgroDistance: 7.5
+  closeRangeActionDistance: 0.8
+  longRangeActionDistance: 4
+  maxPlayerJumpedOverDistance: 6
+  maxHealth: 50
+  damageHopSpeed: 1
+  hitPartciles:
+  - {fileID: 7193024407518473852, guid: 74284e4a531ad274abaefa184d956d00, type: 3}
+  - {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345, type: 3}
+  stunResistance: 3
+  stunRecorveryTime: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 1024

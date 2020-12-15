@@ -7678,27 +7678,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 845845456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 99cced0199a43364b9b8cd947074c03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wallCheck: {fileID: 800986408}
   ledgeCheck: {fileID: 565227548}
-  playerCheck: {fileID: 800986408}
+  playerCheck: {fileID: 1880474834}
   playerJumpedOverCheck: {fileID: 1490897726}
   groundCheck: {fileID: 522846968}
   entityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
-  <animationToStateMachine>k__BackingField: {fileID: 0}
-  <myRigidbody2D>k__BackingField: {fileID: 0}
-  <myAnimator>k__BackingField: {fileID: 0}
-  <aliveGameObject>k__BackingField: {fileID: 0}
-  <facingDirection>k__BackingField: 0
-  currentHealth: 0
-  isDead: 0
-  currentStunResistance: 0
-  lastDamageTime: 0
-  <lastDamageDirection>k__BackingField: 0
-  isStunned: 0
-  velocityWorkSpace: {x: 0, y: 0}
   idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
   moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
@@ -7710,8 +7698,7 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
   dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
-  rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
-    type: 2}
+  rangedAttackStateData: {fileID: 0}
   meleeAttackPosition: {fileID: 1117002209}
   rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
