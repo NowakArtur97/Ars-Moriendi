@@ -2,6 +2,8 @@
 
 public class PlayerInAirState : PlayerState
 {
+    private D_PlayerInAirState _inAirStateData;
+
     private int _xInput;
     private bool _jumpInput;
     private bool _jumpInputStop;
@@ -22,8 +24,10 @@ public class PlayerInAirState : PlayerState
     private bool _wallJumpCoyoteTime;
     private float _startWallJumpCoyoteTime;
 
-    public PlayerInAirState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerInAirState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerInAirState inAirStateData)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _inAirStateData = inAirStateData;
     }
 
     public override void Exit()
@@ -95,7 +99,7 @@ public class PlayerInAirState : PlayerState
         else
         {
             Player.CheckIfShouldFlip(_xInput);
-            Player.SetVelocityX(PlayerData.movementVelocity * _xInput);
+            Player.SetVelocityX(_inAirStateData.movementVelocity * _xInput);
 
             Player.MyAnmator.SetFloat("yVelocity", Player.CurrentVelocity.y);
             Player.MyAnmator.SetFloat("xVelocity", Mathf.Abs(Player.CurrentVelocity.x));
@@ -131,7 +135,7 @@ public class PlayerInAirState : PlayerState
         {
             if (_jumpInputStop)
             {
-                Player.SetVelocityY(Player.CurrentVelocity.y * PlayerData.variableJumpHeightMultiplier);
+                Player.SetVelocityY(Player.CurrentVelocity.y * _inAirStateData.variableJumpHeightMultiplier);
                 _isJumping = false;
             }
             else if (Player.CurrentVelocity.y <= 0)
@@ -143,7 +147,7 @@ public class PlayerInAirState : PlayerState
 
     private void CheckCoyoteTime()
     {
-        if (_coyoteTime && Time.time >= StartTime + PlayerData.coyoteTime)
+        if (_coyoteTime && Time.time >= StartTime + _inAirStateData.coyoteTime)
         {
             _coyoteTime = false;
             Player.JumpState.DecreaseAmountOfJumps();
@@ -152,7 +156,7 @@ public class PlayerInAirState : PlayerState
 
     private void CheckWallJumpCoyoteTime()
     {
-        if (_wallJumpCoyoteTime && Time.time >= _startWallJumpCoyoteTime + PlayerData.coyoteTime)
+        if (_wallJumpCoyoteTime && Time.time >= _startWallJumpCoyoteTime + _inAirStateData.coyoteTime)
         {
             _wallJumpCoyoteTime = false;
             Player.JumpState.DecreaseAmountOfJumps();
