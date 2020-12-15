@@ -8227,14 +8227,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: d77f91519e57cb64f9af64b93b9e5a0e, type: 2}
-  _playerSwordAttackData01: {fileID: 11400000, guid: 2cb96a01853d947479c689fbd86110d1,
+  _moveStateData: {fileID: 11400000, guid: d4832c8ea1a43fb42897546c1688c6f4, type: 2}
+  _jumpStateData: {fileID: 11400000, guid: fbeb9efa38c6bb340b0d1bbb104aab84, type: 2}
+  _inAirStateData: {fileID: 11400000, guid: ddb0f48129a753143a97584509dc5422, type: 2}
+  _wallSlideStateData: {fileID: 11400000, guid: 32d2a270ad55d2346a707b6863a8034d,
     type: 2}
-  _playerSwordAttackData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b,
+  _wallClimbStateData: {fileID: 11400000, guid: f11857b5e42b3314daa066db829ba797,
     type: 2}
-  _playerSwordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e,
-    type: 2}
-  _playerFireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff,
-    type: 2}
+  _wallJumpStateData: {fileID: 11400000, guid: e57097d0b2449bc44a29daeebed623e8, type: 2}
+  _ledgeClimbStateData: {fileID: 0}
+  _dashStateData: {fileID: 11400000, guid: 82358b27c2d1b4446a46165270586f82, type: 2}
+  _crouchMoveStateData: {fileID: 0}
+  _onRopeStateData: {fileID: 11400000, guid: 198b9c7108232f9428c122cc514015db, type: 2}
+  _swordAttackData01: {fileID: 11400000, guid: 2cb96a01853d947479c689fbd86110d1, type: 2}
+  _swordAttackData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b, type: 2}
+  _swordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e, type: 2}
+  _fireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff, type: 2}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}
   _ledgeCheck: {fileID: 1595342979}
