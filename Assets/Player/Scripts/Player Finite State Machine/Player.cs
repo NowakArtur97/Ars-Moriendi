@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         IdleState = new PlayerIdleState(this, FiniteStateMachine, "idle");
         MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);
 
-        LandState = new PlayerLandState(this, FiniteStateMachine, _playerData, "land");
+        LandState = new PlayerLandState(this, FiniteStateMachine, "land");
         JumpState = new PlayerJumpState(this, FiniteStateMachine, _playerData, "inAir");
         InAirState = new PlayerInAirState(this, FiniteStateMachine, _playerData, "inAir");
 
