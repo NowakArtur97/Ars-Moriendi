@@ -9,4 +9,5 @@ public class D_PlayerSwordAttackData : ScriptableObject
     public float attackCooldown = 0.3f;
     public float attackVelocity = 5;
     public int comboAttackIndex = 1;
+    public LayerMask whatIsEnemy;
 }

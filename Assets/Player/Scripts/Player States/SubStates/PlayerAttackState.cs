@@ -4,8 +4,8 @@ public class PlayerAttackState : PlayerAbilityState
 {
     protected Transform attackPosition;
 
-    public PlayerAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData, string animationBoolName,
-        Transform attackPosition) : base(player, playerFiniteStateMachine, playerData, animationBoolName)
+    public PlayerAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
+        Transform attackPosition) : base(player, playerFiniteStateMachine, animationBoolName)
     {
         this.attackPosition = attackPosition;
     }

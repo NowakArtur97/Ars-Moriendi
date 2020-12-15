@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
         OnRopeStateMove = new PlayerOnRopeState_Move(this, FiniteStateMachine, "inAir", _onRopeStateData);
         OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, "inAir", _onRopeStateData);
 
-        // TODO: Attack states using unnecessary Player Data
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, "swordAttack01", _swordAttackPosition01,
             _swordAttackData01);
         SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, "swordAttack02", _swordAttackPosition02,

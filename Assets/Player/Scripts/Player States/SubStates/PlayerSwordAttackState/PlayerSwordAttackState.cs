@@ -12,9 +12,9 @@ public class PlayerSwordAttackState : PlayerAttackState
     private bool _isAttacking;
     private bool _isAttemptingToAttack;
 
-    public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, D_PlayerData playerData,
-        string animationBoolName, Transform attackPosition, D_PlayerSwordAttackData playerSwordAttackData)
-        : base(player, playerFiniteStateMachine, playerData, animationBoolName, attackPosition)
+    public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
+        Transform attackPosition, D_PlayerSwordAttackData playerSwordAttackData)
+        : base(player, playerFiniteStateMachine, animationBoolName, attackPosition)
     {
         _playerSwordAttackData = playerSwordAttackData;
     }
@@ -65,7 +65,7 @@ public class PlayerSwordAttackState : PlayerAttackState
         base.FinishAttack();
 
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position,
-            _playerSwordAttackData.attackRadius, PlayerData.whatIsEnemy);
+            _playerSwordAttackData.attackRadius, _playerSwordAttackData.whatIsEnemy);
 
         foreach (Collider2D collider in detectedObjects)
         {
