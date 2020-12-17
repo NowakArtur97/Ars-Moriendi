@@ -59,42 +59,42 @@ public class PlayerInAirState : PlayerState
 
         if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+            FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
         else if (_secondaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
+            FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAim);
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {
-            FiniteStateMachine.ChangeState(Player.WallSlideState);
+            FiniteStateMachine.ChangeCurrentState(Player.WallSlideState);
         }
         else if (_isTouchingWall && !_isTouchingLedge && !_isGrounded)
         {
-            FiniteStateMachine.ChangeState(Player.LedgeClimbState);
+            FiniteStateMachine.ChangeCurrentState(Player.LedgeClimbState);
         }
         else if (_jumpInput && (_isTouchingWall || _isBackTouchingWall || _wallJumpCoyoteTime))
         {
             StopWallJumpCoyoteTime();
             _isTouchingWall = Player.CheckIfTouchingWall();
             Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
-            FiniteStateMachine.ChangeState(Player.WallJumpState);
+            FiniteStateMachine.ChangeCurrentState(Player.WallJumpState);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
-            FiniteStateMachine.ChangeState(Player.JumpState);
+            FiniteStateMachine.ChangeCurrentState(Player.JumpState);
         }
         else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
-            FiniteStateMachine.ChangeState(Player.WallGrabState);
+            FiniteStateMachine.ChangeCurrentState(Player.WallGrabState);
         }
         else if (_isGrounded & Player.CurrentVelocity.y < 0.01f)
         {
-            FiniteStateMachine.ChangeState(Player.LandState);
+            FiniteStateMachine.ChangeCurrentState(Player.LandState);
         }
         else if (_dashInput && Player.DashState.CheckIfCanDash())
         {
-            FiniteStateMachine.ChangeState(Player.DashState);
+            FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }
         else
         {

@@ -47,15 +47,15 @@ public class PlayerSwordAttackState : PlayerAttackState
         {
             if (_attackCount == Player.SwordAttackState01._playerSwordAttackData.comboAttackIndex)
             {
-                FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
             }
             else if (_attackCount == Player.SwordAttackState02._playerSwordAttackData.comboAttackIndex)
             {
-                FiniteStateMachine.ChangeState(Player.SwordAttackState02);
+                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState02);
             }
             else if (_attackCount == Player.SwordAttackState03._playerSwordAttackData.comboAttackIndex)
             {
-                FiniteStateMachine.ChangeState(Player.SwordAttackState03);
+                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState03);
             }
         }
     }

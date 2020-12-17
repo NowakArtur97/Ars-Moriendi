@@ -42,30 +42,30 @@ public class PlayerGroundedState : PlayerState
 
         if (_primaryAttackInput)
         {
-            FiniteStateMachine.ChangeState(Player.SwordAttackState01);
+            FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
         else if (_secondaryAttackInput) // && Player.FireArrowShotStateFinish.CheckIfCanShoot())
         {
-            FiniteStateMachine.ChangeState(Player.OnRopeStateAim);
+            FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAim);
             // TO DO: Change attack type
             //FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
-            FiniteStateMachine.ChangeState(Player.JumpState);
+            FiniteStateMachine.ChangeCurrentState(Player.JumpState);
         }
         else if (!_isGrounded)
         {
             Player.InAirState.StartCoyoteTime();
-            FiniteStateMachine.ChangeState(Player.InAirState);
+            FiniteStateMachine.ChangeCurrentState(Player.InAirState);
         }
         else if (_isTouchingWall && _grabInput && _isTouchingLedge)
         {
-            FiniteStateMachine.ChangeState(Player.WallGrabState);
+            FiniteStateMachine.ChangeCurrentState(Player.WallGrabState);
         }
         else if (_dashInput && Player.DashState.CheckIfCanDash())
         {
-            FiniteStateMachine.ChangeState(Player.DashState);
+            FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }
     }
 

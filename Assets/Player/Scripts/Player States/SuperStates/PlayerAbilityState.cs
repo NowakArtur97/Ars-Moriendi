@@ -29,11 +29,11 @@ public class PlayerAbilityState : PlayerState
 
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
-                FiniteStateMachine.ChangeState(Player.IdleState);
+                FiniteStateMachine.ChangeCurrentState(Player.IdleState);
             }
             else
             {
-                FiniteStateMachine.ChangeState(Player.InAirState);
+                FiniteStateMachine.ChangeCurrentState(Player.InAirState);
             }
         }
     }

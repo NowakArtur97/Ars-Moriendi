@@ -58,7 +58,7 @@ public class PlayerLedgeClimbState : PlayerState
 
         if (IsAnimationFinished)
         {
-            Player.FiniteStateMachine.ChangeState(Player.IdleState);
+            Player.FiniteStateMachine.ChangeCurrentState(Player.IdleState);
         }
         else
         {
@@ -76,12 +76,12 @@ public class PlayerLedgeClimbState : PlayerState
             }
             else if ((_yInput == -1 || _xInput == -Player.FacingDirection) && _isHanging && !_isClimbing)
             {
-                Player.FiniteStateMachine.ChangeState(Player.InAirState);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.InAirState);
             }
             else if (_jumpInput && !_isClimbing)
             {
                 Player.WallJumpState.DetermineWallJumpDirection(true);
-                Player.FiniteStateMachine.ChangeState(Player.WallJumpState);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.WallJumpState);
             }
         }
     }

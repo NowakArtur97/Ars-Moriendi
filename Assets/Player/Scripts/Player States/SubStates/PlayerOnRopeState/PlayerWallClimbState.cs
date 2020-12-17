@@ -18,7 +18,7 @@
 
             if (YInput != 1)
             {
-                FiniteStateMachine.ChangeState(Player.WallGrabState);
+                FiniteStateMachine.ChangeCurrentState(Player.WallGrabState);
             }
         }
     }

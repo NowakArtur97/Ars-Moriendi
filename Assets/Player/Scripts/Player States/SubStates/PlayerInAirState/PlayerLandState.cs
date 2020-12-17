@@ -13,11 +13,11 @@
         {
             if (XInput != 0)
             {
-                FiniteStateMachine.ChangeState(Player.MoveState);
+                FiniteStateMachine.ChangeCurrentState(Player.MoveState);
             }
             else if (IsAnimationFinished)
             {
-                FiniteStateMachine.ChangeState(Player.IdleState);
+                FiniteStateMachine.ChangeCurrentState(Player.IdleState);
             }
         }
     }

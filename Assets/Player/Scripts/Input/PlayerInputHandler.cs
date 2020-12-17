@@ -37,6 +37,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool PrimaryAttackInput { get; private set; }
     public bool SecondaryAttackInput { get; private set; }
     public bool SecondaryAttackInputStop { get; private set; }
+    public float RawChangeSkillInput { get; private set; }
+    public int NormalizedChangeSkillInput { get; private set; }
 
     public int PrimaryAttackClickCount { get; private set; }
 
@@ -158,6 +160,23 @@ public class PlayerInputHandler : MonoBehaviour
         {
             RawSecondaryAttackDirectionInput = mainCamera.ScreenToWorldPoint(RawSecondaryAttackDirectionInput) - transform.position;
             SecondaryAttackDirectionInput = Vector2Int.RoundToInt(RawSecondaryAttackDirectionInput.normalized);
+        }
+    }
+
+    public void OnChangeSkillInput(CallbackContext context)
+    {
+        RawChangeSkillInput = context.ReadValue<float>();
+        if (RawChangeSkillInput > 0)
+        {
+            NormalizedChangeSkillInput = 1;
+        }
+        else if (RawChangeSkillInput < 0)
+        {
+            NormalizedChangeSkillInput = -1;
+        }
+        else
+        {
+            NormalizedChangeSkillInput = 0;
         }
     }
 

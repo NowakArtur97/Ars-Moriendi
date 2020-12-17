@@ -42,15 +42,15 @@ public class PlayerOnRopeState : PlayerAbilityState
         {
             if (!RopeAttached && !IsAiming && IsHoldingRope)
             {
-                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateAttach);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAttach);
             }
             else if (RopeAttached && !IsAiming && IsHoldingRope)
             {
-                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateMove);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateMove);
             }
             else if (!RopeAttached && !IsAiming && !IsHoldingRope)
             {
-                Player.FiniteStateMachine.ChangeState(Player.OnRopeStateFinish);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateFinish);
             }
         }
     }

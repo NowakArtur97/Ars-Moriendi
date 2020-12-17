@@ -24,11 +24,11 @@ public class PlayerBowFireArrowShotState : PlayerAttackState
         {
             if (IsAiming)
             {
-                Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateAim);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.FireArrowShotStateAim);
             }
             else if (IsShooting)
             {
-                Player.FiniteStateMachine.ChangeState(Player.FireArrowShotStateFinish);
+                Player.FiniteStateMachine.ChangeCurrentState(Player.FireArrowShotStateFinish);
             }
         }
     }

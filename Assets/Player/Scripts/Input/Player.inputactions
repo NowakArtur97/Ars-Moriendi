@@ -76,6 +76,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Change Skill",
+                    "type": "PassThrough",
+                    "id": "781a8aec-ab4e-4821-b039-7f0ef5a698b8",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -318,6 +326,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Secondary Attack Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a929279-ea98-4ad2-856d-61a9270612cd",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Change Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e147373-c43f-478e-94ce-a0fc64330448",
+                    "path": "<Gamepad>/leftStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Skill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

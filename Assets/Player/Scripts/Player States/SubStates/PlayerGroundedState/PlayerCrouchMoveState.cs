@@ -19,11 +19,11 @@
         {
             if (!CrouchInput)
             {
-                FiniteStateMachine.ChangeState(Player.MoveState);
+                FiniteStateMachine.ChangeCurrentState(Player.MoveState);
             }
             else if (XInput == 0)
             {
-                FiniteStateMachine.ChangeState(Player.CrouchIdleState);
+                FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
             }
         }
     }

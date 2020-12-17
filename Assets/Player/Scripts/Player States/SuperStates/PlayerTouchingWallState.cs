@@ -32,19 +32,19 @@
         if (JumpInput)
         {
             Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
-            FiniteStateMachine.ChangeState(Player.WallJumpState);
+            FiniteStateMachine.ChangeCurrentState(Player.WallJumpState);
         }
         else if (IsGrounded && !GrabInput)
         {
-            FiniteStateMachine.ChangeState(Player.IdleState);
+            FiniteStateMachine.ChangeCurrentState(Player.IdleState);
         }
         else if (!IsTouchingWall || (XInput != Player.FacingDirection && !GrabInput))
         {
-            FiniteStateMachine.ChangeState(Player.InAirState);
+            FiniteStateMachine.ChangeCurrentState(Player.InAirState);
         }
         else if (IsTouchingWall && !IsTouchingLedge)
         {
-            FiniteStateMachine.ChangeState(Player.LedgeClimbState);
+            FiniteStateMachine.ChangeCurrentState(Player.LedgeClimbState);
         }
     }
 
