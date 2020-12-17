@@ -34,9 +34,9 @@ public class PlayerSkillsManager
     public void ChangeSkillDown()
     {
         _currentSkillIndex--;
-        if (_currentSkillIndex >= _skills.Count)
+        if (_currentSkillIndex < 0)
         {
-            _currentSkillIndex = 0;
+            _currentSkillIndex = _skills.Count - 1;
         }
     }
 }

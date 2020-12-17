@@ -2,6 +2,8 @@
 
 public class PlayerState
 {
+    private float _changeSkillInput;
+
     protected Player Player;
     protected PlayerFiniteStateMachine FiniteStateMachine;
 
@@ -39,7 +41,24 @@ public class PlayerState
         IsExitingState = true;
     }
 
-    public virtual void LogicUpdate() { }
+    public virtual void LogicUpdate()
+    {
+        _changeSkillInput = Player.InputHandler.NormalizedChangeSkillInput;
+
+        if (_changeSkillInput != 0)
+        {
+            if (_changeSkillInput == 1)
+            {
+                Player.SkillManager.ChangeSkillUp();
+            }
+            else
+            {
+                Player.SkillManager.ChangeSkillDown();
+            }
+
+            //Player.FiniteStateMachine.ChangeSecondaryAttackState(Player.SkillManager.GetCurrentSkill());
+        }
+    }
 
     public virtual void PhysicsUpdate()
     {

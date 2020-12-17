@@ -61,9 +61,10 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
+        // TODO: Skill cooldown
         else if (_secondaryAttackInput)
         {
-            FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAim);
+            FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
         else if (_isTouchingWall && _xInput == Player.FacingDirection && Player.CurrentVelocity.y <= 0)
         {

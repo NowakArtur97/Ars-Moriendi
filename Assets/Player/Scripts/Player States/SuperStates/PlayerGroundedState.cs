@@ -44,11 +44,10 @@ public class PlayerGroundedState : PlayerState
         {
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
-        else if (_secondaryAttackInput) // && Player.FireArrowShotStateFinish.CheckIfCanShoot())
+        // TODO: Skill cooldown
+        else if (_secondaryAttackInput)
         {
-            FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAim);
-            // TO DO: Change attack type
-            //FiniteStateMachine.ChangeState(Player.FireArrowShotStateStart);
+            FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
         else if (_jumpInput && Player.JumpState.CanJump())
         {

@@ -8065,8 +8065,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 16f8bf1f-67a3-43da-854f-090e1af183e6
-    m_ActionName: Gameplay/Change Skill[/Mouse/scroll]
+    m_ActionId: 781a8aec-ab4e-4821-b039-7f0ef5a698b8
+    m_ActionName: Gameplay/Change Skill[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

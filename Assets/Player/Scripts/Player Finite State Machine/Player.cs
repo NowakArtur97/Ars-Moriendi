@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     #region State Variables
 
     public PlayerFiniteStateMachine FiniteStateMachine { get; private set; }
+    public PlayerSkillsManager SkillManager { get; private set; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -115,6 +116,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         FiniteStateMachine = new PlayerFiniteStateMachine();
+        SkillManager = new PlayerSkillsManager();
 
         IdleState = new PlayerIdleState(this, FiniteStateMachine, "idle");
         MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);
@@ -145,6 +147,7 @@ public class Player : MonoBehaviour
             _swordAttackData02);
         SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, "swordAttack03", _swordAttackPosition03,
             _swordAttackData03);
+
         FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, "bowFireShotStart",
             _fireArrowShotAttackPosition, _fireArrowShotData);
         FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, "bowFireShotAim",
@@ -171,6 +174,10 @@ public class Player : MonoBehaviour
         CrosshairSpriteRenderer = Crosshair.GetComponent<SpriteRenderer>();
 
         FacingDirection = 1;
+
+        SkillManager.AddSkill(DashState);
+        SkillManager.AddSkill(OnRopeStateAim);
+        SkillManager.AddSkill(FireArrowShotStateStart);
 
         FiniteStateMachine.Initialize(IdleState);
 
@@ -261,7 +268,6 @@ public class Player : MonoBehaviour
 
     private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
 
-    // TODO: REFACTOR (Attack State instead of Cuttent State?)
     public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
 
     public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
