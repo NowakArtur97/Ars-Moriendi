@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class PlayerSkillsManager
 {
     private List<PlayerAbilityState> _skills;
     private int _currentSkillIndex;
+    public Action<int> ChangeSkillEvent;
 
     public PlayerSkillsManager()
     {
@@ -29,6 +31,8 @@ public class PlayerSkillsManager
         {
             _currentSkillIndex = 0;
         }
+
+        ChangeSkillEvent?.Invoke(_currentSkillIndex);
     }
 
     public void ChangeSkillDown()
@@ -38,5 +42,7 @@ public class PlayerSkillsManager
         {
             _currentSkillIndex = _skills.Count - 1;
         }
+
+        ChangeSkillEvent?.Invoke(_currentSkillIndex);
     }
 }
