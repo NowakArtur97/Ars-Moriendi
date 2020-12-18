@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private D_PlayerSwordAttackData _swordAttackData03;
     [SerializeField]
     private D_PlayerBowArrowShotData _fireArrowShotData;
+
     #endregion
 
     #region Check Transforms
