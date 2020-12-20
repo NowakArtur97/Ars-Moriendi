@@ -1,15 +1,19 @@
 ﻿public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
+    private D_PlayerIdleState _idleStateData;
+
+    public PlayerIdleState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerIdleState idleStateData)
         : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _idleStateData = idleStateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        Player.SetVelocityX(0.0f);
+        Player.SetVelocityZero();
+        Player.SetBoxColliderHeight(_idleStateData.standColliderHeight);
     }
 
     public override void LogicUpdate()

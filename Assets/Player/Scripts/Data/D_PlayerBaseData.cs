@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player State Data", menuName = "Data/State Data/Player State")]
+[CreateAssetMenu(fileName = "New Player State Dat", menuName = "Data/Player State Data/Player State")]
 public class D_PlayerBaseData : ScriptableObject
 {
     [Header("Check Variables")]

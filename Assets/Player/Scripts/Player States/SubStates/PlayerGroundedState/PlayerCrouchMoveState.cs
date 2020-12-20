@@ -8,6 +8,13 @@
         _crouchMoveStateData = crouchMoveStateData;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        Player.SetBoxColliderHeight(_crouchMoveStateData.crouchColliderHeight);
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

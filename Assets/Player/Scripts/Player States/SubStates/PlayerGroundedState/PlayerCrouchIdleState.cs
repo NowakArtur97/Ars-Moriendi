@@ -12,7 +12,8 @@
     {
         base.Enter();
 
-        Player.SetVelocityX(0.0f);
+        Player.SetVelocityZero();
+        Player.SetBoxColliderHeight(_crouchIdleStateData.crouchColliderHeight);
     }
 
     public override void LogicUpdate()

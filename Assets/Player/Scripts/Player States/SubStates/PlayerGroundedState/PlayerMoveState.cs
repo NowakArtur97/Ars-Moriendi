@@ -8,6 +8,13 @@
         _moveStateData = moveStateData;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        Player.SetBoxColliderHeight(_moveStateData.standColliderHeight);
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

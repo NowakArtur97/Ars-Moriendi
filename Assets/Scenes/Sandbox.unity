@@ -8456,6 +8456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: d77f91519e57cb64f9af64b93b9e5a0e, type: 2}
+  _idleStateData: {fileID: 11400000, guid: 3b30887fcd1ed1744a4a140641f21953, type: 2}
   _moveStateData: {fileID: 11400000, guid: d4832c8ea1a43fb42897546c1688c6f4, type: 2}
   _jumpStateData: {fileID: 11400000, guid: fbeb9efa38c6bb340b0d1bbb104aab84, type: 2}
   _inAirStateData: {fileID: 11400000, guid: ddb0f48129a753143a97584509dc5422, type: 2}
