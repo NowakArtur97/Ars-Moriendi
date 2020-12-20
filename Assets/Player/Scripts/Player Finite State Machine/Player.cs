@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerBaseData _playerData;
     [SerializeField]
+    private D_PlayerIdleState _idleStateData;
+    [SerializeField]
     private D_PlayerMoveState _moveStateData;
     [SerializeField]
     private D_PlayerJumpState _jumpStateData;
@@ -103,6 +105,7 @@ public class Player : MonoBehaviour
 
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
+    public BoxCollider2D MyBoxCollider2D { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public LineRenderer MyRopeLineRenderer;
     public Transform DashDirectionIndicator { get; private set; }
@@ -122,7 +125,7 @@ public class Player : MonoBehaviour
         FiniteStateMachine = new PlayerFiniteStateMachine();
         SkillManager = new PlayerSkillsManager();
 
-        IdleState = new PlayerIdleState(this, FiniteStateMachine, "idle");
+        IdleState = new PlayerIdleState(this, FiniteStateMachine, "idle", _idleStateData);
         MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);
 
         LandState = new PlayerLandState(this, FiniteStateMachine, "land");
@@ -164,6 +167,7 @@ public class Player : MonoBehaviour
     {
         MyAnmator = GetComponent<Animator>();
         MyRigidbody = GetComponent<Rigidbody2D>();
+        MyBoxCollider2D = GetComponent<BoxCollider2D>();
         InputHandler = GetComponent<PlayerInputHandler>();
         MyRopeLineRenderer = GetComponent<LineRenderer>();
         RopeJoint = GetComponent<DistanceJoint2D>();
@@ -280,6 +284,17 @@ public class Player : MonoBehaviour
     {
         FacingDirection *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    public void SetBoxColliderHeight(float height)
+    {
+        Vector2 center = MyBoxCollider2D.offset;
+        _workspace.Set(MyBoxCollider2D.size.x, height);
+
+        center.y += (height - MyBoxCollider2D.size.y) / 2;
+
+        MyBoxCollider2D.size = _workspace;
+        MyBoxCollider2D.offset = center;
     }
 
     public Vector2 DetermineCornerPosition()
