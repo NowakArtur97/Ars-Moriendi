@@ -267,6 +267,12 @@ public class Player : MonoBehaviour
 
     public bool CheckIfTouchingCeiling() => Physics2D.OverlapCircle(_ledgeCheck.position, _playerData.ceilingCheckRadius, _playerData.whatIsGround);
 
+    public bool CheckIfCanStand(Vector2 position)
+    {
+        return Physics2D.Raycast(position + (Vector2.up * _ledgeClimbStateData.standCheckOffset) + (Vector2.right * FacingDirection *
+            _ledgeClimbStateData.standCheckOffset), Vector2.up, _ledgeClimbStateData.standColliderHeight, _playerData.whatIsGround);
+    }
+
     public void CheckIfShouldFlip(int xInput)
     {
         if (xInput != 0 && xInput != FacingDirection)

@@ -17,6 +17,8 @@ public class PlayerLedgeClimbState : PlayerState
     private int _yInput;
     private bool _jumpInput;
 
+    private bool _isTouchingCeiling;
+
     public PlayerLedgeClimbState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerLedgeClimbState
         ledgeClimbStateData) : base(player, playerFiniteStateMachine, animationBoolName)
     {
@@ -58,7 +60,14 @@ public class PlayerLedgeClimbState : PlayerState
 
         if (IsAnimationFinished)
         {
-            Player.FiniteStateMachine.ChangeCurrentState(Player.IdleState);
+            if (_isTouchingCeiling)
+            {
+                Player.FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
+            }
+            else
+            {
+                Player.FiniteStateMachine.ChangeCurrentState(Player.IdleState);
+            }
         }
         else
         {
@@ -71,6 +80,9 @@ public class PlayerLedgeClimbState : PlayerState
 
             if ((_xInput == Player.FacingDirection || _yInput == 1) && _isHanging && !_isClimbing)
             {
+                _isTouchingCeiling = Player.CheckIfCanStand(_cornerPosition);
+                Player.MyAnmator.SetBool("isTouchingCeiling", _isTouchingCeiling);
+
                 _isClimbing = true;
                 Player.MyAnmator.SetBool("climbLedge", true);
             }

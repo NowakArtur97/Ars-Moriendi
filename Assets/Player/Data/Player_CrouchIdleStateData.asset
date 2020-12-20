@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bfd7b6f44cf7143afdc78360223f4a, type: 3}
   m_Name: Player_CrouchIdleStateData
   m_EditorClassIdentifier: 
+  crouchColliderHeight: 0.8
