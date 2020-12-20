@@ -14,20 +14,20 @@
 
         if (!isDetectingLedge || isDetectingWall)
         {
-            entity.Flip();
-            finiteStateMachine.ChangeState(boar.moveState);
+            Entity.Flip();
+            FiniteStateMachine.ChangeState(boar.moveState);
         }
         else if (!isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
         }
         else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
         {
-            finiteStateMachine.ChangeState(boar.meleeAttackState);
+            FiniteStateMachine.ChangeState(boar.meleeAttackState);
         }
         else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
         {
-            finiteStateMachine.ChangeState(boar.chargeState);
+            FiniteStateMachine.ChangeState(boar.chargeState);
         }
     }
 }

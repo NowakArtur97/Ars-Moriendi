@@ -18,7 +18,7 @@
     {
         base.Enter();
 
-        entity.SetVelocity(stateData.movementSpeed);
+        Entity.SetVelocity(stateData.movementSpeed);
     }
 
     public override void Exit()
@@ -40,9 +40,9 @@
     {
         base.DoChecks();
 
-        isDetectingWall = entity.CheckWall();
-        isDetectingLedge = entity.CheckLedge();
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isDetectingWall = Entity.CheckWall();
+        isDetectingLedge = Entity.CheckLedge();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 }

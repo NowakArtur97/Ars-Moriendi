@@ -19,11 +19,11 @@ public class AttackState : State
     {
         base.Enter();
 
-        entity.animationToStateMachine.attackState = this;
+        Entity.animationToStateMachine.attackState = this;
 
         isAnimationFinished = false;
 
-        entity.SetVelocity(0.0f);
+        Entity.SetVelocity(0.0f);
     }
 
     public override void Exit()
@@ -45,8 +45,8 @@ public class AttackState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public virtual void TriggerAttack()

@@ -14,11 +14,11 @@
 
         if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+            FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
         }
         else if (areAllTurnsTimeDone)
         {
-            finiteStateMachine.ChangeState(goblinArcher.moveState);
+            FiniteStateMachine.ChangeState(goblinArcher.moveState);
         }
     }
 }

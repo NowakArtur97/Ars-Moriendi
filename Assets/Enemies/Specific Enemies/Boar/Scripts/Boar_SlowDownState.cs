@@ -15,12 +15,12 @@
         if (!isDetectingLedge || isDetectingWall)
         {
             boar.idleState.SetFlipAfterIdle(true);
-            finiteStateMachine.ChangeState(boar.idleState);
+            FiniteStateMachine.ChangeState(boar.idleState);
         }
         else if (hasStopped && isMinSlideTimeOver)
         {
             boar.lookForPlayerState.SetShouldTurnImmediately(true);
-            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
         }
     }
 }

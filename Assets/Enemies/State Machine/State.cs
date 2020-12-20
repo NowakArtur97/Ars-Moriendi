@@ -2,36 +2,34 @@
 
 public class State
 {
-    protected FiniteStateMachine finiteStateMachine;
-    protected Entity entity;
-    protected string animationBoolName;
+    protected FiniteStateMachine FiniteStateMachine;
+    protected Entity Entity;
+    protected string AnimationBoolName;
 
     public float startTime { get; private set; }
 
     public State(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName)
     {
-        this.finiteStateMachine = finiteStateMachine;
-        this.entity = entity;
-        this.animationBoolName = animationBoolName;
+        this.FiniteStateMachine = finiteStateMachine;
+        this.Entity = entity;
+        this.AnimationBoolName = animationBoolName;
     }
 
     public virtual void Enter()
     {
         startTime = Time.time;
 
-        entity.myAnimator.SetBool(animationBoolName, true);
+        Entity.myAnimator.SetBool(AnimationBoolName, true);
 
         DoChecks();
     }
 
     public virtual void Exit()
     {
-        entity.myAnimator.SetBool(animationBoolName, false);
+        Entity.myAnimator.SetBool(AnimationBoolName, false);
     }
 
-    public virtual void LogicUpdate()
-    {
-    }
+    public virtual void LogicUpdate() { }
 
     public virtual void PhysicsUpdate()
     {

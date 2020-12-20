@@ -19,25 +19,25 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
         {
             if (Time.time >= goblinArcher.dodgeState.startTime + goblinArcher.dodgeStateData.dodgeCooldwon)
             {
-                finiteStateMachine.ChangeState(goblinArcher.dodgeState);
+                FiniteStateMachine.ChangeState(goblinArcher.dodgeState);
             }
             else
             {
-                finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
         }
         else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+            FiniteStateMachine.ChangeState(goblinArcher.rangedAttackState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {
-            entity.Flip();
-            finiteStateMachine.ChangeState(goblinArcher.moveState);
+            Entity.Flip();
+            FiniteStateMachine.ChangeState(goblinArcher.moveState);
         }
         else if (!isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+            FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
         }
     }
 }

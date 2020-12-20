@@ -16,19 +16,19 @@
         {
             if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
             {
-                finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
             else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
             {
-                finiteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+                FiniteStateMachine.ChangeState(goblinArcher.rangedAttackState);
             }
             else if (!isPlayerInMaxAgroRange)
             {
-                finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
             }
             else if (isPlayerInMaxAgroRange)
             {
-                finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+                FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
             }
         }
     }

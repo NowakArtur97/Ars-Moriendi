@@ -16,16 +16,16 @@
         {
             if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
             {
-                finiteStateMachine.ChangeState(boar.meleeAttackState);
+                FiniteStateMachine.ChangeState(boar.meleeAttackState);
             }
             else if (isPlayerInMaxAgroRange)
             {
-                finiteStateMachine.ChangeState(boar.chargeState);
+                FiniteStateMachine.ChangeState(boar.chargeState);
             }
             else
             {
                 boar.lookForPlayerState.SetShouldTurnImmediately(true);
-                finiteStateMachine.ChangeState(boar.lookForPlayerState);
+                FiniteStateMachine.ChangeState(boar.lookForPlayerState);
             }
         }
     }

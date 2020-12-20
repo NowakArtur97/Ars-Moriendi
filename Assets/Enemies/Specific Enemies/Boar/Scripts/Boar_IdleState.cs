@@ -14,11 +14,11 @@
 
         if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
         else if (isIdleTimeOver)
         {
-            finiteStateMachine.ChangeState(boar.moveState);
+            FiniteStateMachine.ChangeState(boar.moveState);
         }
     }
 }

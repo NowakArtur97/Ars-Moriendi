@@ -14,12 +14,12 @@
 
         if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+            FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {
             goblinArcher.idleState.SetFlipAfterIdle(true);
-            finiteStateMachine.ChangeState(goblinArcher.idleState);
+            FiniteStateMachine.ChangeState(goblinArcher.idleState);
         }
     }
 }

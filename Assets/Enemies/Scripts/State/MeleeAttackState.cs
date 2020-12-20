@@ -16,10 +16,10 @@ public class MeleeAttackState : AttackState
     {
         base.Enter();
 
-        attackDetails.position = entity.aliveGameObject.transform.position;
+        attackDetails.position = Entity.aliveGameObject.transform.position;
         attackDetails.damageAmmount = stateData.attackDamage;
 
-        entity.SetVelocity(stateData.attackMovementSpeed);
+        Entity.SetVelocity(stateData.attackMovementSpeed);
     }
 
     public override void FinishAttack()

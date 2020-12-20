@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Transform _ledgeCheck;
     [SerializeField]
+    private Transform _ceilingCheck;
+    [SerializeField]
     private Transform _swordAttackPosition01;
     [SerializeField]
     private Transform _swordAttackPosition02;
@@ -254,11 +256,16 @@ public class Player : MonoBehaviour
 
     public bool CheckIfGrounded() => Physics2D.OverlapCircle(_groundCheck.position, _playerData.groundCheckRadius, _playerData.whatIsGround);
 
-    public bool CheckIfTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+    public bool CheckIfTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance,
+        _playerData.whatIsGround);
 
-    public bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * -FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+    public bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(_wallCheck.position, Vector2.right * -FacingDirection, _playerData.wallCheckDistance,
+        _playerData.whatIsGround);
 
-    public bool CheckIfTouchingLedge() => Physics2D.Raycast(_ledgeCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
+    public bool CheckIfTouchingLedge() => Physics2D.Raycast(_ledgeCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance,
+        _playerData.whatIsGround);
+
+    public bool CheckIfTouchingCeiling() => Physics2D.OverlapCircle(_ledgeCheck.position, _playerData.ceilingCheckRadius, _playerData.whatIsGround);
 
     public void CheckIfShouldFlip(int xInput)
     {
@@ -314,9 +321,11 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(_swordAttackPosition01.position, _swordAttackData01.attackRadius);
-        Gizmos.DrawWireSphere(_swordAttackPosition02.position, _swordAttackData02.attackRadius);
-        Gizmos.DrawWireSphere(_swordAttackPosition03.position, _swordAttackData03.attackRadius);
+        //Gizmos.DrawWireSphere(_swordAttackPosition01.position, _swordAttackData01.attackRadius);
+        //Gizmos.DrawWireSphere(_swordAttackPosition02.position, _swordAttackData02.attackRadius);
+        //Gizmos.DrawWireSphere(_swordAttackPosition03.position, _swordAttackData03.attackRadius);
+
+        Gizmos.DrawWireSphere(_ceilingCheck.position, _playerData.ceilingCheckRadius);
     }
 
     #endregion

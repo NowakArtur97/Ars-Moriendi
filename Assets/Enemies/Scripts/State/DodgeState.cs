@@ -25,7 +25,7 @@ public class DodgeState : State
 
         isDodgeTimeOver = false;
 
-        entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, -entity.facingDirection);
+        Entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, -Entity.facingDirection);
     }
 
     public override void LogicUpdate()
@@ -42,12 +42,12 @@ public class DodgeState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
 
-        shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = entity.CheckIfPlayerInLongRangeAction();
+        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
 
-        isGrounded = entity.CheckGround();
+        isGrounded = Entity.CheckGround();
     }
 }

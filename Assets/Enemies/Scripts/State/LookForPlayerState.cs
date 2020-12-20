@@ -25,7 +25,7 @@ public class LookForPlayerState : State
     {
         base.Enter();
 
-        entity.SetVelocity(0.0f);
+        Entity.SetVelocity(0.0f);
 
         areAllTurnsDone = false;
         areAllTurnsTimeDone = false;
@@ -39,14 +39,14 @@ public class LookForPlayerState : State
 
         if (shouldTurnImmediately)
         {
-            entity.Flip();
+            Entity.Flip();
             amountOfTurnsDone++;
             lastTurnTime = Time.time;
             shouldTurnImmediately = false;
         }
         else if (Time.time >= lastTurnTime + stateData.timeBetweenTurns && !areAllTurnsDone)
         {
-            entity.Flip();
+            Entity.Flip();
             amountOfTurnsDone++;
             lastTurnTime = Time.time;
         }
@@ -66,8 +66,8 @@ public class LookForPlayerState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public void SetShouldTurnImmediately(bool shouldTurnImmediately)

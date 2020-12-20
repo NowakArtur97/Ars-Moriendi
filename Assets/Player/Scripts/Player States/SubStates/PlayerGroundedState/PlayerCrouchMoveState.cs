@@ -2,6 +2,8 @@
 {
     private D_PlayerCrouchMoveState _crouchMoveStateData;
 
+    private bool _isTouchingCeiling;
+
     public PlayerCrouchMoveState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
         D_PlayerCrouchMoveState crouchMoveStateData) : base(player, playerFiniteStateMachine, animationBoolName)
     {
@@ -24,7 +26,7 @@
 
         if (!IsExitingState)
         {
-            if (!CrouchInput && YInput != -1)
+            if (!CrouchInput && YInput != -1 && !_isTouchingCeiling)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.MoveState);
             }
@@ -33,5 +35,12 @@
                 FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
             }
         }
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+
+        _isTouchingCeiling = Player.CheckIfTouchingCeiling();
     }
 }

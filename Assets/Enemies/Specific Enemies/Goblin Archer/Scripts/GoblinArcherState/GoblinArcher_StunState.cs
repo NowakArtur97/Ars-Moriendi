@@ -16,12 +16,12 @@
         {
             if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
             {
-                finiteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
             }
             else
             {
                 goblinArcher.lookForPlayerState.SetShouldTurnImmediately(true);
-                finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
             }
         }
     }

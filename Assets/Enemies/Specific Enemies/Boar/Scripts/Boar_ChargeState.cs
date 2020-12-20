@@ -14,19 +14,19 @@
 
         if (shouldPerformCloseRangeAction)
         {
-            finiteStateMachine.ChangeState(boar.meleeAttackState);
+            FiniteStateMachine.ChangeState(boar.meleeAttackState);
         }
         else if (HasDetectedObstacle())
         {
-            finiteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
         }
         else if (isDetectingPlayerAbove)
         {
-            finiteStateMachine.ChangeState(boar.slowDownState);
+            FiniteStateMachine.ChangeState(boar.slowDownState);
         }
         else if (isPlayerInMinAgroRange)
         {
-            finiteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
     }
 

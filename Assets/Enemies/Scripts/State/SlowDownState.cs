@@ -25,7 +25,7 @@ public class SlowDownState : State
 
         isMinSlideTimeOver = false;
         hasStopped = false;
-        currentVelocity = entity.myRigidbody2D.velocity.x;
+        currentVelocity = Entity.myRigidbody2D.velocity.x;
     }
 
     public override void LogicUpdate()
@@ -57,13 +57,13 @@ public class SlowDownState : State
     {
         base.DoChecks();
 
-        isDetectingWall = entity.CheckWall();
-        isDetectingLedge = entity.CheckLedge();
+        isDetectingWall = Entity.CheckWall();
+        isDetectingLedge = Entity.CheckLedge();
     }
 
     private void SlowDown()
     {
         currentVelocity = Mathf.Abs(currentVelocity - stateData.decelerationSpeed);
-        entity.SetVelocity(currentVelocity);
+        Entity.SetVelocity(currentVelocity);
     }
 }

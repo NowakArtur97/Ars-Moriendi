@@ -22,7 +22,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        entity.SetVelocity(0.0f);
+        Entity.SetVelocity(0.0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -33,7 +33,7 @@ public class IdleState : State
 
         if (flipAfterIdle)
         {
-            entity.Flip();
+            Entity.Flip();
         }
     }
 
@@ -51,8 +51,8 @@ public class IdleState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public void SetFlipAfterIdle(bool flipAfterIdle)

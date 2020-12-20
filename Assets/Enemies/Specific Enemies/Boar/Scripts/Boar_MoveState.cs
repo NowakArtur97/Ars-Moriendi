@@ -13,12 +13,12 @@
 
         if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
         {
-            finiteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {
             boar.idleState.SetFlipAfterIdle(true);
-            finiteStateMachine.ChangeState(boar.idleState);
+            FiniteStateMachine.ChangeState(boar.idleState);
         }
     }
 }

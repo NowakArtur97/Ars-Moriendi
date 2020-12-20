@@ -21,19 +21,19 @@
     {
         base.Enter();
 
-        entity.SetVelocity(stateData.chargeSpeed);
+        Entity.SetVelocity(stateData.chargeSpeed);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        isDetectingWall = entity.CheckWall();
-        isDetectingLedge = entity.CheckLedge();
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isDetectingPlayerAbove = entity.CheckIfPlayerJumpedOver();
+        isDetectingWall = Entity.CheckWall();
+        isDetectingLedge = Entity.CheckLedge();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isDetectingPlayerAbove = Entity.CheckIfPlayerJumpedOver();
 
-        shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = entity.CheckIfPlayerInLongRangeAction();
+        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

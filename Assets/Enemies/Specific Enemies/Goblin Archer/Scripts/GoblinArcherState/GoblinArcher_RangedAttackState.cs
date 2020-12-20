@@ -18,11 +18,11 @@ public class GoblinArcher_RangedAttackState : RangedAttackState
         {
             if (isPlayerInMaxAgroRange)
             {
-                finiteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+                FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
             }
             else
             {
-                finiteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
             }
         }
     }

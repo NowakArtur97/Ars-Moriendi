@@ -29,14 +29,14 @@ public class StunState : State
         shouldPerformCloseRangeAction = false;
         isPlayerInMinAgroRange = false;
 
-        entity.SetVelocity(stateData.stunKnockbackSpeed, stateData.stunKnockbackAngle, entity.lastDamageDirection);
+        Entity.SetVelocity(stateData.stunKnockbackSpeed, stateData.stunKnockbackAngle, Entity.lastDamageDirection);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        entity.ResetStunResistance();
+        Entity.ResetStunResistance();
     }
 
     public override void LogicUpdate()
@@ -52,7 +52,7 @@ public class StunState : State
         {
             isMovementStopped = true;
 
-            entity.SetVelocity(0.0f);
+            Entity.SetVelocity(0.0f);
         }
     }
 
@@ -60,10 +60,10 @@ public class StunState : State
     {
         base.DoChecks();
 
-        isGrounded = entity.CheckGround();
+        isGrounded = Entity.CheckGround();
 
-        shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInLongRangeAction();
+        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

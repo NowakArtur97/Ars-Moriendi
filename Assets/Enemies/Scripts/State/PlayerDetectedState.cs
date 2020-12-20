@@ -23,7 +23,7 @@ public class PlayerDetectedState : State
     {
         base.Enter();
 
-        entity.SetVelocity(0.0f);
+        Entity.SetVelocity(0.0f);
 
         shouldPerformCloseRangeAction = false;
         shouldPerformLongRangeAction = false;
@@ -53,13 +53,13 @@ public class PlayerDetectedState : State
     {
         base.DoChecks();
 
-        isDetectingWall = entity.CheckWall();
-        isDetectingLedge = entity.CheckLedge();
+        isDetectingWall = Entity.CheckWall();
+        isDetectingLedge = Entity.CheckLedge();
 
-        isPlayerInMinAgroRange = entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
 
-        shouldPerformCloseRangeAction = entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = entity.CheckIfPlayerInLongRangeAction();
+        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }
