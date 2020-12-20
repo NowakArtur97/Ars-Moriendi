@@ -1,8 +1,11 @@
 ﻿public class PlayerCrouchIdleState : PlayerGroundedState
 {
-    public PlayerCrouchIdleState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
-        : base(player, playerFiniteStateMachine, animationBoolName)
+    private D_PlayerCrouchIdleState _crouchIdleStateData;
+
+    public PlayerCrouchIdleState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
+        D_PlayerCrouchIdleState crouchIdleStateData) : base(player, playerFiniteStateMachine, animationBoolName)
     {
+        _crouchIdleStateData = crouchIdleStateData;
     }
 
     public override void Enter()
@@ -18,7 +21,7 @@
 
         if (!IsExitingState)
         {
-            if (!CrouchInput)
+            if (!CrouchInput && YInput != -1)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.IdleState);
             }

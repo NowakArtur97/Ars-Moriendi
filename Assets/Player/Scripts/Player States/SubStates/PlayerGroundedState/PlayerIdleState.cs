@@ -22,7 +22,7 @@
             {
                 FiniteStateMachine.ChangeCurrentState(Player.MoveState);
             }
-            else if (CrouchInput)
+            else if (CrouchInput || YInput == -1)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
             }

@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerDashState _dashStateData;
     [SerializeField]
+    private D_PlayerCrouchIdleState _crouchIdleStateData;
+    [SerializeField]
     private D_PlayerCrouchMoveState _crouchMoveStateData;
     [SerializeField]
     private D_PlayerOnRopeState _onRopeStateData;
@@ -135,7 +137,7 @@ public class Player : MonoBehaviour
 
         DashState = new PlayerDashState(this, FiniteStateMachine, "inAir", _dashStateData);
 
-        CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle");
+        CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle", _crouchIdleStateData);
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove", _crouchMoveStateData);
 
         OnRopeStateAim = new PlayerOnRopeState_Aim(this, FiniteStateMachine, "idle", _onRopeStateData);
@@ -285,9 +287,9 @@ public class Player : MonoBehaviour
         RaycastHit2D xHit = Physics2D.Raycast(_wallCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance, _playerData.whatIsGround);
         float xDistance = xHit.distance;
 
-        _workspace.Set(xDistance * FacingDirection, 0f);
-        RaycastHit2D yHit = Physics2D.Raycast(_ledgeCheck.position + (Vector3)_workspace, Vector2.down, _ledgeCheck.position.y - _wallCheck.position.y,
-            _playerData.whatIsGround);
+        _workspace.Set((xDistance + _ledgeClimbStateData.cornerTolerance) * FacingDirection, 0f);
+        RaycastHit2D yHit = Physics2D.Raycast(_ledgeCheck.position + (Vector3)_workspace, Vector2.down, _ledgeCheck.position.y - _wallCheck.position.y
+            + _ledgeClimbStateData.cornerTolerance, _playerData.whatIsGround);
         float yDistance = yHit.distance;
 
         _workspace.Set(_wallCheck.position.x + (xDistance * FacingDirection), _ledgeCheck.position.y - yDistance);

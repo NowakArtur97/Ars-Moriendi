@@ -3,6 +3,7 @@
 public class PlayerGroundedState : PlayerState
 {
     protected int XInput;
+    protected int YInput;
     protected bool CrouchInput;
 
     private bool _jumpInput;
@@ -33,6 +34,7 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
 
         XInput = Player.InputHandler.NormalizedInputX;
+        YInput = Player.InputHandler.NormalizedInputY;
         CrouchInput = Player.InputHandler.CrouchInput;
         _jumpInput = Player.InputHandler.JumpInput;
         _grabInput = Player.InputHandler.GrabInput;
