@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 
-public class IdleState : State
+public abstract class IdleState : State
 {
-    protected D_IdleState stateData;
+    protected D_IdleState StateData;
 
-    protected bool flipAfterIdle;
-    protected bool isIdleTimeOver;
+    protected bool FlipAfterIdle;
+    protected bool IsIdleTimeOver;
 
-    protected bool isPlayerInMinAgroRange;
-    protected bool isPlayerInMaxAgroRange;
+    protected bool IsPlayerInMinAgroRange;
+    protected bool IsPlayerInMaxAgroRange;
 
-    protected float idleTime;
+    protected float IdleTime;
 
     public IdleState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_IdleState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
@@ -23,7 +23,7 @@ public class IdleState : State
         base.Enter();
 
         Entity.SetVelocity(0.0f);
-        isIdleTimeOver = false;
+        IsIdleTimeOver = false;
         SetRandomIdleTime();
     }
 
@@ -31,7 +31,7 @@ public class IdleState : State
     {
         base.Exit();
 
-        if (flipAfterIdle)
+        if (FlipAfterIdle)
         {
             Entity.Flip();
         }
@@ -41,9 +41,9 @@ public class IdleState : State
     {
         base.LogicUpdate();
 
-        if (Time.time > startTime + idleTime)
+        if (Time.time > StartTime + IdleTime)
         {
-            isIdleTimeOver = true;
+            IsIdleTimeOver = true;
         }
     }
 
@@ -51,17 +51,17 @@ public class IdleState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
     }
 
     public void SetFlipAfterIdle(bool flipAfterIdle)
     {
-        this.flipAfterIdle = flipAfterIdle;
+        FlipAfterIdle = flipAfterIdle;
     }
 
     private void SetRandomIdleTime()
     {
-        idleTime = Random.Range(stateData.minimumIdleTime, stateData.maximumIdleTime);
+        IdleTime = Random.Range(StateData.minimumIdleTime, StateData.maximumIdleTime);
     }
 }

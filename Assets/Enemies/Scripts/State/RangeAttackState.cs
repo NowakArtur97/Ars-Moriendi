@@ -2,25 +2,24 @@
 
 public class RangedAttackState : AttackState
 {
-    protected D_RangedAttackState stateData;
+    protected D_RangedAttackState StateData;
 
-    protected GameObject projectile;
-    protected Projectile projectileScript;
+    protected GameObject Projectile;
+    protected Projectile ProjectileScript;
 
-    public RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
-        D_RangedAttackState stateData)
+    public RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData)
         : base(finiteStateMachine, entity, animationBoolName, attackPosition)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void TriggerAttack()
     {
         base.TriggerAttack();
 
-        projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-        projectileScript = projectile.GetComponent<Projectile>();
-        projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage,
-            stateData.projectileGravityScale);
+        Projectile = GameObject.Instantiate(StateData.projectile, AttackPosition.position, AttackPosition.rotation);
+        ProjectileScript = Projectile.GetComponent<Projectile>();
+        ProjectileScript.FireProjectile(StateData.projectileSpeed, StateData.projectileTravelDistance, StateData.projectileDamage,
+            StateData.projectileGravityScale);
     }
 }

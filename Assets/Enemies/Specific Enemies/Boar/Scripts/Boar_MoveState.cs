@@ -11,11 +11,11 @@
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
+        if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
             FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
-        else if (!isDetectingLedge || isDetectingWall)
+        else if (!IsDetectingLedge || IsDetectingWall)
         {
             boar.idleState.SetFlipAfterIdle(true);
             FiniteStateMachine.ChangeState(boar.idleState);

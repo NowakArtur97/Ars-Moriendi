@@ -1,27 +1,27 @@
 ﻿public class GoblinArcher_StunState : StunState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData,
         GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isStunTimeOver)
+        if (IsStunTimeOver)
         {
-            if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
+            if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(_goblinArcher.MeleeAttackState);
             }
             else
             {
-                goblinArcher.lookForPlayerState.SetShouldTurnImmediately(true);
-                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                _goblinArcher.LookForPlayerState.SetShouldTurnImmediately(true);
+                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
         }
     }

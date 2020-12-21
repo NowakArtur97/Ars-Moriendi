@@ -1,32 +1,32 @@
 ﻿using UnityEngine;
 
-public class State
+public abstract class State
 {
     protected FiniteStateMachine FiniteStateMachine;
     protected Entity Entity;
     protected string AnimationBoolName;
 
-    public float startTime { get; private set; }
+    public float StartTime { get; private set; }
 
     public State(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName)
     {
-        this.FiniteStateMachine = finiteStateMachine;
-        this.Entity = entity;
-        this.AnimationBoolName = animationBoolName;
+        FiniteStateMachine = finiteStateMachine;
+        Entity = entity;
+        AnimationBoolName = animationBoolName;
     }
 
     public virtual void Enter()
     {
-        startTime = Time.time;
+        StartTime = Time.time;
 
-        Entity.myAnimator.SetBool(AnimationBoolName, true);
+        Entity.MyAnimator.SetBool(AnimationBoolName, true);
 
         DoChecks();
     }
 
     public virtual void Exit()
     {
-        Entity.myAnimator.SetBool(AnimationBoolName, false);
+        Entity.MyAnimator.SetBool(AnimationBoolName, false);
     }
 
     public virtual void LogicUpdate() { }
@@ -36,7 +36,5 @@ public class State
         DoChecks();
     }
 
-    public virtual void DoChecks()
-    {
-    }
+    public virtual void DoChecks() { }
 }

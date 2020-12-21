@@ -25,14 +25,14 @@ public class SlowDownState : State
 
         isMinSlideTimeOver = false;
         hasStopped = false;
-        currentVelocity = Entity.myRigidbody2D.velocity.x;
+        currentVelocity = Entity.MyRigidbody2D.velocity.x;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (Time.time >= startTime + stateData.minSlideTime)
+        if (Time.time >= StartTime + stateData.minSlideTime)
         {
             isMinSlideTimeOver = true;
         }

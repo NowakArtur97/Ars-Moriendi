@@ -14,12 +14,12 @@ public class Boar_MeleeAttackState : MeleeAttackState
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange)
+        if (IsPlayerInMinAgroRange)
         {
             FinishAttack();
             FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
-        else if (!isPlayerInMaxAgroRange)
+        else if (!IsPlayerInMaxAgroRange)
         {
             FiniteStateMachine.ChangeState(boar.lookForPlayerState);
         }

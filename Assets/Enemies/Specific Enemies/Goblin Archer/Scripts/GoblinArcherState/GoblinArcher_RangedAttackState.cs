@@ -2,27 +2,27 @@
 
 public class GoblinArcher_RangedAttackState : RangedAttackState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
         D_RangedAttackState stateData, GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
+        if (IsAnimationFinished)
         {
-            if (isPlayerInMaxAgroRange)
+            if (IsPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+                FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
             else
             {
-                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
         }
     }

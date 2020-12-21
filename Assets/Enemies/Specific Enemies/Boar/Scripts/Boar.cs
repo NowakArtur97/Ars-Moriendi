@@ -30,41 +30,41 @@ public class Boar : Entity
     {
         base.Start();
 
-        idleState = new Boar_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
-        moveState = new Boar_MoveState(finiteStateMachine, this, "move", moveStateData, this);
-        playerDetectedState = new Boar_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
-        chargeState = new Boar_ChargeState(finiteStateMachine, this, "charge", chargeStateData, this);
-        lookForPlayerState = new Boar_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
-        slowDownState = new Boar_SlowDownState(finiteStateMachine, this, "slowDown", slowDownStateData, this);
-        meleeAttackState = new Boar_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        stunState = new Boar_StunState(finiteStateMachine, this, "stun", stunStateData, this);
-        deadState = new Boar_DeadState(finiteStateMachine, this, "dead", deadStateData, this);
+        idleState = new Boar_IdleState(FiniteStateMachine, this, "idle", idleStateData, this);
+        moveState = new Boar_MoveState(FiniteStateMachine, this, "move", moveStateData, this);
+        playerDetectedState = new Boar_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", playerDetectedStateData, this);
+        chargeState = new Boar_ChargeState(FiniteStateMachine, this, "charge", chargeStateData, this);
+        lookForPlayerState = new Boar_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
+        slowDownState = new Boar_SlowDownState(FiniteStateMachine, this, "slowDown", slowDownStateData, this);
+        meleeAttackState = new Boar_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        stunState = new Boar_StunState(FiniteStateMachine, this, "stun", stunStateData, this);
+        deadState = new Boar_DeadState(FiniteStateMachine, this, "dead", deadStateData, this);
 
-        finiteStateMachine.Initialize(moveState);
+        FiniteStateMachine.Initialize(moveState);
     }
 
     public override void Damage(AttackDetails attackDetails)
     {
         base.Damage(attackDetails);
 
-        GameObject.Instantiate(deadStateData.bloodEffectGO, aliveGameObject.transform.position, deadStateData.bloodEffectGO.transform.rotation);
+        GameObject.Instantiate(deadStateData.bloodEffectGO, AliveGameObject.transform.position, deadStateData.bloodEffectGO.transform.rotation);
 
-        if (isDead)
+        if (IsDead)
         {
-            finiteStateMachine.ChangeState(deadState);
+            FiniteStateMachine.ChangeState(deadState);
         }
-        else if (isStunned && finiteStateMachine.currentState != stunState)
+        else if (IsStunned && FiniteStateMachine.currentState != stunState)
         {
-            finiteStateMachine.ChangeState(stunState);
+            FiniteStateMachine.ChangeState(stunState);
         }
         else if (CheckIfPlayerInCloseRangeAction())
         {
-            finiteStateMachine.ChangeState(meleeAttackState);
+            FiniteStateMachine.ChangeState(meleeAttackState);
         }
         else
         {
             lookForPlayerState.SetShouldTurnImmediately(true);
-            finiteStateMachine.ChangeState(lookForPlayerState);
+            FiniteStateMachine.ChangeState(lookForPlayerState);
         }
     }
 

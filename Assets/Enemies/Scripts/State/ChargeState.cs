@@ -30,7 +30,7 @@
 
         isDetectingWall = Entity.CheckWall();
         isDetectingLedge = Entity.CheckLedge();
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
         isDetectingPlayerAbove = Entity.CheckIfPlayerJumpedOver();
 
         shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();

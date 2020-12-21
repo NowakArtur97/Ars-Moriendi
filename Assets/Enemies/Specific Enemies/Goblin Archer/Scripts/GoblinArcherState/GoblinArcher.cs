@@ -3,73 +3,73 @@
 public class GoblinArcher : Entity
 {
     [Header("States Data")]
-    [SerializeField] private D_IdleState idleStateData;
-    [SerializeField] private D_MoveState moveStateData;
-    [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
-    [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
-    [SerializeField] private D_MeleeAttackState meleeAttackStateData;
-    [SerializeField] private D_StunState stunStateData;
-    [SerializeField] private D_DeadState deadStateData;
-    [SerializeField] public D_DodgeState dodgeStateData;
-    [SerializeField] public D_RangedAttackState rangedAttackStateData;
+    [SerializeField] private D_IdleState _idleStateData;
+    [SerializeField] private D_MoveState _moveStateData;
+    [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
+    [SerializeField] private D_LookForPlayerState _lookForPlayerStateData;
+    [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
+    [SerializeField] private D_StunState _stunStateData;
+    [SerializeField] private D_DeadState _deadStateData;
+    [SerializeField] public D_DodgeState _dodgeStateData;
+    [SerializeField] public D_RangedAttackState _rangedAttackStateData;
 
     [Header("Attack Positions")]
-    [SerializeField] private Transform meleeAttackPosition;
-    [SerializeField] private Transform rangedAttackPosition;
+    [SerializeField] private Transform _meleeAttackPosition;
+    [SerializeField] private Transform _rangedAttackPosition;
 
-    public GoblinArcher_IdleState idleState { get; private set; }
-    public GoblinArcher_MoveState moveState { get; private set; }
-    public GoblinArcher_PlayerDetectedState playerDetectedState { get; private set; }
-    public GoblinArcher_LookForPlayerState lookForPlayerState { get; private set; }
-    public GoblinArcher_MeleeAttackState meleeAttackState { get; private set; }
-    public GoblinArcher_StunState stunState { get; private set; }
-    public GoblinArcher_DeadState deadState { get; private set; }
-    public GoblinArcher_DodgeState dodgeState { get; private set; }
-    public GoblinArcher_RangedAttackState rangedAttackState { get; private set; }
+    public GoblinArcher_IdleState IdleState { get; private set; }
+    public GoblinArcher_MoveState MoveState { get; private set; }
+    public GoblinArcher_PlayerDetectedState PlayerDetectedState { get; private set; }
+    public GoblinArcher_LookForPlayerState LookForPlayerState { get; private set; }
+    public GoblinArcher_MeleeAttackState MeleeAttackState { get; private set; }
+    public GoblinArcher_StunState StunState { get; private set; }
+    public GoblinArcher_DeadState DeadState { get; private set; }
+    public GoblinArcher_DodgeState DodgeState { get; private set; }
+    public GoblinArcher_RangedAttackState RangedAttackState { get; private set; }
 
     protected override void Start()
     {
         base.Start();
 
-        idleState = new GoblinArcher_IdleState(finiteStateMachine, this, "idle", idleStateData, this);
-        moveState = new GoblinArcher_MoveState(finiteStateMachine, this, "move", moveStateData, this);
-        playerDetectedState = new GoblinArcher_PlayerDetectedState(finiteStateMachine, this, "playerDetected", playerDetectedStateData, this);
-        lookForPlayerState = new GoblinArcher_LookForPlayerState(finiteStateMachine, this, "lookForPlayer", lookForPlayerStateData, this);
-        meleeAttackState = new GoblinArcher_MeleeAttackState(finiteStateMachine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
-        stunState = new GoblinArcher_StunState(finiteStateMachine, this, "stun", stunStateData, this);
-        deadState = new GoblinArcher_DeadState(finiteStateMachine, this, "dead", deadStateData, this);
-        dodgeState = new GoblinArcher_DodgeState(finiteStateMachine, this, "dodge", dodgeStateData, this);
-        rangedAttackState = new GoblinArcher_RangedAttackState(finiteStateMachine, this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
+        IdleState = new GoblinArcher_IdleState(FiniteStateMachine, this, "idle", _idleStateData, this);
+        MoveState = new GoblinArcher_MoveState(FiniteStateMachine, this, "move", _moveStateData, this);
+        PlayerDetectedState = new GoblinArcher_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
+        LookForPlayerState = new GoblinArcher_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
+        MeleeAttackState = new GoblinArcher_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
+        StunState = new GoblinArcher_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
+        DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
+        DodgeState = new GoblinArcher_DodgeState(FiniteStateMachine, this, "dodge", _dodgeStateData, this);
+        RangedAttackState = new GoblinArcher_RangedAttackState(FiniteStateMachine, this, "rangedAttack", _rangedAttackPosition, _rangedAttackStateData, this);
 
-        finiteStateMachine.Initialize(moveState);
+        FiniteStateMachine.Initialize(MoveState);
     }
 
     public override void Damage(AttackDetails attackDetails)
     {
         base.Damage(attackDetails);
 
-        GameObject.Instantiate(deadStateData.bloodEffectGO, aliveGameObject.transform.position, deadStateData.bloodEffectGO.transform.rotation);
+        GameObject.Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
 
-        if (isDead)
+        if (IsDead)
         {
-            finiteStateMachine.ChangeState(deadState);
+            FiniteStateMachine.ChangeState(DeadState);
         }
-        else if (isStunned && finiteStateMachine.currentState != stunState)
+        else if (IsStunned && FiniteStateMachine.currentState != StunState)
         {
-            finiteStateMachine.ChangeState(stunState);
+            FiniteStateMachine.ChangeState(StunState);
         }
         else if (CheckIfPlayerInCloseRangeAction())
         {
-            finiteStateMachine.ChangeState(meleeAttackState);
+            FiniteStateMachine.ChangeState(MeleeAttackState);
         }
         else if (CheckIfPlayerInLongRangeAction())
         {
-            finiteStateMachine.ChangeState(rangedAttackState);
+            FiniteStateMachine.ChangeState(RangedAttackState);
         }
         else
         {
-            lookForPlayerState.SetShouldTurnImmediately(true);
-            finiteStateMachine.ChangeState(lookForPlayerState);
+            LookForPlayerState.SetShouldTurnImmediately(true);
+            FiniteStateMachine.ChangeState(LookForPlayerState);
         }
     }
 
@@ -77,6 +77,6 @@ public class GoblinArcher : Entity
     {
         base.OnDrawGizmos();
 
-        Gizmos.DrawSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+        Gizmos.DrawSphere(_meleeAttackPosition.position, _meleeAttackStateData.attackRadius);
     }
 }

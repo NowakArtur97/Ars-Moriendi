@@ -1,40 +1,40 @@
 ﻿using UnityEngine;
 
-public class DodgeState : State
+public abstract class DodgeState : State
 {
-    protected D_DodgeState stateData;
+    protected D_DodgeState StateData;
 
-    protected bool shouldPerformCloseRangeAction;
-    protected bool shouldPerformLongRangeAction;
-    protected bool isPlayerInMinAgroRange;
+    protected bool ShouldPerformCloseRangeAction;
+    protected bool ShouldPerformLongRangeAction;
+    protected bool IsPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
 
-    protected bool isDodgeTimeOver;
+    protected bool IsDodgeTimeOver;
 
-    protected bool isGrounded;
+    protected bool IsGrounded;
 
     public DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        isDodgeTimeOver = false;
+        IsDodgeTimeOver = false;
 
-        Entity.SetVelocity(stateData.dodgeSpeed, stateData.dodgeAngle, -Entity.facingDirection);
+        Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Entity.FacingDirection);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (Time.time >= startTime + stateData.dodgeTime && isGrounded)
+        if (Time.time >= StartTime + StateData.dodgeTime && IsGrounded)
         {
-            isDodgeTimeOver = true;
+            IsDodgeTimeOver = true;
         }
     }
 
@@ -42,12 +42,12 @@ public class DodgeState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
 
-        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
 
-        isGrounded = Entity.CheckGround();
+        IsGrounded = Entity.CheckGround;
     }
 }

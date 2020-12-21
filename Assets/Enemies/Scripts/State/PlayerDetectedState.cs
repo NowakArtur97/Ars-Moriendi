@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 
-public class PlayerDetectedState : State
+public abstract class PlayerDetectedState : State
 {
-    protected D_PlayerDetectedState stateData;
+    protected D_PlayerDetectedState StateData;
 
-    protected bool isDetectingWall;
-    protected bool isDetectingLedge;
+    protected bool IsDetectingWall;
+    protected bool IsDetectingLedge;
 
-    protected bool isPlayerInMinAgroRange;
-    protected bool isPlayerInMaxAgroRange;
+    protected bool IsPlayerInMinAgroRange;
+    protected bool IsPlayerInMaxAgroRange;
 
-    protected bool shouldPerformCloseRangeAction;
-    protected bool shouldPerformLongRangeAction;
+    protected bool ShouldPerformCloseRangeAction;
+    protected bool ShouldPerformLongRangeAction;
 
     public PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
@@ -25,27 +25,22 @@ public class PlayerDetectedState : State
 
         Entity.SetVelocity(0.0f);
 
-        shouldPerformCloseRangeAction = false;
-        shouldPerformLongRangeAction = false;
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
+        ShouldPerformCloseRangeAction = false;
+        ShouldPerformLongRangeAction = false;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (Time.time >= startTime + stateData.timeForShortRangeAction)
+        if (Time.time >= StartTime + StateData.timeForShortRangeAction)
         {
-            shouldPerformCloseRangeAction = true;
+            ShouldPerformCloseRangeAction = true;
         }
 
-        if (Time.time >= startTime + stateData.timeForLongRangeAction)
+        if (Time.time >= StartTime + StateData.timeForLongRangeAction)
         {
-            shouldPerformLongRangeAction = true;
+            ShouldPerformLongRangeAction = true;
         }
     }
 
@@ -53,13 +48,13 @@ public class PlayerDetectedState : State
     {
         base.DoChecks();
 
-        isDetectingWall = Entity.CheckWall();
-        isDetectingLedge = Entity.CheckLedge();
+        IsDetectingWall = Entity.CheckWall();
+        IsDetectingLedge = Entity.CheckLedge();
 
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
 
-        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

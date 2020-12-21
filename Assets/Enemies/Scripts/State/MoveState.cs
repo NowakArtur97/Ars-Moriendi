@@ -1,48 +1,33 @@
-﻿public class MoveState : State
+﻿public abstract class MoveState : State
 {
-    protected D_MoveState stateData;
+    protected D_MoveState StateData;
 
-    protected bool isDetectingWall;
-    protected bool isDetectingLedge;
+    protected bool IsDetectingWall;
+    protected bool IsDetectingLedge;
 
-    protected bool isPlayerInMinAgroRange;
-    protected bool isPlayerInMaxAgroRange;
+    protected bool IsPlayerInMinAgroRange;
+    protected bool IsPlayerInMaxAgroRange;
 
     public MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        Entity.SetVelocity(stateData.movementSpeed);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
+        Entity.SetVelocity(StateData.movementSpeed);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        isDetectingWall = Entity.CheckWall();
-        isDetectingLedge = Entity.CheckLedge();
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsDetectingWall = Entity.CheckWall();
+        IsDetectingLedge = Entity.CheckLedge();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
     }
 }

@@ -1,35 +1,35 @@
 ﻿using UnityEngine;
 
-public class StunState : State
+public abstract class StunState : State
 {
-    protected D_StunState stateData;
+    protected D_StunState StateData;
 
-    protected bool isStunTimeOver;
-    protected bool isMovementStopped;
+    protected bool IsStunTimeOver;
+    protected bool IsMovementStopped;
 
-    protected bool isGrounded;
+    protected bool IsGrounded;
 
-    protected bool shouldPerformCloseRangeAction;
-    protected bool isPlayerInMinAgroRange;
-    protected bool isPlayerInMaxAgroRange;
+    protected bool ShouldPerformCloseRangeAction;
+    protected bool IsPlayerInMinAgroRange;
+    protected bool IsPlayerInMaxAgroRange;
 
     public StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        isStunTimeOver = false;
-        isMovementStopped = false;
+        IsStunTimeOver = false;
+        IsMovementStopped = false;
 
-        shouldPerformCloseRangeAction = false;
-        isPlayerInMinAgroRange = false;
+        ShouldPerformCloseRangeAction = false;
+        IsPlayerInMinAgroRange = false;
 
-        Entity.SetVelocity(stateData.stunKnockbackSpeed, stateData.stunKnockbackAngle, Entity.lastDamageDirection);
+        Entity.SetVelocity(StateData.stunKnockbackSpeed, StateData.stunKnockbackAngle, Entity.LastDamageDirection);
     }
 
     public override void Exit()
@@ -43,14 +43,14 @@ public class StunState : State
     {
         base.LogicUpdate();
 
-        if (Time.time >= startTime + stateData.stunTime)
+        if (Time.time >= StartTime + StateData.stunTime)
         {
-            isStunTimeOver = true;
+            IsStunTimeOver = true;
         }
 
-        if (isGrounded && Time.time >= startTime + stateData.stunKnockbackTime && !isMovementStopped)
+        if (IsGrounded && Time.time >= StartTime + StateData.stunKnockbackTime && !IsMovementStopped)
         {
-            isMovementStopped = true;
+            IsMovementStopped = true;
 
             Entity.SetVelocity(0.0f);
         }
@@ -60,10 +60,10 @@ public class StunState : State
     {
         base.DoChecks();
 
-        isGrounded = Entity.CheckGround();
+        IsGrounded = Entity.CheckGround;
 
-        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

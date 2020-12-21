@@ -12,20 +12,20 @@
     {
         base.LogicUpdate();
 
-        if (!isDetectingLedge || isDetectingWall)
+        if (!IsDetectingLedge || IsDetectingWall)
         {
             Entity.Flip();
             FiniteStateMachine.ChangeState(boar.moveState);
         }
-        else if (!isPlayerInMaxAgroRange)
+        else if (!IsPlayerInMaxAgroRange)
         {
             FiniteStateMachine.ChangeState(boar.lookForPlayerState);
         }
-        else if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
+        else if (IsPlayerInMinAgroRange && ShouldPerformCloseRangeAction)
         {
             FiniteStateMachine.ChangeState(boar.meleeAttackState);
         }
-        else if (isPlayerInMaxAgroRange && shouldPerformLongRangeAction)
+        else if (IsPlayerInMaxAgroRange && ShouldPerformLongRangeAction)
         {
             FiniteStateMachine.ChangeState(boar.chargeState);
         }

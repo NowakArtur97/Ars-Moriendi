@@ -1,25 +1,25 @@
 ﻿public class GoblinArcher_MoveState : MoveState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData, GoblinArcher goblinArcher)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
+        if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+            FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
         }
-        else if (!isDetectingLedge || isDetectingWall)
+        else if (!IsDetectingLedge || IsDetectingWall)
         {
-            goblinArcher.idleState.SetFlipAfterIdle(true);
-            FiniteStateMachine.ChangeState(goblinArcher.idleState);
+            _goblinArcher.IdleState.SetFlipAfterIdle(true);
+            FiniteStateMachine.ChangeState(_goblinArcher.IdleState);
         }
     }
 }

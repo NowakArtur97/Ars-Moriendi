@@ -2,42 +2,41 @@
 
 public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData,
         GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
-
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (shouldPerformCloseRangeAction && isPlayerInMinAgroRange)
+        if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
         {
-            if (Time.time >= goblinArcher.dodgeState.startTime + goblinArcher.dodgeStateData.dodgeCooldwon)
+            if (Time.time >= _goblinArcher.DodgeState.StartTime + _goblinArcher._dodgeStateData.dodgeCooldwon)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.dodgeState);
+                FiniteStateMachine.ChangeState(_goblinArcher.DodgeState);
             }
             else
             {
-                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(_goblinArcher.MeleeAttackState);
             }
         }
-        else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
+        else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+            FiniteStateMachine.ChangeState(_goblinArcher.RangedAttackState);
         }
-        else if (!isDetectingLedge || isDetectingWall)
+        else if (!IsDetectingLedge || IsDetectingWall)
         {
             Entity.Flip();
-            FiniteStateMachine.ChangeState(goblinArcher.moveState);
+            FiniteStateMachine.ChangeState(_goblinArcher.MoveState);
         }
-        else if (!isPlayerInMaxAgroRange)
+        else if (!IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+            FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
         }
     }
 }

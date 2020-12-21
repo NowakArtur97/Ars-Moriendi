@@ -1,24 +1,24 @@
 ﻿public class GoblinArcher_IdleState : IdleState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_IdleState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_IdleState stateData, GoblinArcher goblinArcher)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
+        if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+            FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
         }
-        else if (isIdleTimeOver)
+        else if (IsIdleTimeOver)
         {
-            FiniteStateMachine.ChangeState(goblinArcher.moveState);
+            FiniteStateMachine.ChangeState(_goblinArcher.MoveState);
         }
     }
 }

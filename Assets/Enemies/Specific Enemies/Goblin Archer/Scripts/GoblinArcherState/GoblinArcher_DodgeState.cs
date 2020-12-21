@@ -1,34 +1,34 @@
 ﻿public class GoblinArcher_DodgeState : DodgeState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
-    public GoblinArcher_DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData,
-        GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, stateData)
+    public GoblinArcher_DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData, GoblinArcher goblinArcher)
+        : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isDodgeTimeOver)
+        if (IsDodgeTimeOver)
         {
-            if (isPlayerInMinAgroRange && shouldPerformCloseRangeAction)
+            if (IsPlayerInMinAgroRange && ShouldPerformCloseRangeAction)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.meleeAttackState);
+                FiniteStateMachine.ChangeState(_goblinArcher.MeleeAttackState);
             }
-            else if (shouldPerformLongRangeAction && isPlayerInMaxAgroRange)
+            else if (ShouldPerformLongRangeAction && isPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.rangedAttackState);
+                FiniteStateMachine.ChangeState(_goblinArcher.RangedAttackState);
             }
             else if (!isPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
             else if (isPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+                FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
         }
     }

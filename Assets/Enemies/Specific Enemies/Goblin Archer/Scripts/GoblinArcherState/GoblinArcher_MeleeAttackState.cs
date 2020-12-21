@@ -2,27 +2,27 @@
 
 public class GoblinArcher_MeleeAttackState : MeleeAttackState
 {
-    private GoblinArcher goblinArcher;
+    private GoblinArcher _goblinArcher;
 
     public GoblinArcher_MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
         D_MeleeAttackState stateData, GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
-        this.goblinArcher = goblinArcher;
+        _goblinArcher = goblinArcher;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
+        if (IsAnimationFinished)
         {
-            if (isPlayerInMinAgroRange)
+            if (IsPlayerInMinAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.playerDetectedState);
+                FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
-            else if (!isPlayerInMinAgroRange)
+            else if (!IsPlayerInMinAgroRange)
             {
-                FiniteStateMachine.ChangeState(goblinArcher.lookForPlayerState);
+                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
         }
     }

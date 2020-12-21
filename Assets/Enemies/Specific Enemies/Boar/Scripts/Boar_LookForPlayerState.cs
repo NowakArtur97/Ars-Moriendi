@@ -12,11 +12,11 @@
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange || isPlayerInMaxAgroRange)
+        if (isPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
             FiniteStateMachine.ChangeState(boar.playerDetectedState);
         }
-        else if (areAllTurnsTimeDone)
+        else if (AreAllTurnsTimeDone)
         {
             FiniteStateMachine.ChangeState(boar.moveState);
         }

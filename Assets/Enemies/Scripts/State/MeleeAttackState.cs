@@ -1,36 +1,36 @@
 ﻿using UnityEngine;
 
-public class MeleeAttackState : AttackState
+public abstract class MeleeAttackState : AttackState
 {
-    protected D_MeleeAttackState stateData;
+    protected D_MeleeAttackState StateData;
 
-    protected AttackDetails attackDetails;
+    protected AttackDetails AttackDetails;
 
     public MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData)
         : base(finiteStateMachine, entity, animationBoolName, attackPosition)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        attackDetails.position = Entity.aliveGameObject.transform.position;
-        attackDetails.damageAmmount = stateData.attackDamage;
+        AttackDetails.position = Entity.AliveGameObject.transform.position;
+        AttackDetails.damageAmmount = StateData.attackDamage;
 
-        Entity.SetVelocity(stateData.attackMovementSpeed);
+        Entity.SetVelocity(StateData.attackMovementSpeed);
     }
 
     public override void FinishAttack()
     {
         base.FinishAttack();
 
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(AttackPosition.position, StateData.attackRadius, StateData.whatIsPlayer);
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            collider.transform.SendMessage("Damage", AttackDetails);
         }
     }
 }
