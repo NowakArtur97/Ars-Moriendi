@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerGroundedState : PlayerState
+﻿public abstract class PlayerGroundedState : PlayerState
 {
     protected int XInput;
     protected int YInput;
@@ -47,6 +45,7 @@ public class PlayerGroundedState : PlayerState
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
         // TODO: Skill cooldown
+        // TODO: Check if can use ability (like Dash when crouching)
         else if (_secondaryAttackInput)
         {
             FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());

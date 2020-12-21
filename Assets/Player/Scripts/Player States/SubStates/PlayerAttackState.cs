@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerAttackState : PlayerAbilityState
+public abstract class PlayerAttackState : PlayerAbilityState
 {
     protected Transform attackPosition;
 

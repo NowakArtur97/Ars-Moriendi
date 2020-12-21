@@ -1,4 +1,4 @@
-﻿public class PlayerTouchingWallState : PlayerState
+﻿public abstract class PlayerTouchingWallState : PlayerState
 {
     protected bool IsGrounded;
     protected bool IsTouchingWall;

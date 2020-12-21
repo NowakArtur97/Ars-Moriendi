@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerAbilityState : PlayerState
+public abstract class PlayerAbilityState : PlayerState
 {
     public bool IsAbilityDone { get; protected set; }
 

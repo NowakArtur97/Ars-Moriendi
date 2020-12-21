@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerSwordAttackState : PlayerAttackState
+public abstract class PlayerSwordAttackState : PlayerAttackState
 {
     private D_PlayerSwordAttackData _playerSwordAttackData;
 

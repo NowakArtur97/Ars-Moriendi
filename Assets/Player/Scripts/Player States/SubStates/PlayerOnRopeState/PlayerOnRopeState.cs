@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerOnRopeState : PlayerAbilityState
+public abstract class PlayerOnRopeState : PlayerAbilityState
 {
     protected D_PlayerOnRopeState OnRopeStateData;
 

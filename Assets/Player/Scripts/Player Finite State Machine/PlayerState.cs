@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerState
+public abstract class PlayerState
 {
     private float _changeSkillInput;
 
