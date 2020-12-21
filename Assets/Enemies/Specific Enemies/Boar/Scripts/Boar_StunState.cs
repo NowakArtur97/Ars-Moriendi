@@ -1,11 +1,11 @@
 ﻿public class Boar_StunState : StunState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
@@ -16,16 +16,16 @@
         {
             if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
             {
-                FiniteStateMachine.ChangeState(boar.meleeAttackState);
+                FiniteStateMachine.ChangeState(_boar.MeleeAttackState);
             }
             else if (IsPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(boar.chargeState);
+                FiniteStateMachine.ChangeState(_boar.ChargeState);
             }
             else
             {
-                boar.lookForPlayerState.SetShouldTurnImmediately(true);
-                FiniteStateMachine.ChangeState(boar.lookForPlayerState);
+                _boar.LookForPlayerState.SetShouldTurnImmediately(true);
+                FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
             }
         }
     }

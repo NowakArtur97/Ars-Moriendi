@@ -1,39 +1,39 @@
-﻿public class ChargeState : State
+﻿public abstract class ChargeState : State
 {
-    protected D_ChargeState stateData;
+    protected D_ChargeState StateData;
 
-    protected bool isDetectingWall;
-    protected bool isDetectingLedge;
-    protected bool isDetectingPlayerAbove;
+    protected bool IsDetectingWall;
+    protected bool IsDetectingLedge;
+    protected bool IsDetectingPlayerAbove;
 
-    protected bool isPlayerInMinAgroRange;
+    protected bool IsPlayerInMinAgroRange;
 
-    protected bool shouldPerformCloseRangeAction;
-    protected bool shouldPerformLongRangeAction;
+    protected bool ShouldPerformCloseRangeAction;
+    protected bool ShouldPerformLongRangeAction;
 
     public ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        Entity.SetVelocity(stateData.chargeSpeed);
+        Entity.SetVelocity(StateData.chargeSpeed);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        isDetectingWall = Entity.CheckWall();
-        isDetectingLedge = Entity.CheckLedge();
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        isDetectingPlayerAbove = Entity.CheckIfPlayerJumpedOver();
+        IsDetectingWall = Entity.CheckWall();
+        IsDetectingLedge = Entity.CheckLedge();
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsDetectingPlayerAbove = Entity.CheckIfPlayerJumpedOver();
 
-        shouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        shouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

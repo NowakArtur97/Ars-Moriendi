@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RangedAttackState : AttackState
+public abstract class RangedAttackState : AttackState
 {
     protected D_RangedAttackState StateData;
 

@@ -1,26 +1,26 @@
 ﻿public class Boar_SlowDownState : SlowDownState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_SlowDownState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_SlowDownState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (!isDetectingLedge || isDetectingWall)
+        if (!isDetectingLedge || IsDetectingWall)
         {
-            boar.idleState.SetFlipAfterIdle(true);
-            FiniteStateMachine.ChangeState(boar.idleState);
+            _boar.IdleState.SetFlipAfterIdle(true);
+            FiniteStateMachine.ChangeState(_boar.IdleState);
         }
-        else if (hasStopped && isMinSlideTimeOver)
+        else if (HasStopped && IsMinSlideTimeOver)
         {
-            boar.lookForPlayerState.SetShouldTurnImmediately(true);
-            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
+            _boar.LookForPlayerState.SetShouldTurnImmediately(true);
+            FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
         }
     }
 }

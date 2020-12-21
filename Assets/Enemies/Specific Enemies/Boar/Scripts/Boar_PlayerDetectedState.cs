@@ -1,11 +1,11 @@
 ﻿public class Boar_PlayerDetectedState : PlayerDetectedState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
@@ -15,19 +15,19 @@
         if (!IsDetectingLedge || IsDetectingWall)
         {
             Entity.Flip();
-            FiniteStateMachine.ChangeState(boar.moveState);
+            FiniteStateMachine.ChangeState(_boar.MoveState);
         }
         else if (!IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
         }
         else if (IsPlayerInMinAgroRange && ShouldPerformCloseRangeAction)
         {
-            FiniteStateMachine.ChangeState(boar.meleeAttackState);
+            FiniteStateMachine.ChangeState(_boar.MeleeAttackState);
         }
         else if (IsPlayerInMaxAgroRange && ShouldPerformLongRangeAction)
         {
-            FiniteStateMachine.ChangeState(boar.chargeState);
+            FiniteStateMachine.ChangeState(_boar.ChargeState);
         }
     }
 }

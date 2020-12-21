@@ -70,8 +70,5 @@ public abstract class LookForPlayerState : State
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
     }
 
-    public void SetShouldTurnImmediately(bool shouldTurnImmediately)
-    {
-        ShouldTurnImmediately = shouldTurnImmediately;
-    }
+    public void SetShouldTurnImmediately(bool shouldTurnImmediately) => ShouldTurnImmediately = shouldTurnImmediately;
 }

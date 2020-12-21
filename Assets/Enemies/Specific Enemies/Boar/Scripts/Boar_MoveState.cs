@@ -1,10 +1,10 @@
 ﻿public class Boar_MoveState : MoveState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData, Boar boar) : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
@@ -13,12 +13,12 @@
 
         if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
         }
         else if (!IsDetectingLedge || IsDetectingWall)
         {
-            boar.idleState.SetFlipAfterIdle(true);
-            FiniteStateMachine.ChangeState(boar.idleState);
+            _boar.IdleState.SetFlipAfterIdle(true);
+            FiniteStateMachine.ChangeState(_boar.IdleState);
         }
     }
 }

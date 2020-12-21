@@ -2,12 +2,12 @@
 
 public class Boar_MeleeAttackState : MeleeAttackState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
         D_MeleeAttackState stateData, Boar boar) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
@@ -17,11 +17,11 @@ public class Boar_MeleeAttackState : MeleeAttackState
         if (IsPlayerInMinAgroRange)
         {
             FinishAttack();
-            FiniteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
         }
         else if (!IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
         }
     }
 }

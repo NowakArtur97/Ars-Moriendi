@@ -1,37 +1,37 @@
 ﻿public class Boar_ChargeState : ChargeState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (shouldPerformCloseRangeAction)
+        if (ShouldPerformCloseRangeAction)
         {
-            FiniteStateMachine.ChangeState(boar.meleeAttackState);
+            FiniteStateMachine.ChangeState(_boar.MeleeAttackState);
         }
         else if (HasDetectedObstacle())
         {
-            FiniteStateMachine.ChangeState(boar.lookForPlayerState);
+            FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
         }
-        else if (isDetectingPlayerAbove)
+        else if (IsDetectingPlayerAbove)
         {
-            FiniteStateMachine.ChangeState(boar.slowDownState);
+            FiniteStateMachine.ChangeState(_boar.SlowDownState);
         }
-        else if (isPlayerInMinAgroRange)
+        else if (IsPlayerInMinAgroRange)
         {
-            FiniteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
         }
     }
 
     private bool HasDetectedObstacle()
     {
-        return !isDetectingLedge || isDetectingWall;
+        return !IsDetectingLedge || IsDetectingWall;
     }
 }

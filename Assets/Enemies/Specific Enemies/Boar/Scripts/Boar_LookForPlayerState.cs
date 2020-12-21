@@ -1,11 +1,11 @@
 ﻿public class Boar_LookForPlayerState : LookForPlayerState
 {
-    private Boar boar;
+    private Boar _boar;
 
     public Boar_LookForPlayerState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_LookForPlayerState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this.boar = boar;
+        _boar = boar;
     }
 
     public override void LogicUpdate()
@@ -14,11 +14,11 @@
 
         if (isPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(boar.playerDetectedState);
+            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
         }
         else if (AreAllTurnsTimeDone)
         {
-            FiniteStateMachine.ChangeState(boar.moveState);
+            FiniteStateMachine.ChangeState(_boar.MoveState);
         }
     }
 }

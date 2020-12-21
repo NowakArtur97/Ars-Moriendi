@@ -1,45 +1,44 @@
 ﻿using UnityEngine;
 
-public class SlowDownState : State
+public abstract class SlowDownState : State
 {
-    protected D_SlowDownState stateData;
+    protected D_SlowDownState StateData;
 
-    protected float currentVelocity;
-    protected float slideTime;
+    protected float CurrentVelocity;
 
-    protected bool hasStopped;
-    protected bool isMinSlideTimeOver;
+    protected bool HasStopped;
+    protected bool IsMinSlideTimeOver;
 
-    protected bool isDetectingWall;
+    protected bool IsDetectingWall;
     protected bool isDetectingLedge;
 
     public SlowDownState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_SlowDownState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
-        this.stateData = stateData;
+        StateData = stateData;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        isMinSlideTimeOver = false;
-        hasStopped = false;
-        currentVelocity = Entity.MyRigidbody2D.velocity.x;
+        IsMinSlideTimeOver = false;
+        HasStopped = false;
+        CurrentVelocity = Entity.MyRigidbody2D.velocity.x;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (Time.time >= StartTime + stateData.minSlideTime)
+        if (Time.time >= StartTime + StateData.minSlideTime)
         {
-            isMinSlideTimeOver = true;
+            IsMinSlideTimeOver = true;
         }
 
-        if (currentVelocity <= 0.1f)
+        if (CurrentVelocity <= 0.1f)
         {
-            hasStopped = true;
+            HasStopped = true;
         }
     }
 
@@ -47,7 +46,7 @@ public class SlowDownState : State
     {
         base.PhysicsUpdate();
 
-        if (!hasStopped)
+        if (!HasStopped)
         {
             SlowDown();
         }
@@ -57,13 +56,13 @@ public class SlowDownState : State
     {
         base.DoChecks();
 
-        isDetectingWall = Entity.CheckWall();
+        IsDetectingWall = Entity.CheckWall();
         isDetectingLedge = Entity.CheckLedge();
     }
 
     private void SlowDown()
     {
-        currentVelocity = Mathf.Abs(currentVelocity - stateData.decelerationSpeed);
-        Entity.SetVelocity(currentVelocity);
+        CurrentVelocity = Mathf.Abs(CurrentVelocity - StateData.decelerationSpeed);
+        Entity.SetVelocity(CurrentVelocity);
     }
 }
