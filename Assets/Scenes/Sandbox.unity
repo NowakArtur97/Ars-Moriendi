@@ -733,25 +733,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39be59668c800954bb0f75648ce211fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheck: {fileID: 765138927}
-  ledgeCheck: {fileID: 352906539}
-  playerCheck: {fileID: 800722783}
-  playerJumpedOverCheck: {fileID: 291381420}
-  groundCheck: {fileID: 1086130350}
-  entityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
-  idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
-  moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
-  playerDetectedStateData: {fileID: 11400000, guid: e3d06e9c0d9a7f447b0042885ea4160d,
+  WallCheck: {fileID: 765138927}
+  LedgeCheck: {fileID: 352906539}
+  PlayerCheck: {fileID: 800722783}
+  PlayerJumpedOverCheck: {fileID: 291381420}
+  GroundCheck: {fileID: 1086130350}
+  EntityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
+  _idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
+  _moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
+  _playerDetectedStateData: {fileID: 11400000, guid: e3d06e9c0d9a7f447b0042885ea4160d,
     type: 2}
-  chargeStateData: {fileID: 11400000, guid: 81bd4f550b3d20a4590f953f3d28402c, type: 2}
-  lookForPlayerStateData: {fileID: 11400000, guid: 59cc02ca96f8f4049b004c5de9b138da,
+  _chargeStateData: {fileID: 11400000, guid: 81bd4f550b3d20a4590f953f3d28402c, type: 2}
+  _lookForPlayerStateData: {fileID: 11400000, guid: 59cc02ca96f8f4049b004c5de9b138da,
     type: 2}
-  slowDownStateData: {fileID: 11400000, guid: 4a8ec485acefaa245bd9d3c8fadae5c5, type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: 20a5492f2e2e2bb419ba725046ad1fb1,
+  _slowDownStateData: {fileID: 11400000, guid: 4a8ec485acefaa245bd9d3c8fadae5c5, type: 2}
+  _meleeAttackStateData: {fileID: 11400000, guid: 20a5492f2e2e2bb419ba725046ad1fb1,
     type: 2}
-  stunStateData: {fileID: 11400000, guid: 1345b677c87bcce47b26c630b6f03b72, type: 2}
-  deadStateData: {fileID: 11400000, guid: 1816cd32433db414cbb6cabf6e4a4e64, type: 2}
-  meleeAttackPosition: {fileID: 1644224282}
+  _stunStateData: {fileID: 11400000, guid: 1345b677c87bcce47b26c630b6f03b72, type: 2}
+  _deadStateData: {fileID: 11400000, guid: 1816cd32433db414cbb6cabf6e4a4e64, type: 2}
+  _meleeAttackPosition: {fileID: 1644224282}
 --- !u!1 &608755274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8003,27 +8003,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cced0199a43364b9b8cd947074c03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheck: {fileID: 800986408}
-  ledgeCheck: {fileID: 565227548}
-  playerCheck: {fileID: 1880474834}
-  playerJumpedOverCheck: {fileID: 1490897726}
-  groundCheck: {fileID: 522846968}
-  entityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
-  idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
-  moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
-  playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
+  WallCheck: {fileID: 800986408}
+  LedgeCheck: {fileID: 565227548}
+  PlayerCheck: {fileID: 1880474834}
+  PlayerJumpedOverCheck: {fileID: 1490897726}
+  GroundCheck: {fileID: 522846968}
+  EntityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
+  _idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
+  _moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
+  _playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
     type: 2}
-  lookForPlayerStateData: {fileID: 11400000, guid: f643f742c85310344b5134073d9d0470,
+  _lookForPlayerStateData: {fileID: 11400000, guid: f643f742c85310344b5134073d9d0470,
     type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: 8f5df6e977b1712469e660d34311f4e5,
+  _meleeAttackStateData: {fileID: 11400000, guid: 8f5df6e977b1712469e660d34311f4e5,
     type: 2}
-  stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
-  deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
-  dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
-  rangedAttackStateData: {fileID: 11400000, guid: 3104ec65009673f4da1dbcc6728d8547,
+  _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
+  _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
+  _dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
+  _rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
     type: 2}
-  meleeAttackPosition: {fileID: 1117002209}
-  rangedAttackPosition: {fileID: 371804231}
+  _meleeAttackPosition: {fileID: 1117002209}
+  _rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
 Transform:
   m_ObjectHideFlags: 0
@@ -10006,18 +10006,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b87128e10fc9488d24e00302a65fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKnockBackEnabled: 1
-  maxHealth: 50
-  knockBackXForce: 3
-  knockBackYForce: 0
-  deadTopXForce: 1
-  deadTopYForce: 1
-  deadBottomXForce: 1
-  deadBottomYForce: 1
-  deadShieldXForce: 2.5
-  deadShieldYForce: 2.5
-  damagePartcileEffect: {fileID: 7193024407518473852, guid: 74284e4a531ad274abaefa184d956d00,
-    type: 3}
+  _isKnockBackEnabled: 1
+  _maxHealth: 50
+  _knockBackXForce: 3
+  _knockBackYForce: 0
+  _deadTopXForce: 1
+  _deadTopYForce: 1
+  _deadBottomXForce: 1
+  _deadBottomYForce: 1
+  _deadShieldXForce: 0.5
+  _deadShieldYForce: 0.5
+  _damagePartcileEffect: {fileID: 0}
 --- !u!1 &1687596301
 GameObject:
   m_ObjectHideFlags: 0
