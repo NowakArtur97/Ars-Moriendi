@@ -216,6 +216,11 @@ public class Player : MonoBehaviour
         FiniteStateMachine.CurrentState.PhysicsUpdate();
     }
 
+    public void Damage(AttackDetails attackDetails)
+    {
+        StatsManager.TakeDamage(attackDetails);
+    }
+
     #endregion
 
     #region Set Functions

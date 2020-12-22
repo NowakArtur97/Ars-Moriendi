@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -62,7 +63,10 @@ public class Projectile : MonoBehaviour
             if (damageHit)
             {
                 _attackDetails.position = transform.position;
+                // TODO: add alive child object in Player
                 damageHit.transform.parent.SendMessage("Damage", _attackDetails);
+                damageHit.transform.SendMessage("Damage", _attackDetails);
+
                 Destroy(gameObject);
             }
 

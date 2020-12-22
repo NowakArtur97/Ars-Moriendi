@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class PlayerStatsManager
 {
@@ -26,21 +27,23 @@ public class PlayerStatsManager
 
     public void Heal(float health) => _currentHealth += health;
 
-    public void TakeDamage(float damageAmmount, float stunDamageAmount)
+    public void TakeDamage(AttackDetails attackDetails)
     {
-        _currentHealth -= damageAmmount;
-        _currentStunResistance -= stunDamageAmount;
+        _currentHealth -= attackDetails.damageAmmount;
+        _currentStunResistance -= attackDetails.stunDamageAmount;
 
         if (_currentHealth <= 0)
         {
             IsDead = true;
 
             DeathEvent?.Invoke();
+            Debug.Log("DEAD");
         }
 
         if (_currentStunResistance <= 0)
         {
             IsStunned = true;
+            Debug.Log("STUN");
         }
 
         DamageEvent?.Invoke(_currentHealth);
