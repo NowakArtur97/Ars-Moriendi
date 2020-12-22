@@ -23,6 +23,8 @@ public abstract class PlayerState
 
     public virtual void Enter()
     {
+        Player.AnimationToStateMachine.playerState = this;
+
         DoChecks();
 
         Player.MyAnmator.SetBool(AnimationBoolName, true);

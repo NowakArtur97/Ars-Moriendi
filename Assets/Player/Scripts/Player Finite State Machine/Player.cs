@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     #region State Variables
 
     public PlayerFiniteStateMachine FiniteStateMachine { get; private set; }
+    public PlayerAnimationToStateMachine AnimationToStateMachine { get; private set; }
     public PlayerSkillsManager SkillManager { get; private set; }
     public PlayerStatsManager StatsManager { get; private set; }
 
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour
 
     #region Components
 
+    public GameObject AliveGameObject { get; private set; }
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
     public BoxCollider2D MyBoxCollider2D { get; private set; }
@@ -175,21 +177,25 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        MyAnmator = GetComponent<Animator>();
-        MyRigidbody = GetComponent<Rigidbody2D>();
-        MyBoxCollider2D = GetComponent<BoxCollider2D>();
-        InputHandler = GetComponent<PlayerInputHandler>();
-        MyRopeLineRenderer = GetComponent<LineRenderer>();
-        RopeJoint = GetComponent<DistanceJoint2D>();
+        AliveGameObject = transform.Find("Alive").gameObject;
 
-        DashDirectionIndicator = transform.Find("Dash Direction Indicator");
+        AnimationToStateMachine = AliveGameObject.GetComponent<PlayerAnimationToStateMachine>();
+        MyAnmator = AliveGameObject.GetComponent<Animator>();
+        MyRigidbody = AliveGameObject.GetComponent<Rigidbody2D>();
+        MyBoxCollider2D = AliveGameObject.GetComponent<BoxCollider2D>();
+        MyRopeLineRenderer = AliveGameObject.GetComponent<LineRenderer>();
+        RopeJoint = AliveGameObject.GetComponent<DistanceJoint2D>();
 
-        RopeHingeAnchor = transform.Find("Rope Hinge Anchor");
+        DashDirectionIndicator = AliveGameObject.transform.Find("Dash Direction Indicator");
+
+        RopeHingeAnchor = AliveGameObject.transform.Find("Rope Hinge Anchor");
         RopeHingeAnchorRigidbody = RopeHingeAnchor.GetComponent<Rigidbody2D>();
         RopeHingeAnchorSpriteRenderer = RopeHingeAnchor.GetComponent<SpriteRenderer>();
 
-        Crosshair = transform.Find("Crosshair");
+        Crosshair = AliveGameObject.transform.Find("Crosshair");
         CrosshairSpriteRenderer = Crosshair.GetComponent<SpriteRenderer>();
+
+        InputHandler = GetComponent<PlayerInputHandler>();
 
         FacingDirection = 1;
 
@@ -197,11 +203,11 @@ public class Player : MonoBehaviour
         SkillManager.AddSkill(OnRopeStateAim);
         SkillManager.AddSkill(FireArrowShotStateStart);
 
-        FiniteStateMachine.Initialize(IdleState);
-
         OnRopeStateFinish.ResetRope();
 
         _playerHealthBar.SetMaxHealth(_playerStatsData.maxHealth);
+
+        FiniteStateMachine.Initialize(IdleState);
     }
 
     private void Update()
@@ -300,13 +306,14 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    private void AnimationTrigger() => FiniteStateMachine.CurrentState.AnimationTrigger();
+    // TODO: Refactor
+    //private void AnimationTrigger() => FiniteStateMachine.CurrentState.AnimationTrigger();
 
-    private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
+    //private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
 
-    public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
+    //public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
 
-    public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
+    //public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
 
     private void Flip()
     {
