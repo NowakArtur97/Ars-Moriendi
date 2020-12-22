@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerBowArrowShotData _fireArrowShotData;
 
+    [Header("UI")]
+    [SerializeField]
+    private HealthBar _playerHealthBar;
+
     #endregion
 
     #region Check Transforms
