@@ -9832,7 +9832,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 935700609}
+  m_Follow: {fileID: 766324769}
   m_AnimatedTarget: {fileID: 0}
   m_LayerIndex: 0
   m_ShowDebugText: 0
@@ -10017,7 +10017,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 935700609}
+  m_Follow: {fileID: 766324769}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 7
@@ -11061,7 +11061,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 935700609}
+  m_Follow: {fileID: 766324769}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 4

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -306,19 +305,10 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    // TODO: Refactor
-    //private void AnimationTrigger() => FiniteStateMachine.CurrentState.AnimationTrigger();
-
-    //private void AnimationFinishedTrigger() => FiniteStateMachine.CurrentState.AnimationFinishedTrigger();
-
-    //public virtual void TriggerAttack() => FiniteStateMachine.CurrentState.TriggerAttack();
-
-    //public virtual void FinishAttack() => FiniteStateMachine.CurrentState.FinishAttack();
-
     private void Flip()
     {
         FacingDirection *= -1;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+        AliveGameObject.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
     public void SetBoxColliderHeight(float height)

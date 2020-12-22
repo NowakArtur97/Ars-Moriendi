@@ -30,7 +30,7 @@ public class PlayerLedgeClimbState : PlayerState
         base.Enter();
 
         Player.SetVelocityZero();
-        Player.transform.position = _detectedPosition;
+        Player.AliveGameObject.transform.position = _detectedPosition;
 
         _cornerPosition = Player.DetermineCornerPosition();
         _startPosition.Set(_cornerPosition.x - (Player.FacingDirection * _ledgeClimbStateData.ledgeClimbStartOffset.x),
@@ -38,7 +38,7 @@ public class PlayerLedgeClimbState : PlayerState
         _stopPosition.Set(_cornerPosition.x + (Player.FacingDirection * _ledgeClimbStateData.ledgeClimbStopOffset.x),
             _cornerPosition.y + _ledgeClimbStateData.ledgeClimbStopOffset.y);
 
-        Player.transform.position = _startPosition;
+        Player.AliveGameObject.transform.position = _startPosition;
     }
 
     public override void Exit()
@@ -49,7 +49,7 @@ public class PlayerLedgeClimbState : PlayerState
 
         if (_isClimbing)
         {
-            Player.transform.position = _stopPosition;
+            Player.AliveGameObject.transform.position = _stopPosition;
             _isClimbing = false;
         }
     }
@@ -76,7 +76,7 @@ public class PlayerLedgeClimbState : PlayerState
             _jumpInput = Player.InputHandler.JumpInput;
 
             Player.SetVelocityZero();
-            Player.transform.position = _startPosition;
+            Player.AliveGameObject.transform.position = _startPosition;
 
             if ((_xInput == Player.FacingDirection || _yInput == 1) && _isHanging && !_isClimbing)
             {

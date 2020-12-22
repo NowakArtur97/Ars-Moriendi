@@ -11,7 +11,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
     {
         base.Enter();
 
-        PlayerPosition = Player.transform.position;
+        PlayerPosition = Player.AliveGameObject.transform.position;
 
         AttachRope();
     }
@@ -27,7 +27,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         if (hit.collider != null)
         {
             RopeAttached = true;
-            PlayerPosition = Player.transform.position;
+            PlayerPosition = Player.AliveGameObject.transform.position;
             AddForceAfterRopeAttaching(hit.point);
 
             if (!RopePositions.Contains(hit.point))
@@ -53,7 +53,7 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
 
     private void AddForceAfterRopeAttaching(Vector2 hitPoint)
     {
-        float relativePoint = Player.transform.InverseTransformPoint(hitPoint).x;
+        float relativePoint = Player.AliveGameObject.transform.InverseTransformPoint(hitPoint).x;
         int forceDirection = relativePoint > 0 ? 1 : -1;
 
         Vector2 attachedRopeForce = new Vector2(OnRopeStateData.attachedRopeForce.x * forceDirection, OnRopeStateData.attachedRopeForce.y);

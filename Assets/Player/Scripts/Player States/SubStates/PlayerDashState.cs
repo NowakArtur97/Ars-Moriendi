@@ -97,12 +97,12 @@ public class PlayerDashState : PlayerAbilityState
     private void PlaceAfterImage()
     {
         ObjectPoolManager.Instance.GetFromPool(ObjectPoolType.AFTER_IMAGE);
-        _lastAfterImagePosition = Player.transform.position;
+        _lastAfterImagePosition = Player.AliveGameObject.transform.position;
     }
 
     public void CheckIfShouldPlaceAfterImage()
     {
-        if (Vector2.Distance(Player.transform.position, _lastAfterImagePosition) >= _dashStateData.distanceBetweenAfterImages)
+        if (Vector2.Distance(Player.AliveGameObject.transform.position, _lastAfterImagePosition) >= _dashStateData.distanceBetweenAfterImages)
         {
             PlaceAfterImage();
         }

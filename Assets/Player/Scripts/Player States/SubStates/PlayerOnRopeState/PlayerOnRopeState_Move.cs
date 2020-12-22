@@ -40,7 +40,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
                 Player.CheckIfShouldFlip(_xInput);
 
-                PlayerPosition = Player.transform.position;
+                PlayerPosition = Player.AliveGameObject.transform.position;
 
                 if (IsGrounded)
                 {

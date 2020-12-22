@@ -58,7 +58,7 @@
 
         if (IsTouchingWall && !IsTouchingLedge)
         {
-            Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
+            Player.LedgeClimbState.SetDetectedPosition(Player.AliveGameObject.transform.position);
         }
     }
 }
