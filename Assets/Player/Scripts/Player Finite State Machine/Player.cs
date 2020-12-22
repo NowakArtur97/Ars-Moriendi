@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerBaseData _playerData;
     [SerializeField]
+    private D_PlayerStatsData _playerStatsData;
+    [SerializeField]
     private D_PlayerIdleState _idleStateData;
     [SerializeField]
     private D_PlayerMoveState _moveStateData;
@@ -68,18 +70,11 @@ public class Player : MonoBehaviour
     private Transform _fireArrowShotAttackPosition;
     #endregion
 
-    #region Other Variables
-
-    private Vector2 _workspace;
-    public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }
-
-    #endregion
-
     #region State Variables
 
     public PlayerFiniteStateMachine FiniteStateMachine { get; private set; }
     public PlayerSkillsManager SkillManager { get; private set; }
+    public PlayerStatsManager StatsManager { get; private set; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -107,6 +102,14 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region Other Variables
+
+    private Vector2 _workspace;
+    public Vector2 CurrentVelocity { get; private set; }
+    public int FacingDirection { get; private set; }
+
+    #endregion
+
     #region Components
 
     public Animator MyAnmator { get; private set; }
@@ -130,6 +133,7 @@ public class Player : MonoBehaviour
     {
         FiniteStateMachine = new PlayerFiniteStateMachine();
         SkillManager = new PlayerSkillsManager();
+        StatsManager = new PlayerStatsManager(_playerStatsData);
 
         IdleState = new PlayerIdleState(this, FiniteStateMachine, "idle", _idleStateData);
         MoveState = new PlayerMoveState(this, FiniteStateMachine, "move", _moveStateData);

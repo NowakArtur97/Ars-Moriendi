@@ -21,12 +21,11 @@ public abstract class Entity : MonoBehaviour
     public float FacingDirection { get; private set; }
     private float _currentHealth;
 
-    protected bool IsDead;
-
     private float _currentStunResistance;
     private float _lastDamageTime;
     public int LastDamageDirection { get; private set; }
 
+    protected bool IsDead;
     protected bool IsStunned;
 
     private Vector2 _velocityWorkSpace;
