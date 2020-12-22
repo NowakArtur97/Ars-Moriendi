@@ -18,7 +18,7 @@ public class PlayerAfterImageSprite : MonoBehaviour
     private void OnEnable()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPosition = GameObject.FindObjectOfType<Player>().AliveGameObject.transform;
 
         transform.position = playerPosition.position;
         transform.rotation = playerPosition.rotation;

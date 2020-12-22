@@ -15,6 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private PlayerInput _playerInput;
     private Camera mainCamera;
+    private GameObject _aliveGameObject;
 
     private float _jumpInputStartTime;
     private float _dashInputStartTime;
@@ -44,6 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Start()
     {
+        _aliveGameObject = transform.Find("Alive").gameObject;
         _playerInput = GetComponent<PlayerInput>();
         mainCamera = Camera.main;
     }
@@ -111,7 +113,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (_playerInput.currentControlScheme == "Keyboard and Mouse")
         {
-            RawDashDirectionInput = mainCamera.ScreenToWorldPoint(RawDashDirectionInput) - transform.position;
+            RawDashDirectionInput = mainCamera.ScreenToWorldPoint(RawDashDirectionInput) - _aliveGameObject.transform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
     }
@@ -158,7 +160,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (_playerInput.currentControlScheme == "Keyboard and Mouse")
         {
-            RawSecondaryAttackDirectionInput = mainCamera.ScreenToWorldPoint(RawSecondaryAttackDirectionInput) - transform.position;
+            RawSecondaryAttackDirectionInput = mainCamera.ScreenToWorldPoint(RawSecondaryAttackDirectionInput) - _aliveGameObject.transform.position;
             SecondaryAttackDirectionInput = Vector2Int.RoundToInt(RawSecondaryAttackDirectionInput.normalized);
         }
     }
