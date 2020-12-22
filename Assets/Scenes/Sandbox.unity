@@ -8736,6 +8736,7 @@ MonoBehaviour:
   _swordAttackData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b, type: 2}
   _swordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e, type: 2}
   _fireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff, type: 2}
+  _playerHealthBar: {fileID: 0}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}
   _ledgeCheck: {fileID: 1595342979}
@@ -9899,49 +9900,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 917927150}
---- !u!1 &1552673758
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1552673760}
-  - component: {fileID: 1552673759}
-  m_Layer: 0
-  m_Name: UI Health Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1552673759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552673758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 260877a34e63fb446b85cbcfc4bf0f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1552673760
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552673758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 488.45245, y: 442.40128, z: -20.580786}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1553699893
 GameObject:
   m_ObjectHideFlags: 0
