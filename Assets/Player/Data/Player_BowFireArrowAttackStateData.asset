@@ -21,7 +21,7 @@ MonoBehaviour:
   arrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a, type: 3}
   arrowDamage: 10
   arrowSpeed: 20
-  arrowTravelDistance: 10
+  arrowTravelDistance: 1000
   arrowGravityScale: 1
   aimingPoint: {fileID: 9188411683123435579, guid: 1bf22a59fe695004d82a643e6751a70f,
     type: 3}
