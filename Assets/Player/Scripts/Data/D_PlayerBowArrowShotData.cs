@@ -12,6 +12,7 @@ public class D_PlayerBowArrowShotData : ScriptableObject
 
     public GameObject arrow;
     public float arrowDamage = 10.0f;
+    public float arrowStunDamage = 10.0f;
     public float arrowSpeed = 12.0f;
     public float arrowTravelDistance = 8.0f;
     public float arrowGravityScale = 1.0f;

@@ -45,7 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Start()
     {
-        _aliveGameObject = transform.Find("Alive").gameObject;
+        _aliveGameObject = transform.Find("Alive Player").gameObject;
         _playerInput = GetComponent<PlayerInput>();
         mainCamera = Camera.main;
     }

@@ -8004,7 +8004,7 @@ GameObject:
   - component: {fileID: 766324770}
   - component: {fileID: 766324775}
   m_Layer: 10
-  m_Name: Alive
+  m_Name: Alive Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8937,10 +8937,15 @@ MonoBehaviour:
   _crouchMoveStateData: {fileID: 11400000, guid: c61ae00170fdf24429bfea22721f29b0,
     type: 2}
   _onRopeStateData: {fileID: 11400000, guid: 198b9c7108232f9428c122cc514015db, type: 2}
-  _swordAttackData01: {fileID: 11400000, guid: 2cb96a01853d947479c689fbd86110d1, type: 2}
-  _swordAttackData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b, type: 2}
-  _swordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e, type: 2}
-  _fireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff, type: 2}
+  _swordAttackStateData01: {fileID: 11400000, guid: 2cb96a01853d947479c689fbd86110d1,
+    type: 2}
+  _swordAttackStateData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b,
+    type: 2}
+  _swordAttackStateData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e,
+    type: 2}
+  _fireArrowShotStateData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff,
+    type: 2}
+  _stunStateData: {fileID: 11400000, guid: 0bbb96df80a1df342b6a60c9f93ef3b7, type: 2}
   _playerHealthBar: {fileID: 1079154463}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}

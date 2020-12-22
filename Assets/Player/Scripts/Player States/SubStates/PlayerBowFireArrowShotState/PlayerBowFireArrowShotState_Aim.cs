@@ -13,6 +13,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
     private GameObject[] _points;
 
+    private AttackDetails _attackDetails;
+
     public PlayerBowFireArrowShotState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, Transform attackPosition,
         D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
     {
@@ -82,7 +84,12 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
 
         GameObject projectile = GameObject.Instantiate(PlayerFireArrowShotData.arrow, attackPosition.position, attackPosition.rotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
-        projectileScript.FireProjectile(_arrowSpeed, PlayerFireArrowShotData.arrowTravelDistance, PlayerFireArrowShotData.arrowDamage, PlayerFireArrowShotData.arrowGravityScale, _shotDirection);
+
+        _attackDetails.damageAmmount = PlayerFireArrowShotData.arrowDamage;
+        _attackDetails.stunDamageAmount = PlayerFireArrowShotData.arrowStunDamage;
+
+        projectileScript.FireProjectile(_arrowSpeed, PlayerFireArrowShotData.arrowTravelDistance, _attackDetails,
+            PlayerFireArrowShotData.arrowGravityScale, _shotDirection);
     }
 
     private void Aim()

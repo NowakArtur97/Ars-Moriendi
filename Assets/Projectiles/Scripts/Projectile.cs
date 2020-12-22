@@ -92,20 +92,20 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage, float gravityScale)
+    public void FireProjectile(float speed, float travelDistance, AttackDetails attackDetails, float gravityScale)
     {
         _speed = transform.right * speed;
         _travelDistance = travelDistance;
         _gravityScale = gravityScale;
-        _attackDetails.damageAmmount = damage;
+        _attackDetails = attackDetails;
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage, float gravityScale, Vector2 direction)
+    public void FireProjectile(float speed, float travelDistance, AttackDetails attackDetails, float gravityScale, Vector2 direction)
     {
         _speed = direction * speed;
         _travelDistance = travelDistance;
         _gravityScale = gravityScale;
-        _attackDetails.damageAmmount = damage;
+        _attackDetails = attackDetails;
     }
 
     private void OnDrawGizmos()

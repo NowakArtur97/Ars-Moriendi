@@ -2,7 +2,7 @@
 
 public abstract class PlayerSwordAttackState : PlayerAttackState
 {
-    private D_PlayerSwordAttackData _playerSwordAttackData;
+    private D_PlayerSwordAttackData _swordAttackStateData;
 
     private const string SWORD_ATTACK_ANIMATION_BOOL_NAME = "swordAttack0";
 
@@ -13,23 +13,23 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
     private bool _isAttemptingToAttack;
 
     public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
-        Transform attackPosition, D_PlayerSwordAttackData playerSwordAttackData)
+        Transform attackPosition, D_PlayerSwordAttackData swordAttackStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, attackPosition)
     {
-        _playerSwordAttackData = playerSwordAttackData;
+        _swordAttackStateData = swordAttackStateData;
     }
 
     public override void Enter()
     {
-        SetAnimationBoolName(SWORD_ATTACK_ANIMATION_BOOL_NAME + _playerSwordAttackData.comboAttackIndex);
+        SetAnimationBoolName(SWORD_ATTACK_ANIMATION_BOOL_NAME + _swordAttackStateData.comboAttackIndex);
 
         base.Enter();
 
         Player.InputHandler.UsePrimaryAttackInput();
 
         _attackDetails.position = attackPosition.position;
-        _attackDetails.damageAmmount = _playerSwordAttackData.attackDamage;
-        _attackDetails.stunDamageAmount = _playerSwordAttackData.stunDamageAmount;
+        _attackDetails.damageAmmount = _swordAttackStateData.attackDamage;
+        _attackDetails.stunDamageAmount = _swordAttackStateData.stunDamageAmount;
     }
 
     public override void LogicUpdate()
@@ -41,19 +41,19 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
         _isAttemptingToAttack = Player.InputHandler.PrimaryAttackInput;
 
         Player.CheckIfShouldFlip(_xInput);
-        Player.SetVelocityX(_playerSwordAttackData.attackVelocity * _xInput);
+        Player.SetVelocityX(_swordAttackStateData.attackVelocity * _xInput);
 
         if (IsExitingState && _isAttemptingToAttack)
         {
-            if (_attackCount == Player.SwordAttackState01._playerSwordAttackData.comboAttackIndex)
+            if (_attackCount == Player.SwordAttackState01._swordAttackStateData.comboAttackIndex)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
             }
-            else if (_attackCount == Player.SwordAttackState02._playerSwordAttackData.comboAttackIndex)
+            else if (_attackCount == Player.SwordAttackState02._swordAttackStateData.comboAttackIndex)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState02);
             }
-            else if (_attackCount == Player.SwordAttackState03._playerSwordAttackData.comboAttackIndex)
+            else if (_attackCount == Player.SwordAttackState03._swordAttackStateData.comboAttackIndex)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState03);
             }
@@ -65,7 +65,7 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
         base.FinishAttack();
 
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position,
-            _playerSwordAttackData.attackRadius, _playerSwordAttackData.whatIsEnemy);
+            _swordAttackStateData.attackRadius, _swordAttackStateData.whatIsEnemy);
 
         foreach (Collider2D collider in detectedObjects)
         {

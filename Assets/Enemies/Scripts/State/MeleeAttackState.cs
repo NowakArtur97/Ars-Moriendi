@@ -18,6 +18,7 @@ public abstract class MeleeAttackState : AttackState
 
         AttackDetails.position = Entity.AliveGameObject.transform.position;
         AttackDetails.damageAmmount = StateData.attackDamage;
+        AttackDetails.stunDamageAmount = StateData.stunDamage;
 
         Entity.SetVelocity(StateData.attackMovementSpeed);
     }

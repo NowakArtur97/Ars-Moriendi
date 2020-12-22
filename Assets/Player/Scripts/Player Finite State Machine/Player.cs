@@ -34,13 +34,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerOnRopeState _onRopeStateData;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackData01;
+    private D_PlayerSwordAttackData _swordAttackStateData01;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackData02;
+    private D_PlayerSwordAttackData _swordAttackStateData02;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackData03;
+    private D_PlayerSwordAttackData _swordAttackStateData03;
     [SerializeField]
-    private D_PlayerBowArrowShotData _fireArrowShotData;
+    private D_PlayerBowArrowShotData _fireArrowShotStateData;
+    [SerializeField]
+    private D_PlayerStunStateData _stunStateData;
 
     [Header("UI")]
     [SerializeField]
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
     public PlayerOnRopeState_Attach OnRopeStateAttach { get; private set; }
     public PlayerOnRopeState_Move OnRopeStateMove { get; private set; }
     public PlayerOnRopeState_Finish OnRopeStateFinish { get; private set; }
+    public PlayerStunState StunState { get; private set; }
 
     #endregion
 
@@ -160,23 +163,25 @@ public class Player : MonoBehaviour
         OnRopeStateFinish = new PlayerOnRopeState_Finish(this, FiniteStateMachine, "inAir", _onRopeStateData);
 
         SwordAttackState01 = new PlayerSwordAttackState_01(this, FiniteStateMachine, "swordAttack01", _swordAttackPosition01,
-            _swordAttackData01);
+            _swordAttackStateData01);
         SwordAttackState02 = new PlayerSwordAttackState_02(this, FiniteStateMachine, "swordAttack02", _swordAttackPosition02,
-            _swordAttackData02);
+            _swordAttackStateData02);
         SwordAttackState03 = new PlayerSwordAttackState_03(this, FiniteStateMachine, "swordAttack03", _swordAttackPosition03,
-            _swordAttackData03);
+            _swordAttackStateData03);
 
         FireArrowShotStateStart = new PlayerBowFireArrowShotState_Start(this, FiniteStateMachine, "bowFireShotStart",
-            _fireArrowShotAttackPosition, _fireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotStateData);
         FireArrowShotStateAim = new PlayerBowFireArrowShotState_Aim(this, FiniteStateMachine, "bowFireShotAim",
-            _fireArrowShotAttackPosition, _fireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotStateData);
         FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, "bowFireShotFinish",
-            _fireArrowShotAttackPosition, _fireArrowShotData);
+            _fireArrowShotAttackPosition, _fireArrowShotStateData);
+
+        StunState = new PlayerStunState(this, FiniteStateMachine, "stun", _stunStateData);
     }
 
     private void Start()
     {
-        AliveGameObject = transform.Find("Alive").gameObject;
+        AliveGameObject = transform.Find("Alive Player").gameObject;
 
         AnimationToStateMachine = AliveGameObject.GetComponent<PlayerAnimationToStateMachine>();
         MyAnmator = AliveGameObject.GetComponent<Animator>();
@@ -224,6 +229,11 @@ public class Player : MonoBehaviour
     public void Damage(AttackDetails attackDetails)
     {
         StatsManager.TakeDamage(attackDetails);
+
+        if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
+        {
+            FiniteStateMachine.ChangeCurrentState(StunState);
+        }
     }
 
     #endregion
