@@ -11,8 +11,9 @@ public class PlayerStatsManager
     public bool IsDead;
     public bool IsStunned;
 
-    public Action DeathAction;
-    public Action DamageAction;
+    // TODO: use to restart level/load checkpoint
+    public Action DeathEvent;
+    public Action<float> DamageEvent;
 
     public PlayerStatsManager(D_PlayerStatsData playerStatsData)
     {
@@ -34,7 +35,7 @@ public class PlayerStatsManager
         {
             IsDead = true;
 
-            DeathAction?.Invoke();
+            DeathEvent?.Invoke();
         }
 
         if (_currentStunResistance <= 0)
@@ -42,7 +43,7 @@ public class PlayerStatsManager
             IsStunned = true;
         }
 
-        DamageAction?.Invoke();
+        DamageEvent?.Invoke(_currentHealth);
     }
 
     public void ResetStunResistance() => _currentStunResistance = _maxStunResistance;

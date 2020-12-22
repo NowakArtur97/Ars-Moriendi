@@ -200,6 +200,8 @@ public class Player : MonoBehaviour
         FiniteStateMachine.Initialize(IdleState);
 
         OnRopeStateFinish.ResetRope();
+
+        _playerHealthBar.SetMaxHealth(_playerStatsData.maxHealth);
     }
 
     private void Update()

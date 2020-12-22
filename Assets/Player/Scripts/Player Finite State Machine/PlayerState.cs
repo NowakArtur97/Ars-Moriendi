@@ -55,8 +55,6 @@ public abstract class PlayerState
             {
                 Player.SkillManager.ChangeSkillDown();
             }
-
-            //Player.FiniteStateMachine.ChangeSecondaryAttackState(Player.SkillManager.GetCurrentSkill());
         }
     }
 

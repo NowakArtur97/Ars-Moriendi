@@ -401,6 +401,50 @@ Transform:
   m_Father: {fileID: 322887033}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &317373059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317373061}
+  - component: {fileID: 317373060}
+  m_Layer: 0
+  m_Name: UI Health Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &317373060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317373059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1145ea9955999264eb6adbd6a66fc342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 1079154463}
+--- !u!4 &317373061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317373059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 488.45245, y: 442.40128, z: -20.580786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322887032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8715,6 +8759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: d77f91519e57cb64f9af64b93b9e5a0e, type: 2}
+  _playerStatsData: {fileID: 11400000, guid: 836eb2501e70720448c10be1c4da037d, type: 2}
   _idleStateData: {fileID: 11400000, guid: 3b30887fcd1ed1744a4a140641f21953, type: 2}
   _moveStateData: {fileID: 11400000, guid: d4832c8ea1a43fb42897546c1688c6f4, type: 2}
   _jumpStateData: {fileID: 11400000, guid: fbeb9efa38c6bb340b0d1bbb104aab84, type: 2}
@@ -8736,7 +8781,7 @@ MonoBehaviour:
   _swordAttackData02: {fileID: 11400000, guid: 029426cceb2899447b224ee0b134965b, type: 2}
   _swordAttackData03: {fileID: 11400000, guid: 62fab10e45209ae4aa8e58118598356e, type: 2}
   _fireArrowShotData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff, type: 2}
-  _playerHealthBar: {fileID: 0}
+  _playerHealthBar: {fileID: 1079154463}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}
   _ledgeCheck: {fileID: 1595342979}
@@ -8872,6 +8917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079154461}
   - component: {fileID: 1079154462}
+  - component: {fileID: 1079154463}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -8950,6 +8996,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1079154463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079154460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba70d451948e76e4384bf2c7c954ac15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 1079154462}
 --- !u!1 &1086130349
 GameObject:
   m_ObjectHideFlags: 0
