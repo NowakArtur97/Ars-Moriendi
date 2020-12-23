@@ -7,6 +7,7 @@ public class UIHealthManager : MonoBehaviour
 
     void Start()
     {
+        // TODO: Unsubscribe events
         FindObjectOfType<Player>().StatsManager.DamageEvent += OnDamage;
     }
 

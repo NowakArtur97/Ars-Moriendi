@@ -75,7 +75,8 @@ MonoBehaviour:
     type: 2}
   StunStateData: {fileID: 11400000, guid: 0bbb96df80a1df342b6a60c9f93ef3b7, type: 2}
   _deadStateData: {fileID: 11400000, guid: c67bf0a41697dcf48ab6e32a2eb578ef, type: 2}
-  _playerHealthBar: {fileID: 0}
+  _playerUI: {fileID: 4883906366544273686, guid: c7e526aea3065e24aaac0e6bce24c58a,
+    type: 3}
   _groundCheck: {fileID: 7196271356112200942}
   _wallCheck: {fileID: 7196271355303961965}
   _ledgeCheck: {fileID: 7196271356800304421}

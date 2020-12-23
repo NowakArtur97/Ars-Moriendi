@@ -16,7 +16,5 @@ public class PlayerDeadState : PlayerState
 
         GameObject.Instantiate(_deadStateData.bloodEffectGO, Player.AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
         GameObject.Instantiate(_deadStateData.deathChunkEffectGO, Player.AliveGameObject.transform.position, _deadStateData.deathChunkEffectGO.transform.rotation);
-
-        GameObject.Destroy(Player.gameObject);
     }
 }

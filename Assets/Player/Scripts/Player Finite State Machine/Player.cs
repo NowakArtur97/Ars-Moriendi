@@ -216,6 +216,8 @@ public class Player : MonoBehaviour
 
         _playerHealthBar.SetMaxHealth(_playerStatsData.maxHealth);
 
+        AliveGameObject.transform.position = FindObjectOfType<PlayerCheckpointManager>().LastCheckpoint;
+
         FiniteStateMachine.Initialize(IdleState);
     }
 
