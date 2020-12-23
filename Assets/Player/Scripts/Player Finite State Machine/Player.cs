@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerBowArrowShotState _fireArrowShotStateData;
     [SerializeField]
-    private D_PlayerStunState _stunStateData;
+    public D_PlayerStunState StunStateData;
     [SerializeField]
     private D_PlayerDeadState _deadStateData;
 
@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
     public PlayerOnRopeState_Move OnRopeStateMove { get; private set; }
     public PlayerOnRopeState_Finish OnRopeStateFinish { get; private set; }
     public PlayerStunState StunState { get; private set; }
+    public PlayerDeadState DeadState { get; private set; }
 
     #endregion
 
@@ -178,7 +179,9 @@ public class Player : MonoBehaviour
         FireArrowShotStateFinish = new PlayerBowFireArrowShotState_Finish(this, FiniteStateMachine, "bowFireShotFinish",
             _fireArrowShotAttackPosition, _fireArrowShotStateData);
 
-        StunState = new PlayerStunState(this, FiniteStateMachine, "stun", _stunStateData);
+        StunState = new PlayerStunState(this, FiniteStateMachine, "stun", StunStateData);
+        // TODO: Create Dead animation
+        DeadState = new PlayerDeadState(this, FiniteStateMachine, "stun", _deadStateData);
     }
 
     private void Start()
@@ -232,7 +235,13 @@ public class Player : MonoBehaviour
     {
         StatsManager.TakeDamage(attackDetails);
 
-        if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
+        Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
+
+        if (StatsManager.IsDead)
+        {
+            FiniteStateMachine.ChangeCurrentState(DeadState);
+        }
+        else if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
         {
             FiniteStateMachine.ChangeCurrentState(StunState);
         }

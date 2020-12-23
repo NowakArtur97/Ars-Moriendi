@@ -27,6 +27,7 @@ public class PlayerStatsManager
         _currentStunResistance = playerStatsData.maxStunResistance;
     }
 
+    // TODO: Add potion
     public void Heal(float health) => _currentHealth += health;
 
     public void TakeDamage(AttackDetails attackDetails)
@@ -55,4 +56,6 @@ public class PlayerStatsManager
         IsStunned = false;
         _currentStunResistance = _maxStunResistance;
     }
+
+    public bool IsStunResistanceMax() => _currentStunResistance == _maxStunResistance;
 }

@@ -47,6 +47,21 @@ public abstract class PlayerState
     {
         _changeSkillInput = Player.InputHandler.NormalizedChangeSkillInput;
 
+        ChangeSkills();
+
+        RecoverStunResistance();
+    }
+
+    private void RecoverStunResistance()
+    {
+        if (!Player.StatsManager.IsStunResistanceMax() && Time.time >= Player.StatsManager.LastDamageTime + Player.StunStateData.stunResetTime)
+        {
+            Player.StatsManager.ResetStunResistance();
+        }
+    }
+
+    private void ChangeSkills()
+    {
         if (_changeSkillInput != 0)
         {
             if (_changeSkillInput == 1)

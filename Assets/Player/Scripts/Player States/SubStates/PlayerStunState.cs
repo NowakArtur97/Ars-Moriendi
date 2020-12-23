@@ -18,8 +18,6 @@ public class PlayerStunState : PlayerState
 
         if (Time.time >= Player.StatsManager.LastDamageTime + _stunStateData.stunRecorveryTime)
         {
-            Player.StatsManager.ResetStunResistance();
-
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.IdleState);

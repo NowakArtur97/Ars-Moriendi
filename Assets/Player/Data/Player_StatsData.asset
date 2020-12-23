@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player_StatsData
   m_EditorClassIdentifier: 
   maxHealth: 100
-  maxStunResistance: 1
+  maxStunResistance: 100

@@ -31,7 +31,7 @@ public abstract class MeleeAttackState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.SendMessage("Damage", AttackDetails);
+            collider.transform.parent.SendMessage("Damage", AttackDetails);
         }
     }
 }
