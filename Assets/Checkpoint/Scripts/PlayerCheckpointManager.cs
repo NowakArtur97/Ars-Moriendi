@@ -16,13 +16,12 @@ public class PlayerCheckpointManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(_instance);
+            LastCheckpoint = startingPosition.position;
         }
         else
         {
-            Destroy(_instance);
+            Destroy(this);
         }
-
-        LastCheckpoint = startingPosition.position;
     }
 
     private void Start()
