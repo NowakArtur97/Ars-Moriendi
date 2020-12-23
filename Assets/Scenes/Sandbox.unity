@@ -8506,6 +8506,9 @@ MonoBehaviour:
     type: 2}
   _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
+  _dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
+  _rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
+    type: 2}
   _meleeAttackPosition: {fileID: 1117002209}
   _rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
@@ -8943,6 +8946,7 @@ MonoBehaviour:
   _fireArrowShotStateData: {fileID: 11400000, guid: 9a145dc366f2b1a4d9f6fc5999b6b8ff,
     type: 2}
   _stunStateData: {fileID: 11400000, guid: 0bbb96df80a1df342b6a60c9f93ef3b7, type: 2}
+  _deadStateData: {fileID: 11400000, guid: c67bf0a41697dcf48ab6e32a2eb578ef, type: 2}
   _playerHealthBar: {fileID: 1079154463}
   _groundCheck: {fileID: 1980981576}
   _wallCheck: {fileID: 642228427}
