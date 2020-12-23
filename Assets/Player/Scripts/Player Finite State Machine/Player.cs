@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 
     [Header("States Data")]
     [SerializeField]
-    private D_PlayerBaseData _playerData;
+    private D_PlayerBase _playerData;
     [SerializeField]
-    private D_PlayerStatsData _playerStatsData;
+    private D_PlayerStats _playerStatsData;
     [SerializeField]
     private D_PlayerIdleState _idleStateData;
     [SerializeField]
@@ -34,15 +34,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerOnRopeState _onRopeStateData;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackStateData01;
+    private D_PlayerSwordAttackState _swordAttackStateData01;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackStateData02;
+    private D_PlayerSwordAttackState _swordAttackStateData02;
     [SerializeField]
-    private D_PlayerSwordAttackData _swordAttackStateData03;
+    private D_PlayerSwordAttackState _swordAttackStateData03;
     [SerializeField]
-    private D_PlayerBowArrowShotData _fireArrowShotStateData;
+    private D_PlayerBowArrowShotState _fireArrowShotStateData;
     [SerializeField]
-    private D_PlayerStunStateData _stunStateData;
+    private D_PlayerStunState _stunStateData;
+    [SerializeField]
+    private D_PlayerDeadState _deadStateData;
 
     [Header("UI")]
     [SerializeField]

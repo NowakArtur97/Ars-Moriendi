@@ -2,7 +2,7 @@
 
 public abstract class PlayerSwordAttackState : PlayerAttackState
 {
-    private D_PlayerSwordAttackData _swordAttackStateData;
+    private D_PlayerSwordAttackState _swordAttackStateData;
 
     private const string SWORD_ATTACK_ANIMATION_BOOL_NAME = "swordAttack0";
 
@@ -13,7 +13,7 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
     private bool _isAttemptingToAttack;
 
     public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
-        Transform attackPosition, D_PlayerSwordAttackData swordAttackStateData)
+        Transform attackPosition, D_PlayerSwordAttackState swordAttackStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, attackPosition)
     {
         _swordAttackStateData = swordAttackStateData;

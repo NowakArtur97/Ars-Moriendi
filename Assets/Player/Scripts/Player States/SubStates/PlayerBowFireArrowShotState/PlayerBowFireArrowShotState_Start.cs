@@ -3,7 +3,7 @@
 public class PlayerBowFireArrowShotState_Start : PlayerBowFireArrowShotState
 {
     public PlayerBowFireArrowShotState_Start(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
-        Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData)
+        Transform attackPosition, D_PlayerBowArrowShotState playerFireArrowShotData)
         : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
     {
     }

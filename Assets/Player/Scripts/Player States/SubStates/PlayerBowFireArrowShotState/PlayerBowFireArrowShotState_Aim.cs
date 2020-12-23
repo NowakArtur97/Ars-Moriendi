@@ -16,7 +16,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     private AttackDetails _attackDetails;
 
     public PlayerBowFireArrowShotState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, Transform attackPosition,
-        D_PlayerBowArrowShotData playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
+        D_PlayerBowArrowShotState playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
     {
         InitializeAimingPointsArray(attackPosition, playerFireArrowShotData);
     }
@@ -122,7 +122,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         _shotDirection.y = Mathf.Clamp(_shotDirection.y, PlayerFireArrowShotData.minBowShotAngleY, PlayerFireArrowShotData.maxBowShotAngleY);
     }
 
-    private void InitializeAimingPointsArray(Transform attackPosition, D_PlayerBowArrowShotData playerFireArrowShotData)
+    private void InitializeAimingPointsArray(Transform attackPosition, D_PlayerBowArrowShotState playerFireArrowShotData)
     {
         _points = new GameObject[playerFireArrowShotData.numberOfAimingPoints];
 

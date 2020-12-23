@@ -18,7 +18,7 @@ public class PlayerStatsManager
     // TODO: use to restart level/load checkpoint
     public Action DeathEvent;
 
-    public PlayerStatsManager(D_PlayerStatsData playerStatsData)
+    public PlayerStatsManager(D_PlayerStats playerStatsData)
     {
         _maxHealth = playerStatsData.maxHealth;
         _currentHealth = playerStatsData.maxHealth;

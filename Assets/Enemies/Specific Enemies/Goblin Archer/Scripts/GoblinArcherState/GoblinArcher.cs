@@ -10,8 +10,8 @@ public class GoblinArcher : Entity
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
-    [SerializeField] public D_DodgeState _dodgeStateData;
-    [SerializeField] public D_RangedAttackState _rangedAttackStateData;
+    [SerializeField] public D_DodgeState _dodgeStateData { get; private set; }
+    [SerializeField] public D_RangedAttackState _rangedAttackStateData { get; private set; }
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;

@@ -2,11 +2,11 @@
 
 public class PlayerStunState : PlayerState
 {
-    private D_PlayerStunStateData _stunStateData;
+    private D_PlayerStunState _stunStateData;
 
     private bool _isGrounded;
 
-    public PlayerStunState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerStunStateData stunStateData)
+    public PlayerStunState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerStunState stunStateData)
         : base(player, playerFiniteStateMachine, animationBoolName)
     {
         _stunStateData = stunStateData;

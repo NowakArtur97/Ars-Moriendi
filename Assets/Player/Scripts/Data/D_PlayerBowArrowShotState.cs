@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Player Bow Attack State Data", menuName = "Data/Player State Data/Bow Attack State")]
-public class D_PlayerBowArrowShotData : ScriptableObject
+public class D_PlayerBowArrowShotState : ScriptableObject
 {
     public float bowShotCooldown = 0.75f;
     public float bowShotMaxHoldTime = 4;

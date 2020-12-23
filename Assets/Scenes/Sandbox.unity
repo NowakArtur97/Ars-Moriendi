@@ -8506,9 +8506,6 @@ MonoBehaviour:
     type: 2}
   _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
-  _dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
-  _rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
-    type: 2}
   _meleeAttackPosition: {fileID: 1117002209}
   _rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
@@ -8955,7 +8952,7 @@ MonoBehaviour:
   _swordAttackPosition02: {fileID: 741332328}
   _swordAttackPosition03: {fileID: 1229859906}
   _fireArrowShotAttackPosition: {fileID: 1312886313}
-  MyRopeLineRenderer: {fileID: 0}
+  MyRopeLineRenderer: {fileID: 766324775}
 --- !u!1 &1079154460
 GameObject:
   m_ObjectHideFlags: 0
