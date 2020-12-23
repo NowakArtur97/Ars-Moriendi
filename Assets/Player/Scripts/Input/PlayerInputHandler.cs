@@ -111,7 +111,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawDashDirectionInput = context.ReadValue<Vector2>();
 
-        if (_playerInput.currentControlScheme == "Keyboard and Mouse")
+        if (_playerInput.currentControlScheme == "Keyboard and Mouse" && mainCamera != null)
         {
             RawDashDirectionInput = mainCamera.ScreenToWorldPoint(RawDashDirectionInput) - _aliveGameObject.transform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
@@ -158,7 +158,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         RawSecondaryAttackDirectionInput = context.ReadValue<Vector2>();
 
-        if (_playerInput.currentControlScheme == "Keyboard and Mouse")
+        if (_playerInput.currentControlScheme == "Keyboard and Mouse" && mainCamera != null)
         {
             RawSecondaryAttackDirectionInput = mainCamera.ScreenToWorldPoint(RawSecondaryAttackDirectionInput) - _aliveGameObject.transform.position;
             SecondaryAttackDirectionInput = Vector2Int.RoundToInt(RawSecondaryAttackDirectionInput.normalized);
