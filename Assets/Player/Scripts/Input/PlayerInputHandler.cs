@@ -41,8 +41,6 @@ public class PlayerInputHandler : MonoBehaviour
     public float RawChangeSkillInput { get; private set; }
     public int NormalizedChangeSkillInput { get; private set; }
 
-    public int PrimaryAttackClickCount { get; private set; }
-
     private void Start()
     {
         _aliveGameObject = transform.Find("Alive Player").gameObject;
@@ -54,7 +52,6 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
-        CheckPrimaryAttackInputHoldTime();
         CheckSecondaryAttackInputHoldTime();
     }
 
@@ -136,7 +133,6 @@ public class PlayerInputHandler : MonoBehaviour
         {
             PrimaryAttackInput = true;
             _primaryInputStartTime = Time.time;
-            PrimaryAttackClickCount = PrimaryAttackClickCount + 1 > _maxClickCount ? _startClickCount : PrimaryAttackClickCount + 1;
         }
     }
 
@@ -205,14 +201,6 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= _dashInputStartTime + _inputHoldTime)
         {
             DashInput = false;
-        }
-    }
-
-    public void CheckPrimaryAttackInputHoldTime()
-    {
-        if (Time.time >= _primaryInputStartTime + _inputClickTime)
-        {
-            PrimaryAttackClickCount = 0;
         }
     }
 

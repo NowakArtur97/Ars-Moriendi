@@ -4,13 +4,12 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
 {
     private D_PlayerSwordAttackState _swordAttackStateData;
 
-    private const string SWORD_ATTACK_ANIMATION_BOOL_NAME = "swordAttack0";
-
-    private int _attackCount;
     private AttackDetails _attackDetails;
-    private int _xInput;
-    private bool _isAttacking;
-    private bool _isAttemptingToAttack;
+
+    protected int XInput;
+    protected bool IsGrounded;
+
+    protected bool IsAttemptingToAttack;
 
     public PlayerSwordAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
         Transform attackPosition, D_PlayerSwordAttackState swordAttackStateData)
@@ -21,43 +20,29 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
 
     public override void Enter()
     {
-        SetAnimationBoolName(SWORD_ATTACK_ANIMATION_BOOL_NAME + _swordAttackStateData.comboAttackIndex);
-
         base.Enter();
 
         Player.InputHandler.UsePrimaryAttackInput();
 
-        _attackDetails.position = attackPosition.position;
-        _attackDetails.damageAmmount = _swordAttackStateData.attackDamage;
-        _attackDetails.stunDamageAmount = _swordAttackStateData.stunDamageAmount;
+        SetAttackDetails();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        _xInput = Player.InputHandler.NormalizedInputX;
-        _attackCount = Player.InputHandler.PrimaryAttackClickCount;
-        _isAttemptingToAttack = Player.InputHandler.PrimaryAttackInput;
+        XInput = Player.InputHandler.NormalizedInputX;
+        IsAttemptingToAttack = Player.InputHandler.PrimaryAttackInput;
 
-        Player.CheckIfShouldFlip(_xInput);
-        Player.SetVelocityX(_swordAttackStateData.attackVelocity * _xInput);
+        Player.CheckIfShouldFlip(XInput);
+        Player.SetVelocityX(_swordAttackStateData.attackVelocity * XInput);
+    }
 
-        if (IsExitingState && _isAttemptingToAttack)
-        {
-            if (_attackCount == Player.SwordAttackState01._swordAttackStateData.comboAttackIndex)
-            {
-                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
-            }
-            else if (_attackCount == Player.SwordAttackState02._swordAttackStateData.comboAttackIndex)
-            {
-                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState02);
-            }
-            else if (_attackCount == Player.SwordAttackState03._swordAttackStateData.comboAttackIndex)
-            {
-                FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState03);
-            }
-        }
+    public override void DoChecks()
+    {
+        base.DoChecks();
+
+        IsGrounded = Player.CheckIfGrounded();
     }
 
     public override void FinishAttack()
@@ -73,10 +58,10 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
         }
     }
 
-    public override void AnimationFinishedTrigger()
+    private void SetAttackDetails()
     {
-        Player.MyAnmator.SetBool(AnimationBoolName, false);
-
-        base.AnimationFinishedTrigger();
+        _attackDetails.position = attackPosition.position;
+        _attackDetails.damageAmmount = _swordAttackStateData.attackDamage;
+        _attackDetails.stunDamageAmount = _swordAttackStateData.stunDamageAmount;
     }
 }
