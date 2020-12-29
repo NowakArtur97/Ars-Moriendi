@@ -2,9 +2,9 @@
 
 public abstract class PlayerSwordAttackState : PlayerAttackState
 {
-    private D_PlayerSwordAttackState _swordAttackStateData;
-
     private AttackDetails _attackDetails;
+
+    protected D_PlayerSwordAttackState SwordAttackStateData;
 
     protected int XInput;
     protected bool IsGrounded;
@@ -15,7 +15,7 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
         Transform attackPosition, D_PlayerSwordAttackState swordAttackStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, attackPosition)
     {
-        _swordAttackStateData = swordAttackStateData;
+        SwordAttackStateData = swordAttackStateData;
     }
 
     public override void Enter()
@@ -32,10 +32,10 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
         base.LogicUpdate();
 
         XInput = Player.InputHandler.NormalizedInputX;
-        IsAttemptingToAttack = Player.InputHandler.PrimaryAttackInput;
+        IsAttemptingToAttack = Player.InputHandler.PrimaryInput;
 
         Player.CheckIfShouldFlip(XInput);
-        Player.SetVelocityX(_swordAttackStateData.attackVelocity * XInput);
+        Player.SetVelocityX(SwordAttackStateData.attackVelocity * XInput);
     }
 
     public override void DoChecks()
@@ -49,8 +49,8 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
     {
         base.FinishAttack();
 
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position,
-            _swordAttackStateData.attackRadius, _swordAttackStateData.whatIsEnemy);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(AttackPosition.position,
+            SwordAttackStateData.attackRadius, SwordAttackStateData.whatIsEnemy);
 
         foreach (Collider2D collider in detectedObjects)
         {
@@ -60,8 +60,8 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
 
     private void SetAttackDetails()
     {
-        _attackDetails.position = attackPosition.position;
-        _attackDetails.damageAmmount = _swordAttackStateData.attackDamage;
-        _attackDetails.stunDamageAmount = _swordAttackStateData.stunDamageAmount;
+        _attackDetails.position = AttackPosition.position;
+        _attackDetails.damageAmmount = SwordAttackStateData.attackDamage;
+        _attackDetails.stunDamageAmount = SwordAttackStateData.stunDamageAmount;
     }
 }

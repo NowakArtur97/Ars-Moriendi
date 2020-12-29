@@ -52,8 +52,8 @@ public class PlayerInAirState : PlayerState
         _jumpInputStop = Player.InputHandler.JumpInputStop;
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
-        _primaryAttackInput = Player.InputHandler.PrimaryAttackInput;
-        _secondaryAttackInput = Player.InputHandler.SecondaryAttackInput;
+        _primaryAttackInput = Player.InputHandler.PrimaryInput;
+        _secondaryAttackInput = Player.InputHandler.SecondaryInput;
 
         CheckJumpHeightMultiplier();
 

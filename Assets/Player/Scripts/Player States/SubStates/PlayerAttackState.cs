@@ -2,12 +2,12 @@
 
 public abstract class PlayerAttackState : PlayerAbilityState
 {
-    protected Transform attackPosition;
+    protected Transform AttackPosition;
 
-    public PlayerAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName,
-        Transform attackPosition) : base(player, playerFiniteStateMachine, animationBoolName)
+    public PlayerAttackState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, Transform attackPosition)
+        : base(player, playerFiniteStateMachine, animationBoolName)
     {
-        this.attackPosition = attackPosition;
+        AttackPosition = attackPosition;
     }
 
     public override void LogicUpdate()

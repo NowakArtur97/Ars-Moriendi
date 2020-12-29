@@ -6,12 +6,6 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField]
     private float _inputHoldTime = 0.2f;
-    [SerializeField]
-    private float _inputClickTime = 0.35f;
-    [SerializeField]
-    private int _startClickCount = 1;
-    [SerializeField]
-    private int _maxClickCount = 3;
 
     private PlayerInput _playerInput;
     private Camera mainCamera;
@@ -20,7 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float _jumpInputStartTime;
     private float _dashInputStartTime;
     private float _primaryInputStartTime;
-    private float _secondaryAttackInputStartTime;
+    private float _secondaryInputStartTime;
 
     public Vector2 RawMovementInput { get; private set; }
     public Vector2 RawDashDirectionInput { get; private set; }
@@ -35,9 +29,10 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
     public bool CrouchInput { get; private set; }
-    public bool PrimaryAttackInput { get; private set; }
-    public bool SecondaryAttackInput { get; private set; }
-    public bool SecondaryAttackInputStop { get; private set; }
+    public bool PrimaryInput { get; private set; }
+    public bool PrimaryInputStop { get; private set; }
+    public bool SecondaryInput { get; private set; }
+    public bool SecondaryInputStop { get; private set; }
     public float RawChangeSkillInput { get; private set; }
     public int NormalizedChangeSkillInput { get; private set; }
 
@@ -52,6 +47,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckJumpInputHoldTime();
         CheckDashInputHoldTime();
+        CheckPrimaryAttackInputHoldTime();
         CheckSecondaryAttackInputHoldTime();
     }
 
@@ -131,8 +127,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            PrimaryAttackInput = true;
+            PrimaryInput = true;
+            PrimaryInputStop = false;
             _primaryInputStartTime = Time.time;
+        }
+        if (context.canceled)
+        {
+            PrimaryInputStop = true;
         }
     }
 
@@ -140,13 +141,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            SecondaryAttackInput = true;
-            SecondaryAttackInputStop = false;
-            _secondaryAttackInputStartTime = Time.time;
+            SecondaryInput = true;
+            SecondaryInputStop = false;
+            _secondaryInputStartTime = Time.time;
         }
         if (context.canceled)
         {
-            SecondaryAttackInputStop = true;
+            SecondaryInputStop = true;
         }
     }
 
@@ -182,11 +183,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void UseDashInput() => DashInput = false;
 
-    public void UsePrimaryAttackInput() => PrimaryAttackInput = false;
+    public void UsePrimaryAttackInput() => PrimaryInput = false;
 
-    public void UseSecondaryAttackInput() => SecondaryAttackInput = false;
+    public void UseSecondaryAttackInput() => SecondaryInput = false;
 
-    public void UseSecondaryAttackInputStop() => SecondaryAttackInputStop = false;
+    public void UseSecondaryAttackInputStop() => SecondaryInputStop = false;
 
     public void CheckJumpInputHoldTime()
     {
@@ -204,11 +205,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void CheckPrimaryAttackInputHoldTime()
+    {
+        if (Time.time >= _primaryInputStartTime + _inputHoldTime)
+        {
+            PrimaryInput = false;
+        }
+    }
+
     public void CheckSecondaryAttackInputHoldTime()
     {
-        if (Time.time >= _secondaryAttackInputStartTime + _inputHoldTime)
+        if (Time.time >= _secondaryInputStartTime + _inputHoldTime)
         {
-            SecondaryAttackInput = false;
+            SecondaryInput = false;
         }
     }
 }

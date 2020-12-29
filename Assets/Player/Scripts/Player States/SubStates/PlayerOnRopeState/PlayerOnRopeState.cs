@@ -36,7 +36,7 @@ public abstract class PlayerOnRopeState : PlayerAbilityState
         SetAnimationBasedOnPosition();
 
         PlayerPosition = Player.AliveGameObject.transform.position;
-        RopeInputStop = Player.InputHandler.SecondaryAttackInputStop;
+        RopeInputStop = Player.InputHandler.SecondaryInputStop;
 
         if (!IsExitingState)
         {

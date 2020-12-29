@@ -25,10 +25,6 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.Enter();
 
-        CanShot = false;
-        IsAiming = false;
-        IsShooting = false;
-
         _numberOfAimingPoints = PlayerFireArrowShotData.numberOfAimingPoints;
         _spaceBetweenAimingPoints = PlayerFireArrowShotData.spaceBetweenAimingPoints;
         _arrowSpeed = PlayerFireArrowShotData.arrowSpeed;
@@ -44,14 +40,12 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         if (!IsExitingState)
         {
             _shotDirectionInput = Player.InputHandler.RawSecondaryAttackDirectionInput;
-            _shotInputStop = Player.InputHandler.SecondaryAttackInputStop;
+            _shotInputStop = Player.InputHandler.SecondaryInputStop;
             _shotDirection = _shotDirectionInput;
 
             if (_shotInputStop || Time.unscaledTime >= PlayerFireArrowShotData.bowShotMaxHoldTime + StartTime)
             {
                 Time.timeScale = 1;
-
-                IsShooting = true;
 
                 if (_shotDirectionInput != Vector2.zero)
                 {
@@ -59,6 +53,8 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
                 }
 
                 Shot();
+
+                Player.FiniteStateMachine.ChangeCurrentState(Player.FireArrowShotStateFinish);
             }
             else
             {
@@ -71,18 +67,15 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
     {
         base.Exit();
 
+        Time.timeScale = 1;
         HideAimingPoints();
-
-        CanShot = false;
-        IsAiming = false;
-        IsShooting = true;
     }
 
     private void Shot()
     {
         ClampShotDirection();
 
-        GameObject projectile = GameObject.Instantiate(PlayerFireArrowShotData.arrow, attackPosition.position, attackPosition.rotation);
+        GameObject projectile = GameObject.Instantiate(PlayerFireArrowShotData.arrow, AttackPosition.position, AttackPosition.rotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
 
         _attackDetails.damageAmmount = PlayerFireArrowShotData.arrowDamage;
@@ -105,7 +98,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         }
     }
 
-    private Vector2 PointToPosition(float time, float arrowSpeed) => (Vector2)attackPosition.position + (_shotDirection * arrowSpeed * time)
+    private Vector2 PointToPosition(float time, float arrowSpeed) => (Vector2)AttackPosition.position + (_shotDirection * arrowSpeed * time)
       + 0.5f * Physics2D.gravity * (time * time);
 
     private bool IsShootingInTheOppositeDirection() =>

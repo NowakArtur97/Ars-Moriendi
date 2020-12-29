@@ -15,9 +15,7 @@ MonoBehaviour:
   attackRadius: 0.7
   attackDamage: 5
   stunDamageAmount: 1
-  attackCooldown: 0.3
-  attackVelocity: 5
-  comboAttackIndex: 2
+  attackVelocity: 1
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 2048

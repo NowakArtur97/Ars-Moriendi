@@ -6,24 +6,4 @@ public class PlayerBowFireArrowShotState_Finish : PlayerBowFireArrowShotState
         D_PlayerBowArrowShotState playerFireArrowShotData) : base(player, playerFiniteStateMachine, animationBoolName, attackPosition, playerFireArrowShotData)
     {
     }
-
-    public override void Enter()
-    {
-        base.Enter();
-
-        CanShot = true;
-        IsAiming = false;
-        IsShooting = false;
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        LastShotTime = Time.time;
-
-        CanShot = true;
-        IsAiming = false;
-        IsShooting = false;
-    }
 }
