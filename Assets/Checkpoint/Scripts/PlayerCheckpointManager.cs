@@ -6,7 +6,7 @@ public class PlayerCheckpointManager : MonoBehaviour
     private static PlayerCheckpointManager _instance;
 
     [SerializeField]
-    public Transform startingPosition;
+    private Transform startingPosition;
 
     public Vector2 LastCheckpoint { get; private set; }
 
@@ -24,11 +24,21 @@ public class PlayerCheckpointManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelLoaded;
+    }
+
+    private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
         FindObjectOfType<Player>().StatsManager.DeathEvent += OnPlayerDeath;
 
-        for (int i = 0; i < transform.childCount; ++i)
+        for (int i = 0; i < transform.childCount; i++)
         {
             PlayerCheckpoint checkpoint = transform.GetChild(i).GetComponent<PlayerCheckpoint>();
             checkpoint.CheckpointEvent += OnPlayerCheckpoint;
