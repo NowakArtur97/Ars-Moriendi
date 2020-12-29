@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class PlayerOnRopeState : PlayerAbilityState
 {
@@ -8,13 +7,6 @@ public abstract class PlayerOnRopeState : PlayerAbilityState
     protected bool IsGrounded;
     protected bool RopeInputStop;
     protected Vector2 PlayerPosition;
-
-    protected static bool IsAiming;
-    protected static bool RopeAttached;
-    protected static bool IsHoldingRope;
-    protected static Vector2 AimDirection;
-    protected static List<Vector2> RopePositions = new List<Vector2>();
-    protected static Dictionary<Vector2, int> WrapPointsLookup = new Dictionary<Vector2, int>();
 
     public PlayerOnRopeState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
         : base(player, playerFiniteStateMachine, animationBoolName)
@@ -37,22 +29,6 @@ public abstract class PlayerOnRopeState : PlayerAbilityState
 
         PlayerPosition = Player.AliveGameObject.transform.position;
         RopeInputStop = Player.InputHandler.SecondaryInputStop;
-
-        if (!IsExitingState)
-        {
-            if (!RopeAttached && !IsAiming && IsHoldingRope)
-            {
-                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAttach);
-            }
-            else if (RopeAttached && !IsAiming && IsHoldingRope)
-            {
-                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateMove);
-            }
-            else if (!RopeAttached && !IsAiming && !IsHoldingRope)
-            {
-                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateFinish);
-            }
-        }
     }
 
     public override void DoChecks()

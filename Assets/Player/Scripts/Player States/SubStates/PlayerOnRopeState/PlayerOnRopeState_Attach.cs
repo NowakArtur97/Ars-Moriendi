@@ -2,6 +2,8 @@
 
 public class PlayerOnRopeState_Attach : PlayerOnRopeState
 {
+    private Vector2 _aimDirection;
+
     public PlayerOnRopeState_Attach(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
@@ -22,32 +24,31 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         Player.MyRopeLineRenderer.gameObject.SetActive(true);
         Player.RopeHingeAnchor.gameObject.SetActive(true);
 
-        RaycastHit2D hit = Physics2D.Raycast(PlayerPosition, AimDirection, OnRopeStateData.ropeMaxCastDistance, OnRopeStateData.whatCanYouAttachTo);
+        RaycastHit2D hit = Physics2D.Raycast(PlayerPosition, _aimDirection, OnRopeStateData.ropeMaxCastDistance, OnRopeStateData.whatCanYouAttachTo);
 
         if (hit.collider != null)
         {
-            RopeAttached = true;
             PlayerPosition = Player.AliveGameObject.transform.position;
             AddForceAfterRopeAttaching(hit.point);
 
-            if (!RopePositions.Contains(hit.point))
+            if (!Player.OnRopeStateMove.RopePositions.Contains(hit.point))
             {
-                RopePositions.Add(hit.point);
-                WrapPointsLookup.Add(hit.point, 0);
+                Player.OnRopeStateMove.AddRopePosition(hit.point);
+                Player.OnRopeStateMove.AddWrapPointsLookup(hit.point, 0);
 
                 Player.RopeJoint.distance = Vector2.Distance(PlayerPosition, hit.point);
                 Player.RopeJoint.enabled = true;
                 Player.RopeHingeAnchorSpriteRenderer.enabled = true;
             }
+
+            Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateMove);
         }
         else
         {
-            RopeAttached = false;
-            IsAiming = false;
-            IsHoldingRope = false;
-
             Player.RopeJoint.enabled = false;
             Player.RopeHingeAnchorSpriteRenderer.enabled = false;
+
+            Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateFinish);
         }
     }
 
@@ -59,4 +60,6 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         Vector2 attachedRopeForce = new Vector2(OnRopeStateData.attachedRopeForce.x * forceDirection, OnRopeStateData.attachedRopeForce.y);
         Player.AddForce(attachedRopeForce, ForceMode2D.Force);
     }
+
+    public void SetAimDirection(Vector2 aimDirection) => _aimDirection = aimDirection;
 }

@@ -5,19 +5,11 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
     private Vector2 _ropeDirectionInput;
     private Vector3 _crossHairPosition;
     private float _aimAngle;
+    private Vector2 _aimDirection;
 
     public PlayerOnRopeState_Aim(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-
-        RopeAttached = false;
-        IsAiming = true;
-        IsHoldingRope = false;
     }
 
     public override void LogicUpdate()
@@ -28,10 +20,11 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         {
             if (RopeInputStop)
             {
-                IsAiming = false;
-                IsHoldingRope = true;
-
                 Player.InputHandler.UseSecondaryAttackInputStop();
+
+                Player.OnRopeStateAttach.SetAimDirection(_aimDirection);
+
+                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateAttach);
             }
             else
             {
@@ -49,7 +42,7 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         {
             _aimAngle = Mathf.PI * 2 + _aimAngle;
         }
-        AimDirection = Quaternion.Euler(0, 0, _aimAngle * Mathf.Rad2Deg) * Vector2.right;
+        _aimDirection = Quaternion.Euler(0, 0, _aimAngle * Mathf.Rad2Deg) * Vector2.right;
 
         if (!Player.Crosshair.gameObject.activeInHierarchy)
         {
@@ -65,5 +58,4 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         _crossHairPosition = new Vector3(x, y, 0);
         Player.Crosshair.position = _crossHairPosition;
     }
-
 }

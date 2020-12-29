@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,16 +10,22 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
     private bool _distanceSet;
     private Vector2 _ropeHook;
 
+    public List<Vector2> RopePositions { get; private set; }
+    private Dictionary<Vector2, int> _wrapPointsLookup;
+
     public PlayerOnRopeState_Move(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerOnRopeState onRopeStateData)
         : base(player, playerFiniteStateMachine, animationBoolName, onRopeStateData)
     {
+        RopePositions = new List<Vector2>();
+        _wrapPointsLookup = new Dictionary<Vector2, int>();
     }
 
-    public override void Enter()
+    public override void Exit()
     {
         base.Enter();
 
-        IsHoldingRope = false;
+        RopePositions.Clear();
+        _wrapPointsLookup.Clear();
     }
 
     public override void LogicUpdate()
@@ -29,14 +36,17 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
         {
             if (RopeInputStop)
             {
-                RopeAttached = false;
-
                 Player.InputHandler.UseSecondaryAttackInputStop();
+
+                Player.FiniteStateMachine.ChangeCurrentState(Player.OnRopeStateFinish);
             }
             else
             {
                 _xInput = Player.InputHandler.NormalizedInputX;
                 _yInput = Player.InputHandler.NormalizedInputY;
+
+                Player.MyAnmator.SetFloat("yVelocity", Player.CurrentVelocity.y);
+                Player.MyAnmator.SetFloat("xVelocity", Mathf.Abs(Player.CurrentVelocity.x));
 
                 Player.CheckIfShouldFlip(_xInput);
 
@@ -54,15 +64,6 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
                 UpdateRopePositions();
             }
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        RopeAttached = false;
-        IsAiming = false;
-        IsHoldingRope = false;
     }
 
     private void UpdateRopePositions()
@@ -140,14 +141,14 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
             {
                 Vector2 closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, platformsCollider);
 
-                if (WrapPointsLookup.ContainsKey(closestPointToHit))
+                if (_wrapPointsLookup.ContainsKey(closestPointToHit))
                 {
                     Player.OnRopeStateFinish.ResetRope();
                 }
                 else
                 {
                     RopePositions.Add(closestPointToHit);
-                    WrapPointsLookup.Add(closestPointToHit, 0);
+                    _wrapPointsLookup.Add(closestPointToHit, 0);
                     _distanceSet = false;
                 }
             }
@@ -183,7 +184,7 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
         Vector2 playerDir = PlayerPosition - anchorPosition;
         float playerAngle = Vector2.Angle(anchorPosition, playerDir);
 
-        int playerPositionIndicator = WrapPointsLookup[hingePosition];
+        int playerPositionIndicator = _wrapPointsLookup[hingePosition];
         int playerPositionIndicatorHelper = playerAngle < hingeAngle ? 1 : -1;
 
         if (playerPositionIndicator == playerPositionIndicatorHelper)
@@ -192,14 +193,14 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
         }
         else
         {
-            WrapPointsLookup[hingePosition] = -playerPositionIndicatorHelper;
+            _wrapPointsLookup[hingePosition] = -playerPositionIndicatorHelper;
         }
     }
 
     private void UnwrapRopePosition(int anchorIndex, int hingeIndex)
     {
         Vector2 newAnchorPosition = RopePositions[anchorIndex];
-        WrapPointsLookup.Remove(RopePositions[hingeIndex]);
+        _wrapPointsLookup.Remove(RopePositions[hingeIndex]);
         RopePositions.RemoveAt(hingeIndex);
 
         Player.RopeHingeAnchorRigidbody.transform.position = newAnchorPosition;
@@ -262,4 +263,8 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
         return verts;
     }
+
+    public void AddRopePosition(Vector2 point) => RopePositions.Add(point);
+
+    public void AddWrapPointsLookup(Vector2 point, int directionIndicator) => _wrapPointsLookup.Add(point, directionIndicator);
 }

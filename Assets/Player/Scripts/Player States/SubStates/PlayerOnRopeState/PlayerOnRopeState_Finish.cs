@@ -11,9 +11,9 @@
 
         Player.InputHandler.UseSecondaryAttackInput();
 
-        IsAbilityDone = true;
-
         ResetRope();
+
+        IsAbilityDone = true;
     }
 
     public void ResetRope()
@@ -24,8 +24,5 @@
         Player.MyRopeLineRenderer.positionCount = 2;
         Player.MyRopeLineRenderer.SetPosition(0, PlayerPosition);
         Player.MyRopeLineRenderer.SetPosition(1, PlayerPosition);
-
-        WrapPointsLookup.Clear();
-        RopePositions.Clear();
     }
 }
