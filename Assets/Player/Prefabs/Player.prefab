@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7196271355060563238}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   _ledgeClimbStateData: {fileID: 11400000, guid: 39baafd58fc565b4dad2f2e9d3666be8,
     type: 2}
   _dashStateData: {fileID: 11400000, guid: 82358b27c2d1b4446a46165270586f82, type: 2}
+  _rollStateData: {fileID: 11400000, guid: ca9061b8fc08fd149894ea5098077f04, type: 2}
   _crouchIdleStateData: {fileID: 11400000, guid: 208592b8f4a447149945c5be14011c42,
     type: 2}
   _crouchMoveStateData: {fileID: 11400000, guid: c61ae00170fdf24429bfea22721f29b0,
@@ -75,8 +76,7 @@ MonoBehaviour:
     type: 2}
   StunStateData: {fileID: 11400000, guid: 0bbb96df80a1df342b6a60c9f93ef3b7, type: 2}
   _deadStateData: {fileID: 11400000, guid: c67bf0a41697dcf48ab6e32a2eb578ef, type: 2}
-  _playerUI: {fileID: 4883906366544273686, guid: c7e526aea3065e24aaac0e6bce24c58a,
-    type: 3}
+  _playerHealthBar: {fileID: 0}
   _groundCheck: {fileID: 7196271356112200942}
   _wallCheck: {fileID: 7196271355303961965}
   _ledgeCheck: {fileID: 7196271356800304421}
@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputHoldTime: 0.2
-  _inputClickTime: 0.35
-  _startClickCount: 1
-  _maxClickCount: 3
 --- !u!114 &7196271355060563238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +275,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 781a8aec-ab4e-4821-b039-7f0ef5a698b8
     m_ActionName: Gameplay/Change Skill[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9768cca7-703b-46ee-a660-3b4596d0a2bc
+    m_ActionName: Gameplay/Roll[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -361,7 +362,7 @@ GameObject:
   - component: {fileID: 7196271355499427201}
   m_Layer: 10
   m_Name: Alive Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

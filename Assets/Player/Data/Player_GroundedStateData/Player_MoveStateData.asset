@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Player_MoveStateData
   m_EditorClassIdentifier: 
   movementVelocity: 10
+  standColliderHeight: 1.466799

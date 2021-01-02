@@ -29,6 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
     public bool CrouchInput { get; private set; }
+    public bool RollInput { get; private set; }
     public bool PrimaryInput { get; private set; }
     public bool PrimaryInputStop { get; private set; }
     public bool SecondaryInput { get; private set; }
@@ -120,6 +121,18 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             CrouchInput = false;
+        }
+    }
+
+    public void OnRollInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            RollInput = true;
+        }
+        if (context.canceled)
+        {
+            RollInput = false;
         }
     }
 

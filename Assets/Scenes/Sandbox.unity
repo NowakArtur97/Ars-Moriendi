@@ -8092,12 +8092,6 @@ Transform:
   m_Father: {fileID: 866579102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!223 &1207271128 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 4883906366544273686, guid: c7e526aea3065e24aaac0e6bce24c58a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4883906365398360014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1252539031
 GameObject:
   m_ObjectHideFlags: 3
@@ -10038,11 +10032,6 @@ PrefabInstance:
       propertyPath: _playerHealthBar
       value: 
       objectReference: {fileID: 1079154463}
-    - target: {fileID: 7196271355060563233, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: _playerUI
-      value: 
-      objectReference: {fileID: 1207271128}
     - target: {fileID: 7196271355060563239, guid: c4f4f9005df274d4f88682d64b401041,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10101,16 +10090,6 @@ PrefabInstance:
     - target: {fileID: 7196271355060563417, guid: c4f4f9005df274d4f88682d64b401041,
         type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563417, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355499427206, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
