@@ -13,6 +13,7 @@ public class PlayerStatsManager
 
     public bool IsDead { get; private set; }
     public bool IsStunned { get; private set; }
+    public bool IsRolling { get; private set; }
 
     public Action<float> DamageEvent;
     // TODO: use to restart level/load checkpoint
@@ -58,4 +59,6 @@ public class PlayerStatsManager
     }
 
     public bool IsStunResistanceMax() => _currentStunResistance == _maxStunResistance;
+
+    public void SetIsRolling(bool isRolling) => IsRolling = isRolling;
 }

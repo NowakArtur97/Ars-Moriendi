@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerRollState : PlayerAbilityState
+﻿public class PlayerRollState : PlayerAbilityState
 {
     private D_PlayerRollState _rollStateData;
 
@@ -10,5 +6,35 @@ public class PlayerRollState : PlayerAbilityState
         : base(player, playerFiniteStateMachine, animationBoolName)
     {
         _rollStateData = rollStateData;
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        Player.SetVelocityX(Player.FacingDirection * _rollStateData.rollVelocity);
+        // TODO: Remove?
+        Player.SetBoxColliderHeight(_rollStateData.rollColliderHeight);
+
+        Player.StatsManager.SetIsRolling(true);
+    }
+
+    public override void LogicUpdate()
+    {
+        if (IsAnimationFinished)
+        {
+            IsAbilityDone = true;
+        }
+
+        base.LogicUpdate();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        Player.SetVelocityZero();
+
+        Player.StatsManager.SetIsRolling(false);
     }
 }

@@ -239,6 +239,11 @@ public class Player : MonoBehaviour
 
     public void Damage(AttackDetails attackDetails)
     {
+        if (StatsManager.IsRolling)
+        {
+            return;
+        }
+
         StatsManager.TakeDamage(attackDetails);
 
         Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);

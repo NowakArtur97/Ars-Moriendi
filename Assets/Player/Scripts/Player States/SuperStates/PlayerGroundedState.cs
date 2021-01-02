@@ -7,6 +7,7 @@
     private bool _jumpInput;
     private bool _grabInput;
     private bool _dashInput;
+    private bool _rollInput;
     private bool _primaryAttackInput;
     private bool _secondaryAttackInput;
 
@@ -37,6 +38,7 @@
         _jumpInput = Player.InputHandler.JumpInput;
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
+        _rollInput = Player.InputHandler.RollInput;
         _primaryAttackInput = Player.InputHandler.PrimaryInput;
         _secondaryAttackInput = Player.InputHandler.SecondaryInput;
 
@@ -66,6 +68,11 @@
         else if (_dashInput && Player.DashState.CheckIfCanDash())
         {
             FiniteStateMachine.ChangeCurrentState(Player.DashState);
+        }
+        // TODO: Add cooldown to roll?
+        else if (_rollInput)
+        {
+            FiniteStateMachine.ChangeCurrentState(Player.RollState);
         }
     }
 
