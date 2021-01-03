@@ -4,6 +4,7 @@ public abstract class PlayerAbilityState : PlayerState
 {
     public bool IsAbilityDone { get; protected set; }
 
+    protected bool IsTouchingCeiling;
     private bool _isGrounded;
 
     public PlayerAbilityState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
@@ -31,6 +32,10 @@ public abstract class PlayerAbilityState : PlayerState
             {
                 FiniteStateMachine.ChangeCurrentState(Player.IdleState);
             }
+            if (IsTouchingCeiling)
+            {
+                FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
+            }
             else
             {
                 FiniteStateMachine.ChangeCurrentState(Player.InAirState);
@@ -43,5 +48,6 @@ public abstract class PlayerAbilityState : PlayerState
         base.DoChecks();
 
         _isGrounded = Player.CheckIfGrounded();
+        IsTouchingCeiling = Player.CheckIfTouchingCeiling();
     }
 }
