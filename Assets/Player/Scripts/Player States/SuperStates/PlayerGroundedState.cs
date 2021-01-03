@@ -14,6 +14,7 @@
     private bool _isGrounded;
     private bool _isTouchingWall;
     private bool _isTouchingLedge;
+    private bool _isTouchingCeiling;
 
     public PlayerGroundedState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName)
         : base(player, playerFiniteStateMachine, animationBoolName)
@@ -56,7 +57,7 @@
         {
             FiniteStateMachine.ChangeCurrentState(Player.JumpState);
         }
-        else if (!_isGrounded)
+        else if (!_isGrounded && Player.CurrentVelocity.y < 0.01f)
         {
             Player.InAirState.StartCoyoteTime();
             FiniteStateMachine.ChangeCurrentState(Player.InAirState);
@@ -70,7 +71,7 @@
             FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }
         // TODO: Add cooldown to roll?
-        else if (_rollInput)
+        else if (_rollInput && !_isTouchingCeiling)
         {
             FiniteStateMachine.ChangeCurrentState(Player.RollState);
         }
@@ -83,5 +84,6 @@
         _isGrounded = Player.CheckIfGrounded();
         _isTouchingWall = Player.CheckIfTouchingWall();
         _isTouchingLedge = Player.CheckIfTouchingLedge();
+        _isTouchingCeiling = Player.CheckIfTouchingCeiling();
     }
 }

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerRollState : PlayerAbilityState
+﻿public class PlayerRollState : PlayerAbilityState
 {
     private D_PlayerRollState _rollStateData;
 
@@ -16,8 +14,6 @@ public class PlayerRollState : PlayerAbilityState
 
         Player.SetBoxColliderHeight(_rollStateData.rollColliderHeight);
 
-        Player.MyAnmator.SetBool("isTouchingCeiling", IsTouchingCeiling);
-
         Player.SetVelocityX(Player.FacingDirection * _rollStateData.rollVelocity);
 
         Player.StatsManager.SetIsRolling(true);
@@ -27,16 +23,12 @@ public class PlayerRollState : PlayerAbilityState
     {
         base.Exit();
 
-        Player.SetVelocityZero();
-
         Player.StatsManager.SetIsRolling(false);
     }
 
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
-
-        IsTouchingCeiling = Player.CheckIfTouchingCeiling();
 
         Player.MyAnmator.SetBool("isTouchingCeiling", IsTouchingCeiling);
 

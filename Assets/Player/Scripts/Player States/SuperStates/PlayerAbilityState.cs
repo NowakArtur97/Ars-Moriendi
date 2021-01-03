@@ -28,15 +28,15 @@ public abstract class PlayerAbilityState : PlayerState
         {
             Debug.Log("Ability is done");
 
-            if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
-            {
-                FiniteStateMachine.ChangeCurrentState(Player.IdleState);
-            }
             if (IsTouchingCeiling)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
             }
-            else
+            else if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
+            {
+                FiniteStateMachine.ChangeCurrentState(Player.IdleState);
+            }
+            else if (!_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.InAirState);
             }

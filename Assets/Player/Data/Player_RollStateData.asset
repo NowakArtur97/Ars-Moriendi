@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6e915469e2515409fa4c5b1bae2ed4, type: 3}
   m_Name: Player_RollStateData
   m_EditorClassIdentifier: 
-  rollVelocity: 9
+  rollVelocity: 11
   rollColliderHeight: 0.8
