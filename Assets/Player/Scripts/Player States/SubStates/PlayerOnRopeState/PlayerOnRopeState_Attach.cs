@@ -29,7 +29,11 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         if (hit.collider != null)
         {
             PlayerPosition = Player.AliveGameObject.transform.position;
-            AddForceAfterRopeAttaching(hit.point);
+
+            if (IsGrounded)
+            {
+                AddForceAfterRopeAttaching(hit.point);
+            }
 
             if (!Player.OnRopeStateMove.RopePositions.Contains(hit.point))
             {

@@ -36,7 +36,7 @@ public abstract class PlayerAbilityState : PlayerState
             {
                 FiniteStateMachine.ChangeCurrentState(Player.IdleState);
             }
-            else if (!_isGrounded && Player.CurrentVelocity.y < 0.01f)
+            else if (!_isGrounded)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.InAirState);
             }
