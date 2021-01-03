@@ -5,6 +5,13 @@
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        Player.SetVelocityZero();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

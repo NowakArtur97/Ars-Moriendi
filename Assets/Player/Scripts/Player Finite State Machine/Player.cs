@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, FiniteStateMachine, "ledgeClimbState", _ledgeClimbStateData);
 
         DashState = new PlayerDashState(this, FiniteStateMachine, "inAir", _dashStateData);
-        RollState = new PlayerRollState(this, FiniteStateMachine, "roll", _rollStateData);
+        RollState = new PlayerRollState(this, FiniteStateMachine, "rollState", _rollStateData);
 
         CrouchIdleState = new PlayerCrouchIdleState(this, FiniteStateMachine, "crouchIdle", _crouchIdleStateData);
         CrouchMoveState = new PlayerCrouchMoveState(this, FiniteStateMachine, "crouchMove", _crouchMoveStateData);
@@ -317,7 +317,7 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingLedge() => Physics2D.Raycast(_ledgeCheck.position, Vector2.right * FacingDirection, _playerData.wallCheckDistance,
         _playerData.whatIsGround);
 
-    public bool CheckIfTouchingCeiling() => Physics2D.OverlapCircle(_ledgeCheck.position, _playerData.ceilingCheckRadius, _playerData.whatIsGround);
+    public bool CheckIfTouchingCeiling() => Physics2D.OverlapCircle(_ceilingCheck.position, _playerData.ceilingCheckRadius, _playerData.whatIsGround);
 
     public bool CheckIfCanStand(Vector2 position)
     {

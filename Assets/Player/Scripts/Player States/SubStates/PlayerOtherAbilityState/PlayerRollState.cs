@@ -1,6 +1,10 @@
-﻿public class PlayerRollState : PlayerAbilityState
+﻿using UnityEngine;
+
+public class PlayerRollState : PlayerAbilityState
 {
     private D_PlayerRollState _rollStateData;
+
+    private bool _isTouchingCeiling;
 
     public PlayerRollState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerRollState rollStateData)
         : base(player, playerFiniteStateMachine, animationBoolName)
@@ -10,23 +14,31 @@
 
     public override void Enter()
     {
+        Player.SetBoxColliderHeight(_rollStateData.rollColliderHeight);
+
         base.Enter();
 
         Player.SetVelocityX(Player.FacingDirection * _rollStateData.rollVelocity);
-        // TODO: Remove?
-        Player.SetBoxColliderHeight(_rollStateData.rollColliderHeight);
 
         Player.StatsManager.SetIsRolling(true);
     }
 
     public override void LogicUpdate()
     {
+        base.LogicUpdate();
+
         if (IsAnimationFinished)
         {
             IsAbilityDone = true;
         }
 
-        base.LogicUpdate();
+        if (!IsExitingState)
+        {
+            if (_isTouchingCeiling)
+            {
+                FiniteStateMachine.ChangeCurrentState(Player.CrouchIdleState);
+            }
+        }
     }
 
     public override void Exit()
@@ -36,5 +48,21 @@
         Player.SetVelocityZero();
 
         Player.StatsManager.SetIsRolling(false);
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+
+        //_isTouchingCeiling = Player.CheckIfTouchingCeiling();
+    }
+
+    public override void AnimationTrigger()
+    {
+        base.AnimationTrigger();
+
+        _isTouchingCeiling = Player.CheckIfTouchingCeiling();
+
+        Player.MyAnmator.SetBool("isTouchingCeiling", _isTouchingCeiling);
     }
 }

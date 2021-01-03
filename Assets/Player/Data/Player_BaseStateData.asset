@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckRadius: 0.1
   wallCheckDistance: 0.5
+  ceilingCheckRadius: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
