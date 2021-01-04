@@ -58,4 +58,6 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         _crossHairPosition = new Vector3(x, y, 0);
         Player.Crosshair.position = _crossHairPosition;
     }
+
+    public override bool CanUseAbility() => !IsTouchingCeiling;
 }
