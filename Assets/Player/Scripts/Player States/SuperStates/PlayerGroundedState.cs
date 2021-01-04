@@ -53,7 +53,7 @@
         {
             FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
-        else if (_jumpInput && Player.JumpState.CanJump())
+        else if (_jumpInput && Player.JumpState.CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.JumpState);
         }
@@ -70,8 +70,7 @@
         {
             FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }
-        // TODO: Add cooldown to roll?
-        else if (_rollInput && !_isTouchingCeiling)
+        else if (_rollInput && !_isTouchingCeiling && Player.RollState.CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.RollState);
         }

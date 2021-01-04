@@ -1,6 +1,10 @@
-﻿public class PlayerRollState : PlayerAbilityState
+﻿using UnityEngine;
+
+public class PlayerRollState : PlayerAbilityState
 {
     private D_PlayerRollState _rollStateData;
+
+    private float _lastRollTime;
 
     public PlayerRollState(Player player, PlayerFiniteStateMachine playerFiniteStateMachine, string animationBoolName, D_PlayerRollState rollStateData)
         : base(player, playerFiniteStateMachine, animationBoolName)
@@ -17,6 +21,8 @@
         Player.SetVelocityX(Player.FacingDirection * _rollStateData.rollVelocity);
 
         Player.StatsManager.SetIsRolling(true);
+
+        _lastRollTime = Time.time;
     }
 
     public override void Exit()
@@ -32,6 +38,8 @@
 
         Player.MyAnmator.SetBool("isTouchingCeiling", IsTouchingCeiling);
 
+        Player.SetVelocityX(0.0f);
+
         if (IsTouchingCeiling)
         {
             IsAbilityDone = true;
@@ -44,4 +52,6 @@
 
         IsAbilityDone = true;
     }
+
+    public override bool CanUseAbility() => Time.time >= _lastRollTime + _rollStateData.rollCooldown;
 }

@@ -23,7 +23,7 @@
         IsAbilityDone = true;
     }
 
-    public bool CanJump() => _amountOfJumpsLeft > 0;
+    public override bool CanUseAbility() => _amountOfJumpsLeft > 0;
 
     public void ResetAmountOfJumpsLeft() => _amountOfJumpsLeft = _jumpStateData.amountOfJumps;
 

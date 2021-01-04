@@ -81,7 +81,7 @@ public class PlayerInAirState : PlayerState
             Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
             FiniteStateMachine.ChangeCurrentState(Player.WallJumpState);
         }
-        else if (_jumpInput && Player.JumpState.CanJump())
+        else if (_jumpInput && Player.JumpState.CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.JumpState);
         }
