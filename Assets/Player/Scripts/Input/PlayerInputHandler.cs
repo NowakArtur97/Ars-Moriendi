@@ -37,6 +37,14 @@ public class PlayerInputHandler : MonoBehaviour
     public float RawChangeSkillInput { get; private set; }
     public int NormalizedChangeSkillInput { get; private set; }
 
+    public bool StunInput { get; private set; }
+
+    private void Awake()
+    {
+        DashInputStop = true;
+        SecondaryInputStop = true;
+    }
+
     private void Start()
     {
         _aliveGameObject = transform.Find("Alive Player").gameObject;
@@ -231,6 +239,19 @@ public class PlayerInputHandler : MonoBehaviour
         if (Time.time >= _secondaryInputStartTime + _inputHoldTime)
         {
             SecondaryInput = false;
+        }
+    }
+
+    // TODO: Remove FORCE STUN
+    public void OnForceStunInput(CallbackContext context)
+    {
+        if (context.started)
+        {
+            StunInput = true;
+        }
+        if (context.canceled)
+        {
+            StunInput = false;
         }
     }
 }

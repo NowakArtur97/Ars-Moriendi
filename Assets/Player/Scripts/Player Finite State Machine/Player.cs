@@ -2,6 +2,9 @@
 
 public class Player : MonoBehaviour
 {
+    // TODO: Remove FORCE STUN
+    AttackDetails attackDetails;
+
     #region Serialized Fields
 
     [Header("States Data")]
@@ -230,6 +233,13 @@ public class Player : MonoBehaviour
         CurrentVelocity = MyRigidbody.velocity;
 
         FiniteStateMachine.CurrentState.LogicUpdate();
+
+        // TODO: Remove FORCE STUN
+        if (InputHandler.StunInput)
+        {
+            attackDetails.stunDamageAmount = 100;
+            Damage(attackDetails);
+        }
     }
 
     private void FixedUpdate()

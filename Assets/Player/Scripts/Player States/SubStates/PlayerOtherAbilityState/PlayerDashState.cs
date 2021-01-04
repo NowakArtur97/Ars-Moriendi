@@ -26,7 +26,6 @@ public class PlayerDashState : PlayerAbilityState
 
         _canDash = false;
         Player.InputHandler.UseDashInput();
-        Player.InputHandler.UseSecondaryAttackInput();
 
         _isHolding = true;
         _dashDirection = Vector2.right * Player.FacingDirection;

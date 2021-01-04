@@ -20,6 +20,13 @@ public abstract class PlayerAbilityState : PlayerState
         IsAbilityDone = false;
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+
+        IsAbilityDone = true;
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
