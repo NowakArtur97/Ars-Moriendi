@@ -47,14 +47,9 @@
         {
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
-        else if (_secondaryAttackInput)
+        else if (_secondaryAttackInput && Player.SkillManager.GetCurrentSkill().CanUseAbility())
         {
-            Player.SkillManager.GetCurrentSkill().DoChecks();
-
-            if (Player.SkillManager.GetCurrentSkill().CanUseAbility())
-            {
-                FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
-            }
+            FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
         else if (_jumpInput && Player.JumpState.CanUseAbility())
         {

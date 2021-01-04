@@ -59,5 +59,5 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
         Player.Crosshair.position = _crossHairPosition;
     }
 
-    public override bool CanUseAbility() => !IsTouchingCeiling;
+    public override bool CanUseAbility() => !Player.CheckIfTouchingCeiling();
 }

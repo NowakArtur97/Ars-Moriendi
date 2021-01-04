@@ -38,5 +38,6 @@ public class PlayerBowFireArrowShotState_Start : PlayerBowFireArrowShotState
         _isAiming = true;
     }
 
-    public override bool CanUseAbility() => Time.time >= _lastShotTime + PlayerFireArrowShotData.bowShotCooldown && !IsTouchingCeiling && IsGrounded;
+    public override bool CanUseAbility() => Time.time >= _lastShotTime + PlayerFireArrowShotData.bowShotCooldown
+        && !Player.CheckIfTouchingCeiling() && Player.CheckIfGrounded();
 }

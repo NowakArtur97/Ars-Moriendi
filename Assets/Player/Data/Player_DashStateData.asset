@@ -18,5 +18,5 @@ MonoBehaviour:
   dashTime: 0.2
   dashVelocity: 30
   dashDrag: 10
-  dashEndMultiplier: 0.2
+  dashEndMultiplier: 0.3
   distanceBetweenAfterImages: 0.4
