@@ -7,7 +7,6 @@ public abstract class PlayerSwordAttackState : PlayerAttackState
     protected D_PlayerSwordAttackState SwordAttackStateData;
 
     protected int XInput;
-    protected bool IsGrounded;
 
     protected bool IsAttemptingToAttack;
 

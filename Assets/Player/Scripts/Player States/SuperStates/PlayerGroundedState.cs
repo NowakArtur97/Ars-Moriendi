@@ -43,7 +43,7 @@
         _primaryAttackInput = Player.InputHandler.PrimaryInput;
         _secondaryAttackInput = Player.InputHandler.SecondaryInput;
 
-        if (_primaryAttackInput)
+        if (_primaryAttackInput && !_isTouchingCeiling)
         {
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
