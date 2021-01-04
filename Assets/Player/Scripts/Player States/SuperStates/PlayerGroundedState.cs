@@ -49,7 +49,7 @@
         }
         // TODO: Skill cooldown
         // TODO: Check if can use ability (like Dash when crouching)
-        else if (_secondaryAttackInput)
+        else if (_secondaryAttackInput && Player.SkillManager.GetCurrentSkill().CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
@@ -66,7 +66,7 @@
         {
             FiniteStateMachine.ChangeCurrentState(Player.WallGrabState);
         }
-        else if (_dashInput && Player.DashState.CheckIfCanDash())
+        else if (_dashInput && Player.DashState.CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }

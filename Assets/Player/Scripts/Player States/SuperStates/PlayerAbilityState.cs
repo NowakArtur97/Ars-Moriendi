@@ -50,4 +50,6 @@ public abstract class PlayerAbilityState : PlayerState
         _isGrounded = Player.CheckIfGrounded();
         IsTouchingCeiling = Player.CheckIfTouchingCeiling();
     }
+
+    public virtual bool CanUseAbility() { return true; }
 }

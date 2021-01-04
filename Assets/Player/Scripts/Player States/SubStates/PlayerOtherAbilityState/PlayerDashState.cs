@@ -9,6 +9,7 @@ public class PlayerDashState : PlayerAbilityState
 
     private bool _isHolding;
     private bool _dashInputStop;
+    private bool _specialAbilityInputStop;
     private Vector2 _dashDirection;
     private Vector2 _dashDirectionInput;
     private Vector2 _lastAfterImagePosition;
@@ -25,6 +26,7 @@ public class PlayerDashState : PlayerAbilityState
 
         _canDash = false;
         Player.InputHandler.UseDashInput();
+        Player.InputHandler.UseSecondaryAttackInput();
 
         _isHolding = true;
         _dashDirection = Vector2.right * Player.FacingDirection;
@@ -56,7 +58,10 @@ public class PlayerDashState : PlayerAbilityState
             if (_isHolding)
             {
                 _dashDirectionInput = Player.InputHandler.DashDirectionInput;
+
+                // TODO: Remove if dash used only as an special ability
                 _dashInputStop = Player.InputHandler.DashInputStop;
+                _specialAbilityInputStop = Player.InputHandler.SecondaryInputStop;
 
                 if (_dashDirectionInput != Vector2.zero)
                 {
@@ -67,7 +72,7 @@ public class PlayerDashState : PlayerAbilityState
                 float angle = Vector2.SignedAngle(Vector2.right, _dashDirection);
                 Player.DashDirectionIndicator.rotation = Quaternion.Euler(0f, 0f, angle - 45f);
 
-                if (_dashInputStop || Time.unscaledTime >= StartTime + _dashStateData.maxHoldTime)
+                if ((_dashInputStop && _specialAbilityInputStop) || Time.unscaledTime >= StartTime + _dashStateData.maxHoldTime)
                 {
                     _isHolding = false;
                     Time.timeScale = 1;
@@ -108,7 +113,7 @@ public class PlayerDashState : PlayerAbilityState
         }
     }
 
-    public bool CheckIfCanDash() => _canDash && Time.time >= _lastDashTime + _dashStateData.dashCooldown;
+    public override bool CanUseAbility() => _canDash && Time.time >= _lastDashTime + _dashStateData.dashCooldown && !IsTouchingCeiling;
 
     public bool ResetCanDash() => _canDash = true;
 }

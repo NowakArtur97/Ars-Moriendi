@@ -62,7 +62,7 @@ public class PlayerInAirState : PlayerState
             FiniteStateMachine.ChangeCurrentState(Player.SwordAttackState01);
         }
         // TODO: Skill cooldown
-        else if (_secondaryAttackInput)
+        else if (_secondaryAttackInput && Player.SkillManager.GetCurrentSkill().CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.SkillManager.GetCurrentSkill());
         }
@@ -93,7 +93,7 @@ public class PlayerInAirState : PlayerState
         {
             FiniteStateMachine.ChangeCurrentState(Player.LandState);
         }
-        else if (_dashInput && Player.DashState.CheckIfCanDash())
+        else if (_dashInput && Player.DashState.CanUseAbility())
         {
             FiniteStateMachine.ChangeCurrentState(Player.DashState);
         }
