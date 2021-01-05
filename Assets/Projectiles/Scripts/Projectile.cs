@@ -62,7 +62,7 @@ public class Projectile : MonoBehaviour
             if (damageHit)
             {
                 _attackDetails.position = transform.position;
-                // TODO: Add alive child object in Player
+
                 damageHit.transform.parent.SendMessage("Damage", _attackDetails);
 
                 Destroy(gameObject);

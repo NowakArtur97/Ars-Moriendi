@@ -18,9 +18,18 @@ public class PlayerOnRopeState_Attach : PlayerOnRopeState
         AttachRope();
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+
+        if (Player.StatsManager.IsStunned)
+        {
+            Player.OnRopeStateFinish.ResetRope();
+        }
+    }
+
     private void AttachRope()
     {
-        Player.Crosshair.gameObject.SetActive(false);
         Player.MyRopeLineRenderer.gameObject.SetActive(true);
         Player.RopeHingeAnchor.gameObject.SetActive(true);
 

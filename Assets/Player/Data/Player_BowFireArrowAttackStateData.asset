@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ae66b3a87c851418a96763af3ab440, type: 3}
   m_Name: Player_BowFireArrowAttackStateData
   m_EditorClassIdentifier: Assembly-CSharp::D_PlayerBowFireArrowShotData
-  bowShotCooldown: 0.75
+  bowShotCooldown: 1
   bowShotMaxHoldTime: 4
   holdTimeAimScale: 0.25
   minBowShotAngleX: 0.3
@@ -20,6 +20,7 @@ MonoBehaviour:
   maxBowShotAngleY: 0.7
   arrow: {fileID: 6315189859246610270, guid: 1414776bed473ab44862a0bdbbd7323a, type: 3}
   arrowDamage: 10
+  arrowStunDamage: 10
   arrowSpeed: 20
   arrowTravelDistance: 1000
   arrowGravityScale: 1

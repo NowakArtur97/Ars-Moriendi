@@ -39,12 +39,10 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
 
-        _isHolding = false;
-        Time.timeScale = 1;
-        _lastDashTime = Time.time;
-        Player.DashDirectionIndicator.gameObject.SetActive(false);
-        Player.MyRigidbody.drag = 0;
-        Player.SetVelocityX(0.0f);
+        if (Player.StatsManager.IsStunned)
+        {
+            ClearBeforeBeingStunned();
+        }
 
         if (Player.CurrentVelocity.y > 0)
         {
@@ -97,7 +95,9 @@ public class PlayerDashState : PlayerAbilityState
 
                 if (Time.time >= StartTime + _dashStateData.dashTime)
                 {
+                    Player.MyRigidbody.drag = 0;
                     IsAbilityDone = true;
+                    _lastDashTime = Time.time;
                 }
             }
         }
@@ -120,4 +120,13 @@ public class PlayerDashState : PlayerAbilityState
     public override bool CanUseAbility() => _canDash && Time.time >= _lastDashTime + _dashStateData.dashCooldown && !Player.CheckIfTouchingCeiling();
 
     public bool ResetCanDash() => _canDash = true;
+
+    private void ClearBeforeBeingStunned()
+    {
+        _isHolding = false;
+        Time.timeScale = 1;
+        _lastDashTime = Time.time;
+        Player.DashDirectionIndicator.gameObject.SetActive(false);
+        Player.MyRigidbody.drag = 0;
+    }
 }

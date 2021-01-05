@@ -22,10 +22,17 @@ public class PlayerOnRopeState_Move : PlayerOnRopeState
 
     public override void Exit()
     {
-        base.Enter();
+        base.Exit();
 
         RopePositions.Clear();
         _wrapPointsLookup.Clear();
+
+        if (Player.StatsManager.IsStunned)
+        {
+            Player.InputHandler.UseSecondaryAttackInputStop();
+
+            Player.OnRopeStateFinish.ResetRope();
+        }
     }
 
     public override void LogicUpdate()

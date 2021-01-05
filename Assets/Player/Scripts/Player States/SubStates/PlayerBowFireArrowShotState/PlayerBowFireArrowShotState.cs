@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerBowFireArrowShotState : PlayerAttackState
+public abstract class PlayerBowFireArrowShotState : PlayerAttackState
 {
     protected D_PlayerBowArrowShotState PlayerFireArrowShotData;
 

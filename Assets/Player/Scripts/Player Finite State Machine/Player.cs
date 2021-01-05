@@ -215,6 +215,7 @@ public class Player : MonoBehaviour
 
         FacingDirection = 1;
 
+        // Create and Invoke event for UI
         SkillManager.AddSkill(DashState);
         SkillManager.AddSkill(OnRopeStateAim);
         SkillManager.AddSkill(FireArrowShotStateStart);

@@ -12,12 +12,21 @@ public class PlayerStunState : PlayerState
         _stunStateData = stunStateData;
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        Player.SetVelocityZero();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
         if (Time.time >= Player.StatsManager.LastDamageTime + _stunStateData.stunRecorveryTime)
         {
+            Player.StatsManager.ExitStun();
+
             if (_isGrounded && Player.CurrentVelocity.y < 0.01f)
             {
                 FiniteStateMachine.ChangeCurrentState(Player.IdleState);
@@ -35,5 +44,4 @@ public class PlayerStunState : PlayerState
 
         _isGrounded = Player.CheckIfGrounded();
     }
-
 }

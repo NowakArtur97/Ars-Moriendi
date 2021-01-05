@@ -12,6 +12,15 @@ public class PlayerOnRopeState_Aim : PlayerOnRopeState
     {
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+
+        Player.Crosshair.gameObject.SetActive(false);
+
+        Player.InputHandler.UseSecondaryAttackInputStop();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

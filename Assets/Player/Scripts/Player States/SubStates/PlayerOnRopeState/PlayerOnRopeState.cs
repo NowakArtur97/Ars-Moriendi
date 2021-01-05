@@ -4,7 +4,6 @@ public abstract class PlayerOnRopeState : PlayerAbilityState
 {
     protected D_PlayerOnRopeState OnRopeStateData;
 
-    protected bool IsGrounded;
     protected bool RopeInputStop;
     protected Vector2 PlayerPosition;
 
