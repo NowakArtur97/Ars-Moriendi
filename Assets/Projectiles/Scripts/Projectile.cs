@@ -2,6 +2,7 @@
 
 public class Projectile : MonoBehaviour
 {
+    private const int PLAYER_LAYER_MASK_VALUE = 1024;
     [SerializeField]
     private float _gravity = 4.0f;
     [SerializeField]
@@ -28,6 +29,7 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody2D _myRigidbody2D;
     private Animator _myAnimator;
+    private Player _player;
 
     private void Start()
     {
@@ -41,6 +43,11 @@ public class Projectile : MonoBehaviour
 
         _isGravityOn = _isGravityOnStart;
         _hasHitGround = false;
+
+        if (IsPlayerEnemy)
+        {
+            _player = FindObjectOfType<Player>();
+        }
     }
 
     private void Update()
@@ -65,7 +72,10 @@ public class Projectile : MonoBehaviour
 
                 damageHit.transform.parent.SendMessage("Damage", _attackDetails);
 
-                Destroy(gameObject);
+                if (!IsPlayerEnemy || !_player.StatsManager.IsRolling)
+                {
+                    Destroy(gameObject);
+                }
             }
 
             if (groundHit)
@@ -107,6 +117,8 @@ public class Projectile : MonoBehaviour
         _gravityScale = gravityScale;
         _attackDetails = attackDetails;
     }
+
+    private bool IsPlayerEnemy => _whatIsEnemy.value == PLAYER_LAYER_MASK_VALUE;
 
     private void OnDrawGizmos()
     {
