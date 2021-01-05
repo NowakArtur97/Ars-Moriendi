@@ -14,7 +14,7 @@
 
         if (IsIdleTimeOver)
         {
-            FiniteStateMachine.ChangeState(_slime.MoveState);
+            FiniteStateMachine.ChangeState(_slime.JumpingMoveState);
         }
     }
 }

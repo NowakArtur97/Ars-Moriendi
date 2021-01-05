@@ -21,6 +21,11 @@
         Entity.SetVelocity(StateData.movementSpeed);
     }
 
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
+
     public override void DoChecks()
     {
         base.DoChecks();

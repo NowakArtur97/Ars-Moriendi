@@ -51,7 +51,7 @@ AnimatorController:
   m_Name: Slime Animator Controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: move
+  - m_Name: jumpingMove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -227,7 +227,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: move
+    m_ConditionEvent: jumpingMove
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2761839207180072932}
@@ -244,7 +244,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: move
+    m_ConditionEvent: jumpingMove
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
