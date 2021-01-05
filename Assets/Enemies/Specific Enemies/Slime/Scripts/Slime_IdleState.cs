@@ -7,4 +7,14 @@
     {
         _slime = slime;
     }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (IsIdleTimeOver)
+        {
+            FiniteStateMachine.ChangeState(_slime.MoveState);
+        }
+    }
 }
