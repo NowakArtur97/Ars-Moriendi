@@ -51,17 +51,11 @@ public abstract class IdleState : State
     {
         base.DoChecks();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
-    public void SetFlipAfterIdle(bool flipAfterIdle)
-    {
-        FlipAfterIdle = flipAfterIdle;
-    }
+    public void SetFlipAfterIdle(bool flipAfterIdle) => FlipAfterIdle = flipAfterIdle;
 
-    private void SetRandomIdleTime()
-    {
-        IdleTime = Random.Range(StateData.minimumIdleTime, StateData.maximumIdleTime);
-    }
+    private void SetRandomIdleTime() => IdleTime = Random.Range(StateData.minimumIdleTime, StateData.maximumIdleTime);
 }

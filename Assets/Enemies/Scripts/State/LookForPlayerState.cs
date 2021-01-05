@@ -66,8 +66,8 @@ public abstract class LookForPlayerState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
+        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public void SetShouldTurnImmediately(bool shouldTurnImmediately) => ShouldTurnImmediately = shouldTurnImmediately;

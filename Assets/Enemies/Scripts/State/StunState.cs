@@ -60,10 +60,10 @@ public abstract class StunState : State
     {
         base.DoChecks();
 
-        IsGrounded = Entity.CheckGround;
+        IsGrounded = Entity.CheckIfGrounded();
 
         ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

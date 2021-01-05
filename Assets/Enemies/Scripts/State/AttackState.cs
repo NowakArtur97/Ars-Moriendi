@@ -30,8 +30,8 @@ public abstract class AttackState : State
     {
         base.DoChecks();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public virtual void FinishAttack() => IsAnimationFinished = true;

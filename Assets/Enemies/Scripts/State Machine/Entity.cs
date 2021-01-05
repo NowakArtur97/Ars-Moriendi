@@ -123,12 +123,12 @@ public abstract class Entity : MonoBehaviour
 
     public virtual bool CheckLedge() => Physics2D.Raycast(LedgeCheck.position, Vector2.down, EntityData.ledgeCheckDistance, EntityData.whatIsGround);
 
-    public virtual bool CheckGround => Physics2D.OverlapCircle(GroundCheck.position, EntityData.groundCheckRadius, EntityData.whatIsGround);
+    public virtual bool CheckIfGrounded() => Physics2D.OverlapCircle(GroundCheck.position, EntityData.groundCheckRadius, EntityData.whatIsGround);
 
-    public virtual bool CheckIfPlayerInMinAgro => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.minAgroDistance,
+    public virtual bool CheckIfPlayerInMinAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.minAgroDistance,
         EntityData.whatIsPlayer);
 
-    public virtual bool CheckIfPlayerInMaxAgro => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.maxAgroDistance,
+    public virtual bool CheckIfPlayerInMaxAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.maxAgroDistance,
         EntityData.whatIsPlayer);
 
     public virtual bool CheckIfPlayerInCloseRangeAction() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right,

@@ -42,12 +42,12 @@ public abstract class DodgeState : State
     {
         base.DoChecks();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
 
         ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
         ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
 
-        IsGrounded = Entity.CheckGround;
+        IsGrounded = Entity.CheckIfGrounded();
     }
 }

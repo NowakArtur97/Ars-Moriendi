@@ -27,7 +27,7 @@
 
         IsDetectingWall = Entity.CheckWall();
         IsDetectingLedge = Entity.CheckLedge();
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro;
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro;
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 }
