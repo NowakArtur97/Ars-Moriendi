@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if (_isGravityOn)
+        if (_isGravityOn && !_hasHitGround)
         {
             float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -88,6 +88,7 @@ public class Projectile : MonoBehaviour
             }
             _myRigidbody2D.velocity = Vector2.zero;
             _myRigidbody2D.gravityScale = 0.0f;
+            _myRigidbody2D.isKinematic = true;
         }
     }
 

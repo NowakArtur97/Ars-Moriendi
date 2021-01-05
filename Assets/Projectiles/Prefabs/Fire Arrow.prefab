@@ -79,7 +79,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravity: 4
   _isGravityOnStart: 1
-  _disableGravityScaleOnStart: 1
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -178,4 +177,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
