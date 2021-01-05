@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 276771579}
   - component: {fileID: 5476649754775721452}
   m_Layer: 10
-  m_Name: Player
+  m_Name: Old Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   combatEnabled: 1
   attackRadius: 0.8
   attackDamage: 5
+  stunDamageAmount: 1
   prematureAttackAttemptDefaultTimer: 0.15
   attackHitBoxPosition: {fileID: 3529883924925972381}
   whatIsDamagable:
