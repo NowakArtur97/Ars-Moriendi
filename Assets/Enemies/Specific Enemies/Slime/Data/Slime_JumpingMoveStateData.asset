@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2cd8a0beac48d409aad92e9405302a, type: 3}
   m_Name: Slime_JumpingMoveStateData
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  jumpingMovementSpeed: 13
+  jumpingAngle: {x: 1, y: 0.2}

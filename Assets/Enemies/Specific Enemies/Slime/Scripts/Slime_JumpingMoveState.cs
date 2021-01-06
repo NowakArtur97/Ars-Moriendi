@@ -12,9 +12,9 @@
     {
         base.LogicUpdate();
 
-        if (!IsDetectingLedge || IsDetectingWall)
+        if (IsAnimationFinished)
         {
-            _slime.IdleState.SetFlipAfterIdle(true);
+            _slime.IdleState.SetFlipAfterIdle(!IsDetectingLedge || IsDetectingWall);
             FiniteStateMachine.ChangeState(_slime.IdleState);
         }
     }
