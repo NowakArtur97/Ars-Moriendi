@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02b61f33e051a143abae5fcd22f7d66, type: 3}
   m_Name: GoblinArcher_PlayerDetectedStateData
   m_EditorClassIdentifier: 
-  timeForShortRangeAction: 0.5
-  timeForLongRangeAction: 1
+  timeForCloseRangeAction: 1
+  timeForLongRangeAction: 1.5

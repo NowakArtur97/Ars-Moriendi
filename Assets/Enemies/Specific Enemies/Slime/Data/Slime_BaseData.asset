@@ -15,9 +15,9 @@ MonoBehaviour:
   wallCheckDistance: 8
   ledgeCheckDistance: 0.4
   groundCheckRadius: 1
-  minAgroDistance: 3
-  maxAgroDistance: 4
-  closeRangeActionDistance: 1
+  minAgroDistance: 1.5
+  maxAgroDistance: 8
+  closeRangeActionDistance: 1.5
   longRangeActionDistance: 4
   maxPlayerJumpedOverDistance: 1
   maxHealth: 30

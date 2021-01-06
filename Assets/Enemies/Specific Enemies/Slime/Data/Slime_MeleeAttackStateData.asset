@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a5c03968dd6564d84bd6e57ec9030b, type: 3}
-  m_Name: Player_BaseStateData
+  m_Script: {fileID: 11500000, guid: 9b1c320d59dca9a4898ec4c6ae0877ae, type: 3}
+  m_Name: Slime_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  groundCheckRadius: 0.1
-  wallCheckDistance: 0.5
-  ceilingCheckRadius: 0.3
-  whatIsGround:
+  attackRadius: 1.5
+  attackDamage: 15
+  stunDamage: 10
+  attackMovementSpeed: 0
+  whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 256
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 1024
