@@ -12,7 +12,11 @@
     {
         base.LogicUpdate();
 
-        if (IsAnimationFinished)
+        if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
+        {
+            FiniteStateMachine.ChangeState(_slime.PlayerDetectedState);
+        }
+        else if (IsAnimationFinished)
         {
             _slime.IdleState.SetFlipAfterIdle(!IsDetectingLedge || IsDetectingWall);
             FiniteStateMachine.ChangeState(_slime.IdleState);

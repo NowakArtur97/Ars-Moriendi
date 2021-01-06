@@ -21,7 +21,7 @@ MonoBehaviour:
   longRangeActionDistance: 4
   maxPlayerJumpedOverDistance: 1
   maxHealth: 30
-  damageHopSpeed: 9
+  damageHopSpeed: 0
   hitPartciles: []
   stunResistance: 3
   stunRecorveryTime: 2

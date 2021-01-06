@@ -12,7 +12,11 @@
     {
         base.LogicUpdate();
 
-        if (IsIdleTimeOver)
+        if (IsPlayerInMinAgroRange || IsPlayerInMaxAgroRange)
+        {
+            FiniteStateMachine.ChangeState(_slime.PlayerDetectedState);
+        }
+        else if (IsIdleTimeOver)
         {
             FiniteStateMachine.ChangeState(_slime.JumpingMoveState);
         }

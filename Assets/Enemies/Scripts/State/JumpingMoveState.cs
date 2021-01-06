@@ -6,6 +6,9 @@
     protected bool IsDetectingWall;
     protected bool IsDetectingLedge;
 
+    protected bool IsPlayerInMinAgroRange;
+    protected bool IsPlayerInMaxAgroRange;
+
     protected bool IsJumpOver;
 
     public JumpingMoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_JumpingMoveState stateData)
@@ -28,6 +31,9 @@
         IsGrounded = Entity.CheckIfGrounded();
         IsDetectingWall = Entity.CheckWall();
         IsDetectingLedge = Entity.CheckLedge();
+
+        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public override void AnimationTrigger()

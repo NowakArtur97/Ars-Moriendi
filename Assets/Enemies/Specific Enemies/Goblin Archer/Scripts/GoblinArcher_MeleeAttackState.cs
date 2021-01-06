@@ -20,7 +20,7 @@ public class GoblinArcher_MeleeAttackState : MeleeAttackState
             {
                 FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
-            else if (!IsPlayerInMinAgroRange)
+            else
             {
                 FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
