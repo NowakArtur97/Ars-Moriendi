@@ -4,7 +4,9 @@ public abstract class State
 {
     protected FiniteStateMachine FiniteStateMachine;
     protected Entity Entity;
+
     protected string AnimationBoolName;
+    protected bool IsAnimationFinished;
 
     public float StartTime { get; private set; }
 
@@ -19,7 +21,14 @@ public abstract class State
     {
         StartTime = Time.time;
 
+        IsAnimationFinished = false;
+
         Entity.MyAnimator.SetBool(AnimationBoolName, true);
+
+        if (Entity.AnimationToStateMachine != null)
+        {
+            Entity.AnimationToStateMachine.state = this;
+        }
 
         DoChecks();
     }
@@ -37,4 +46,8 @@ public abstract class State
     }
 
     public virtual void DoChecks() { }
+
+    public virtual void AnimationTrigger() { }
+
+    public virtual void AnimationFinishedTrigger() { }
 }

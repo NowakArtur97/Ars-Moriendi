@@ -4,8 +4,6 @@ public abstract class AttackState : State
 {
     protected Transform AttackPosition;
 
-    protected bool IsAnimationFinished;
-
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
@@ -19,9 +17,7 @@ public abstract class AttackState : State
     {
         base.Enter();
 
-        Entity.AnimationToStateMachine.attackState = this;
-
-        IsAnimationFinished = false;
+        Entity.AttackAnimationToStateMachine.attackState = this;
 
         Entity.SetVelocity(0.0f);
     }

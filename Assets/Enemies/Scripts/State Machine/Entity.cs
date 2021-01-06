@@ -13,6 +13,7 @@ public abstract class Entity : MonoBehaviour
 
     public FiniteStateMachine FiniteStateMachine;
     public AnimationToStateMachine AnimationToStateMachine { get; private set; }
+    public AttackAnimationToStateMachine AttackAnimationToStateMachine { get; private set; }
 
     public Rigidbody2D MyRigidbody2D { get; private set; }
     public Animator MyAnimator { get; private set; }
@@ -37,6 +38,7 @@ public abstract class Entity : MonoBehaviour
         MyAnimator = AliveGameObject.GetComponent<Animator>();
 
         AnimationToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
+        AttackAnimationToStateMachine = AliveGameObject.GetComponent<AttackAnimationToStateMachine>();
 
         FiniteStateMachine = new FiniteStateMachine();
 

@@ -18,12 +18,7 @@
     {
         base.Enter();
 
-        Entity.SetVelocity(StateData.movementSpeed);
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+        Entity.SetVelocity(StateData.jumpingMovementSpeed, StateData.jumpingAngle, Entity.FacingDirection);
     }
 
     public override void DoChecks()
@@ -33,5 +28,19 @@
         IsGrounded = Entity.CheckIfGrounded();
         IsDetectingWall = Entity.CheckWall();
         IsDetectingLedge = Entity.CheckLedge();
+    }
+
+    public override void AnimationTrigger()
+    {
+        base.AnimationTrigger();
+
+        Entity.SetVelocity(0.0f);
+    }
+
+    public override void AnimationFinishedTrigger()
+    {
+        base.AnimationFinishedTrigger();
+
+        IsAnimationFinished = true;
     }
 }

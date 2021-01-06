@@ -1,16 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class AnimationToStateMachine : MonoBehaviour
 {
-    public AttackState attackState;
+    public State state;
 
-    private void TriggerAttack()
-    {
-        attackState.TriggerAttack();
-    }
+    private void AnimationTrigger() => state.AnimationTrigger();
 
-    private void FinishAttack()
-    {
-        attackState.FinishAttack();
-    }
+    private void AnimationFinishedTrigger() => state.AnimationFinishedTrigger();
 }
