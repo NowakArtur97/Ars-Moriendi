@@ -33,7 +33,7 @@ public abstract class PlayerDetectedState : State
     {
         base.LogicUpdate();
 
-        if (Time.time >= StartTime + StateData.timeForShortRangeAction)
+        if (Time.time >= StartTime + StateData.timeForCloseRangeAction)
         {
             ShouldPerformCloseRangeAction = true;
         }
@@ -54,7 +54,8 @@ public abstract class PlayerDetectedState : State
         IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
 
-        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        // TODO: Refactor
+        //ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
+        //ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }
