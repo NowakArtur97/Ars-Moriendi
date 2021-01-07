@@ -16,12 +16,9 @@
         {
             FiniteStateMachine.ChangeState(_slime.MeleeAttackState);
         }
-        else if (!IsPlayerInMaxAgroRange)
-        //else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
+        else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
         {
-            //TODO: SLIME Add ranged action
-            //FiniteStateMachine.ChangeState(_slime.RangedAttackState);
-            FiniteStateMachine.ChangeState(_slime.IdleState);
+            FiniteStateMachine.ChangeState(_slime.AreaAttackState);
         }
         else if (!IsDetectingLedge || IsDetectingWall)
         {

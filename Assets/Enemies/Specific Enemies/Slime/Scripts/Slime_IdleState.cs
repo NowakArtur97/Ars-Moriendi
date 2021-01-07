@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class Slime_IdleState : IdleState
+﻿public class Slime_IdleState : IdleState
 {
     private Slime _slime;
 
@@ -20,6 +18,7 @@ public class Slime_IdleState : IdleState
         }
         else if (IsIdleTimeOver)
         {
+            ShouldFlipAfterIdle(!IsDetectingLedge || IsDetectingWall);
             FiniteStateMachine.ChangeState(_slime.JumpingMoveState);
         }
     }
