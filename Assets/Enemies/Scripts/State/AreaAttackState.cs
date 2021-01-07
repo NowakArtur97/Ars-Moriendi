@@ -25,27 +25,44 @@ public class AreaAttackState : AttackState
     {
         base.TriggerAttack();
 
-        int numberOfProjectilse = StateData.numberOfProjectiles;
+        int numberOfProjectiles = StateData.numberOfProjectiles;
+        float incrementAngle = StateData.areaAngle / numberOfProjectiles;
+        _projectileAngle = StateData.initialAngle;
 
-        for (int i = 0; i < numberOfProjectilse; i++)
+        for (int i = 0; i < numberOfProjectiles; i++)
         {
-            _projectileAngle = i * (2 * Mathf.PI / numberOfProjectilse);
+            CreateProjectile(numberOfProjectiles, incrementAngle);
 
-            _xPosition = Mathf.Cos(_projectileAngle) * Mathf.Deg2Rad;
-            _yPosition = Mathf.Sin(_projectileAngle) * Mathf.Deg2Rad;
-
-            _projectilePosition.Set(Enemy.AliveGameObject.transform.position.x + _xPosition, Enemy.AliveGameObject.transform.position.y + _yPosition);
-
-            Projectile = GameObject.Instantiate(StateData.projectile, _projectilePosition, AttackPosition.rotation);
-            ProjectileScript = Projectile.GetComponent<Projectile>();
-
-            _attackDetails.damageAmmount = StateData.projectileDamage;
-            _attackDetails.stunDamageAmount = StateData.projectileStunDamage;
-
-            _projectileDirection = (_projectilePosition - (Vector2)Enemy.AliveGameObject.transform.position).normalized;
+            SetupAttackDetails();
 
             ProjectileScript.FireProjectile(StateData.projectileSpeed, StateData.projectileTravelDistance, _attackDetails, StateData.projectileGravityScale,
                 _projectileDirection);
         }
+    }
+
+    private void CreateProjectile(int numberOfProjectilse, float incrementAngle)
+    {
+        // 2 beacause we using radians
+        //_projectileAngle = projectileIndex * 2 * Mathf.PI / numberOfProjectilse;
+
+        //_xPosition = Mathf.Cos(_projectileAngle ) * StateData.areaRadius ;
+        //_yPosition = Mathf.Sin(_projectileAngle) * StateData.areaRadius;
+        _xPosition = Mathf.Cos(_projectileAngle * Mathf.PI / 180) * StateData.areaRadius;
+        _yPosition = Mathf.Sin(_projectileAngle * Mathf.PI / 180) * StateData.areaRadius;
+
+        _projectilePosition.Set(AttackPosition.transform.position.x + _xPosition, AttackPosition.position.y + _yPosition);
+
+        Projectile = GameObject.Instantiate(StateData.projectile, _projectilePosition, AttackPosition.rotation);
+        ProjectileScript = Projectile.GetComponent<Projectile>();
+
+        _projectileDirection = (_projectilePosition - (Vector2)AttackPosition.transform.position).normalized;
+
+        _projectileAngle += incrementAngle;
+    }
+
+    private void SetupAttackDetails()
+    {
+        _attackDetails.damageAmmount = StateData.projectileDamage;
+        _attackDetails.stunDamageAmount = StateData.projectileStunDamage;
     }
 }

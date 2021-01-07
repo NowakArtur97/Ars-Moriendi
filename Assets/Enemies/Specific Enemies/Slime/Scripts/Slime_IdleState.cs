@@ -14,6 +14,7 @@
 
         if (IsPlayerInMaxAgroRange)
         {
+            ShouldFlipAfterIdle(false);
             FiniteStateMachine.ChangeState(_slime.PlayerDetectedState);
         }
         else if (IsIdleTimeOver)

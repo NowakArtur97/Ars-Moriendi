@@ -10,4 +10,7 @@ public class D_AreaAttackState : ScriptableObject
     public float projectileTravelDistance = 8.0f;
     public float projectileGravityScale = 0.0f;
     public int numberOfProjectiles = 6;
+    public float areaRadius = 2.0f;
+    public float areaAngle = 90.0f;
+    public float initialAngle = 0.0f;
 }
