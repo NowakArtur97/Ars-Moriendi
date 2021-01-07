@@ -17,6 +17,6 @@ MonoBehaviour:
   projectileDamage: 15
   projectileStunDamage: 10
   projectileSpeed: 12
-  projectileTravelDistance: 8
+  projectileTravelDistance: 1000
   projectileGravityScale: 0
-  numberOfProjectiles: 6
+  numberOfProjectiles: 12

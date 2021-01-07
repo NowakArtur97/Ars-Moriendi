@@ -12,6 +12,7 @@ public class AreaAttackState : AttackState
     private float _xPosition;
     private float _yPosition;
     private Vector2 _projectilePosition;
+    private Vector2 _projectileDirection;
     private float _projectileAngle;
 
     public AreaAttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition, D_AreaAttackState stateData)
@@ -41,7 +42,10 @@ public class AreaAttackState : AttackState
             _attackDetails.damageAmmount = StateData.projectileDamage;
             _attackDetails.stunDamageAmount = StateData.projectileStunDamage;
 
-            ProjectileScript.FireProjectile(StateData.projectileSpeed, StateData.projectileTravelDistance, _attackDetails, StateData.projectileGravityScale);
+            _projectileDirection = (_projectilePosition - (Vector2)Enemy.AliveGameObject.transform.position).normalized;
+
+            ProjectileScript.FireProjectile(StateData.projectileSpeed, StateData.projectileTravelDistance, _attackDetails, StateData.projectileGravityScale,
+                _projectileDirection);
         }
     }
 }

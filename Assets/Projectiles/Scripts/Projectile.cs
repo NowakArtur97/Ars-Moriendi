@@ -112,7 +112,7 @@ public class Projectile : MonoBehaviour
 
     public void FireProjectile(float speed, float travelDistance, AttackDetails attackDetails, float gravityScale, Vector2 direction)
     {
-        _speed = transform.forward * speed;
+        _speed = direction * speed;
         _travelDistance = travelDistance;
         _gravityScale = gravityScale;
         _attackDetails = attackDetails;
