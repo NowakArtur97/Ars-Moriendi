@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Slime_BaseData
   m_EditorClassIdentifier: 
   wallCheckDistance: 8
+  wallBehindCheckDistance: 0.2
   ledgeCheckDistance: 0.4
   groundCheckRadius: 1
   minAgroDistance: 1.5
-  maxAgroDistance: 8
+  maxAgroDistance: 12
   closeRangeActionDistance: 1.5
-  longRangeActionDistance: 4
+  longRangeActionDistance: 12
   maxPlayerJumpedOverDistance: 1
   maxHealth: 30
   damageHopSpeed: 0

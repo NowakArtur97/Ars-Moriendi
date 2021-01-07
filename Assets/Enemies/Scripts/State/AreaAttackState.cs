@@ -30,8 +30,8 @@ public class AreaAttackState : AttackState
         {
             _projectileAngle = i * (2 * Mathf.PI / numberOfProjectilse);
 
-            _xPosition = Mathf.Cos(_projectileAngle) * 1.5f;
-            _yPosition = Mathf.Sin(_projectileAngle) * 1.5f;
+            _xPosition = Mathf.Cos(_projectileAngle) * Mathf.Deg2Rad;
+            _yPosition = Mathf.Sin(_projectileAngle) * Mathf.Deg2Rad;
 
             _projectilePosition.Set(Enemy.AliveGameObject.transform.position.x + _xPosition, Enemy.AliveGameObject.transform.position.y + _yPosition);
 

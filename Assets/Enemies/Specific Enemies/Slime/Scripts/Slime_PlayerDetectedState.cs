@@ -20,9 +20,9 @@
         {
             FiniteStateMachine.ChangeState(_slime.AreaAttackState);
         }
-        else if (!IsDetectingLedge || IsDetectingWall)
+        else if (!IsPlayerInMaxAgroRange)
         {
-            FiniteStateMachine.ChangeState(_slime.JumpingMoveState);
+            FiniteStateMachine.ChangeState(_slime.IdleState);
         }
     }
 }

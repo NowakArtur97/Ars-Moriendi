@@ -61,7 +61,7 @@ public abstract class IdleState : EnemyState
         IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 
-    public void ShouldFlipAfterIdle(bool flipAfterIdle) => _flipAfterIdle = flipAfterIdle;
-
     private void SetRandomIdleTime() => IdleTime = Random.Range(StateData.minimumIdleTime, StateData.maximumIdleTime);
+
+    public void ShouldFlipAfterIdle(bool flipAfterIdle) => _flipAfterIdle = flipAfterIdle;
 }
