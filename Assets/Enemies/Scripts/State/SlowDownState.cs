@@ -56,8 +56,8 @@ public abstract class SlowDownState : State
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckWall();
-        isDetectingLedge = Entity.CheckLedge();
+        IsDetectingWall = Entity.CheckIfTouchingWall();
+        isDetectingLedge = Entity.CheckIfTouchingLedge();
     }
 
     private void SlowDown()

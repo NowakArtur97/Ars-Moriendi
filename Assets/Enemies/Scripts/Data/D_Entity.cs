@@ -4,6 +4,7 @@
 public class D_Entity : ScriptableObject
 {
     public float wallCheckDistance = 0.2f;
+    public float wallBehindCheckDistance = 0.2f;
     public float ledgeCheckDistance = 0.4f;
     public float groundCheckRadius = 1.0f;
 

@@ -710,6 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallCheck: {fileID: 765138927}
+  WallBehindCheck: {fileID: 765138927}
   LedgeCheck: {fileID: 352906539}
   PlayerCheck: {fileID: 800722783}
   PlayerJumpedOverCheck: {fileID: 291381420}
@@ -8252,7 +8253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &845845457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8266,6 +8267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallCheck: {fileID: 800986408}
+  WallBehindCheck: {fileID: 2026883137}
   LedgeCheck: {fileID: 565227548}
   PlayerCheck: {fileID: 1880474834}
   PlayerJumpedOverCheck: {fileID: 1490897726}
@@ -9358,6 +9360,7 @@ Transform:
   - {fileID: 522846968}
   - {fileID: 1117002209}
   - {fileID: 371804231}
+  - {fileID: 2026883137}
   m_Father: {fileID: 845845458}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9877,7 +9880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699868444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.82, y: 7.58, z: -1.6777344}
+  m_LocalPosition: {x: 46.12, y: 9.76, z: -1.6777344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973485767}
@@ -10386,6 +10389,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1252539032}
+--- !u!1 &2026883136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026883137}
+  m_Layer: 11
+  m_Name: Wall Behind Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026883137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026883136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34, y: -0.151, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1553699894}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043799546
 GameObject:
   m_ObjectHideFlags: 0
@@ -10447,7 +10480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2049311638
 Transform:
   m_ObjectHideFlags: 0
@@ -10476,6 +10509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallCheck: {fileID: 1035312102}
+  WallBehindCheck: {fileID: 1035312102}
   LedgeCheck: {fileID: 404469420}
   PlayerCheck: {fileID: 1764611385}
   PlayerJumpedOverCheck: {fileID: 481980081}

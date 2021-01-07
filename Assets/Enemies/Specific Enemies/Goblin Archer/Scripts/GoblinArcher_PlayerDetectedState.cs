@@ -16,8 +16,10 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
 
         if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
         {
-            if (Time.time >= _goblinArcher.DodgeState.StartTime + _goblinArcher._dodgeStateData.dodgeCooldwon)
+            if (Time.time >= _goblinArcher.DodgeState.LastDodgeTime + _goblinArcher._dodgeStateData.dodgeCooldwon)
             {
+                _goblinArcher.DodgeState.ShouldFlipAfterDodge(IsDetectingWallBehind);
+                _goblinArcher.DodgeState.ShouldDodgeInOppositeDirection(IsDetectingWallBehind);
                 FiniteStateMachine.ChangeState(_goblinArcher.DodgeState);
             }
             else

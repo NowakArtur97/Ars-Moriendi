@@ -2,14 +2,14 @@
 
 public abstract class IdleState : State
 {
-    protected D_IdleState StateData;
+    private bool _flipAfterIdle;
 
-    protected bool FlipAfterIdle;
-    protected bool IsIdleTimeOver;
+    protected D_IdleState StateData;
 
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
+    protected bool IsIdleTimeOver;
     protected float IdleTime;
 
     public IdleState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_IdleState stateData)
@@ -31,7 +31,7 @@ public abstract class IdleState : State
     {
         base.Exit();
 
-        if (FlipAfterIdle)
+        if (_flipAfterIdle)
         {
             Entity.Flip();
         }
@@ -55,7 +55,7 @@ public abstract class IdleState : State
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
-    public void SetFlipAfterIdle(bool flipAfterIdle) => FlipAfterIdle = flipAfterIdle;
+    public void ShouldFlipAfterIdle(bool flipAfterIdle) => _flipAfterIdle = flipAfterIdle;
 
     private void SetRandomIdleTime() => IdleTime = Random.Range(StateData.minimumIdleTime, StateData.maximumIdleTime);
 }

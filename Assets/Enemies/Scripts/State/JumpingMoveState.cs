@@ -29,8 +29,8 @@
         base.DoChecks();
 
         IsGrounded = Entity.CheckIfGrounded();
-        IsDetectingWall = Entity.CheckWall();
-        IsDetectingLedge = Entity.CheckLedge();
+        IsDetectingWall = Entity.CheckIfTouchingWall();
+        IsDetectingLedge = Entity.CheckIfTouchingLedge();
 
         IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();

@@ -5,6 +5,7 @@ public abstract class PlayerDetectedState : State
     protected D_PlayerDetectedState StateData;
 
     protected bool IsDetectingWall;
+    protected bool IsDetectingWallBehind;
     protected bool IsDetectingLedge;
 
     protected bool IsPlayerInMinAgroRange;
@@ -48,8 +49,9 @@ public abstract class PlayerDetectedState : State
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckWall();
-        IsDetectingLedge = Entity.CheckLedge();
+        IsDetectingWall = Entity.CheckIfTouchingWall();
+        IsDetectingWallBehind = Entity.CheckIfBackIsTouchingWall();
+        IsDetectingLedge = Entity.CheckIfTouchingLedge();
 
         IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();

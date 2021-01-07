@@ -14,21 +14,13 @@
 
         if (IsDodgeTimeOver)
         {
-            if (IsPlayerInMinAgroRange && ShouldPerformCloseRangeAction)
-            {
-                FiniteStateMachine.ChangeState(_goblinArcher.MeleeAttackState);
-            }
-            else if (ShouldPerformLongRangeAction && isPlayerInMaxAgroRange)
-            {
-                FiniteStateMachine.ChangeState(_goblinArcher.RangedAttackState);
-            }
-            else if (!isPlayerInMaxAgroRange)
-            {
-                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
-            }
-            else if (isPlayerInMaxAgroRange)
+            if (isPlayerInMaxAgroRange)
             {
                 FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
+            }
+            else
+            {
+                FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
             }
         }
     }

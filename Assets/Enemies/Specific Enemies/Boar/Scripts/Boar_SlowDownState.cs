@@ -14,7 +14,7 @@
 
         if (!isDetectingLedge || IsDetectingWall)
         {
-            _boar.IdleState.SetFlipAfterIdle(true);
+            _boar.IdleState.ShouldFlipAfterIdle(true);
             FiniteStateMachine.ChangeState(_boar.IdleState);
         }
         else if (HasStopped && IsMinSlideTimeOver)

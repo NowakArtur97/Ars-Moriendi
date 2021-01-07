@@ -2,6 +2,9 @@
 
 public abstract class DodgeState : State
 {
+    private bool _flipAfterDodge;
+    private bool _dodgeOppositeDirection;
+
     protected D_DodgeState StateData;
 
     protected bool ShouldPerformCloseRangeAction;
@@ -19,6 +22,7 @@ public abstract class DodgeState : State
         : base(finiteStateMachine, entity, animationBoolName)
     {
         StateData = stateData;
+        _dodgeOppositeDirection = false;
     }
 
     public override void Enter()
@@ -27,7 +31,19 @@ public abstract class DodgeState : State
 
         IsDodgeTimeOver = false;
 
-        Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Entity.FacingDirection);
+        if (_dodgeOppositeDirection)
+        {
+            Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, Entity.FacingDirection);
+        }
+        else
+        {
+            Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Entity.FacingDirection);
+        }
+
+        if (_flipAfterDodge)
+        {
+            Entity.Flip();
+        }
     }
 
     public override void Exit()
@@ -59,4 +75,8 @@ public abstract class DodgeState : State
 
         IsGrounded = Entity.CheckIfGrounded();
     }
+
+    public void ShouldFlipAfterDodge(bool flipAfterIdle) => _flipAfterDodge = flipAfterIdle;
+
+    public void ShouldDodgeInOppositeDirection(bool dodgeOppositeDirection) => _dodgeOppositeDirection = dodgeOppositeDirection;
 }

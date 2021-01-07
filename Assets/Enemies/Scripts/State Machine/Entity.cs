@@ -4,6 +4,7 @@ public abstract class Entity : MonoBehaviour
 {
     [Header("Checks")]
     [SerializeField] protected Transform WallCheck;
+    [SerializeField] protected Transform WallBehindCheck;
     [SerializeField] protected Transform LedgeCheck;
     [SerializeField] protected Transform PlayerCheck;
     [SerializeField] protected Transform PlayerJumpedOverCheck;
@@ -121,9 +122,12 @@ public abstract class Entity : MonoBehaviour
         MyRigidbody2D.velocity = _velocityWorkSpace;
     }
 
-    public virtual bool CheckWall() => Physics2D.Raycast(WallCheck.position, AliveGameObject.transform.right, EntityData.wallCheckDistance, EntityData.whatIsGround);
+    public virtual bool CheckIfTouchingWall() => Physics2D.Raycast(WallCheck.position, AliveGameObject.transform.right, EntityData.wallCheckDistance, EntityData.whatIsGround);
 
-    public virtual bool CheckLedge() => Physics2D.Raycast(LedgeCheck.position, Vector2.down, EntityData.ledgeCheckDistance, EntityData.whatIsGround);
+    public virtual bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(WallBehindCheck.position, -AliveGameObject.transform.right,
+        EntityData.wallBehindCheckDistance, EntityData.whatIsGround);
+
+    public virtual bool CheckIfTouchingLedge() => Physics2D.Raycast(LedgeCheck.position, Vector2.down, EntityData.ledgeCheckDistance, EntityData.whatIsGround);
 
     public virtual bool CheckIfGrounded() => Physics2D.OverlapCircle(GroundCheck.position, EntityData.groundCheckRadius, EntityData.whatIsGround);
 
@@ -152,6 +156,7 @@ public abstract class Entity : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(WallCheck.position, new Vector2(WallCheck.position.x - EntityData.wallCheckDistance, WallCheck.position.y));
+        Gizmos.DrawLine(WallBehindCheck.position, new Vector2(WallBehindCheck.position.x - EntityData.wallBehindCheckDistance, WallBehindCheck.position.y));
         Gizmos.DrawLine(LedgeCheck.position, new Vector2(LedgeCheck.position.x, LedgeCheck.position.y - EntityData.ledgeCheckDistance));
         Gizmos.DrawLine(PlayerJumpedOverCheck.position, new Vector2(PlayerJumpedOverCheck.position.x,
             PlayerJumpedOverCheck.position.y + EntityData.maxPlayerJumpedOverDistance));

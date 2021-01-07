@@ -18,7 +18,7 @@
         }
         else if (!IsDetectingLedge || IsDetectingWall)
         {
-            _goblinArcher.IdleState.SetFlipAfterIdle(true);
+            _goblinArcher.IdleState.ShouldFlipAfterIdle(true);
             FiniteStateMachine.ChangeState(_goblinArcher.IdleState);
         }
     }
