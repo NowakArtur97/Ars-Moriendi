@@ -2,7 +2,7 @@
 
 public abstract class Enemy : MonoBehaviour
 {
-    [Header("Checks")]
+    [Header("Transform Checks")]
     [SerializeField] protected Transform WallCheck;
     [SerializeField] protected Transform WallBehindCheck;
     [SerializeField] protected Transform LedgeCheck;
@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform PlayerJumpedOverCheck;
     [SerializeField] protected Transform GroundCheck;
 
+    [Header("Base Data")]
     public D_Entity EntityData;
 
     public FiniteStateMachine FiniteStateMachine;

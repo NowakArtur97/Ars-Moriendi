@@ -9077,6 +9077,7 @@ Transform:
   - {fileID: 1764611385}
   - {fileID: 481980081}
   - {fileID: 396908892}
+  - {fileID: 1482589899}
   m_Father: {fileID: 2049311638}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9221,6 +9222,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4108056fa0a0641bf8cc0b65ac1369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1482589898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482589899}
+  m_Layer: 11
+  m_Name: AreaAttack Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482589899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482589898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1382451984}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490897725
 GameObject:
   m_ObjectHideFlags: 0
@@ -10519,7 +10550,10 @@ MonoBehaviour:
     type: 2}
   _meleeAttackStateData: {fileID: 11400000, guid: 7c835f48d70d1204bb8394e357b874b5,
     type: 2}
+  _areaAttackStateData: {fileID: 11400000, guid: 411ff280417321b4e8cc0d7508d6c15b,
+    type: 2}
   _meleeAttackPosition: {fileID: 396908892}
+  _areaAttackPosition: {fileID: 1482589899}
 --- !u!1001 &4283664931323821854
 PrefabInstance:
   m_ObjectHideFlags: 0

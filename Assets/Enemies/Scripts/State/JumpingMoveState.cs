@@ -2,9 +2,6 @@
 {
     protected D_JumpingMoveState StateData;
 
-    protected bool IsDetectingWall;
-    protected bool IsDetectingLedge;
-
     protected bool IsJumpOver;
 
     public JumpingMoveState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_JumpingMoveState stateData)
@@ -18,14 +15,6 @@
         base.Enter();
 
         Enemy.SetVelocity(StateData.jumpingMovementSpeed, StateData.jumpingAngle, Enemy.FacingDirection);
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-
-        IsDetectingWall = Enemy.CheckIfTouchingWall();
-        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
     }
 
     public override void AnimationTrigger()
