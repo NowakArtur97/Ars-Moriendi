@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoblinArcher_BaseData
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.2
-  wallBehindCheckDistance: 0.51
+  wallBehindCheckDistance: 6.5
   ledgeCheckDistance: 1.5
   groundCheckRadius: 1
   minAgroDistance: 0.78

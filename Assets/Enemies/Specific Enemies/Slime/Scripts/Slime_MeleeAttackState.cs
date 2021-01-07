@@ -16,7 +16,7 @@ public class Slime_MeleeAttackState : MeleeAttackState
 
         if (IsAnimationFinished)
         {
-            if (IsPlayerInMinAgroRange)
+            if (IsPlayerInMaxAgroRange)
             {
                 FiniteStateMachine.ChangeState(_slime.PlayerDetectedState);
             }

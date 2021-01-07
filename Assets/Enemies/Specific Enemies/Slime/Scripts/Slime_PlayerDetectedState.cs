@@ -16,14 +16,15 @@
         {
             FiniteStateMachine.ChangeState(_slime.MeleeAttackState);
         }
+        else if (!IsPlayerInMaxAgroRange)
         //else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
-        //{
-        // TODO: SLIME Add ranged action
-        //FiniteStateMachine.ChangeState(_slime.RangedAttackState);
-        //}
+        {
+            //TODO: SLIME Add ranged action
+            //FiniteStateMachine.ChangeState(_slime.RangedAttackState);
+            FiniteStateMachine.ChangeState(_slime.IdleState);
+        }
         else if (!IsDetectingLedge || IsDetectingWall)
         {
-            Entity.Flip();
             FiniteStateMachine.ChangeState(_slime.JumpingMoveState);
         }
     }

@@ -6,6 +6,9 @@ public abstract class IdleState : State
 
     protected D_IdleState StateData;
 
+    protected bool IsDetectingWall;
+    protected bool IsDetectingLedge;
+
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
@@ -50,6 +53,9 @@ public abstract class IdleState : State
     public override void DoChecks()
     {
         base.DoChecks();
+
+        IsDetectingWall = Entity.CheckIfTouchingWall();
+        IsDetectingLedge = Entity.CheckIfTouchingLedge();
 
         IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();

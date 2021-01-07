@@ -1,4 +1,6 @@
-﻿public class Slime_IdleState : IdleState
+﻿using UnityEngine;
+
+public class Slime_IdleState : IdleState
 {
     private Slime _slime;
 

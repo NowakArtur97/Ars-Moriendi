@@ -2,12 +2,8 @@
 {
     protected D_JumpingMoveState StateData;
 
-    protected bool IsGrounded;
     protected bool IsDetectingWall;
     protected bool IsDetectingLedge;
-
-    protected bool IsPlayerInMinAgroRange;
-    protected bool IsPlayerInMaxAgroRange;
 
     protected bool IsJumpOver;
 
@@ -28,12 +24,8 @@
     {
         base.DoChecks();
 
-        IsGrounded = Entity.CheckIfGrounded();
         IsDetectingWall = Entity.CheckIfTouchingWall();
         IsDetectingLedge = Entity.CheckIfTouchingLedge();
-
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
     }
 
     public override void AnimationTrigger()
