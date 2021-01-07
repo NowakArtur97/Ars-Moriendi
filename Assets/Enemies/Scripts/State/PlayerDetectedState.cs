@@ -53,9 +53,5 @@ public abstract class PlayerDetectedState : State
 
         IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
-
-        // TODO: Refactor
-        //ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        //ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
     }
 }

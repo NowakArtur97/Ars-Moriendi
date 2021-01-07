@@ -13,6 +13,8 @@ public abstract class DodgeState : State
 
     protected bool IsGrounded;
 
+    public float LastDodgeTime;
+
     public DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData)
         : base(finiteStateMachine, entity, animationBoolName)
     {
@@ -26,6 +28,13 @@ public abstract class DodgeState : State
         IsDodgeTimeOver = false;
 
         Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Entity.FacingDirection);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        LastDodgeTime = Time.time;
     }
 
     public override void LogicUpdate()

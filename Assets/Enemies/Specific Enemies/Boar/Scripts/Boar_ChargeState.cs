@@ -12,11 +12,11 @@
     {
         base.LogicUpdate();
 
-        if (ShouldPerformCloseRangeAction)
+        if (IsPlayerInMinAgroRange)
         {
-            FiniteStateMachine.ChangeState(_boar.MeleeAttackState);
+            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
         }
-        else if (HasDetectedObstacle())
+        else if (!IsDetectingLedge || IsDetectingWall)
         {
             FiniteStateMachine.ChangeState(_boar.LookForPlayerState);
         }
@@ -24,14 +24,5 @@
         {
             FiniteStateMachine.ChangeState(_boar.SlowDownState);
         }
-        else if (IsPlayerInMinAgroRange)
-        {
-            FiniteStateMachine.ChangeState(_boar.PlayerDetectedState);
-        }
-    }
-
-    private bool HasDetectedObstacle()
-    {
-        return !IsDetectingLedge || IsDetectingWall;
     }
 }
