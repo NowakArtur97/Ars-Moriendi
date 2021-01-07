@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slime Spike Without Shining
+  m_Name: Slime Spike Stopped Shining
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
