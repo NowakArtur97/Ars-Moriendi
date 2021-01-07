@@ -1,4 +1,4 @@
-﻿public class JumpingMoveState : State
+﻿public class JumpingMoveState : EnemyState
 {
     protected D_JumpingMoveState StateData;
 
@@ -7,8 +7,8 @@
 
     protected bool IsJumpOver;
 
-    public JumpingMoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_JumpingMoveState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public JumpingMoveState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_JumpingMoveState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -17,22 +17,22 @@
     {
         base.Enter();
 
-        Entity.SetVelocity(StateData.jumpingMovementSpeed, StateData.jumpingAngle, Entity.FacingDirection);
+        Enemy.SetVelocity(StateData.jumpingMovementSpeed, StateData.jumpingAngle, Enemy.FacingDirection);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        IsDetectingLedge = Entity.CheckIfTouchingLedge();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
     }
 
     public override void AnimationTrigger()
     {
         base.AnimationTrigger();
 
-        Entity.SetVelocity(0.0f);
+        Enemy.SetVelocity(0.0f);
     }
 
     public override void AnimationFinishedTrigger()

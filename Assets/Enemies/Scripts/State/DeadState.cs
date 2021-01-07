@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public abstract class DeadState : State
+public abstract class DeadState : EnemyState
 {
     protected D_DeadState StateData;
 
-    public DeadState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DeadState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public DeadState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DeadState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -14,9 +14,9 @@ public abstract class DeadState : State
     {
         base.Enter();
 
-        GameObject.Instantiate(StateData.deathChunkEffectGO, Entity.AliveGameObject.transform.position, StateData.deathChunkEffectGO.transform.rotation);
-        GameObject.Instantiate(StateData.bloodEffectGO, Entity.AliveGameObject.transform.position, StateData.bloodEffectGO.transform.rotation);
+        GameObject.Instantiate(StateData.deathChunkEffectGO, Enemy.AliveGameObject.transform.position, StateData.deathChunkEffectGO.transform.rotation);
+        GameObject.Instantiate(StateData.bloodEffectGO, Enemy.AliveGameObject.transform.position, StateData.bloodEffectGO.transform.rotation);
 
-        Entity.gameObject.SetActive(false);
+        Enemy.gameObject.SetActive(false);
     }
 }

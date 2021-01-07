@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Boar : Entity
+public class Boar : Enemy
 {
     [Header("States Data")]
     [SerializeField] private D_IdleState _idleStateData;

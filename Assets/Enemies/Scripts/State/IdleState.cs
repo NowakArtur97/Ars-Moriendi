@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class IdleState : State
+public abstract class IdleState : EnemyState
 {
     private bool _flipAfterIdle;
 
@@ -15,8 +15,8 @@ public abstract class IdleState : State
     protected bool IsIdleTimeOver;
     protected float IdleTime;
 
-    public IdleState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_IdleState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public IdleState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_IdleState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -25,7 +25,7 @@ public abstract class IdleState : State
     {
         base.Enter();
 
-        Entity.SetVelocity(0.0f);
+        Enemy.SetVelocity(0.0f);
         IsIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -36,7 +36,7 @@ public abstract class IdleState : State
 
         if (_flipAfterIdle)
         {
-            Entity.Flip();
+            Enemy.Flip();
         }
     }
 
@@ -54,11 +54,11 @@ public abstract class IdleState : State
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        IsDetectingLedge = Entity.CheckIfTouchingLedge();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 
     public void ShouldFlipAfterIdle(bool flipAfterIdle) => _flipAfterIdle = flipAfterIdle;

@@ -2,7 +2,7 @@
 {
     private Slime _slime;
 
-    public Slime_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData, Slime slime)
+    public Slime_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_PlayerDetectedState stateData, Slime slime)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _slime = slime;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class SlowDownState : State
+public abstract class SlowDownState : EnemyState
 {
     protected D_SlowDownState StateData;
 
@@ -12,8 +12,8 @@ public abstract class SlowDownState : State
     protected bool IsDetectingWall;
     protected bool isDetectingLedge;
 
-    public SlowDownState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_SlowDownState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public SlowDownState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_SlowDownState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -24,7 +24,7 @@ public abstract class SlowDownState : State
 
         IsMinSlideTimeOver = false;
         HasStopped = false;
-        CurrentVelocity = Entity.MyRigidbody2D.velocity.x;
+        CurrentVelocity = Enemy.MyRigidbody2D.velocity.x;
     }
 
     public override void LogicUpdate()
@@ -56,13 +56,13 @@ public abstract class SlowDownState : State
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        isDetectingLedge = Entity.CheckIfTouchingLedge();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        isDetectingLedge = Enemy.CheckIfTouchingLedge();
     }
 
     private void SlowDown()
     {
         CurrentVelocity = Mathf.Abs(CurrentVelocity - StateData.decelerationSpeed);
-        Entity.SetVelocity(CurrentVelocity);
+        Enemy.SetVelocity(CurrentVelocity);
     }
 }

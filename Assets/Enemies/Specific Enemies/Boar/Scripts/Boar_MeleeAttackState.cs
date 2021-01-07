@@ -4,7 +4,7 @@ public class Boar_MeleeAttackState : MeleeAttackState
 {
     private Boar _boar;
 
-    public Boar_MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
+    public Boar_MeleeAttackState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, Transform attackPosition,
         D_MeleeAttackState stateData, Boar boar) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
         _boar = boar;

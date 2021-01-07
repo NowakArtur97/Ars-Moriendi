@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class Entity : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [Header("Checks")]
     [SerializeField] protected Transform WallCheck;

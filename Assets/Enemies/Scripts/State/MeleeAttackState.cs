@@ -6,8 +6,8 @@ public abstract class MeleeAttackState : AttackState
 
     protected AttackDetails AttackDetails;
 
-    public MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData)
-        : base(finiteStateMachine, entity, animationBoolName, attackPosition)
+    public MeleeAttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition, D_MeleeAttackState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName, attackPosition)
     {
         StateData = stateData;
     }
@@ -16,11 +16,11 @@ public abstract class MeleeAttackState : AttackState
     {
         base.Enter();
 
-        AttackDetails.position = Entity.AliveGameObject.transform.position;
+        AttackDetails.position = Enemy.AliveGameObject.transform.position;
         AttackDetails.damageAmmount = StateData.attackDamage;
         AttackDetails.stunDamageAmount = StateData.stunDamage;
 
-        Entity.SetVelocity(StateData.attackMovementSpeed);
+        Enemy.SetVelocity(StateData.attackMovementSpeed);
     }
 
     public override void FinishAttack()

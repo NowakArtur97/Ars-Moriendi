@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GoblinArcher : Entity
+public class GoblinArcher : Enemy
 {
     [Header("States Data")]
     [SerializeField] private D_IdleState _idleStateData;

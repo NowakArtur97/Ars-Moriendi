@@ -2,7 +2,7 @@
 {
     private GoblinArcher _goblinArcher;
 
-    public GoblinArcher_DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData, GoblinArcher goblinArcher)
+    public GoblinArcher_DodgeState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_DodgeState stateData, GoblinArcher goblinArcher)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _goblinArcher = goblinArcher;

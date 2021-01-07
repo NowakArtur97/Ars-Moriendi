@@ -2,7 +2,7 @@
 {
     private Boar _boar;
 
-    public Boar_StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData, Boar boar)
+    public Boar_StunState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_StunState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _boar = boar;

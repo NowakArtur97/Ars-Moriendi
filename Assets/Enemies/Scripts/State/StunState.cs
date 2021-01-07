@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class StunState : State
+public abstract class StunState : EnemyState
 {
     protected D_StunState StateData;
 
@@ -13,8 +13,8 @@ public abstract class StunState : State
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
-    public StunState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_StunState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public StunState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_StunState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -29,14 +29,14 @@ public abstract class StunState : State
         ShouldPerformCloseRangeAction = false;
         IsPlayerInMinAgroRange = false;
 
-        Entity.SetVelocity(StateData.stunKnockbackSpeed, StateData.stunKnockbackAngle, Entity.LastDamageDirection);
+        Enemy.SetVelocity(StateData.stunKnockbackSpeed, StateData.stunKnockbackAngle, Enemy.LastDamageDirection);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        Entity.ResetStunResistance();
+        Enemy.ResetStunResistance();
     }
 
     public override void LogicUpdate()
@@ -52,7 +52,7 @@ public abstract class StunState : State
         {
             IsMovementStopped = true;
 
-            Entity.SetVelocity(0.0f);
+            Enemy.SetVelocity(0.0f);
         }
     }
 
@@ -60,10 +60,10 @@ public abstract class StunState : State
     {
         base.DoChecks();
 
-        IsGrounded = Entity.CheckIfGrounded();
+        IsGrounded = Enemy.CheckIfGrounded();
 
-        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Enemy.CheckIfPlayerInCloseRangeAction();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInLongRangeAction();
     }
 }

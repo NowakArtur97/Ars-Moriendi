@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class PlayerDetectedState : State
+public abstract class PlayerDetectedState : EnemyState
 {
     protected D_PlayerDetectedState StateData;
 
@@ -14,8 +14,8 @@ public abstract class PlayerDetectedState : State
     protected bool ShouldPerformCloseRangeAction;
     protected bool ShouldPerformLongRangeAction;
 
-    public PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public PlayerDetectedState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_PlayerDetectedState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -24,7 +24,7 @@ public abstract class PlayerDetectedState : State
     {
         base.Enter();
 
-        Entity.SetVelocity(0.0f);
+        Enemy.SetVelocity(0.0f);
 
         ShouldPerformCloseRangeAction = false;
         ShouldPerformLongRangeAction = false;
@@ -49,11 +49,11 @@ public abstract class PlayerDetectedState : State
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        IsDetectingWallBehind = Entity.CheckIfBackIsTouchingWall();
-        IsDetectingLedge = Entity.CheckIfTouchingLedge();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        IsDetectingWallBehind = Enemy.CheckIfBackIsTouchingWall();
+        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 }

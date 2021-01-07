@@ -2,7 +2,7 @@
 {
     private Boar _boar;
 
-    public Boar_MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData, Boar boar) : base(finiteStateMachine, entity, animationBoolName, stateData)
+    public Boar_MoveState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_MoveState stateData, Boar boar) : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _boar = boar;
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class LookForPlayerState : State
+public abstract class LookForPlayerState : EnemyState
 {
     protected D_LookForPlayerState StateData;
 
@@ -15,8 +15,8 @@ public abstract class LookForPlayerState : State
     protected bool AreAllTurnsDone;
     protected bool AreAllTurnsTimeDone;
 
-    public LookForPlayerState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_LookForPlayerState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public LookForPlayerState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_LookForPlayerState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -25,7 +25,7 @@ public abstract class LookForPlayerState : State
     {
         base.Enter();
 
-        Entity.SetVelocity(0.0f);
+        Enemy.SetVelocity(0.0f);
 
         AreAllTurnsDone = false;
         AreAllTurnsTimeDone = false;
@@ -39,14 +39,14 @@ public abstract class LookForPlayerState : State
 
         if (ShouldTurnImmediately)
         {
-            Entity.Flip();
+            Enemy.Flip();
             AmountOfTurnsDone++;
             LastTurnTime = Time.time;
             ShouldTurnImmediately = false;
         }
         else if (Time.time >= LastTurnTime + StateData.timeBetweenTurns && !AreAllTurnsDone)
         {
-            Entity.Flip();
+            Enemy.Flip();
             AmountOfTurnsDone++;
             LastTurnTime = Time.time;
         }
@@ -66,8 +66,8 @@ public abstract class LookForPlayerState : State
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        isPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 
     public void SetShouldTurnImmediately(bool shouldTurnImmediately) => ShouldTurnImmediately = shouldTurnImmediately;

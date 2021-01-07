@@ -2,7 +2,7 @@
 {
     private Boar _boar;
 
-    public Boar_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData, Boar boar)
+    public Boar_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_PlayerDetectedState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _boar = boar;
@@ -14,7 +14,7 @@
 
         if (!IsDetectingLedge || IsDetectingWall)
         {
-            Entity.Flip();
+            Enemy.Flip();
             FiniteStateMachine.ChangeState(_boar.MoveState);
         }
         else if (!IsPlayerInMaxAgroRange)

@@ -4,7 +4,7 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
 {
     private GoblinArcher _goblinArcher;
 
-    public GoblinArcher_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_PlayerDetectedState stateData,
+    public GoblinArcher_PlayerDetectedState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_PlayerDetectedState stateData,
         GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _goblinArcher = goblinArcher;
@@ -33,7 +33,7 @@ public class GoblinArcher_PlayerDetectedState : PlayerDetectedState
         }
         else if (!IsDetectingLedge || IsDetectingWall)
         {
-            Entity.Flip();
+            Enemy.Flip();
             FiniteStateMachine.ChangeState(_goblinArcher.MoveState);
         }
         else if (!IsPlayerInMaxAgroRange)

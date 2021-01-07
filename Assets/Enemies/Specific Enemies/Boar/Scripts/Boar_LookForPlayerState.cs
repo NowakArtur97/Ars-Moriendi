@@ -2,7 +2,7 @@
 {
     private Boar _boar;
 
-    public Boar_LookForPlayerState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_LookForPlayerState stateData, Boar boar)
+    public Boar_LookForPlayerState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_LookForPlayerState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
         _boar = boar;

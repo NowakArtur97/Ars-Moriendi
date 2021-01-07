@@ -9,8 +9,8 @@ public abstract class RangedAttackState : AttackState
 
     private AttackDetails _attackDetails;
 
-    public RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData)
-        : base(finiteStateMachine, entity, animationBoolName, attackPosition)
+    public RangedAttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition, D_RangedAttackState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName, attackPosition)
     {
         StateData = stateData;
     }

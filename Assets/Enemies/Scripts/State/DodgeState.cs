@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class DodgeState : State
+public abstract class DodgeState : EnemyState
 {
     private bool _flipAfterDodge;
     private bool _dodgeOppositeDirection;
@@ -18,8 +18,8 @@ public abstract class DodgeState : State
 
     public float LastDodgeTime;
 
-    public DodgeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_DodgeState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public DodgeState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DodgeState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
         _dodgeOppositeDirection = false;
@@ -33,16 +33,16 @@ public abstract class DodgeState : State
 
         if (_dodgeOppositeDirection)
         {
-            Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, Entity.FacingDirection);
+            Enemy.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, Enemy.FacingDirection);
         }
         else
         {
-            Entity.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Entity.FacingDirection);
+            Enemy.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Enemy.FacingDirection);
         }
 
         if (_flipAfterDodge)
         {
-            Entity.Flip();
+            Enemy.Flip();
         }
     }
 
@@ -67,13 +67,13 @@ public abstract class DodgeState : State
     {
         base.DoChecks();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        isPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        isPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
 
-        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Enemy.CheckIfPlayerInCloseRangeAction();
+        ShouldPerformLongRangeAction = Enemy.CheckIfPlayerInLongRangeAction();
 
-        IsGrounded = Entity.CheckIfGrounded();
+        IsGrounded = Enemy.CheckIfGrounded();
     }
 
     public void ShouldFlipAfterDodge(bool flipAfterIdle) => _flipAfterDodge = flipAfterIdle;

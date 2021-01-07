@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationToStateMachine : MonoBehaviour
 {
-    public State state;
+    public EnemyState state;
 
     private void AnimationTrigger() => state.AnimationTrigger();
 

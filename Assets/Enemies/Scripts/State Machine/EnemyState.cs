@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public abstract class State
+public abstract class EnemyState
 {
     protected FiniteStateMachine FiniteStateMachine;
-    protected Entity Entity;
+    protected Enemy Enemy;
 
     protected string AnimationBoolName;
     protected bool IsAnimationFinished;
 
     public float StartTime { get; private set; }
 
-    public State(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName)
+    public EnemyState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName)
     {
         FiniteStateMachine = finiteStateMachine;
-        Entity = entity;
+        Enemy = enemy;
         AnimationBoolName = animationBoolName;
     }
 
@@ -23,11 +23,11 @@ public abstract class State
 
         IsAnimationFinished = false;
 
-        Entity.MyAnimator.SetBool(AnimationBoolName, true);
+        Enemy.MyAnimator.SetBool(AnimationBoolName, true);
 
-        if (Entity.AnimationToStateMachine != null)
+        if (Enemy.AnimationToStateMachine != null)
         {
-            Entity.AnimationToStateMachine.state = this;
+            Enemy.AnimationToStateMachine.state = this;
         }
 
         DoChecks();
@@ -35,7 +35,7 @@ public abstract class State
 
     public virtual void Exit()
     {
-        Entity.MyAnimator.SetBool(AnimationBoolName, false);
+        Enemy.MyAnimator.SetBool(AnimationBoolName, false);
     }
 
     public virtual void LogicUpdate() { }

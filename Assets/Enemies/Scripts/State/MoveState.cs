@@ -1,4 +1,4 @@
-﻿public abstract class MoveState : State
+﻿public abstract class MoveState : EnemyState
 {
     protected D_MoveState StateData;
 
@@ -8,8 +8,8 @@
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
-    public MoveState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_MoveState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public MoveState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_MoveState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -18,16 +18,16 @@
     {
         base.Enter();
 
-        Entity.SetVelocity(StateData.movementSpeed);
+        Enemy.SetVelocity(StateData.movementSpeed);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        IsDetectingLedge = Entity.CheckIfTouchingLedge();
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 }

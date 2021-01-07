@@ -4,7 +4,7 @@ public class Slime_MeleeAttackState : MeleeAttackState
 {
     private Slime _slime;
 
-    public Slime_MeleeAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
+    public Slime_MeleeAttackState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, Transform attackPosition,
         D_MeleeAttackState stateData, Slime slime) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
         _slime = slime;

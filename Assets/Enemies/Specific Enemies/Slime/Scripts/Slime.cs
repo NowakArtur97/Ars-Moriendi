@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Slime : Entity
+public class Slime : Enemy
 {
     [Header("States Data")]
     [SerializeField] private D_IdleState _idleStateData;

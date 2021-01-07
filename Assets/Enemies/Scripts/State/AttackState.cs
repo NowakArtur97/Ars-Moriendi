@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public abstract class AttackState : State
+public abstract class AttackState : EnemyState
 {
     protected Transform AttackPosition;
 
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
-    public AttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition) :
-        base(finiteStateMachine, entity, animationBoolName)
+    public AttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition) :
+        base(finiteStateMachine, enemy, animationBoolName)
     {
         AttackPosition = attackPosition;
     }
@@ -17,17 +17,17 @@ public abstract class AttackState : State
     {
         base.Enter();
 
-        Entity.AttackAnimationToStateMachine.attackState = this;
+        Enemy.AttackAnimationToStateMachine.attackState = this;
 
-        Entity.SetVelocity(0.0f);
+        Enemy.SetVelocity(0.0f);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsPlayerInMaxAgroRange = Entity.CheckIfPlayerInMaxAgro();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
 
     public virtual void FinishAttack() => IsAnimationFinished = true;

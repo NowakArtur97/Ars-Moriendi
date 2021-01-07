@@ -1,4 +1,4 @@
-﻿public abstract class ChargeState : State
+﻿public abstract class ChargeState : EnemyState
 {
     protected D_ChargeState StateData;
 
@@ -11,8 +11,8 @@
     protected bool ShouldPerformCloseRangeAction;
     protected bool ShouldPerformLongRangeAction;
 
-    public ChargeState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, D_ChargeState stateData)
-        : base(finiteStateMachine, entity, animationBoolName)
+    public ChargeState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_ChargeState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
     }
@@ -21,19 +21,19 @@
     {
         base.Enter();
 
-        Entity.SetVelocity(StateData.chargeSpeed);
+        Enemy.SetVelocity(StateData.chargeSpeed);
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
 
-        IsDetectingWall = Entity.CheckIfTouchingWall();
-        IsDetectingLedge = Entity.CheckIfTouchingLedge();
-        IsPlayerInMinAgroRange = Entity.CheckIfPlayerInMinAgro();
-        IsDetectingPlayerAbove = Entity.CheckIfPlayerJumpedOver();
+        IsDetectingWall = Enemy.CheckIfTouchingWall();
+        IsDetectingLedge = Enemy.CheckIfTouchingLedge();
+        IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
+        IsDetectingPlayerAbove = Enemy.CheckIfPlayerJumpedOver();
 
-        ShouldPerformCloseRangeAction = Entity.CheckIfPlayerInCloseRangeAction();
-        ShouldPerformLongRangeAction = Entity.CheckIfPlayerInLongRangeAction();
+        ShouldPerformCloseRangeAction = Enemy.CheckIfPlayerInCloseRangeAction();
+        ShouldPerformLongRangeAction = Enemy.CheckIfPlayerInLongRangeAction();
     }
 }

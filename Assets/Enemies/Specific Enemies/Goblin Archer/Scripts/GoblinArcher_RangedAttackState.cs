@@ -4,7 +4,7 @@ public class GoblinArcher_RangedAttackState : RangedAttackState
 {
     private GoblinArcher _goblinArcher;
 
-    public GoblinArcher_RangedAttackState(FiniteStateMachine finiteStateMachine, Entity entity, string animationBoolName, Transform attackPosition,
+    public GoblinArcher_RangedAttackState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, Transform attackPosition,
         D_RangedAttackState stateData, GoblinArcher goblinArcher) : base(finiteStateMachine, entity, animationBoolName, attackPosition, stateData)
     {
         _goblinArcher = goblinArcher;
