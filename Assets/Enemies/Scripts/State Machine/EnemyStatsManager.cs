@@ -1,34 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerStatsManager
+public class EnemyStatsManager
 {
     private float _maxHealth;
     private float _currentHealth;
 
     private float _maxStunResistance;
     private float _currentStunResistance;
+    public float StunRecorveryTime { get; private set; }
 
     public float LastDamageTime { get; private set; }
 
     public bool IsDead { get; private set; }
     public bool IsStunned { get; private set; }
-    public bool IsRolling { get; private set; }
 
-    public Action<float> DamageEvent;
-    public Action DeathEvent;
-
-    public PlayerStatsManager(D_PlayerStats playerStatsData)
+    public EnemyStatsManager(D_EnemyStats enemyStatsData)
     {
-        _maxHealth = playerStatsData.maxHealth;
+        _maxHealth = enemyStatsData.maxHealth;
         _currentHealth = _maxHealth;
 
-        _maxStunResistance = playerStatsData.maxStunResistance;
+        _maxStunResistance = enemyStatsData.maxStunResistance;
         _currentStunResistance = _maxStunResistance;
+        StunRecorveryTime = enemyStatsData.stunRecorveryTime;
     }
-
-    // TODO: Add potion
-    public void Heal(float health) => _currentHealth += health;
 
     public void TakeDamage(AttackDetails attackDetails)
     {
@@ -36,19 +30,17 @@ public class PlayerStatsManager
         _currentStunResistance -= attackDetails.stunDamageAmount;
         LastDamageTime = Time.time;
 
+        Debug.Log(_currentStunResistance);
+
         if (_currentHealth <= 0)
         {
             IsDead = true;
-
-            DeathEvent?.Invoke();
         }
 
         if (_currentStunResistance <= 0)
         {
             IsStunned = true;
         }
-
-        DamageEvent?.Invoke(_currentHealth);
     }
 
     public void ExitStun() => IsStunned = false;
@@ -56,6 +48,4 @@ public class PlayerStatsManager
     public void ResetStunResistance() => _currentStunResistance = _maxStunResistance;
 
     public bool IsStunResistanceMax() => _currentStunResistance == _maxStunResistance;
-
-    public void SetIsRolling(bool isRolling) => IsRolling = isRolling;
 }
