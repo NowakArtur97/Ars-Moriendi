@@ -36,10 +36,11 @@ public class GoblinArcher : Enemy
         PlayerDetectedState = new GoblinArcher_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
         LookForPlayerState = new GoblinArcher_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
         MeleeAttackState = new GoblinArcher_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
-        StunState = new GoblinArcher_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
-        DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
         DodgeState = new GoblinArcher_DodgeState(FiniteStateMachine, this, "dodge", _dodgeStateData, this);
         RangedAttackState = new GoblinArcher_RangedAttackState(FiniteStateMachine, this, "rangedAttack", _rangedAttackPosition, _rangedAttackStateData, this);
+        StunState = new GoblinArcher_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
+        // GOBLIN ARCHER Create death animation
+        DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
         FiniteStateMachine.Initialize(MoveState);
     }
