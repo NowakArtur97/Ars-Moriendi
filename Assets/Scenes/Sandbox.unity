@@ -740,6 +740,7 @@ MonoBehaviour:
   _slowDownStateData: {fileID: 11400000, guid: 4a8ec485acefaa245bd9d3c8fadae5c5, type: 2}
   _meleeAttackStateData: {fileID: 11400000, guid: 20a5492f2e2e2bb419ba725046ad1fb1,
     type: 2}
+  _damageStateData: {fileID: 11400000, guid: 4459ba1badccafe44abaa732ea277818, type: 2}
   _stunStateData: {fileID: 11400000, guid: 1345b677c87bcce47b26c630b6f03b72, type: 2}
   _deadStateData: {fileID: 11400000, guid: 1816cd32433db414cbb6cabf6e4a4e64, type: 2}
   _meleeAttackPosition: {fileID: 1644224282}
@@ -9924,7 +9925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699868444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.45, y: 5.76, z: -1.6777344}
+  m_LocalPosition: {x: 12.34, y: 5.56, z: -1.6777344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973485767}

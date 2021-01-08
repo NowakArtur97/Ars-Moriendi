@@ -22,38 +22,38 @@ AnimationClip:
     - time: 0
       value: {fileID: -8835212718360151005, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.016666668
+    - time: 0.083333336
       value: {fileID: 5168132018644091852, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.033333335
+    - time: 0.16666667
       value: {fileID: -6347921262689574587, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.05
+    - time: 0.25
       value: {fileID: 5193875315479963256, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.06666667
+    - time: 0.33333334
       value: {fileID: -2825403999030072068, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.11666667
+    - time: 0.5833333
       value: {fileID: -1122088660683217667, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.13333334
+    - time: 0.6666667
       value: {fileID: 1075258693537090728, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.15
+    - time: 0.75
       value: {fileID: -1866395028374113037, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.16666667
+    - time: 0.8333333
       value: {fileID: 3734578966462200180, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
-    - time: 0.18333334
+    - time: 0.9166667
       value: {fileID: -2962906616919333998, guid: b20f6779a5250f84d89621290edfa9da,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -83,7 +83,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.2
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -103,14 +103,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.11666667
+  - time: 0.5833333
     functionName: TriggerAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.18333334
+  - time: 0.9166667
     functionName: FinishAttack
     data: 
     objectReferenceParameter: {fileID: 0}
