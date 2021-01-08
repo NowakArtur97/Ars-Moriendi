@@ -10,6 +10,7 @@ public class GoblinArcher : Enemy
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
     [SerializeField] public D_DodgeState _dodgeStateData;
     [SerializeField] public D_RangedAttackState _rangedAttackStateData;
+    [SerializeField] private D_DamageState _damageStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
 
@@ -21,11 +22,12 @@ public class GoblinArcher : Enemy
     public GoblinArcher_MoveState MoveState { get; private set; }
     public GoblinArcher_PlayerDetectedState PlayerDetectedState { get; private set; }
     public GoblinArcher_LookForPlayerState LookForPlayerState { get; private set; }
+    public GoblinArcher_DodgeState DodgeState { get; private set; }
     public GoblinArcher_MeleeAttackState MeleeAttackState { get; private set; }
+    public GoblinArcher_RangedAttackState RangedAttackState { get; private set; }
+    public GoblinArcher_DamageState DamageState { get; private set; }
     public GoblinArcher_StunState StunState { get; private set; }
     public GoblinArcher_DeadState DeadState { get; private set; }
-    public GoblinArcher_DodgeState DodgeState { get; private set; }
-    public GoblinArcher_RangedAttackState RangedAttackState { get; private set; }
 
     protected override void Start()
     {
@@ -38,6 +40,7 @@ public class GoblinArcher : Enemy
         MeleeAttackState = new GoblinArcher_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         DodgeState = new GoblinArcher_DodgeState(FiniteStateMachine, this, "dodge", _dodgeStateData, this);
         RangedAttackState = new GoblinArcher_RangedAttackState(FiniteStateMachine, this, "rangedAttack", _rangedAttackPosition, _rangedAttackStateData, this);
+        DamageState = new GoblinArcher_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new GoblinArcher_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
         // GOBLIN ARCHER Create death animation
         DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
@@ -47,29 +50,13 @@ public class GoblinArcher : Enemy
 
     public override void Damage(AttackDetails attackDetails)
     {
+        bool canDamage = Time.time >= StatsManager.LastDamageTime + _damageStateData.timeBeforeNextDamage;
+
         base.Damage(attackDetails);
 
-        if (StatsManager.IsDead)
+        if (canDamage && FiniteStateMachine.CurrentState != StunState)
         {
-            FiniteStateMachine.ChangeState(DeadState);
-        }
-        else if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
-        {
-            FiniteStateMachine.ChangeState(StunState);
-        }
-        else if (CheckIfPlayerInMaxAgro())
-        {
-            FiniteStateMachine.ChangeState(PlayerDetectedState);
-        }
-        else
-        {
-            LookForPlayerState.SetShouldTurnImmediately(LastDamageDirection == FacingDirection);
-            FiniteStateMachine.ChangeState(LookForPlayerState);
-        }
-
-        foreach (GameObject effect in _deadStateData.damageEffects)
-        {
-            GameObject.Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
+            FiniteStateMachine.ChangeState(DamageState);
         }
     }
 

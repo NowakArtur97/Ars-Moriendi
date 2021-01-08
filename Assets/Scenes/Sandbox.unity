@@ -8270,6 +8270,7 @@ MonoBehaviour:
   _dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
   _rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
     type: 2}
+  _damageStateData: {fileID: 11400000, guid: 34ddfeded768ffc409a48686c1948c13, type: 2}
   _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
   _meleeAttackPosition: {fileID: 1117002209}

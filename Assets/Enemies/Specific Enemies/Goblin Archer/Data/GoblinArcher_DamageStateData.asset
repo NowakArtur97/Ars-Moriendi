@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 752207da720e22d4887900445829b926, type: 3}
-  m_Name: Slime_DamageStateData
+  m_Name: GoblinArcher_DamageStateData
   m_EditorClassIdentifier: 
-  damageHopSpeed: 1
+  damageHopSpeed: 2
   afterHopSpeed: 0
   timeBeforeNextDamage: 2
-  hitPartciles: []
+  hitPartciles:
+  - {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345, type: 3}
