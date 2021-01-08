@@ -8,6 +8,7 @@ public class Slime : Enemy
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
     [SerializeField] private D_AreaAttackState _areaAttackStateData;
+    [SerializeField] private D_StunState _stunStateData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
@@ -18,6 +19,7 @@ public class Slime : Enemy
     public Slime_PlayerDetectedState PlayerDetectedState { get; private set; }
     public Slime_MeleeAttackState MeleeAttackState { get; private set; }
     public Slime_AreaAttackState AreaAttackState { get; private set; }
+    public Slime_StunState StunState { get; private set; }
 
     protected override void Start()
     {
@@ -30,7 +32,32 @@ public class Slime : Enemy
         MeleeAttackState = new Slime_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         // TODO: SLIME Create player area attack animation
         AreaAttackState = new Slime_AreaAttackState(FiniteStateMachine, this, "areaAttack", _areaAttackPosition, _areaAttackStateData, this);
+        StunState = new Slime_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
 
         FiniteStateMachine.Initialize(IdleState);
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+
+        //GameObject.Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
+
+        if (IsDead)
+        {
+            //FiniteStateMachine.ChangeState(DeadState);
+        }
+        else if (IsStunned && FiniteStateMachine.currentState != StunState)
+        {
+            FiniteStateMachine.ChangeState(StunState);
+        }
+        else if (CheckIfPlayerInLongRangeAction())
+        {
+            FiniteStateMachine.ChangeState(PlayerDetectedState);
+        }
+        else
+        {
+            FiniteStateMachine.ChangeState(IdleState);
+        }
     }
 }
