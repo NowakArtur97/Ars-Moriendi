@@ -11,6 +11,8 @@ public class EnemyStatsManager
 
     public float LastDamageTime { get; private set; }
 
+    public AttackDetails LastDamageAttackDertails { get; private set; }
+
     public bool IsDead { get; private set; }
     public bool IsStunned { get; private set; }
 
@@ -29,8 +31,7 @@ public class EnemyStatsManager
         _currentHealth -= attackDetails.damageAmmount;
         _currentStunResistance -= attackDetails.stunDamageAmount;
         LastDamageTime = Time.time;
-
-        Debug.Log(_currentStunResistance);
+        LastDamageAttackDertails = attackDetails;
 
         if (_currentHealth <= 0)
         {

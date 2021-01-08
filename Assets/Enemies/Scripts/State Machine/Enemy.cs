@@ -55,25 +55,11 @@ public abstract class Enemy : MonoBehaviour
         FiniteStateMachine.currentState.PhysicsUpdate();
     }
 
-    public virtual void DamageHop(float velocity)
-    {
-        _velocityWorkSpace.Set(MyRigidbody2D.velocity.x, velocity);
-
-        MyRigidbody2D.velocity = _velocityWorkSpace;
-    }
-
     public virtual void Damage(AttackDetails attackDetails)
     {
         StatsManager.TakeDamage(attackDetails);
 
-        DamageHop(_entityData.damageHopSpeed);
-
         LastDamageDirection = attackDetails.position.x > AliveGameObject.transform.position.x ? -1 : 1;
-
-        foreach (GameObject hitPartcile in _entityData.hitPartciles)
-        {
-            Instantiate(hitPartcile, AliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
-        }
     }
 
     public virtual void SetVelocity(float velocity)
@@ -88,6 +74,13 @@ public abstract class Enemy : MonoBehaviour
         angle.Normalize();
 
         _velocityWorkSpace.Set(angle.x * velocity * direction, angle.y * velocity);
+
+        MyRigidbody2D.velocity = _velocityWorkSpace;
+    }
+
+    public virtual void SetVelocityY(float velocity)
+    {
+        _velocityWorkSpace.Set(MyRigidbody2D.velocity.x, velocity);
 
         MyRigidbody2D.velocity = _velocityWorkSpace;
     }

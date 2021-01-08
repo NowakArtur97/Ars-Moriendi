@@ -1,18 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DamageState : MonoBehaviour
+public class DamageState : EnemyState
 {
-    // Start is called before the first frame update
-    void Start()
+    protected D_DamageState StateData;
+
+    public DamageState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DamageState stateData)
+        : base(finiteStateMachine, enemy, animationBoolName)
     {
-        
+        StateData = stateData;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+
+        Enemy.SetVelocityY(StateData.damageHopSpeed);
+
+        foreach (GameObject hitPartcile in StateData.hitPartciles)
+        {
+            GameObject.Instantiate(hitPartcile, Enemy.AliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        Enemy.SetVelocityY(StateData.afterHopSpeed);
     }
 }
