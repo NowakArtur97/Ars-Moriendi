@@ -10,15 +10,33 @@ public abstract class DeadState : EnemyState
         StateData = stateData;
     }
 
-    public override void Enter()
+    public override void Exit()
     {
-        base.Enter();
+        base.Exit();
 
         foreach (GameObject effect in StateData.damageEffects)
         {
             GameObject.Instantiate(effect, Enemy.AliveGameObject.transform.position, effect.transform.rotation);
         }
+    }
 
-        Enemy.gameObject.SetActive(false);
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (IsAnimationFinished)
+        {
+            if (Time.time >= StartTime + StateData.timeBeforeDestroyingObject)
+            {
+                Enemy.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public override void AnimationFinishedTrigger()
+    {
+        base.AnimationFinishedTrigger();
+
+        IsAnimationFinished = true;
     }
 }
