@@ -47,8 +47,6 @@ public class Boar : Enemy
     {
         base.Damage(attackDetails);
 
-        GameObject.Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
-
         if (IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
@@ -57,14 +55,19 @@ public class Boar : Enemy
         {
             FiniteStateMachine.ChangeState(StunState);
         }
-        else if (CheckIfPlayerInCloseRangeAction())
+        else if (CheckIfPlayerInLongRangeAction())
         {
-            FiniteStateMachine.ChangeState(MeleeAttackState);
+            FiniteStateMachine.ChangeState(PlayerDetectedState);
         }
         else
         {
             LookForPlayerState.SetShouldTurnImmediately(true);
             FiniteStateMachine.ChangeState(LookForPlayerState);
+        }
+
+        foreach (GameObject effect in _deadStateData.damageEffects)
+        {
+            GameObject.Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
         }
     }
 

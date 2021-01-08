@@ -49,8 +49,6 @@ public class GoblinArcher : Enemy
     {
         base.Damage(attackDetails);
 
-        GameObject.Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
-
         if (IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
@@ -59,18 +57,19 @@ public class GoblinArcher : Enemy
         {
             FiniteStateMachine.ChangeState(StunState);
         }
-        else if (CheckIfPlayerInCloseRangeAction())
-        {
-            FiniteStateMachine.ChangeState(MeleeAttackState);
-        }
         else if (CheckIfPlayerInLongRangeAction())
         {
-            FiniteStateMachine.ChangeState(RangedAttackState);
+            FiniteStateMachine.ChangeState(PlayerDetectedState);
         }
         else
         {
             LookForPlayerState.SetShouldTurnImmediately(true);
             FiniteStateMachine.ChangeState(LookForPlayerState);
+        }
+
+        foreach (GameObject effect in _deadStateData.damageEffects)
+        {
+            GameObject.Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
         }
     }
 

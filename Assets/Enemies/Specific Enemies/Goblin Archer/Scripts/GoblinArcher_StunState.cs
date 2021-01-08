@@ -14,15 +14,12 @@
 
         if (IsStunTimeOver)
         {
-            if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
+            if (IsPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(_goblinArcher.MeleeAttackState);
+                FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
             else
-            {
-                _goblinArcher.LookForPlayerState.SetShouldTurnImmediately(true);
                 FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
-            }
         }
     }
 }

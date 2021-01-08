@@ -10653,6 +10653,8 @@ MonoBehaviour:
     type: 2}
   _areaAttackStateData: {fileID: 11400000, guid: 411ff280417321b4e8cc0d7508d6c15b,
     type: 2}
+  _stunStateData: {fileID: 11400000, guid: 98c66a7a37afbf444a18108b24a09109, type: 2}
+  _deadStateData: {fileID: 11400000, guid: cd6065b6a2d331241a6379598a2462c7, type: 2}
   _meleeAttackPosition: {fileID: 396908892}
   _areaAttackPosition: {fileID: 1482589899}
 --- !u!1001 &4283664931323821854

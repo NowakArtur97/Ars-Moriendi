@@ -14,8 +14,10 @@ public abstract class DeadState : EnemyState
     {
         base.Enter();
 
-        GameObject.Instantiate(StateData.deathChunkEffectGO, Enemy.AliveGameObject.transform.position, StateData.deathChunkEffectGO.transform.rotation);
-        GameObject.Instantiate(StateData.bloodEffectGO, Enemy.AliveGameObject.transform.position, StateData.bloodEffectGO.transform.rotation);
+        foreach (GameObject effect in StateData.damageEffects)
+        {
+            GameObject.Instantiate(effect, Enemy.AliveGameObject.transform.position, effect.transform.rotation);
+        }
 
         Enemy.gameObject.SetActive(false);
     }

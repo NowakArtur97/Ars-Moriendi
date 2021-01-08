@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f6b95b4d2db8e42afc8f3017a3913e, type: 3}
   m_Name: GoblinArcher_DeadStateData
   m_EditorClassIdentifier: 
-  deathChunkEffectGO: {fileID: 2101618006556181811, guid: c9228ee8cd9cb324ba7055bfc7c372b4,
-    type: 3}
-  bloodEffectGO: {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345,
-    type: 3}
+  damageEffects:
+  - {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345, type: 3}
+  - {fileID: 2101618006556181811, guid: c9228ee8cd9cb324ba7055bfc7c372b4, type: 3}
