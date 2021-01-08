@@ -53,7 +53,6 @@ public class AreaAttackState : AttackState
 
         _projectileDirection = (_projectilePosition - (Vector2)AttackPosition.transform.position).normalized;
 
-        Projectile.transform.parent = AttackPosition;
         _projectileAngle += StateData.incrementAngle;
     }
 
