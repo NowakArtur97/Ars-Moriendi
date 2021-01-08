@@ -8,6 +8,7 @@ public class Slime : Enemy
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
     [SerializeField] private D_AreaAttackState _areaAttackStateData;
+    [SerializeField] private D_DamageState _damageStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
 
@@ -20,6 +21,7 @@ public class Slime : Enemy
     public Slime_PlayerDetectedState PlayerDetectedState { get; private set; }
     public Slime_MeleeAttackState MeleeAttackState { get; private set; }
     public Slime_AreaAttackState AreaAttackState { get; private set; }
+    public Slime_DamageState DamageState { get; private set; }
     public Slime_StunState StunState { get; private set; }
     public Slime_DeadState DeadState { get; private set; }
 
@@ -34,6 +36,7 @@ public class Slime : Enemy
         MeleeAttackState = new Slime_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         // TODO: SLIME Create player area attack animation
         AreaAttackState = new Slime_AreaAttackState(FiniteStateMachine, this, "areaAttack", _areaAttackPosition, _areaAttackStateData, this);
+        DamageState = new Slime_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new Slime_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
         DeadState = new Slime_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
@@ -42,24 +45,13 @@ public class Slime : Enemy
 
     public override void Damage(AttackDetails attackDetails)
     {
+        bool canDamage = Time.time >= StatsManager.LastDamageTime + _damageStateData.timeBeforeNextDamage;
+
         base.Damage(attackDetails);
 
-        if (StatsManager.IsDead)
+        if (canDamage)
         {
-            FiniteStateMachine.ChangeState(DeadState);
-        }
-        else if (StatsManager.IsStunned && FiniteStateMachine.currentState != StunState)
-        {
-            FiniteStateMachine.ChangeState(StunState);
-        }
-        else
-        {
-            FiniteStateMachine.ChangeState(JumpingMoveState);
-        }
-
-        foreach (GameObject effect in _deadStateData.damageEffects)
-        {
-            GameObject.Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
+            FiniteStateMachine.ChangeState(DamageState);
         }
     }
 }

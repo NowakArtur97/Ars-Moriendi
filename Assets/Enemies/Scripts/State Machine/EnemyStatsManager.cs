@@ -11,8 +11,6 @@ public class EnemyStatsManager
 
     public float LastDamageTime { get; private set; }
 
-    public AttackDetails LastDamageAttackDertails { get; private set; }
-
     public bool IsDead { get; private set; }
     public bool IsStunned { get; private set; }
 
@@ -31,7 +29,6 @@ public class EnemyStatsManager
         _currentHealth -= attackDetails.damageAmmount;
         _currentStunResistance -= attackDetails.stunDamageAmount;
         LastDamageTime = Time.time;
-        LastDamageAttackDertails = attackDetails;
 
         if (_currentHealth <= 0)
         {
@@ -48,5 +45,5 @@ public class EnemyStatsManager
 
     public void ResetStunResistance() => _currentStunResistance = _maxStunResistance;
 
-    public bool IsStunResistanceMax() => _currentStunResistance == _maxStunResistance;
+    public bool HasMaxStunResistance() => _currentStunResistance == _maxStunResistance;
 }

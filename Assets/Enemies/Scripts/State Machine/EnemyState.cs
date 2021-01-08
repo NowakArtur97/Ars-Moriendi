@@ -40,7 +40,7 @@ public abstract class EnemyState
 
     public virtual void LogicUpdate()
     {
-        if (!Enemy.StatsManager.IsStunResistanceMax() && Time.time >= Enemy.StatsManager.LastDamageTime + Enemy.StatsManager.StunRecorveryTime)
+        if (!Enemy.StatsManager.HasMaxStunResistance() && Time.time >= Enemy.StatsManager.LastDamageTime + Enemy.StatsManager.StunRecorveryTime)
         {
             Enemy.StatsManager.ResetStunResistance();
         }

@@ -28,6 +28,14 @@ public abstract class Enemy : MonoBehaviour
 
     private Vector2 _velocityWorkSpace;
 
+    protected virtual void Awake()
+    {
+        FiniteStateMachine = new FiniteStateMachine();
+        StatsManager = new EnemyStatsManager(_enemyStatsData);
+
+        FacingDirection = 1;
+    }
+
     protected virtual void Start()
     {
         AliveGameObject = transform.Find("Alive").gameObject;
@@ -36,23 +44,18 @@ public abstract class Enemy : MonoBehaviour
 
         AnimationToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
         AttackAnimationToStateMachine = AliveGameObject.GetComponent<AttackAnimationToStateMachine>();
-
-        FiniteStateMachine = new FiniteStateMachine();
-        StatsManager = new EnemyStatsManager(_enemyStatsData);
-
-        FacingDirection = 1;
     }
 
     protected virtual void Update()
     {
-        FiniteStateMachine.currentState.LogicUpdate();
+        FiniteStateMachine.CurrentState.LogicUpdate();
 
         MyAnimator.SetFloat("yVelocity", MyRigidbody2D.velocity.y);
     }
 
     protected virtual void FixedUpdate()
     {
-        FiniteStateMachine.currentState.PhysicsUpdate();
+        FiniteStateMachine.CurrentState.PhysicsUpdate();
     }
 
     public virtual void Damage(AttackDetails attackDetails)

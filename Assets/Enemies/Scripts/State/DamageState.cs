@@ -4,6 +4,8 @@ public class DamageState : EnemyState
 {
     protected D_DamageState StateData;
 
+    protected bool IsPlayerInMaxAgroRange;
+
     public DamageState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DamageState stateData)
         : base(finiteStateMachine, enemy, animationBoolName)
     {
@@ -27,5 +29,19 @@ public class DamageState : EnemyState
         base.Exit();
 
         Enemy.SetVelocityY(StateData.afterHopSpeed);
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+
+        IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
+    }
+
+    public override void AnimationFinishedTrigger()
+    {
+        base.AnimationFinishedTrigger();
+
+        IsAnimationFinished = true;
     }
 }

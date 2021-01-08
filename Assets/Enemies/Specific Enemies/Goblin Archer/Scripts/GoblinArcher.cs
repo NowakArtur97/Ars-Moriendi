@@ -53,7 +53,7 @@ public class GoblinArcher : Enemy
         {
             FiniteStateMachine.ChangeState(DeadState);
         }
-        else if (StatsManager.IsStunned && FiniteStateMachine.currentState != StunState)
+        else if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
         {
             FiniteStateMachine.ChangeState(StunState);
         }
