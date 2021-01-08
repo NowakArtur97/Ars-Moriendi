@@ -4,13 +4,12 @@ public class AreaAttackState : AttackState
 {
     protected D_AreaAttackState StateData;
 
+    private GameObject _projectilePrefab;
     protected GameObject Projectile;
     protected Projectile ProjectileScript;
 
     private AttackDetails _attackDetails;
 
-    private float _xPosition;
-    private float _yPosition;
     private Vector2 _projectilePosition;
     private Vector2 _projectileDirection;
     private float _projectileAngle;
@@ -26,39 +25,36 @@ public class AreaAttackState : AttackState
         base.TriggerAttack();
 
         int numberOfProjectiles = StateData.numberOfProjectiles;
+        float projectileSpeed = StateData.projectileSpeed;
+        float projectileTravelDistance = StateData.projectileTravelDistance;
+        float projectileGravityScale = StateData.projectileGravityScale;
         _projectileAngle = StateData.initialAngle;
-        float incrementAngle = (StateData.areaAngle - (2 * _projectileAngle)) / numberOfProjectiles;
+        _projectilePrefab = StateData.projectile;
 
-        for (int i = 0; i < numberOfProjectiles; i++)
+        for (int projectileIndex = 0; projectileIndex < numberOfProjectiles; projectileIndex++)
         {
-            CreateProjectile(numberOfProjectiles, incrementAngle);
+            CreateProjectile(numberOfProjectiles);
 
             SetupAttackDetails();
 
-            ProjectileScript.FireProjectile(StateData.projectileSpeed, StateData.projectileTravelDistance, _attackDetails, StateData.projectileGravityScale,
-                _projectileDirection);
+            ProjectileScript.FireProjectile(projectileSpeed, projectileTravelDistance, _attackDetails, projectileGravityScale, _projectileDirection);
         }
     }
 
-    private void CreateProjectile(int numberOfProjectilse, float incrementAngle)
+    private void CreateProjectile(int numberOfProjectilse)
     {
-        // 2 beacause we using radians
-        //_projectileAngle = projectileIndex * 2 * Mathf.PI / numberOfProjectilse;
+        float xPosition = Mathf.Cos(_projectileAngle * Mathf.PI / StateData.areaAngle) * StateData.areaRadius;
+        float yPosition = Mathf.Sin(_projectileAngle * Mathf.PI / StateData.areaAngle) * StateData.areaRadius;
 
-        //_xPosition = Mathf.Cos(_projectileAngle ) * StateData.areaRadius ;
-        //_yPosition = Mathf.Sin(_projectileAngle) * StateData.areaRadius;
-        _xPosition = Mathf.Cos(_projectileAngle * Mathf.PI / 180) * StateData.areaRadius;
-        _yPosition = Mathf.Sin(_projectileAngle * Mathf.PI / 180) * StateData.areaRadius;
+        _projectilePosition.Set(AttackPosition.transform.position.x + xPosition, AttackPosition.position.y + yPosition);
 
-        _projectilePosition.Set(AttackPosition.transform.position.x + _xPosition, AttackPosition.position.y + _yPosition);
-
-        Projectile = GameObject.Instantiate(StateData.projectile, _projectilePosition, AttackPosition.rotation);
+        Projectile = GameObject.Instantiate(_projectilePrefab, _projectilePosition, Quaternion.identity);
         ProjectileScript = Projectile.GetComponent<Projectile>();
 
         _projectileDirection = (_projectilePosition - (Vector2)AttackPosition.transform.position).normalized;
 
         Projectile.transform.parent = AttackPosition;
-        _projectileAngle += incrementAngle;
+        _projectileAngle += StateData.incrementAngle;
     }
 
     private void SetupAttackDetails()

@@ -13,4 +13,5 @@ public class D_AreaAttackState : ScriptableObject
     public float areaRadius = 2.0f;
     public float areaAngle = 90.0f;
     public float initialAngle = 0.0f;
+    public float incrementAngle = 15.0f;
 }
