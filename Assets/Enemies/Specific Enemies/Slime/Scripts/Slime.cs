@@ -44,21 +44,17 @@ public class Slime : Enemy
     {
         base.Damage(attackDetails);
 
-        if (IsDead)
+        if (StatsManager.IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
         }
-        else if (IsStunned && FiniteStateMachine.currentState != StunState)
+        else if (StatsManager.IsStunned && FiniteStateMachine.currentState != StunState)
         {
             FiniteStateMachine.ChangeState(StunState);
         }
-        else if (CheckIfPlayerInLongRangeAction())
-        {
-            FiniteStateMachine.ChangeState(PlayerDetectedState);
-        }
         else
         {
-            FiniteStateMachine.ChangeState(IdleState);
+            FiniteStateMachine.ChangeState(JumpingMoveState);
         }
 
         foreach (GameObject effect in _deadStateData.damageEffects)

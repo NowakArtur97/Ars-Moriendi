@@ -11,9 +11,11 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform GroundCheck;
 
     [Header("Base Data")]
-    public D_Entity EntityData;
+    public D_EnemyBase EntityData;
+    [SerializeField] private D_EnemyStats _enemyStatsData;
 
-    public FiniteStateMachine FiniteStateMachine;
+    public FiniteStateMachine FiniteStateMachine { get; private set; }
+    public EnemyStatsManager StatsManager { get; private set; }
     public AnimationToStateMachine AnimationToStateMachine { get; private set; }
     public AttackAnimationToStateMachine AttackAnimationToStateMachine { get; private set; }
 
@@ -22,14 +24,7 @@ public abstract class Enemy : MonoBehaviour
     public GameObject AliveGameObject { get; private set; }
 
     public float FacingDirection { get; private set; }
-    private float _currentHealth;
-
-    private float _currentStunResistance;
-    private float _lastDamageTime;
     public int LastDamageDirection { get; private set; }
-
-    protected bool IsDead;
-    protected bool IsStunned;
 
     private Vector2 _velocityWorkSpace;
 
@@ -43,21 +38,14 @@ public abstract class Enemy : MonoBehaviour
         AttackAnimationToStateMachine = AliveGameObject.GetComponent<AttackAnimationToStateMachine>();
 
         FiniteStateMachine = new FiniteStateMachine();
+        StatsManager = new EnemyStatsManager(_enemyStatsData);
 
         FacingDirection = 1;
-        _currentHealth = EntityData.maxHealth;
-
-        _currentStunResistance = EntityData.stunResistance;
     }
 
     protected virtual void Update()
     {
         FiniteStateMachine.currentState.LogicUpdate();
-
-        if (Time.time >= _lastDamageTime + EntityData.stunRecorveryTime)
-        {
-            ResetStunResistance();
-        }
 
         MyAnimator.SetFloat("yVelocity", MyRigidbody2D.velocity.y);
     }
@@ -74,18 +62,9 @@ public abstract class Enemy : MonoBehaviour
         MyRigidbody2D.velocity = _velocityWorkSpace;
     }
 
-    public virtual void ResetStunResistance()
-    {
-        IsStunned = false;
-        _currentStunResistance = EntityData.stunResistance;
-    }
-
     public virtual void Damage(AttackDetails attackDetails)
     {
-        _currentHealth -= attackDetails.damageAmmount;
-        _currentStunResistance -= attackDetails.stunDamageAmount;
-
-        _lastDamageTime = Time.time;
+        StatsManager.TakeDamage(attackDetails);
 
         DamageHop(EntityData.damageHopSpeed);
 
@@ -94,16 +73,6 @@ public abstract class Enemy : MonoBehaviour
         foreach (GameObject hitPartcile in EntityData.hitPartciles)
         {
             Instantiate(hitPartcile, AliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
-        }
-
-        if (_currentStunResistance <= 0)
-        {
-            IsStunned = true;
-        }
-
-        if (_currentHealth <= 0)
-        {
-            IsDead = true;
         }
     }
 

@@ -47,21 +47,21 @@ public class Boar : Enemy
     {
         base.Damage(attackDetails);
 
-        if (IsDead)
+        if (StatsManager.IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
         }
-        else if (IsStunned && FiniteStateMachine.currentState != StunState)
+        else if (StatsManager.IsStunned && FiniteStateMachine.currentState != StunState)
         {
             FiniteStateMachine.ChangeState(StunState);
         }
-        else if (CheckIfPlayerInLongRangeAction())
+        else if (CheckIfPlayerInMaxAgro())
         {
             FiniteStateMachine.ChangeState(PlayerDetectedState);
         }
         else
         {
-            LookForPlayerState.SetShouldTurnImmediately(true);
+            LookForPlayerState.SetShouldTurnImmediately(LastDamageDirection == FacingDirection);
             FiniteStateMachine.ChangeState(LookForPlayerState);
         }
 

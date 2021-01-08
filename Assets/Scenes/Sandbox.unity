@@ -716,6 +716,7 @@ MonoBehaviour:
   PlayerJumpedOverCheck: {fileID: 291381420}
   GroundCheck: {fileID: 1086130350}
   EntityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
+  _enemyStatsData: {fileID: 11400000, guid: 3c440e1efd921014ca95cc0c2c86f208, type: 2}
   _idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
   _moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
   _playerDetectedStateData: {fileID: 11400000, guid: e3d06e9c0d9a7f447b0042885ea4160d,
@@ -8371,6 +8372,7 @@ MonoBehaviour:
   PlayerJumpedOverCheck: {fileID: 1490897726}
   GroundCheck: {fileID: 522846968}
   EntityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
+  _enemyStatsData: {fileID: 11400000, guid: 4713e2d1c09f1f44ca82d5b95c748117, type: 2}
   _idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
   _moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
   _playerDetectedStateData: {fileID: 11400000, guid: 9ec32f68c3c918244b3438c1a397ab45,
@@ -8379,11 +8381,11 @@ MonoBehaviour:
     type: 2}
   _meleeAttackStateData: {fileID: 11400000, guid: 8f5df6e977b1712469e660d34311f4e5,
     type: 2}
-  _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
-  _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
   _dodgeStateData: {fileID: 11400000, guid: 7e13da9ea5f48184eaa5d11b74a117c8, type: 2}
   _rangedAttackStateData: {fileID: 11400000, guid: 1b3f4067e0653844c9791c6c479a1a5a,
     type: 2}
+  _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
+  _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
   _meleeAttackPosition: {fileID: 1117002209}
   _rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
@@ -10644,6 +10646,7 @@ MonoBehaviour:
   PlayerJumpedOverCheck: {fileID: 481980081}
   GroundCheck: {fileID: 561172818}
   EntityData: {fileID: 11400000, guid: faa5bdcfb58efd343a49ff2d6cddacb0, type: 2}
+  _enemyStatsData: {fileID: 11400000, guid: 9383c1315d399cc44b59c2c52f5b49ba, type: 2}
   _idleStateData: {fileID: 11400000, guid: 3c15bab77bcff464885ad2a7e284f9f4, type: 2}
   _jumpingMoveStateData: {fileID: 11400000, guid: edc2bdc4622cb4541aea319c2c63f131,
     type: 2}

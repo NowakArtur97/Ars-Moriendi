@@ -32,19 +32,14 @@ public abstract class StunState : EnemyState
         Enemy.SetVelocity(StateData.stunKnockbackSpeed, StateData.stunKnockbackAngle, Enemy.LastDamageDirection);
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-
-        Enemy.ResetStunResistance();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
         if (Time.time >= StartTime + StateData.stunTime)
         {
+            Enemy.StatsManager.ExitStun();
+
             IsStunTimeOver = true;
         }
 

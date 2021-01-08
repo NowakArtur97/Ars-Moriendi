@@ -8,10 +8,10 @@ public class GoblinArcher : Enemy
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
     [SerializeField] private D_LookForPlayerState _lookForPlayerStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
-    [SerializeField] private D_StunState _stunStateData;
-    [SerializeField] private D_DeadState _deadStateData;
     [SerializeField] public D_DodgeState _dodgeStateData;
     [SerializeField] public D_RangedAttackState _rangedAttackStateData;
+    [SerializeField] private D_StunState _stunStateData;
+    [SerializeField] private D_DeadState _deadStateData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
@@ -49,21 +49,21 @@ public class GoblinArcher : Enemy
     {
         base.Damage(attackDetails);
 
-        if (IsDead)
+        if (StatsManager.IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
         }
-        else if (IsStunned && FiniteStateMachine.currentState != StunState)
+        else if (StatsManager.IsStunned && FiniteStateMachine.currentState != StunState)
         {
             FiniteStateMachine.ChangeState(StunState);
         }
-        else if (CheckIfPlayerInLongRangeAction())
+        else if (CheckIfPlayerInMaxAgro())
         {
             FiniteStateMachine.ChangeState(PlayerDetectedState);
         }
         else
         {
-            LookForPlayerState.SetShouldTurnImmediately(true);
+            LookForPlayerState.SetShouldTurnImmediately(LastDamageDirection == FacingDirection);
             FiniteStateMachine.ChangeState(LookForPlayerState);
         }
 

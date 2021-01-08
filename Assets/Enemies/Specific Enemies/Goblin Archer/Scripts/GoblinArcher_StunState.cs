@@ -19,7 +19,9 @@
                 FiniteStateMachine.ChangeState(_goblinArcher.PlayerDetectedState);
             }
             else
+            {
                 FiniteStateMachine.ChangeState(_goblinArcher.LookForPlayerState);
+            }
         }
     }
 }

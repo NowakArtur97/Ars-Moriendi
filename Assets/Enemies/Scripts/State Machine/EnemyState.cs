@@ -38,7 +38,13 @@ public abstract class EnemyState
         Enemy.MyAnimator.SetBool(AnimationBoolName, false);
     }
 
-    public virtual void LogicUpdate() { }
+    public virtual void LogicUpdate()
+    {
+        if (!Enemy.StatsManager.IsStunResistanceMax() && Time.time >= Enemy.StatsManager.LastDamageTime + Enemy.StatsManager.StunRecorveryTime)
+        {
+            Enemy.StatsManager.ResetStunResistance();
+        }
+    }
 
     public virtual void PhysicsUpdate()
     {
