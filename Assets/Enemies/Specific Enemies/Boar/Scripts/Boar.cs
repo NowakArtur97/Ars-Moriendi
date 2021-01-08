@@ -10,6 +10,7 @@ public class Boar : Enemy
     [SerializeField] private D_LookForPlayerState _lookForPlayerStateData;
     [SerializeField] private D_SlowDownState _slowDownStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
+    [SerializeField] private D_DamageState _damageStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
 
@@ -23,6 +24,7 @@ public class Boar : Enemy
     public Boar_LookForPlayerState LookForPlayerState { get; private set; }
     public Boar_SlowDownState SlowDownState { get; private set; }
     public Boar_MeleeAttackState MeleeAttackState { get; private set; }
+    public Boar_DamageState DamageState { get; private set; }
     public Boar_StunState StunState { get; private set; }
     public Boar_DeadState DeadState { get; private set; }
 
@@ -37,6 +39,7 @@ public class Boar : Enemy
         LookForPlayerState = new Boar_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
         SlowDownState = new Boar_SlowDownState(FiniteStateMachine, this, "slowDown", _slowDownStateData, this);
         MeleeAttackState = new Boar_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
+        DamageState = new Boar_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new Boar_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
         DeadState = new Boar_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
@@ -45,29 +48,13 @@ public class Boar : Enemy
 
     public override void Damage(AttackDetails attackDetails)
     {
+        bool canDamage = Time.time >= StatsManager.LastDamageTime + _damageStateData.timeBeforeNextDamage;
+
         base.Damage(attackDetails);
 
-        if (StatsManager.IsDead)
+        if (canDamage && FiniteStateMachine.CurrentState != StunState)
         {
-            FiniteStateMachine.ChangeState(DeadState);
-        }
-        else if (StatsManager.IsStunned && FiniteStateMachine.CurrentState != StunState)
-        {
-            FiniteStateMachine.ChangeState(StunState);
-        }
-        else if (CheckIfPlayerInMaxAgro())
-        {
-            FiniteStateMachine.ChangeState(PlayerDetectedState);
-        }
-        else
-        {
-            LookForPlayerState.SetShouldTurnImmediately(LastDamageDirection == FacingDirection);
-            FiniteStateMachine.ChangeState(LookForPlayerState);
-        }
-
-        foreach (GameObject effect in _deadStateData.damageEffects)
-        {
-            GameObject.Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
+            FiniteStateMachine.ChangeState(DamageState);
         }
     }
 
