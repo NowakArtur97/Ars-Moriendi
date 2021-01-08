@@ -11,7 +11,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Transform GroundCheck;
 
     [Header("Base Data")]
-    public D_EnemyBase EntityData;
+    [SerializeField] private D_EnemyBase _entityData;
     [SerializeField] private D_EnemyStats _enemyStatsData;
 
     public FiniteStateMachine FiniteStateMachine { get; private set; }
@@ -66,11 +66,11 @@ public abstract class Enemy : MonoBehaviour
     {
         StatsManager.TakeDamage(attackDetails);
 
-        DamageHop(EntityData.damageHopSpeed);
+        DamageHop(_entityData.damageHopSpeed);
 
         LastDamageDirection = attackDetails.position.x > AliveGameObject.transform.position.x ? -1 : 1;
 
-        foreach (GameObject hitPartcile in EntityData.hitPartciles)
+        foreach (GameObject hitPartcile in _entityData.hitPartciles)
         {
             Instantiate(hitPartcile, AliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
         }
@@ -92,29 +92,29 @@ public abstract class Enemy : MonoBehaviour
         MyRigidbody2D.velocity = _velocityWorkSpace;
     }
 
-    public virtual bool CheckIfTouchingWall() => Physics2D.Raycast(WallCheck.position, AliveGameObject.transform.right, EntityData.wallCheckDistance, EntityData.whatIsGround);
+    public virtual bool CheckIfTouchingWall() => Physics2D.Raycast(WallCheck.position, AliveGameObject.transform.right, _entityData.wallCheckDistance, _entityData.whatIsGround);
 
     public virtual bool CheckIfBackIsTouchingWall() => Physics2D.Raycast(WallBehindCheck.position, -AliveGameObject.transform.right,
-        EntityData.wallBehindCheckDistance, EntityData.whatIsGround);
+        _entityData.wallBehindCheckDistance, _entityData.whatIsGround);
 
-    public virtual bool CheckIfTouchingLedge() => Physics2D.Raycast(LedgeCheck.position, Vector2.down, EntityData.ledgeCheckDistance, EntityData.whatIsGround);
+    public virtual bool CheckIfTouchingLedge() => Physics2D.Raycast(LedgeCheck.position, Vector2.down, _entityData.ledgeCheckDistance, _entityData.whatIsGround);
 
-    public virtual bool CheckIfGrounded() => Physics2D.OverlapCircle(GroundCheck.position, EntityData.groundCheckRadius, EntityData.whatIsGround);
+    public virtual bool CheckIfGrounded() => Physics2D.OverlapCircle(GroundCheck.position, _entityData.groundCheckRadius, _entityData.whatIsGround);
 
-    public virtual bool CheckIfPlayerInMinAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.minAgroDistance,
-        EntityData.whatIsPlayer);
+    public virtual bool CheckIfPlayerInMinAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, _entityData.minAgroDistance,
+        _entityData.whatIsPlayer);
 
-    public virtual bool CheckIfPlayerInMaxAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, EntityData.maxAgroDistance,
-        EntityData.whatIsPlayer);
+    public virtual bool CheckIfPlayerInMaxAgro() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, _entityData.maxAgroDistance,
+        _entityData.whatIsPlayer);
 
     public virtual bool CheckIfPlayerInCloseRangeAction() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right,
-        EntityData.closeRangeActionDistance, EntityData.whatIsPlayer);
+        _entityData.closeRangeActionDistance, _entityData.whatIsPlayer);
 
     public virtual bool CheckIfPlayerInLongRangeAction() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right,
-        EntityData.closeRangeActionDistance, EntityData.whatIsPlayer);
+        _entityData.closeRangeActionDistance, _entityData.whatIsPlayer);
 
-    public virtual bool CheckIfPlayerJumpedOver() => Physics2D.Raycast(PlayerJumpedOverCheck.position, Vector2.up, EntityData.maxPlayerJumpedOverDistance,
-        EntityData.whatIsPlayer);
+    public virtual bool CheckIfPlayerJumpedOver() => Physics2D.Raycast(PlayerJumpedOverCheck.position, Vector2.up, _entityData.maxPlayerJumpedOverDistance,
+        _entityData.whatIsPlayer);
 
     public void Flip()
     {
@@ -125,15 +125,15 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnDrawGizmos()
     {
-        Gizmos.DrawLine(WallCheck.position, new Vector2(WallCheck.position.x - EntityData.wallCheckDistance, WallCheck.position.y));
-        Gizmos.DrawLine(WallBehindCheck.position, new Vector2(WallBehindCheck.position.x - EntityData.wallBehindCheckDistance, WallBehindCheck.position.y));
-        Gizmos.DrawLine(LedgeCheck.position, new Vector2(LedgeCheck.position.x, LedgeCheck.position.y - EntityData.ledgeCheckDistance));
+        Gizmos.DrawLine(WallCheck.position, new Vector2(WallCheck.position.x - _entityData.wallCheckDistance, WallCheck.position.y));
+        Gizmos.DrawLine(WallBehindCheck.position, new Vector2(WallBehindCheck.position.x - _entityData.wallBehindCheckDistance, WallBehindCheck.position.y));
+        Gizmos.DrawLine(LedgeCheck.position, new Vector2(LedgeCheck.position.x, LedgeCheck.position.y - _entityData.ledgeCheckDistance));
         Gizmos.DrawLine(PlayerJumpedOverCheck.position, new Vector2(PlayerJumpedOverCheck.position.x,
-            PlayerJumpedOverCheck.position.y + EntityData.maxPlayerJumpedOverDistance));
+            PlayerJumpedOverCheck.position.y + _entityData.maxPlayerJumpedOverDistance));
 
-        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * EntityData.closeRangeActionDistance)), 0.2f);
-        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * EntityData.longRangeActionDistance)), 0.2f);
-        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * EntityData.minAgroDistance)), 0.2f);
-        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * EntityData.maxAgroDistance)), 0.2f);
+        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * _entityData.closeRangeActionDistance)), 0.2f);
+        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * _entityData.longRangeActionDistance)), 0.2f);
+        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * _entityData.minAgroDistance)), 0.2f);
+        Gizmos.DrawWireSphere((PlayerCheck.position + (Vector3)(Vector2.right * _entityData.maxAgroDistance)), 0.2f);
     }
 }

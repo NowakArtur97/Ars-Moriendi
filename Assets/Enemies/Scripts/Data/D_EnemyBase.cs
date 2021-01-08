@@ -16,9 +16,6 @@ public class D_EnemyBase : ScriptableObject
 
     public float maxPlayerJumpedOverDistance = 1.0f;
 
-    public float damageHopSpeed = 9.0f;
-    public GameObject[] hitPartciles;
-
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }

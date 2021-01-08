@@ -715,7 +715,7 @@ MonoBehaviour:
   PlayerCheck: {fileID: 800722783}
   PlayerJumpedOverCheck: {fileID: 291381420}
   GroundCheck: {fileID: 1086130350}
-  EntityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
+  _entityData: {fileID: 11400000, guid: 668a865e2b3fb1b48ae71a4602914d5f, type: 2}
   _enemyStatsData: {fileID: 11400000, guid: 3c440e1efd921014ca95cc0c2c86f208, type: 2}
   _idleStateData: {fileID: 11400000, guid: b938f7cff5fd4ab4da45957603cd231d, type: 2}
   _moveStateData: {fileID: 11400000, guid: 3f5d3ed037d46184080ed1222c5b00a1, type: 2}
@@ -8257,7 +8257,7 @@ MonoBehaviour:
   PlayerCheck: {fileID: 1880474834}
   PlayerJumpedOverCheck: {fileID: 1490897726}
   GroundCheck: {fileID: 522846968}
-  EntityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
+  _entityData: {fileID: 11400000, guid: 05cd2f2b77220aa4383debeecb2789c2, type: 2}
   _enemyStatsData: {fileID: 11400000, guid: 4713e2d1c09f1f44ca82d5b95c748117, type: 2}
   _idleStateData: {fileID: 11400000, guid: 671e3b46643fa44408f48493ae5522db, type: 2}
   _moveStateData: {fileID: 11400000, guid: 0865f84417891964ebd4d799e91e85a3, type: 2}
@@ -10561,7 +10561,7 @@ MonoBehaviour:
   PlayerCheck: {fileID: 1764611385}
   PlayerJumpedOverCheck: {fileID: 481980081}
   GroundCheck: {fileID: 561172818}
-  EntityData: {fileID: 11400000, guid: faa5bdcfb58efd343a49ff2d6cddacb0, type: 2}
+  _entityData: {fileID: 11400000, guid: faa5bdcfb58efd343a49ff2d6cddacb0, type: 2}
   _enemyStatsData: {fileID: 11400000, guid: 9383c1315d399cc44b59c2c52f5b49ba, type: 2}
   _idleStateData: {fileID: 11400000, guid: 3c15bab77bcff464885ad2a7e284f9f4, type: 2}
   _jumpingMoveStateData: {fileID: 11400000, guid: edc2bdc4622cb4541aea319c2c63f131,
