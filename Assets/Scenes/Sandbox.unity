@@ -10858,51 +10858,6 @@ PrefabInstance:
       propertyPath: _playerHealthBar
       value: 
       objectReference: {fileID: 1079154463}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
-      value: ad51d91a-eac7-46f2-ae09-036bc4a725de
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
-      value: Gameplay/Force Stun[/Keyboard/q]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7196271355945387431}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnForceStunInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196271355060563238, guid: c4f4f9005df274d4f88682d64b401041,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7196271355060563239, guid: c4f4f9005df274d4f88682d64b401041,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10965,15 +10920,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f4f9005df274d4f88682d64b401041, type: 3}
---- !u!114 &7196271355945387431 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7196271355060563236, guid: c4f4f9005df274d4f88682d64b401041,
-    type: 3}
-  m_PrefabInstance: {fileID: 7196271355945387430}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5b0ea0ef11fd547826a1d3eccd1202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

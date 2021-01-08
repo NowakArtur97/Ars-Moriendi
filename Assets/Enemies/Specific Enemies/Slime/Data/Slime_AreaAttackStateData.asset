@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 8424257573593217255, guid: eb075e52bb8c4af41aa23520db8f2e0c,
     type: 3}
-  projectileDamage: 10
+  projectileDamage: 0
   projectileStunDamage: 10
   projectileSpeed: 12
   projectileTravelDistance: 1000
   projectileGravityScale: 0
   numberOfProjectiles: 12
   areaRadius: 0.5
-  areaAngle: 180
-  initialAngle: 9
+  areaAngle: 190
+  initialAngle: 0

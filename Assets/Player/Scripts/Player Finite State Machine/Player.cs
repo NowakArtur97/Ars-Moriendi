@@ -76,6 +76,8 @@ public class Player : MonoBehaviour
     private Transform _swordAttackPosition03;
     [SerializeField]
     private Transform _fireArrowShotAttackPosition;
+    [SerializeField]
+    public Transform AimingPointWrapper;
     #endregion
 
     #region State Variables

@@ -125,6 +125,7 @@ public class PlayerBowFireArrowShotState_Aim : PlayerBowFireArrowShotState
         for (int i = 0; i < numberOfAimingPoints; i++)
         {
             _points[i] = GameObject.Instantiate(aimingPoint, attackPosition.position, Quaternion.identity);
+            _points[i].transform.SetParent(Player.AimingPointWrapper);
             _points[i].SetActive(false);
         }
     }

@@ -26,8 +26,8 @@ public class AreaAttackState : AttackState
         base.TriggerAttack();
 
         int numberOfProjectiles = StateData.numberOfProjectiles;
-        float incrementAngle = StateData.areaAngle / numberOfProjectiles;
         _projectileAngle = StateData.initialAngle;
+        float incrementAngle = (StateData.areaAngle - (2 * _projectileAngle)) / numberOfProjectiles;
 
         for (int i = 0; i < numberOfProjectiles; i++)
         {
@@ -57,6 +57,7 @@ public class AreaAttackState : AttackState
 
         _projectileDirection = (_projectilePosition - (Vector2)AttackPosition.transform.position).normalized;
 
+        Projectile.transform.parent = AttackPosition;
         _projectileAngle += incrementAngle;
     }
 

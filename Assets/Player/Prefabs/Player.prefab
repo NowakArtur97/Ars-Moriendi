@@ -85,6 +85,7 @@ MonoBehaviour:
   _swordAttackPosition02: {fileID: 7196271355474366670}
   _swordAttackPosition03: {fileID: 7196271357166856676}
   _fireArrowShotAttackPosition: {fileID: 7196271357048425359}
+  AimingPointWrapper: {fileID: 3164998484000740557}
   MyRopeLineRenderer: {fileID: 7196271355499427201}
 --- !u!114 &7196271355060563236
 MonoBehaviour:
@@ -290,6 +291,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9768cca7-703b-46ee-a660-3b4596d0a2bc
     m_ActionName: Gameplay/Roll[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7196271355060563236}
+        m_MethodName: OnForceStunInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad51d91a-eac7-46f2-ae09-036bc4a725de
+    m_ActionName: Gameplay/Force Stun[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -400,6 +416,7 @@ Transform:
   - {fileID: 7196271356503022107}
   - {fileID: 7196271355995028444}
   - {fileID: 7196271357033415906}
+  - {fileID: 3164998484000740557}
   m_Father: {fileID: 7196271355060563239}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1092,4 +1109,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7196271355499427207}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9141579167851646334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3164998484000740557}
+  m_Layer: 10
+  m_Name: Aiming Point Wrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3164998484000740557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141579167851646334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7196271355499427207}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
