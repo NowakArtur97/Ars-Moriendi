@@ -17,11 +17,6 @@ public abstract class DeadState : EnemyState
         base.Enter();
 
         IsDead = true;
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
 
         foreach (GameObject effect in StateData.damageEffects)
         {

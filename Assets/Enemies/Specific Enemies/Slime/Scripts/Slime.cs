@@ -54,6 +54,11 @@ public class Slime : Enemy
 
         base.Damage(attackDetails);
 
+        foreach (GameObject hitPartcile in _damageStateData.hitPartciles)
+        {
+            GameObject.Instantiate(hitPartcile, AliveGameObject.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0, 360)));
+        }
+
         if (StatsManager.IsDead)
         {
             FiniteStateMachine.ChangeState(DeadState);
