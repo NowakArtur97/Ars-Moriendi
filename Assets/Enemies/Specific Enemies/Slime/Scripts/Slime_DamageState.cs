@@ -14,11 +14,7 @@
 
         if (IsAnimationFinished)
         {
-            if (_slime.StatsManager.IsDead)
-            {
-                FiniteStateMachine.ChangeState(_slime.DeadState);
-            }
-            else if (_slime.StatsManager.IsStunned && FiniteStateMachine.CurrentState != _slime.StunState)
+            if (_slime.StatsManager.IsStunned && FiniteStateMachine.CurrentState != _slime.StunState)
             {
                 FiniteStateMachine.ChangeState(_slime.StunState);
             }

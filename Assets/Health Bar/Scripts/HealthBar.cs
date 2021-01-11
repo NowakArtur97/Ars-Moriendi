@@ -23,5 +23,10 @@ public class HealthBar : MonoBehaviour
         _slider.value = health;
 
         _fill.color = _healthGradient.Evaluate(_slider.normalizedValue);
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

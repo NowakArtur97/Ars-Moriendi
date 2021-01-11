@@ -2,8 +2,8 @@
 {
     private GoblinArcher _goblinArcher;
 
-    public GoblinArcher_DamageState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DamageState stateData,
-        GoblinArcher goblinArcher) : base(finiteStateMachine, enemy, animationBoolName, stateData)
+    public GoblinArcher_DamageState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DamageState stateData, GoblinArcher goblinArcher)
+        : base(finiteStateMachine, enemy, animationBoolName, stateData)
     {
         _goblinArcher = goblinArcher;
     }
@@ -14,11 +14,7 @@
 
         if (IsAnimationFinished)
         {
-            if (_goblinArcher.StatsManager.IsDead)
-            {
-                FiniteStateMachine.ChangeState(_goblinArcher.DeadState);
-            }
-            else if (_goblinArcher.StatsManager.IsStunned)
+            if (_goblinArcher.StatsManager.IsStunned && FiniteStateMachine.CurrentState != _goblinArcher.StunState)
             {
                 FiniteStateMachine.ChangeState(_goblinArcher.StunState);
             }

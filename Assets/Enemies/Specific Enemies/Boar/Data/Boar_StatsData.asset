@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918752bd49d81dd41b581a921ba46ad9, type: 3}
   m_Name: Boar_StatsData
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 8
   maxStunResistance: 10
   stunRecorveryTime: 1

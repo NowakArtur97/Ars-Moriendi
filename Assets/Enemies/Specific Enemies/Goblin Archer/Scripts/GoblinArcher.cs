@@ -54,7 +54,11 @@ public class GoblinArcher : Enemy
 
         base.Damage(attackDetails);
 
-        if (canDamage && FiniteStateMachine.CurrentState != StunState)
+        if (StatsManager.IsDead)
+        {
+            FiniteStateMachine.ChangeState(DeadState);
+        }
+        else if (canDamage)
         {
             FiniteStateMachine.ChangeState(DamageState);
         }
