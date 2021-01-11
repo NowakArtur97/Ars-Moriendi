@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour
 
     public Rigidbody2D MyRigidbody2D { get; private set; }
     public Animator MyAnimator { get; private set; }
+    public Material MyMaterial { get; private set; }
     public GameObject AliveGameObject { get; private set; }
 
     public float FacingDirection { get; private set; }
@@ -42,6 +43,7 @@ public abstract class Enemy : MonoBehaviour
         AliveGameObject = transform.Find("Alive").gameObject;
         MyRigidbody2D = AliveGameObject.GetComponent<Rigidbody2D>();
         MyAnimator = AliveGameObject.GetComponent<Animator>();
+        MyMaterial = AliveGameObject.GetComponent<SpriteRenderer>().material;
 
         AnimationToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
         AttackAnimationToStateMachine = AliveGameObject.GetComponent<AttackAnimationToStateMachine>();

@@ -6,6 +6,8 @@ public abstract class DeadState : EnemyState
 
     public bool IsDead { get; private set; }
 
+    protected float AnimationFinishedTime;
+
     public DeadState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DeadState stateData)
         : base(finiteStateMachine, enemy, animationBoolName)
     {
@@ -17,6 +19,8 @@ public abstract class DeadState : EnemyState
         base.Enter();
 
         IsDead = true;
+
+        Enemy.SetVelocity(StateData.deathVelocity);
 
         foreach (GameObject effect in StateData.damageEffects)
         {
@@ -42,5 +46,7 @@ public abstract class DeadState : EnemyState
         base.AnimationFinishedTrigger();
 
         IsAnimationFinished = true;
+
+        AnimationFinishedTime = Time.time;
     }
 }
