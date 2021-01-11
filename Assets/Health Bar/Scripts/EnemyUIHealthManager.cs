@@ -5,14 +5,21 @@ public class EnemyUIHealthManager : MonoBehaviour
     [SerializeField]
     private HealthBar _healthBar;
 
+    private EnemyStatsManager _statsManager;
+
     void Start()
     {
-        // TODO: Enemy Unsubscribe events
-        GetComponentInParent<Enemy>().StatsManager.DamageEvent += OnDamage;
+        _statsManager = GetComponentInParent<Enemy>().StatsManager;
+        _statsManager.DamageEvent += OnDamage;
     }
 
     public void OnDamage(float currentHealth)
     {
         _healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            _statsManager.DamageEvent -= OnDamage;
+        }
     }
 }
