@@ -48,6 +48,11 @@ public class Boar : Enemy
 
     public override void Damage(AttackDetails attackDetails)
     {
+        if (DeadState.IsDead)
+        {
+            return;
+        }
+
         bool canDamage = Time.time >= StatsManager.LastDamageTime + _damageStateData.timeBeforeNextDamage;
 
         base.Damage(attackDetails);

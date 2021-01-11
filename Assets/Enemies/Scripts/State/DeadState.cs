@@ -4,10 +4,19 @@ public abstract class DeadState : EnemyState
 {
     protected D_DeadState StateData;
 
+    public bool IsDead { get; private set; }
+
     public DeadState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DeadState stateData)
         : base(finiteStateMachine, enemy, animationBoolName)
     {
         StateData = stateData;
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        IsDead = true;
     }
 
     public override void Exit()
