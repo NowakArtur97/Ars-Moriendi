@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class UIHealthManager : MonoBehaviour
+public class EnemyUIHealthManager : MonoBehaviour
 {
     [SerializeField]
     private HealthBar _healthBar;
 
     void Start()
     {
-        // TODO: Player Unsubscribe events
-        FindObjectOfType<Player>().StatsManager.DamageEvent += OnDamage;
+        // TODO: Enemy Unsubscribe events
+        GetComponentInParent<Enemy>().StatsManager.DamageEvent += OnDamage;
     }
 
     public void OnDamage(float currentHealth)

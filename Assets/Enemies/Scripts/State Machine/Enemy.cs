@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour
     public int LastDamageDirection { get; private set; }
 
     private Vector2 _velocityWorkSpace;
+    private HealthBar _healthBar;
 
     protected virtual void Awake()
     {
@@ -44,6 +45,9 @@ public abstract class Enemy : MonoBehaviour
 
         AnimationToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
         AttackAnimationToStateMachine = AliveGameObject.GetComponent<AttackAnimationToStateMachine>();
+
+        _healthBar = AliveGameObject.transform.Find("Canvas").Find("Health Bar").gameObject.GetComponent<HealthBar>();
+        _healthBar.SetMaxHealth(_enemyStatsData.maxHealth);
     }
 
     protected virtual void Update()

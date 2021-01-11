@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyStatsManager
 {
@@ -13,6 +14,8 @@ public class EnemyStatsManager
 
     public bool IsDead { get; private set; }
     public bool IsStunned { get; private set; }
+
+    public Action<float> DamageEvent;
 
     public EnemyStatsManager(D_EnemyStats enemyStatsData)
     {
@@ -39,6 +42,8 @@ public class EnemyStatsManager
         {
             IsStunned = true;
         }
+
+        DamageEvent?.Invoke(_currentHealth);
     }
 
     public void ExitStun() => IsStunned = false;
