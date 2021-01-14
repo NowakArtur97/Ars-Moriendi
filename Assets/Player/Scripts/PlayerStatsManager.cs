@@ -39,8 +39,6 @@ public class PlayerStatsManager
         if (_currentHealth <= 0)
         {
             IsDead = true;
-
-            DeathEvent?.Invoke();
         }
 
         if (_currentStunResistance <= 0)

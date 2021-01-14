@@ -50,6 +50,11 @@ public class Player : MonoBehaviour
     public D_PlayerStunState StunStateData;
     [SerializeField]
     private D_PlayerDeadState _deadStateData;
+    [SerializeField]
+    private D_PlayerDamageState _damageStateData;
+
+    [Header("Effects Data")]
+    [SerializeField] public D_DissolveEffect DissolveEffectData;
 
     [Header("UI")]
     [SerializeField]
@@ -114,6 +119,8 @@ public class Player : MonoBehaviour
     public PlayerStunState StunState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
 
+    public DissolveEffect DissolveEffect { get; private set; }
+
     #endregion
 
     #region Other Variables
@@ -129,6 +136,7 @@ public class Player : MonoBehaviour
     public GameObject AliveGameObject { get; private set; }
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
+    public Material MyMaterial { get; private set; }
     public BoxCollider2D MyBoxCollider2D { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public LineRenderer MyRopeLineRenderer;
@@ -190,7 +198,7 @@ public class Player : MonoBehaviour
 
         StunState = new PlayerStunState(this, FiniteStateMachine, "stun", StunStateData);
         // TODO: Create Dead animation
-        DeadState = new PlayerDeadState(this, FiniteStateMachine, "stun", _deadStateData);
+        DeadState = new PlayerDeadState(this, FiniteStateMachine, "dead", _deadStateData);
     }
 
     private void Start()
@@ -200,6 +208,7 @@ public class Player : MonoBehaviour
         AnimationToStateMachine = AliveGameObject.GetComponent<PlayerAnimationToStateMachine>();
         MyAnmator = AliveGameObject.GetComponent<Animator>();
         MyRigidbody = AliveGameObject.GetComponent<Rigidbody2D>();
+        MyMaterial = AliveGameObject.GetComponent<SpriteRenderer>().material;
         MyBoxCollider2D = AliveGameObject.GetComponent<BoxCollider2D>();
         MyRopeLineRenderer = AliveGameObject.GetComponent<LineRenderer>();
         RopeJoint = AliveGameObject.GetComponent<DistanceJoint2D>();
@@ -217,7 +226,7 @@ public class Player : MonoBehaviour
 
         FacingDirection = 1;
 
-        // Create and Invoke event for UI
+        // PLAYER Create and Invoke event for UI
         SkillManager.AddSkill(DashState);
         SkillManager.AddSkill(OnRopeStateAim);
         SkillManager.AddSkill(FireArrowShotStateStart);
@@ -229,6 +238,8 @@ public class Player : MonoBehaviour
         AliveGameObject.transform.position = FindObjectOfType<PlayerCheckpointManager>().LastCheckpoint;
 
         FiniteStateMachine.Initialize(IdleState);
+
+        DissolveEffect = new DissolveEffect();
     }
 
     private void Update()
@@ -252,14 +263,17 @@ public class Player : MonoBehaviour
 
     public void Damage(AttackDetails attackDetails)
     {
-        if (StatsManager.IsRolling)
+        if (StatsManager.IsRolling || StatsManager.IsDead)
         {
             return;
         }
 
         StatsManager.TakeDamage(attackDetails);
 
-        Instantiate(_deadStateData.bloodEffectGO, AliveGameObject.transform.position, _deadStateData.bloodEffectGO.transform.rotation);
+        foreach (GameObject effect in _damageStateData.damageEffects)
+        {
+            Instantiate(effect, AliveGameObject.transform.position, effect.transform.rotation);
+        }
 
         if (StatsManager.IsDead)
         {

@@ -22,7 +22,7 @@ public abstract class DeadState : EnemyState
 
         Enemy.SetVelocity(StateData.deathVelocity);
 
-        foreach (GameObject effect in StateData.damageEffects)
+        foreach (GameObject effect in StateData.deathEffects)
         {
             GameObject.Instantiate(effect, Enemy.AliveGameObject.transform.position, effect.transform.rotation);
         }

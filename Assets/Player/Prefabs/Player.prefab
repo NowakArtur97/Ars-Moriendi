@@ -76,6 +76,8 @@ MonoBehaviour:
     type: 2}
   StunStateData: {fileID: 11400000, guid: 0bbb96df80a1df342b6a60c9f93ef3b7, type: 2}
   _deadStateData: {fileID: 11400000, guid: c67bf0a41697dcf48ab6e32a2eb578ef, type: 2}
+  _damageStateData: {fileID: 11400000, guid: f37729bbfab68f4499d2315ddafe640e, type: 2}
+  DissolveEffectData: {fileID: 11400000, guid: 70d1c18d2ee821b45bc084b29c20d831, type: 2}
   _playerHealthBar: {fileID: 0}
   _groundCheck: {fileID: 7196271356112200942}
   _wallCheck: {fileID: 7196271355303961965}
@@ -450,7 +452,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f71d22f0f6cd9234fa458cf37330e5e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

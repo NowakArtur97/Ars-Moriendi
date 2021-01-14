@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ec27874737bce409ab4faabdec7a9d, type: 3}
-  m_Name: Player_StatsData
+  m_Script: {fileID: 11500000, guid: 587149823431a26438188883f3f391a9, type: 3}
+  m_Name: Player_DamangeStateData
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  maxStunResistance: 100
+  damageEffects:
+  - {fileID: 2074700874727950616, guid: db4a3c41510b64045b465c144a552345, type: 3}

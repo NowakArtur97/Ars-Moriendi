@@ -19,8 +19,6 @@ public abstract class EnemyState
 
     public virtual void Enter()
     {
-        Debug.Log(AnimationBoolName);
-
         StartTime = Time.time;
 
         IsAnimationFinished = false;
