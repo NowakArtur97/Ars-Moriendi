@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1926473a8f6b7fd4e8fa8067af86274f, type: 3}
   m_Name: Boar_DissolveEffecteData
   m_EditorClassIdentifier: 
-  timeBeforeDissolving: 2
+  propertyName: _Fade
+  startValue: 1
+  timeBeforeDissolving: 0.1
+  activeOnStart: 1

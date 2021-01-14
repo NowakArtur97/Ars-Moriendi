@@ -14,6 +14,9 @@ public class GoblinArcher : Enemy
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
 
+    [Header("Effects Data")]
+    [SerializeField] public D_DissolveEffect DissolveEffectData;
+
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
     [SerializeField] private Transform _rangedAttackPosition;
@@ -28,6 +31,8 @@ public class GoblinArcher : Enemy
     public GoblinArcher_DamageState DamageState { get; private set; }
     public GoblinArcher_StunState StunState { get; private set; }
     public GoblinArcher_DeadState DeadState { get; private set; }
+
+    public DissolveEffect DissolveEffect { get; private set; }
 
     protected override void Start()
     {
@@ -46,6 +51,8 @@ public class GoblinArcher : Enemy
         DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
         FiniteStateMachine.Initialize(MoveState);
+
+        DissolveEffect = new DissolveEffect();
     }
 
     public override void Damage(AttackDetails attackDetails)

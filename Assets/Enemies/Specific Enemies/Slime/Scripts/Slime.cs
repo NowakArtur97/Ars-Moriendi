@@ -12,6 +12,9 @@ public class Slime : Enemy
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
 
+    [Header("Effects Data")]
+    [SerializeField] public D_DissolveEffect DissolveEffectData;
+
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
     [SerializeField] private Transform _areaAttackPosition;
@@ -24,6 +27,8 @@ public class Slime : Enemy
     public Slime_DamageState DamageState { get; private set; }
     public Slime_StunState StunState { get; private set; }
     public Slime_DeadState DeadState { get; private set; }
+
+    public DissolveEffect DissolveEffect { get; private set; }
 
     protected override void Start()
     {
@@ -41,6 +46,8 @@ public class Slime : Enemy
         DeadState = new Slime_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
         FiniteStateMachine.Initialize(IdleState);
+
+        DissolveEffect = new DissolveEffect();
     }
 
     public override void Damage(AttackDetails attackDetails)

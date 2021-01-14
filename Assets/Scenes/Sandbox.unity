@@ -8639,6 +8639,7 @@ MonoBehaviour:
   _damageStateData: {fileID: 11400000, guid: 34ddfeded768ffc409a48686c1948c13, type: 2}
   _stunStateData: {fileID: 11400000, guid: 1e019f957d6384e42b30ceb81f4a1aa4, type: 2}
   _deadStateData: {fileID: 11400000, guid: d5dd63823934cc048bb010369a076d28, type: 2}
+  DissolveEffectData: {fileID: 11400000, guid: 9a1bf13ad378d7946a0cd110342ed8d6, type: 2}
   _meleeAttackPosition: {fileID: 1117002209}
   _rangedAttackPosition: {fileID: 371804231}
 --- !u!4 &845845458
@@ -11800,6 +11801,7 @@ MonoBehaviour:
   _damageStateData: {fileID: 11400000, guid: 9fba8495698346c4a8a1630632651ecc, type: 2}
   _stunStateData: {fileID: 11400000, guid: 98c66a7a37afbf444a18108b24a09109, type: 2}
   _deadStateData: {fileID: 11400000, guid: cd6065b6a2d331241a6379598a2462c7, type: 2}
+  DissolveEffectData: {fileID: 11400000, guid: d445f505ca153974b96e25535bc75aae, type: 2}
   _meleeAttackPosition: {fileID: 396908892}
   _areaAttackPosition: {fileID: 1482589899}
 --- !u!1 &2084529233
