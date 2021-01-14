@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player Dash State Data", menuName = "Data/Player State Data/Dash State")]
+[CreateAssetMenu(fileName = "_DashStateData", menuName = "Data/Player State Data/Dash State")]
 public class D_PlayerDashState : ScriptableObject
 {
     public float dashCooldown = 0.5f;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player Ledge Climb State Data", menuName = "Data/Player State Data/Ledge Climb State")]
+[CreateAssetMenu(fileName = "_LedgeClimbStateData", menuName = "Data/Player State Data/Ledge Climb State")]
 public class D_PlayerLedgeClimbState : ScriptableObject
 {
     public Vector2 ledgeClimbStartOffset = new Vector2(0.3f, 0.5f);

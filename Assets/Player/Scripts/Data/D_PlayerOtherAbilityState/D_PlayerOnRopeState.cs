@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player On Rope State Data", menuName = "Data/Player State Data/On Rope State")]
+[CreateAssetMenu(fileName = "_OnRopeStateData", menuName = "Data/Player State Data/On Rope State")]
 public class D_PlayerOnRopeState : ScriptableObject
 {
     public float ropeCrosshairOffset = 3f;
