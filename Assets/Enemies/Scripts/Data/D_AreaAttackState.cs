@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Area Attack State Data", menuName = "Data/State Data/Area Attack State")]
+[CreateAssetMenu(fileName = "_AreaAttackStateData", menuName = "Data/Enemy State Data/Area Attack State")]
 public class D_AreaAttackState : ScriptableObject
 {
     public GameObject projectile;

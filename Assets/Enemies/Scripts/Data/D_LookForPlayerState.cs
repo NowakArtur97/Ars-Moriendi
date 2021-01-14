@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Look For Player State Data", menuName = "Data/State Data/Look For Player State")]
+[CreateAssetMenu(fileName = "_LookForPlayerStateData", menuName = "Data/Enemy State Data/Look For Player State")]
 public class D_LookForPlayerState : ScriptableObject
 {
     public int amountOfTurns = 2;

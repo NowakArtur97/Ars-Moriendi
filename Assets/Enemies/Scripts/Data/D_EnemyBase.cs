@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Data", menuName = "Data/Enemy Data/Enemy Data")]
+[CreateAssetMenu(fileName = "_BaseData", menuName = "Data/Enemy Data/Base Data")]
 public class D_EnemyBase : ScriptableObject
 {
     public float wallCheckDistance = 0.2f;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Jumping Move State Data", menuName = "Data/State Data/Jumping Move State")]
+[CreateAssetMenu(fileName = "_JumpingMoveStateData", menuName = "Data/Enemy State Data/Jumping Move State")]
 public class D_JumpingMoveState : ScriptableObject
 {
     public float jumpingMovementSpeed = 3f;
