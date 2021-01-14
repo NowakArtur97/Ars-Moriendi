@@ -32,6 +32,8 @@ public class Boar : Enemy
     public Boar_StunState StunState { get; private set; }
     public Boar_DeadState DeadState { get; private set; }
 
+    public DissolveEffect DissolveEffect { get; private set; }
+
     protected override void Start()
     {
         base.Start();
@@ -48,6 +50,8 @@ public class Boar : Enemy
         DeadState = new Boar_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
         FiniteStateMachine.Initialize(MoveState);
+
+        DissolveEffect = new DissolveEffect();
     }
 
     public override void Damage(AttackDetails attackDetails)

@@ -4,43 +4,33 @@ public class Boar_DeadState : DeadState
 {
     private Boar _boar;
 
-    private float _dissolve;
-    private bool _isDissolving;
+    private EffectsDetails _effectsDetails;
 
     public Boar_DeadState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_DeadState stateData, Boar boar)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        this._boar = boar;
+        _boar = boar;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        _isDissolving = true;
-        // TODO: ENEMY Move to effects data
-        _dissolve = 1;
+        _effectsDetails.material = _boar.MyMaterial;
+        _effectsDetails.activeOnStart = _boar.DissolveEffectData.activeOnStart;
+        _effectsDetails.startValue = _boar.DissolveEffectData.startValue;
+        _effectsDetails.propertyName = _boar.DissolveEffectData.propertyName;
+
+        _boar.DissolveEffect.SetupEffect(_effectsDetails);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        // TODO: ENEMY Move to effects data
         if (IsAnimationFinished && Time.time >= AnimationFinishedTime + _boar.DissolveEffectData.timeBeforeDissolving)
         {
-            if (_isDissolving)
-            {
-                _dissolve -= Time.deltaTime;
-
-                if (_dissolve <= 0)
-                {
-                    _dissolve = 0;
-                    _isDissolving = false;
-                }
-
-                _boar.MyMaterial.SetFloat("_Fade", _dissolve);
-            }
+            _boar.DissolveEffect.StartEffect();
         }
     }
 }

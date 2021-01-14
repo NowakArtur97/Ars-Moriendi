@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Dissolve Effecte Data", menuName = "Data/Effect Data/Dissolve Effect")]
+[CreateAssetMenu(fileName = "_DissolveEffecteData", menuName = "Data/Effect Data/Dissolve")]
 public class D_DissolveEffect : ScriptableObject
 {
-    public float timeBeforeDissolving = 2.0f;
+    public string propertyName = "_Fade";
+    public float startValue = 1.0f;
+    public float timeBeforeDissolving = 0.1f;
+    public bool activeOnStart = true;
 }

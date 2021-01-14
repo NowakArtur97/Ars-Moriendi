@@ -1,18 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DissolveEffect : MonoBehaviour
+public class DissolveEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    private Material _material;
+    private float _dissolve;
+    private bool _isActive;
+    private string _propertyName;
+
+    public void StartEffect()
     {
-        
+        if (_isActive)
+        {
+            _dissolve -= Time.deltaTime;
+
+            if (_dissolve <= 0)
+            {
+                _dissolve = 0;
+                _isActive = false;
+            }
+
+            _material.SetFloat(_propertyName, _dissolve);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetupEffect(EffectsDetails effectsDetails)
     {
-        
+        _material = effectsDetails.material;
+        _isActive = effectsDetails.activeOnStart;
+        _dissolve = effectsDetails.startValue;
+        _propertyName = effectsDetails.propertyName;
     }
 }
