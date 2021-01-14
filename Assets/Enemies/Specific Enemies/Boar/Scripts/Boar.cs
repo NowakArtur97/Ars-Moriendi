@@ -3,6 +3,7 @@
 public class Boar : Enemy
 {
     [Header("States Data")]
+
     [SerializeField] private D_IdleState _idleStateData;
     [SerializeField] private D_MoveState _moveStateData;
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
@@ -13,6 +14,9 @@ public class Boar : Enemy
     [SerializeField] private D_DamageState _damageStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
+
+    [Header("Effects Data")]
+    [SerializeField] public D_DissolveEffect DissolveEffectData;
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;

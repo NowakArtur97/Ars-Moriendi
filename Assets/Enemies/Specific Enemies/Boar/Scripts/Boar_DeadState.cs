@@ -27,7 +27,7 @@ public class Boar_DeadState : DeadState
         base.LogicUpdate();
 
         // TODO: ENEMY Move to effects data
-        if (IsAnimationFinished && Time.time >= AnimationFinishedTime + 0.5f)
+        if (IsAnimationFinished && Time.time >= AnimationFinishedTime + _boar.DissolveEffectData.timeBeforeDissolving)
         {
             if (_isDissolving)
             {

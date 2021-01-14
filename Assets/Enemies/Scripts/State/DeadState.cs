@@ -34,7 +34,7 @@ public abstract class DeadState : EnemyState
 
         if (IsAnimationFinished)
         {
-            if (Time.time >= StartTime + StateData.timeBeforeDestroyingObject)
+            if (Time.time >= StartTime + StateData.timeBeforeDeactivation)
             {
                 Enemy.gameObject.SetActive(false);
             }
