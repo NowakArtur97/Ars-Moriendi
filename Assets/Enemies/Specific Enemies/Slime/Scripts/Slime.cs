@@ -36,7 +36,7 @@ public class Slime : Enemy
 
         IdleState = new Slime_IdleState(FiniteStateMachine, this, "idle", _idleStateData, this);
         JumpingMoveState = new Slime_JumpingMoveState(FiniteStateMachine, this, "jumpingMove", _jumpingMoveStateData, this);
-        PlayerDetectedState = new Slime_PlayerDetectedState(FiniteStateMachine, this, "idle", _playerDetectedStateData, this);
+        PlayerDetectedState = new Slime_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
         MeleeAttackState = new Slime_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         // TODO: SLIME Create player area attack animation
         AreaAttackState = new Slime_AreaAttackState(FiniteStateMachine, this, "areaAttack", _areaAttackPosition, _areaAttackStateData, this);
