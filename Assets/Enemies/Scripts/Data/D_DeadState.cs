@@ -6,5 +6,10 @@ public class D_DeadState : ScriptableObject
 {
     public List<GameObject> deathEffects;
     public float timeBeforeDeactivation = 2.0f;
+
     public float deathVelocity = 0.0f;
+    public float decelerationSpeed = 0.05f;
+
+    public bool shouldStopImmediately = false;
+    public bool shouldContinueWithCurrentVelocity = true;
 }

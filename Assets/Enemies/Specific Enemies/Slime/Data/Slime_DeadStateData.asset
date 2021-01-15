@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f6b95b4d2db8e42afc8f3017a3913e, type: 3}
   m_Name: Slime_DeadStateData
   m_EditorClassIdentifier: 
-  deathChunkEffectGO: {fileID: 0}
-  bloodEffectGO: {fileID: 0}
+  deathEffects: []
+  timeBeforeDeactivation: 2
+  deathVelocity: 0
+  decelerationSpeed: 0.3
+  shouldStopImmediately: 0
+  shouldContinueWithCurrentVelocity: 1

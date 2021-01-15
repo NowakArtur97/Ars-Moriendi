@@ -5,8 +5,10 @@ public abstract class DeadState : EnemyState
     protected D_DeadState StateData;
 
     public bool IsDead { get; private set; }
+    protected bool HasStopped;
 
     protected float AnimationFinishedTime;
+    protected float CurrentVelocity;
 
     public DeadState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_DeadState stateData)
         : base(finiteStateMachine, enemy, animationBoolName)
@@ -20,7 +22,7 @@ public abstract class DeadState : EnemyState
 
         IsDead = true;
 
-        Enemy.SetVelocity(StateData.deathVelocity);
+        SetVelocityAfterDeath();
 
         foreach (GameObject effect in StateData.deathEffects)
         {
@@ -41,6 +43,16 @@ public abstract class DeadState : EnemyState
         }
     }
 
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        if (!HasStopped && StateData.shouldContinueWithCurrentVelocity)
+        {
+            SlowDown();
+        }
+    }
+
     public override void AnimationFinishedTrigger()
     {
         base.AnimationFinishedTrigger();
@@ -48,5 +60,33 @@ public abstract class DeadState : EnemyState
         IsAnimationFinished = true;
 
         AnimationFinishedTime = Time.time;
+    }
+
+    private void SlowDown()
+    {
+        CurrentVelocity = Mathf.Abs(CurrentVelocity - StateData.decelerationSpeed);
+        Enemy.SetVelocity(CurrentVelocity);
+
+        if (CurrentVelocity <= 0.1f)
+        {
+            HasStopped = true;
+            Enemy.SetVelocity(0.0f);
+        }
+    }
+
+    private void SetVelocityAfterDeath()
+    {
+        if (StateData.shouldStopImmediately)
+        {
+            Enemy.SetVelocity(0.0f);
+        }
+        else if (StateData.shouldContinueWithCurrentVelocity)
+        {
+            CurrentVelocity = Enemy.MyRigidbody2D.velocity.x;
+        }
+        else
+        {
+            Enemy.SetVelocity(StateData.deathVelocity);
+        }
     }
 }
