@@ -56,4 +56,11 @@ public abstract class PlayerDetectedState : EnemyState
         IsPlayerInMinAgroRange = Enemy.CheckIfPlayerInMinAgro();
         IsPlayerInMaxAgroRange = Enemy.CheckIfPlayerInMaxAgro();
     }
+
+    public override void AnimationFinishedTrigger()
+    {
+        base.AnimationFinishedTrigger();
+
+        IsAnimationFinished = true;
+    }
 }

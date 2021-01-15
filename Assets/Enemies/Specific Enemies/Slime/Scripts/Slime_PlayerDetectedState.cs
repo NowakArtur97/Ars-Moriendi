@@ -12,17 +12,20 @@
     {
         base.LogicUpdate();
 
-        if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
+        if (IsAnimationFinished)
         {
-            FiniteStateMachine.ChangeState(_slime.MeleeAttackState);
-        }
-        else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
-        {
-            FiniteStateMachine.ChangeState(_slime.AreaAttackState);
-        }
-        else if (!IsPlayerInMaxAgroRange)
-        {
-            FiniteStateMachine.ChangeState(_slime.IdleState);
+            if (ShouldPerformCloseRangeAction && IsPlayerInMinAgroRange)
+            {
+                FiniteStateMachine.ChangeState(_slime.MeleeAttackState);
+            }
+            else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
+            {
+                FiniteStateMachine.ChangeState(_slime.AreaAttackState);
+            }
+            else if (!IsPlayerInMaxAgroRange)
+            {
+                FiniteStateMachine.ChangeState(_slime.IdleState);
+            }
         }
     }
 }
