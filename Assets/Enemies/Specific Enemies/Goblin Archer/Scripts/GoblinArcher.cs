@@ -47,7 +47,6 @@ public class GoblinArcher : Enemy
         RangedAttackState = new GoblinArcher_RangedAttackState(FiniteStateMachine, this, "rangedAttack", _rangedAttackPosition, _rangedAttackStateData, this);
         DamageState = new GoblinArcher_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new GoblinArcher_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
-        // GOBLIN ARCHER Create death animation
         DeadState = new GoblinArcher_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
 
         FiniteStateMachine.Initialize(MoveState);
