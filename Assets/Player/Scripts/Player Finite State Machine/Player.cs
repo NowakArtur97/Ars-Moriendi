@@ -53,9 +53,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private D_PlayerDamageState _damageStateData;
 
-    [Header("Effects Data")]
-    [SerializeField] public D_DissolveEffect DissolveEffectData;
-
     [Header("UI")]
     [SerializeField]
     private HealthBar _playerHealthBar;
@@ -119,8 +116,6 @@ public class Player : MonoBehaviour
     public PlayerStunState StunState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
 
-    public DissolveEffect DissolveEffect { get; private set; }
-
     #endregion
 
     #region Other Variables
@@ -136,7 +131,7 @@ public class Player : MonoBehaviour
     public GameObject AliveGameObject { get; private set; }
     public Animator MyAnmator { get; private set; }
     public Rigidbody2D MyRigidbody { get; private set; }
-    public Material MyMaterial { get; private set; }
+    public SpriteRenderer MySpriteRenderer { get; private set; }
     public BoxCollider2D MyBoxCollider2D { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public LineRenderer MyRopeLineRenderer;
@@ -207,7 +202,7 @@ public class Player : MonoBehaviour
         AnimationToStateMachine = AliveGameObject.GetComponent<PlayerAnimationToStateMachine>();
         MyAnmator = AliveGameObject.GetComponent<Animator>();
         MyRigidbody = AliveGameObject.GetComponent<Rigidbody2D>();
-        MyMaterial = AliveGameObject.GetComponent<SpriteRenderer>().material;
+        MySpriteRenderer = AliveGameObject.GetComponent<SpriteRenderer>();
         MyBoxCollider2D = AliveGameObject.GetComponent<BoxCollider2D>();
         MyRopeLineRenderer = AliveGameObject.GetComponent<LineRenderer>();
         RopeJoint = AliveGameObject.GetComponent<DistanceJoint2D>();
@@ -237,8 +232,6 @@ public class Player : MonoBehaviour
         AliveGameObject.transform.position = FindObjectOfType<PlayerCheckpointManager>().LastCheckpoint;
 
         FiniteStateMachine.Initialize(IdleState);
-
-        DissolveEffect = new DissolveEffect();
     }
 
     private void Update()
