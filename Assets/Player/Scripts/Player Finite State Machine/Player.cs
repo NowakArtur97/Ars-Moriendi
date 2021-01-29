@@ -197,7 +197,6 @@ public class Player : MonoBehaviour
             _fireArrowShotAttackPosition, _fireArrowShotStateData);
 
         StunState = new PlayerStunState(this, FiniteStateMachine, "stun", StunStateData);
-        // TODO: Create Dead animation
         DeadState = new PlayerDeadState(this, FiniteStateMachine, "dead", _deadStateData);
     }
 
