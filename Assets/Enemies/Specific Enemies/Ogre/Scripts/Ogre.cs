@@ -35,7 +35,7 @@ public class Ogre : Enemy
         base.Start();
 
         IdleState = new Ogre_IdleState(FiniteStateMachine, this, "idle", _idleStateData, this);
-        MoveState = new Ogre_JumpingMoveState(FiniteStateMachine, this, "jumpingMove", _moveStateData, this);
+        MoveState = new Ogre_MoveState(FiniteStateMachine, this, "jumpingMove", _moveStateData, this);
         PlayerDetectedState = new Ogre_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
         MeleeAttackState = new Ogre_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         StompAttackState = new Ogre_StompAttackState(FiniteStateMachine, this, "stompAttack", _stompAttackPosition, _stompAttackStateData, this);

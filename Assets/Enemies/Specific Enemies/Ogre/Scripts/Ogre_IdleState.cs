@@ -2,10 +2,10 @@
 {
     private Ogre _ogre;
 
-    public Ogre_IdleState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_IdleState stateData, Ogre slime)
+    public Ogre_IdleState(FiniteStateMachine finiteStateMachine, Enemy entity, string animationBoolName, D_IdleState stateData, Ogre ogre)
         : base(finiteStateMachine, entity, animationBoolName, stateData)
     {
-        _ogre = slime;
+        _ogre = ogre;
     }
 
     public override void LogicUpdate()
