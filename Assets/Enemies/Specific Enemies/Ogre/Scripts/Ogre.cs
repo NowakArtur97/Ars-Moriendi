@@ -6,6 +6,7 @@ public class Ogre : Enemy
     [SerializeField] private D_IdleState _idleStateData;
     [SerializeField] private D_MoveState _moveStateData;
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
+    [SerializeField] private D_LookForPlayerState _lookForPlayerStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
     [SerializeField] private D_StompAttackState _stompAttackStateData;
     [SerializeField] private D_DamageState _damageStateData;
@@ -22,6 +23,7 @@ public class Ogre : Enemy
     public Ogre_IdleState IdleState { get; private set; }
     public Ogre_MoveState MoveState { get; private set; }
     public Ogre_PlayerDetectedState PlayerDetectedState { get; private set; }
+    public Ogre_LookForPlayerState LookForPlayerState { get; private set; }
     public Ogre_MeleeAttackState MeleeAttackState { get; private set; }
     public Ogre_StompAttackState StompAttackState { get; private set; }
     public Ogre_DamageState DamageState { get; private set; }
@@ -37,6 +39,8 @@ public class Ogre : Enemy
         IdleState = new Ogre_IdleState(FiniteStateMachine, this, "idle", _idleStateData, this);
         MoveState = new Ogre_MoveState(FiniteStateMachine, this, "jumpingMove", _moveStateData, this);
         PlayerDetectedState = new Ogre_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
+        // TODO: OGRE create look for player animation
+        LookForPlayerState = new Ogre_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
         MeleeAttackState = new Ogre_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
         StompAttackState = new Ogre_StompAttackState(FiniteStateMachine, this, "stompAttack", _stompAttackPosition, _stompAttackStateData, this);
         DamageState = new Ogre_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
