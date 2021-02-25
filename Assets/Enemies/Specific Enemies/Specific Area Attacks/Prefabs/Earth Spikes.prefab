@@ -51,7 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _damagePosition: {fileID: 8678832098982752777}
-  _damageSize: {x: 2, y: 1}
+  _damageSize: {x: 1.8, y: 0.8}
 --- !u!212 &8678832098430522560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8678832098982752778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -1, z: 0}
+  m_LocalPosition: {x: 0.45, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8678832098430522566}

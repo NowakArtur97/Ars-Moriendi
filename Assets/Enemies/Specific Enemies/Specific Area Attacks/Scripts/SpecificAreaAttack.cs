@@ -17,7 +17,7 @@ public class SpecificAreaAttack : MonoBehaviour
     private float _startTime;
     private float _timeToDisappear;
     private AttackDetails _attackDetails;
-    private Collider2D _damageHit;
+    private RaycastHit2D _damageHit;
 
     private Rigidbody2D _myRigidbody2D;
     private Animator _myAnimator;
@@ -49,11 +49,11 @@ public class SpecificAreaAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_hasAppeared)
+        if (_hasAppeared && !_hasDisappeared)
         {
-            _damageHit = Physics2D.OverlapBox(_damagePosition.position, _damageSize, _whatIsEnemy);
+            _damageHit = Physics2D.BoxCast(_damagePosition.position, _damageSize, 0.0f, Vector2.up, _whatIsEnemy);
 
-            if (_damageHit)
+            if (_damageHit.collider)
             {
                 _attackDetails.position = transform.position;
 
