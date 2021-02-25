@@ -18,7 +18,6 @@ public class Ogre : Enemy
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
-    [SerializeField] private Transform _specificAreaAttackPosition;
 
     public Ogre_IdleState IdleState { get; private set; }
     public Ogre_MoveState MoveState { get; private set; }
@@ -42,7 +41,7 @@ public class Ogre : Enemy
         // TODO: OGRE create look for player animation
         LookForPlayerState = new Ogre_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
         MeleeAttackState = new Ogre_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
-        SpecificAreaAttackState = new Ogre_SpecificAreaAttackState(FiniteStateMachine, this, "specificAreaAttack", _specificAreaAttackPosition, _specificAreaAttackStateData, this);
+        SpecificAreaAttackState = new Ogre_SpecificAreaAttackState(FiniteStateMachine, this, "specificAreaAttack", _specificAreaAttackStateData, this);
         DamageState = new Ogre_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new Ogre_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
         DeadState = new Ogre_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);

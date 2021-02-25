@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-
-public class Ogre_SpecificAreaAttackState : SpecificAreaAttackState
+﻿public class Ogre_SpecificAreaAttackState : SpecificAreaAttackState
 {
     private Ogre _ogre;
 
-    public Ogre_SpecificAreaAttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition, D_SpecificAreaAttackState stateData, Ogre ogre) : base(finiteStateMachine, enemy, animationBoolName, attackPosition, stateData)
+    public Ogre_SpecificAreaAttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, D_SpecificAreaAttackState stateData, Ogre ogre)
+        : base(finiteStateMachine, enemy, animationBoolName, stateData)
     {
         _ogre = ogre;
     }

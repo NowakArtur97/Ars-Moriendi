@@ -7,6 +7,11 @@ public abstract class AttackState : EnemyState
     protected bool IsPlayerInMinAgroRange;
     protected bool IsPlayerInMaxAgroRange;
 
+    public AttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName) :
+        base(finiteStateMachine, enemy, animationBoolName)
+    {
+    }
+
     public AttackState(FiniteStateMachine finiteStateMachine, Enemy enemy, string animationBoolName, Transform attackPosition) :
         base(finiteStateMachine, enemy, animationBoolName)
     {

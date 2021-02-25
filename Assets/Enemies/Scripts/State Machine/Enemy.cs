@@ -118,6 +118,9 @@ public abstract class Enemy : MonoBehaviour
     public virtual bool CheckIfPlayerJumpedOver() => Physics2D.Raycast(PlayerJumpedOverCheck.position, Vector2.up, _entityData.maxPlayerJumpedOverDistance,
         _entityData.whatIsPlayer);
 
+    public virtual float GetDistanceToPlayer() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right, _entityData.maxAgroDistance,
+        _entityData.whatIsPlayer).distance;
+
     public void Flip()
     {
         FacingDirection *= -1;
