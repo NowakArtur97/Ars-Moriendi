@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Ogre_SpecificAreaAttackStateData
   m_EditorClassIdentifier: 
   attack: {fileID: 8678832098430522562, guid: 1f6f9d53b7833a2409360903120ced43, type: 3}
+  attackDamage: 0.1
+  attackStunDamage: 0.1
+  attackSpeed: 0
+  timeToDisappear: 2

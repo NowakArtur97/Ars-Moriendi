@@ -51,7 +51,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _damagePosition: {fileID: 8678832098982752777}
-  _damageSize: {x: 1.8, y: 0.8}
+  _damageSize: {x: 1.8, y: 1.2}
+  _damageDistance: 0.2
 --- !u!212 &8678832098430522560
 SpriteRenderer:
   m_ObjectHideFlags: 0

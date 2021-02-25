@@ -10,6 +10,8 @@ public class SpecificAreaAttack : MonoBehaviour
     private Transform _damagePosition;
     [SerializeField]
     private Vector2 _damageSize;
+    [SerializeField]
+    private float _damageDistance;
 
     private bool _hasAppeared;
     private bool _hasDisappeared;
@@ -51,7 +53,7 @@ public class SpecificAreaAttack : MonoBehaviour
     {
         if (_hasAppeared && !_hasDisappeared)
         {
-            _damageHit = Physics2D.BoxCast(_damagePosition.position, _damageSize, 0.0f, Vector2.up, _whatIsEnemy);
+            _damageHit = Physics2D.BoxCast(_damagePosition.position, _damageSize, 0.0f, Vector2.up, _damageDistance, _whatIsEnemy);
 
             if (_damageHit.collider)
             {
