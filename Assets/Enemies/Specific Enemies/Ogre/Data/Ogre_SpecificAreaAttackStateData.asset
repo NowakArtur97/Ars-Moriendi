@@ -16,4 +16,6 @@ MonoBehaviour:
   attackDamage: 0.1
   attackStunDamage: 0.1
   attackSpeed: 0
+  attackOffset: {x: -0.7, y: 0}
   timeToDisappear: 2
+  shouldSpawnInPlayerPosition: 1
