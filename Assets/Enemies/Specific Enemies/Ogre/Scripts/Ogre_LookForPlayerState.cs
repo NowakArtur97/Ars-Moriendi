@@ -18,7 +18,7 @@
         }
         else if (AreAllTurnsTimeDone)
         {
-            FiniteStateMachine.ChangeState(_ogre.MoveState);
+            FiniteStateMachine.ChangeState(_ogre.IdleState);
         }
     }
 }

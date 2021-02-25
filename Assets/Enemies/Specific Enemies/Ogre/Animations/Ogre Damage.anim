@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ogree Stomp Attack
+  m_Name: Ogre Damage
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,22 +20,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 9126658227175689833, guid: 7d9636a01cbd4734490520fa19d9571b,
+      value: {fileID: -3456475311327572391, guid: 05c048b7ec230554088fab950300f88f,
         type: 3}
     - time: 0.1
-      value: {fileID: -829681105513619047, guid: 7d9636a01cbd4734490520fa19d9571b,
+      value: {fileID: -4146974982109015933, guid: 05c048b7ec230554088fab950300f88f,
         type: 3}
     - time: 0.2
-      value: {fileID: 1234336302764493725, guid: 7d9636a01cbd4734490520fa19d9571b,
+      value: {fileID: -7434196843218149255, guid: 05c048b7ec230554088fab950300f88f,
         type: 3}
     - time: 0.3
-      value: {fileID: -6491459518297849560, guid: 7d9636a01cbd4734490520fa19d9571b,
-        type: 3}
-    - time: 0.4
-      value: {fileID: -3819949887844922825, guid: 7d9636a01cbd4734490520fa19d9571b,
-        type: 3}
-    - time: 0.5
-      value: {fileID: 532632612953282326, guid: 7d9636a01cbd4734490520fa19d9571b,
+      value: {fileID: -7434196843218149255, guid: 05c048b7ec230554088fab950300f88f,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -56,18 +50,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 9126658227175689833, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
-    - {fileID: -829681105513619047, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
-    - {fileID: 1234336302764493725, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
-    - {fileID: -6491459518297849560, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
-    - {fileID: -3819949887844922825, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
-    - {fileID: 532632612953282326, guid: 7d9636a01cbd4734490520fa19d9571b, type: 3}
+    - {fileID: -3456475311327572391, guid: 05c048b7ec230554088fab950300f88f, type: 3}
+    - {fileID: -4146974982109015933, guid: 05c048b7ec230554088fab950300f88f, type: 3}
+    - {fileID: -7434196843218149255, guid: 05c048b7ec230554088fab950300f88f, type: 3}
+    - {fileID: -7434196843218149255, guid: 05c048b7ec230554088fab950300f88f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -86,4 +78,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.3
+    functionName: AnimationFinishedTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
