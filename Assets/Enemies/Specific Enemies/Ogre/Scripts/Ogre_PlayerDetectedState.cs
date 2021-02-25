@@ -20,7 +20,7 @@
             }
             else if (ShouldPerformLongRangeAction && IsPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(_ogre.StompAttackState);
+                FiniteStateMachine.ChangeState(_ogre.SpecificAreaAttackState);
             }
             else if (!IsPlayerInMaxAgroRange)
             {

@@ -8,7 +8,7 @@ public class Ogre : Enemy
     [SerializeField] private D_PlayerDetectedState _playerDetectedStateData;
     [SerializeField] private D_LookForPlayerState _lookForPlayerStateData;
     [SerializeField] private D_MeleeAttackState _meleeAttackStateData;
-    [SerializeField] private D_StompAttackState _stompAttackStateData;
+    [SerializeField] private D_SpecificAreaAttackState _specificAreaAttackStateData;
     [SerializeField] private D_DamageState _damageStateData;
     [SerializeField] private D_StunState _stunStateData;
     [SerializeField] private D_DeadState _deadStateData;
@@ -18,14 +18,14 @@ public class Ogre : Enemy
 
     [Header("Attack Positions")]
     [SerializeField] private Transform _meleeAttackPosition;
-    [SerializeField] private Transform _stompAttackPosition;
+    [SerializeField] private Transform _specificAreaAttackPosition;
 
     public Ogre_IdleState IdleState { get; private set; }
     public Ogre_MoveState MoveState { get; private set; }
     public Ogre_PlayerDetectedState PlayerDetectedState { get; private set; }
     public Ogre_LookForPlayerState LookForPlayerState { get; private set; }
     public Ogre_MeleeAttackState MeleeAttackState { get; private set; }
-    public Ogre_StompAttackState StompAttackState { get; private set; }
+    public Ogre_SpecificAreaAttackState SpecificAreaAttackState { get; private set; }
     public Ogre_DamageState DamageState { get; private set; }
     public Ogre_StunState StunState { get; private set; }
     public Ogre_DeadState DeadState { get; private set; }
@@ -42,7 +42,7 @@ public class Ogre : Enemy
         // TODO: OGRE create look for player animation
         LookForPlayerState = new Ogre_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
         MeleeAttackState = new Ogre_MeleeAttackState(FiniteStateMachine, this, "meleeAttack", _meleeAttackPosition, _meleeAttackStateData, this);
-        StompAttackState = new Ogre_StompAttackState(FiniteStateMachine, this, "stompAttack", _stompAttackPosition, _stompAttackStateData, this);
+        SpecificAreaAttackState = new Ogre_SpecificAreaAttackState(FiniteStateMachine, this, "specificAreaAttack", _specificAreaAttackPosition, _specificAreaAttackStateData, this);
         DamageState = new Ogre_DamageState(FiniteStateMachine, this, "damage", _damageStateData, this);
         StunState = new Ogre_StunState(FiniteStateMachine, this, "stun", _stunStateData, this);
         DeadState = new Ogre_DeadState(FiniteStateMachine, this, "dead", _deadStateData, this);
