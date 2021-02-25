@@ -33,7 +33,10 @@ public class SpecificAreaAttackState : AttackState
         _attackPosition.x += StateData.attackOffset.x * Enemy.FacingDirection;
         _attackPosition.y += StateData.attackOffset.y;
 
-        SpecificAreaAttack = GameObject.Instantiate(StateData.attack, _attackPosition, Quaternion.identity));
+        Quaternion enemyRotation = Enemy.AliveGameObject.transform.rotation;
+
+        SpecificAreaAttack = GameObject.Instantiate(StateData.attack, _attackPosition, Quaternion.Euler(enemyRotation.x, Enemy.FacingDirection == 1 ? 0 : 180,
+            enemyRotation.z));
         SpecificAreaAttackScript = SpecificAreaAttack.GetComponent<SpecificAreaAttack>();
 
         _attackDetails.damageAmmount = StateData.attackDamage;
