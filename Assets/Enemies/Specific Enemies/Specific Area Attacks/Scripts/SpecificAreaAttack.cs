@@ -17,6 +17,7 @@ public class SpecificAreaAttack : MonoBehaviour
     private float _startTime;
     private float _timeToDisappear;
     private AttackDetails _attackDetails;
+    private Collider2D _damageHit;
 
     private Rigidbody2D _myRigidbody2D;
     private Animator _myAnimator;
@@ -36,7 +37,8 @@ public class SpecificAreaAttack : MonoBehaviour
     {
         if (Time.time >= _startTime + _timeToDisappear)
         {
-            _myAnimator.SetBool("dissaper", true);
+            _myAnimator.SetBool("appear", false);
+            _myAnimator.SetBool("disappear", true);
         }
 
         if (_hasDisappeared)
@@ -49,13 +51,13 @@ public class SpecificAreaAttack : MonoBehaviour
     {
         if (_hasAppeared)
         {
-            Collider2D damageHit = Physics2D.OverlapBox(_damagePosition.position, _damageSize, _whatIsEnemy);
+            _damageHit = Physics2D.OverlapBox(_damagePosition.position, _damageSize, _whatIsEnemy);
 
-            if (damageHit)
+            if (_damageHit)
             {
                 _attackDetails.position = transform.position;
 
-                damageHit.transform.parent.SendMessage("Damage", _attackDetails);
+                _damageHit.transform.parent.SendMessage("Damage", _attackDetails);
             }
         }
     }

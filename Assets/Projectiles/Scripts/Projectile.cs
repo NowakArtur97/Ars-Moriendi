@@ -26,6 +26,8 @@ public class Projectile : MonoBehaviour
 
     private bool _isGravityOn;
     private bool _hasHitGround;
+    private Collider2D _damageHit;
+    private Collider2D _groundHit;
 
     private Rigidbody2D _myRigidbody2D;
     private Animator _myAnimator;
@@ -54,8 +56,8 @@ public class Projectile : MonoBehaviour
     {
         if (_isGravityOn && !_hasHitGround)
         {
-            float angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            _angle = Mathf.Atan2(_myRigidbody2D.velocity.y, _myRigidbody2D.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
         }
     }
 
@@ -63,14 +65,14 @@ public class Projectile : MonoBehaviour
     {
         if (!_hasHitGround)
         {
-            Collider2D damageHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsEnemy);
-            Collider2D groundHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsGround);
+            _damageHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsEnemy);
+            _groundHit = Physics2D.OverlapCircle(_damagePosition.position, _damageRadius, _whatIsGround);
 
-            if (damageHit)
+            if (_damageHit)
             {
                 _attackDetails.position = transform.position;
 
-                damageHit.transform.parent.SendMessage("Damage", _attackDetails);
+                _damageHit.transform.parent.SendMessage("Damage", _attackDetails);
 
                 if (!IsPlayerEnemy || !_player.StatsManager.IsRolling)
                 {
@@ -78,7 +80,7 @@ public class Projectile : MonoBehaviour
                 }
             }
 
-            if (groundHit)
+            if (_groundHit)
             {
                 _hasHitGround = true;
             }
