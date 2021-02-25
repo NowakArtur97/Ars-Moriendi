@@ -17,9 +17,9 @@ MonoBehaviour:
   ledgeCheckDistance: 1.5
   groundCheckRadius: 1
   minAgroDistance: 3
-  maxAgroDistance: 5
+  maxAgroDistance: 6
   closeRangeActionDistance: 1.7
-  longRangeActionDistance: 4
+  longRangeActionDistance: 6
   maxPlayerJumpedOverDistance: 2
   whatIsGround:
     serializedVersion: 2

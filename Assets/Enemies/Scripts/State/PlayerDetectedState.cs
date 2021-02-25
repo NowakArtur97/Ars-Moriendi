@@ -34,12 +34,12 @@ public abstract class PlayerDetectedState : EnemyState
     {
         base.LogicUpdate();
 
-        if (Time.time >= StartTime + StateData.timeForCloseRangeAction)
+        if (Time.time >= StartTime + StateData.timeForCloseRangeAction && Enemy.CheckIfPlayerInCloseRangeAction())
         {
             ShouldPerformCloseRangeAction = true;
         }
 
-        if (Time.time >= StartTime + StateData.timeForLongRangeAction)
+        if (Time.time >= StartTime + StateData.timeForLongRangeAction && Enemy.CheckIfPlayerInLongRangeAction())
         {
             ShouldPerformLongRangeAction = true;
         }

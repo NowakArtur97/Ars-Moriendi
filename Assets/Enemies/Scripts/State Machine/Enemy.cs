@@ -113,7 +113,7 @@ public abstract class Enemy : MonoBehaviour
         _entityData.closeRangeActionDistance, _entityData.whatIsPlayer);
 
     public virtual bool CheckIfPlayerInLongRangeAction() => Physics2D.Raycast(PlayerCheck.position, AliveGameObject.transform.right,
-        _entityData.closeRangeActionDistance, _entityData.whatIsPlayer);
+        _entityData.longRangeActionDistance, _entityData.whatIsPlayer);
 
     public virtual bool CheckIfPlayerJumpedOver() => Physics2D.Raycast(PlayerJumpedOverCheck.position, Vector2.up, _entityData.maxPlayerJumpedOverDistance,
         _entityData.whatIsPlayer);
