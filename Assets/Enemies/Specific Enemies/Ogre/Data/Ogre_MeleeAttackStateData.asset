@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1c320d59dca9a4898ec4c6ae0877ae, type: 3}
   m_Name: Ogre_MeleeAttackStateData
   m_EditorClassIdentifier: 
-  attackRadius: 0.5
+  attackRadius: 0.25
   attackDamage: 15
-  stunDamage: 10
+  stunDamage: 15
   attackMovementSpeed: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024

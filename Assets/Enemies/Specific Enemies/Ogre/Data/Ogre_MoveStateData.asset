@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea7fdc4fd7e7bb49bba4336c8556bb2, type: 3}
   m_Name: Ogre_MoveStateData
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 2

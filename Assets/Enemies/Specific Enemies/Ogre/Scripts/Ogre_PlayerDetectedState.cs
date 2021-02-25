@@ -24,7 +24,7 @@
             }
             else if (!IsPlayerInMaxAgroRange)
             {
-                FiniteStateMachine.ChangeState(_ogre.IdleState);
+                FiniteStateMachine.ChangeState(_ogre.LookForPlayerState);
             }
         }
     }

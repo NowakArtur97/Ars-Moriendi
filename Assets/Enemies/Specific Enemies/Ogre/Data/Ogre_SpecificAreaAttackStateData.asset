@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14a4632d1eaa8a44b63295febabd369, type: 3}
   m_Name: Ogre_SpecificAreaAttackStateData
   m_EditorClassIdentifier: 
-  attack: {fileID: 0}
+  attack: {fileID: 8678832098430522562, guid: 1f6f9d53b7833a2409360903120ced43, type: 3}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02b61f33e051a143abae5fcd22f7d66, type: 3}
   m_Name: Ogre_PlayerDetectedStateData
   m_EditorClassIdentifier: 
-  timeForCloseRangeAction: 0.5
-  timeForLongRangeAction: 1
+  timeForCloseRangeAction: 1.5
+  timeForLongRangeAction: 4

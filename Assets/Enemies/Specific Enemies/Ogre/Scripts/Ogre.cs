@@ -37,7 +37,7 @@ public class Ogre : Enemy
         base.Start();
 
         IdleState = new Ogre_IdleState(FiniteStateMachine, this, "idle", _idleStateData, this);
-        MoveState = new Ogre_MoveState(FiniteStateMachine, this, "jumpingMove", _moveStateData, this);
+        MoveState = new Ogre_MoveState(FiniteStateMachine, this, "move", _moveStateData, this);
         PlayerDetectedState = new Ogre_PlayerDetectedState(FiniteStateMachine, this, "playerDetected", _playerDetectedStateData, this);
         // TODO: OGRE create look for player animation
         LookForPlayerState = new Ogre_LookForPlayerState(FiniteStateMachine, this, "lookForPlayer", _lookForPlayerStateData, this);
